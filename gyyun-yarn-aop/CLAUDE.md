@@ -4,7 +4,7 @@ Tiny AspectJ module that weaves into Hadoop YARN's `YarnClientImpl.submitApplica
 
 ## Main package
 
-`org.apache.gyyun.aop`
+`com.gyyun.ds.aop`
 
 ## What it actually does
 

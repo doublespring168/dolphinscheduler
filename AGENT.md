@@ -23,11 +23,11 @@ A production deployment runs **four independent services** (plus an external reg
 
 | Service | Module | Main class | Default ports |
 |---------|--------|------------|---------------|
-| **API** | [`gyyun-api`](gyyun-api/CLAUDE.md) | `org.apache.gyyun.api.ApiApplicationServer` | `12345` (HTTP / UI + REST) |
-| **Master** | [`gyyun-master`](gyyun-master/CLAUDE.md) | `org.apache.gyyun.server.master.MasterServer` | `5679` (RPC) |
-| **Worker** | [`gyyun-worker`](gyyun-worker/CLAUDE.md) | `org.apache.gyyun.server.worker.WorkerServer` | `1235` (RPC) |
-| **Alert** | [`gyyun-alert`](gyyun-alert/CLAUDE.md) (to `-alert-server`) | `org.apache.gyyun.alert.AlertServer` | `50053` (HTTP), `50052` (RPC) |
-| Standalone (dev only) | [`gyyun-standalone-server`](gyyun-standalone-server/CLAUDE.md) | `org.apache.gyyun.StandaloneServer` | `12345` + `50052` (API + alert; master/worker use in-JVM calls) |
+| **API** | [`gyyun-api`](gyyun-api/CLAUDE.md) | `com.gyyun.ds.api.ApiApplicationServer` | `12345` (HTTP / UI + REST) |
+| **Master** | [`gyyun-master`](gyyun-master/CLAUDE.md) | `com.gyyun.ds.server.master.MasterServer` | `5679` (RPC) |
+| **Worker** | [`gyyun-worker`](gyyun-worker/CLAUDE.md) | `com.gyyun.ds.server.worker.WorkerServer` | `1235` (RPC) |
+| **Alert** | [`gyyun-alert`](gyyun-alert/CLAUDE.md) (to `-alert-server`) | `com.gyyun.ds.alert.AlertServer` | `50053` (HTTP), `50052` (RPC) |
+| Standalone (dev only) | [`gyyun-standalone-server`](gyyun-standalone-server/CLAUDE.md) | `com.gyyun.ds.StandaloneServer` | `12345` + `50052` (API + alert; master/worker use in-JVM calls) |
 
 Every service is a `@SpringBootApplication` on Jetty and implements `IStoppable`. Scale Master / Worker / Alert horizontally; coordination happens via the registry (Zookeeper by default). API is stateless and also scales horizontally behind a load balancer.
 

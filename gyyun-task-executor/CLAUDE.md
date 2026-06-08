@@ -4,7 +4,7 @@ Reusable task-execution framework. Defines how a worker **runs**, **tracks**, an
 
 ## Main package
 
-`org.apache.gyyun.task.executor`
+`com.gyyun.ds.task.executor`
 
 ## Key sub-packages
 

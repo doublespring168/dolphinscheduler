@@ -369,7 +369,7 @@ common.properties配置文件目前主要是配置hadoop/s3/yarn/applicationId�
 
 |                      Parameters                      |                             Default value                             |
 |------------------------------------------------------|-----------------------------------------------------------------------|
-| spring.quartz.properties.org.quartz.threadPool.class | org.apache.gyyun.scheduler.quartz.QuartzZeroSizeThreadPool |
+| spring.quartz.properties.org.quartz.threadPool.class | com.gyyun.ds.scheduler.quartz.QuartzZeroSizeThreadPool |
 
 ## gyyun_env.sh [环境变量配置]
 

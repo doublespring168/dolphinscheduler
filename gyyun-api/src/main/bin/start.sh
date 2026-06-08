@@ -67,4 +67,4 @@ done
 
 $JAVA_HOME/bin/java $JAVA_OPTS \
   -cp "$API_HOME/conf""$CP" \
-  org.apache.gyyun.api.ApiApplicationServer
+  com.gyyun.ds.api.ApiApplicationServer

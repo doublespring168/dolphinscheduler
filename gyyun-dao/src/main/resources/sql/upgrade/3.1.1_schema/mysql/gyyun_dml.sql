@@ -15,4 +15,4 @@
  * limitations under the License.
 */
 
-UPDATE QRTZ_JOB_DETAILS SET job_class_name = 'org.apache.gyyun.scheduler.quartz.ProcessScheduleTask' WHERE job_class_name = 'org.apache.gyyun.service.quartz.ProcessScheduleJob';
+UPDATE QRTZ_JOB_DETAILS SET job_class_name = 'com.gyyun.ds.scheduler.quartz.ProcessScheduleTask' WHERE job_class_name = 'com.gyyun.ds.service.quartz.ProcessScheduleJob';

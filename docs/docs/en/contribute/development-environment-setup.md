@@ -167,7 +167,7 @@ Use different Git branch to develop different codes
 
 ### Start backend server
 
-Find the class `org.apache.gyyun.StandaloneServer` in IntelliJ IDEA and click run main function to startup.
+Find the class `com.gyyun.ds.StandaloneServer` in IntelliJ IDEA and click run main function to startup.
 
 > Note: Please check the option `Add dependencies with "provided" scope to classpath` in the startup configuration before starting, so as to avoid the problem that no dependencies can be found during startup.
 
@@ -247,10 +247,10 @@ spring:
 
 There are three services that need to be started, including MasterServer, WorkerServer, ApiApplicationServer.
 
-- MasterServer：Execute function `main` in the class `org.apache.gyyun.server.master.MasterServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
-- WorkerServer：Execute function `main` in the class `org.apache.gyyun.server.worker.WorkerServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true`
-- AlertServer：Execute function `main` in the class `org.apache.gyyun.alert.AlertServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
-- ApiApplicationServer：Execute function `main` in the class `org.apache.gyyun.api.ApiApplicationServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`. After it started, you could find Open API documentation in http://localhost:12345/gyyun/swagger-ui/index.html
+- MasterServer：Execute function `main` in the class `com.gyyun.ds.server.master.MasterServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
+- WorkerServer：Execute function `main` in the class `com.gyyun.ds.server.worker.WorkerServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true`
+- AlertServer：Execute function `main` in the class `com.gyyun.ds.alert.AlertServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
+- ApiApplicationServer：Execute function `main` in the class `com.gyyun.ds.api.ApiApplicationServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`. After it started, you could find Open API documentation in http://localhost:12345/gyyun/swagger-ui/index.html
 
 > The `mysql` in the VM Options `-Dspring.profiles.active=mysql` means specified configuration file
 

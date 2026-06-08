@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.plugin.registry.etcd.EtcdRegistryAutoConfiguration
+  com.gyyun.ds.plugin.registry.etcd.EtcdRegistryAutoConfiguration

@@ -8,7 +8,7 @@ This is **not** a distributed event bus. Events do not cross JVM boundaries. For
 
 ## Main package
 
-`org.apache.gyyun.eventbus`
+`com.gyyun.ds.eventbus`
 
 ## Key types
 

@@ -8,7 +8,7 @@
 
 ## Main package
 
-`org.apache.gyyun`
+`com.gyyun.ds`
 
 ## Configuration
 

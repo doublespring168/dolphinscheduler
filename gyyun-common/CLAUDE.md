@@ -13,7 +13,7 @@ Foundation utility library. Every other backend module in the repo transitively 
 
 ## Main package
 
-`org.apache.gyyun.common`
+`com.gyyun.ds.common`
 
 ## Key sub-packages
 

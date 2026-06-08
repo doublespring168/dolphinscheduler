@@ -9,7 +9,7 @@ Every page of DolphinScheduler is abstracted into a class for better maintainabi
 ### Example
 
 The login page is abstracted
-as [`LoginPage`](gyyun-e2e-case/src/test/java/org/apache/gyyun/e2e/pages/LoginPage.java), with the
+as [`LoginPage`](gyyun-e2e-case/src/test/java/com/gyyun/ds/e2e/pages/LoginPage.java), with the
 following fields,
 
 ```java
@@ -119,5 +119,5 @@ Add VM options to the test configuration in IntelliJ IDEA:
 
 - To run the tests locally, you need to have the DolphinScheduler running locally. You should add `gyyun-e2e/pom.xml` to the maven project
   Since it does not participate in project compilation, it is not in the main project.
-- Running run test class `org.apache.gyyun.e2e.cases.UserE2ETest` in the IDE. After execution, the test video will be saved as mp4 in a local temporary directory. Such as
-  `/var/folders/hf/123/T/record-3123/PASSED-[engine:junit-jupiter]/[class:org.apache.gyyun.e2e.cases.UserE2ETest]-20240606-152333.mp4`
+- Running run test class `com.gyyun.ds.e2e.cases.UserE2ETest` in the IDE. After execution, the test video will be saved as mp4 in a local temporary directory. Such as
+  `/var/folders/hf/123/T/record-3123/PASSED-[engine:junit-jupiter]/[class:com.gyyun.ds.e2e.cases.UserE2ETest]-20240606-152333.mp4`

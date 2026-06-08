@@ -8,7 +8,7 @@ The **Master** server. Owns workflow orchestration: consumes `Command` rows, run
 
 ## Main package
 
-`org.apache.gyyun.server.master`
+`com.gyyun.ds.server.master`
 
 ## Key sub-packages
 

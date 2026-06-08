@@ -8,7 +8,7 @@ this can help you to manage the version.
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-bom</artifactId>
             <version>${gyyun.version}</version>
             <type>pom</type>

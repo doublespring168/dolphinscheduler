@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.dao.plugin.h2.H2DaoPluginAutoConfiguration
+  com.gyyun.ds.dao.plugin.h2.H2DaoPluginAutoConfiguration

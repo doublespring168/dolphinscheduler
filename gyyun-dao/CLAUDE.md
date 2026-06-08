@@ -4,7 +4,7 @@ MyBatis-based data-access layer. Holds every entity, mapper, repository, and the
 
 ## Main package
 
-`org.apache.gyyun.dao`
+`com.gyyun.ds.dao`
 
 ## Key sub-packages
 

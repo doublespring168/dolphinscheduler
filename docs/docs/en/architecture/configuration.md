@@ -363,7 +363,7 @@ The default configuration is as follows:
 
 |                      Parameters                      |                             Default value                             |
 |------------------------------------------------------|-----------------------------------------------------------------------|
-| spring.quartz.properties.org.quartz.threadPool.class | org.apache.gyyun.scheduler.quartz.QuartzZeroSizeThreadPool |
+| spring.quartz.properties.org.quartz.threadPool.class | com.gyyun.ds.scheduler.quartz.QuartzZeroSizeThreadPool |
 
 ### gyyun_env.sh [load environment variables configs]
 

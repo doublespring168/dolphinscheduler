@@ -29,7 +29,7 @@ Network: `task-http`, `task-grpc`.
 
 Each plugin ships:
 
-1. A `TaskChannelFactory` implementation annotated with `@AutoService(TaskChannelFactory.class)`. The annotation processor generates `META-INF/services/org.apache.gyyun.plugin.task.api.TaskChannelFactory` at compile time.
+1. A `TaskChannelFactory` implementation annotated with `@AutoService(TaskChannelFactory.class)`. The annotation processor generates `META-INF/services/com.gyyun.ds.plugin.task.api.TaskChannelFactory` at compile time.
 2. A `TaskChannel` implementation that returns a concrete `AbstractTask` subclass given an `ITaskExecutionContext`.
 3. A parameter DTO + UI-form description (via `PluginParamsTransfer`, inherited from `gyyun-spi`).
 

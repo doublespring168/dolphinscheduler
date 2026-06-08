@@ -21,7 +21,7 @@
     <property scope="context" name="log.base.ctx" value="${log.base}" />
 
     <conversionRule conversionWord="message"
-                    converterClass="org.apache.gyyun.plugin.task.api.log.SensitiveDataConverter"/>
+                    converterClass="com.gyyun.ds.plugin.task.api.log.SensitiveDataConverter"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -54,8 +54,8 @@
     <logger name="org.apache.hadoop" level="WARN"/>
 
     <appender name="TASKLOGFILE" class="ch.qos.logback.classic.sift.SiftingAppender">
-        <filter class="org.apache.gyyun.plugin.task.api.log.TaskLogFilter"/>
-        <Discriminator class="org.apache.gyyun.plugin.task.api.log.TaskLogDiscriminator">
+        <filter class="com.gyyun.ds.plugin.task.api.log.TaskLogFilter"/>
+        <Discriminator class="com.gyyun.ds.plugin.task.api.log.TaskLogDiscriminator">
             <key>taskInstanceLogFullPath</key>
             <logBase>${log.base}</logBase>
         </Discriminator>

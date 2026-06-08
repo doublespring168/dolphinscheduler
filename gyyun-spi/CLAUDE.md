@@ -4,7 +4,7 @@ Service-Provider-Interface contracts shared between the core and all plugin fami
 
 ## Main package
 
-`org.apache.gyyun.spi`
+`com.gyyun.ds.spi`
 
 ## Key sub-packages
 

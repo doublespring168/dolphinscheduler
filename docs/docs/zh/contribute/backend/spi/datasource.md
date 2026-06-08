@@ -8,9 +8,9 @@
 
 #### 如何进行数据源插件开发？
 
-org.apache.gyyun.spi.datasource.DataSourceChannel
-org.apache.gyyun.spi.datasource.DataSourceChannelFactory
-org.apache.gyyun.spi.datasource.client.DataSourceClient
+com.gyyun.ds.spi.datasource.DataSourceChannel
+com.gyyun.ds.spi.datasource.DataSourceChannelFactory
+com.gyyun.ds.spi.datasource.client.DataSourceClient
 
 1. 第一步数据源插件实现以上接口和继承通用client即可，具体可以参考sqlserver、mysql等数据源插件实现，所有RDBMS插件的添加方式都是一样的。
 2. 在数据源插件pom.xml添加驱动配置

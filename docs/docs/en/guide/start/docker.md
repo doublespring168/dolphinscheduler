@@ -13,7 +13,7 @@ before starting DolphinScheduler with Docker
 
 ## Download Plugins Dependencies
 
-Starting from version 3.3.0, the binary package no longer provides plugin dependencies, and users need to download them by themselves. The plugin dependency package download address: [Plugin Dependency Package](https://repo.maven.apache.org/maven2/org/apache/gyyun)
+Starting from version 3.3.0, the binary package no longer provides plugin dependencies, and users need to download them by themselves. The plugin dependency package download address: [Plugin Dependency Package](https://repo.maven.apache.org/maven2/com/gyyun/ds)
 You can also execute the following command to install plugin dependencies:
 
 ```shell

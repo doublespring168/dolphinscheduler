@@ -6,11 +6,11 @@ DolphinScheduler is undergoing a microkernel + plug-in architecture change. All 
 
 For alarm-related codes, please refer to the `gyyun-alert-api` module. This module defines the extension interface of the alarm plug-in and some basic codes. When we need to realize the plug-inization of related functions, it is recommended to read the code of this block first. Of course, it is recommended that you read the document. This will reduce a lot of time, but the document There is a certain degree of lag. When the document is missing, it is recommended to take the source code as the standard (if you are interested, we also welcome you to submit related documents). In addition, we will hardly make changes to the extended interface (excluding new additions) , Unless there is a major structural adjustment, there is an incompatible upgrade version, so the existing documents can generally be satisfied.
 
-We use the native JAVA-SPI, when you need to extend, in fact, you only need to pay attention to the extension of the `org.apache.gyyun.alert.api.AlertChannelFactory` interface, the underlying logic such as plug-in loading, and other kernels have been implemented, Which makes our development more focused and simple.
+We use the native JAVA-SPI, when you need to extend, in fact, you only need to pay attention to the extension of the `com.gyyun.ds.alert.api.AlertChannelFactory` interface, the underlying logic such as plug-in loading, and other kernels have been implemented, Which makes our development more focused and simple.
 
 In additional, the `AlertChannelFactory` extends from `PrioritySPI`, this means you can set the plugin priority, when you have two plugin has the same name, you can customize the priority by override the `getIdentify` method. The high priority plugin will be load, but if you have two plugin with the same name and same priority, the server will throw `IllegalArgumentException` when load the plugin.
 
-By the way, we have adopted an excellent front-end component form-create, which supports the generation of front-end UI components based on JSON. If plug-in development involves the front-end, we will use JSON to generate related front-end UI components, org.apache.gyyun. The parameters of the plug-in are encapsulated in spi.params, which will convert all the relevant parameters into the corresponding JSON, which means that you can complete the drawing of the front-end components by way of Java code (here is mainly the form, we only care Data exchanged between the front and back ends).
+By the way, we have adopted an excellent front-end component form-create, which supports the generation of front-end UI components based on JSON. If plug-in development involves the front-end, we will use JSON to generate related front-end UI components, com.gyyun.ds. The parameters of the plug-in are encapsulated in spi.params, which will convert all the relevant parameters into the corresponding JSON, which means that you can complete the drawing of the front-end components by way of Java code (here is mainly the form, we only care Data exchanged between the front and back ends).
 
 This article mainly focuses on the design and development of Alert.
 
@@ -20,7 +20,7 @@ If you don't care about its internal design, but simply want to know how to deve
 
 * gyyun-alert-api
 
-  This module is the core module of ALERT SPI. This module defines the interface of the alarm plug-in extension and some basic codes. The extension plug-in must implement the interface defined by this module: `org.apache.gyyun.alert.api.AlertChannelFactory`
+  This module is the core module of ALERT SPI. This module defines the interface of the alarm plug-in extension and some basic codes. The extension plug-in must implement the interface defined by this module: `com.gyyun.ds.alert.api.AlertChannelFactory`
 
 * gyyun-alert-plugins
 
@@ -43,7 +43,7 @@ For alarm-related information, when the upper-level system calls an instance of 
 AlertResult
 The alarm plug-in sends alarm return information.
 
-org.apache.gyyun.spi.params
+com.gyyun.ds.spi.params
 This package is a plug-in parameter definition. Our front-end uses the from-create front-end library http://www.form-create.com, which can dynamically generate the front-end UI based on the parameter list json returned by the plug-in definition, so We don't need to care about the front end when we are doing SPI plug-in development.
 
 Under this package, we currently only encapsulate RadioParam, TextParam, and PasswordParam, which are used to define text type parameters, radio parameters and password type parameters, respectively.

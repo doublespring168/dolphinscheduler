@@ -27,8 +27,8 @@ spring:
       pool-name: DolphinScheduler
 
 mybatis-plus:
-  mapper-locations: classpath:org/apache/gyyun/dao/mapper/*Mapper.xml
-  type-aliases-package: org.apache.gyyun.dao.entity
+  mapper-locations: classpath:com/gyyun/ds/dao/mapper/*Mapper.xml
+  type-aliases-package: com.gyyun.ds.dao.entity
   configuration:
     cache-enabled: false
     call-setters-on-nulls: true

@@ -19,11 +19,11 @@ DolphinScheduler's API tests are deployed using docker-compose. The current test
 For API test,  the [page model](https://www.selenium.dev/documentation/guidelines/page_object_models/) form is used, mainly to create a corresponding model for each page. The following is an example of a login page.
 
 ```java
-package org.apache.gyyun.api.test.pages;
+package com.gyyun.ds.api.test.pages;
 
 
-import org.apache.gyyun.api.test.entity.HttpResponse;
-import org.apache.gyyun.api.test.utils.RequestClient;
+import com.gyyun.ds.api.test.entity.HttpResponse;
+import com.gyyun.ds.api.test.utils.RequestClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,7 +80,7 @@ When the preparation is complete, it is time for the formal test case writing. W
 
 The rest are similar cases and can be understood by referring to the specific source code.
 
-https://github.com/apache/gyyun/tree/dev/gyyun-api-test/gyyun-api-test-case/src/test/java/org/apache/gyyun/api/test/cases
+https://github.com/apache/gyyun/tree/dev/gyyun-api-test/gyyun-api-test-case/src/test/java/com/gyyun/ds/api/test/cases
 
 ## Supplements
 

@@ -18,7 +18,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.apache.gyyun</groupId>
+        <groupId>com.gyyun.ds</groupId>
         <artifactId>gyyun-alert-plugins</artifactId>
         <version>3.4.3-SNAPSHOT</version>
     </parent>
@@ -27,62 +27,62 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-prometheus</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-dingtalk</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-email</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-feishu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-http</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-pagerduty</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-script</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-slack</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-telegram</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-webexteams</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-wechat</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-alert-aliyunVoice</artifactId>
             <version>${project.version}</version>
         </dependency>

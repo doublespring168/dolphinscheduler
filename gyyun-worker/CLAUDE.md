@@ -8,7 +8,7 @@ The **Worker** server. Receives task-dispatch RPCs from the master, spins up the
 
 ## Main package
 
-`org.apache.gyyun.server.worker`
+`com.gyyun.ds.server.worker`
 
 ## Key sub-packages
 

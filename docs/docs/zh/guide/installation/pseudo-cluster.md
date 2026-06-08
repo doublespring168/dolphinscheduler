@@ -18,7 +18,7 @@
 
 ## 下载插件依赖
 
-从 3.3.0 版本开始，二进制包不再提供插件依赖，需要用户自行下载。插件依赖包下载地址：[插件依赖包](https://repo.maven.apache.org/maven2/org/apache/gyyun)
+从 3.3.0 版本开始，二进制包不再提供插件依赖，需要用户自行下载。插件依赖包下载地址：[插件依赖包](https://repo.maven.apache.org/maven2/com/gyyun/ds)
 你也可以执行以下命令来安装插件依赖:
 
 ```shell

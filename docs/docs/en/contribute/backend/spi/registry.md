@@ -12,12 +12,12 @@ Make the following configuration (take zookeeper as an example)
   registry.servers=127.0.0.1:2181
   ```
 
-For specific configuration information, please refer to the parameter information provided by the specific plug-in, for example zk: `org/apache/gyyun/plugin/registry/zookeeper/ZookeeperConfiguration.java`
+For specific configuration information, please refer to the parameter information provided by the specific plug-in, for example zk: `com/gyyun/ds/plugin/registry/zookeeper/ZookeeperConfiguration.java`
 All configuration information prefixes need to be +registry, such as base.sleep.time.ms, which should be configured in the registry as follows: registry.base.sleep.time.ms=100
 
 #### How to expand
 
-`gyyun-registry-api` defines the standard for implementing plugins. When you need to extend plugins, you only need to implement `org.apache.gyyun.registry.api.RegistryFactory`.
+`gyyun-registry-api` defines the standard for implementing plugins. When you need to extend plugins, you only need to implement `com.gyyun.ds.registry.api.RegistryFactory`.
 
 Under the `gyyun-registry-plugin` module is the registry plugin we currently provide.
 

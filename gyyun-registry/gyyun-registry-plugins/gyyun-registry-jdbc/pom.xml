@@ -20,7 +20,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.apache.gyyun</groupId>
+        <groupId>com.gyyun.ds</groupId>
         <artifactId>gyyun-registry-plugins</artifactId>
         <version>3.4.3-SNAPSHOT</version>
     </parent>
@@ -29,12 +29,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-registry-api</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-common</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -75,7 +75,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-registry-it</artifactId>
             <version>${project.version}</version>
             <type>test-jar</type>

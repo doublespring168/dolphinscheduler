@@ -12,7 +12,7 @@ Parent POM grouping two unrelated authentication helpers. They share no code —
 ## Gotchas
 
 - **These two sub-modules are unrelated.** Don't treat "authentication" as a coherent module — the actuator one is about operator access; the AWS one is about cloud-task credentials. They don't share any class.
-- **API login auth is NOT here**. Session/password/LDAP/OIDC/CASDOOR login for the main API lives in `gyyun-api/src/main/java/org/apache/gyyun/api/security/`. If a user says "auth", check which one they mean first.
+- **API login auth is NOT here**. Session/password/LDAP/OIDC/CASDOOR login for the main API lives in `gyyun-api/src/main/java/com/gyyun/ds/api/security/`. If a user says "auth", check which one they mean first.
 - Actuator: the sample config uses `{noop}` password encoder. This is **development-only**; production must switch to `{bcrypt}` or an external IdP.
 - AWS: `STATIC` credentials sit in plaintext config. Always prefer `INSTANCE_PROFILE` on real infrastructure. When reading code that takes an `AwsConfig` map, expect either style.
 

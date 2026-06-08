@@ -41,7 +41,7 @@ echo "Starting DolphinScheduler..."
 
 while true; do
   sleep 5
-  if ! pgrep -f 'org.apache.gyyun' >/dev/null 2>&1; then
+  if ! pgrep -f 'com.gyyun.ds' >/dev/null 2>&1; then
     echo "Warning: DolphinScheduler process not detected yet (or already exited)." >&2
   fi
 done

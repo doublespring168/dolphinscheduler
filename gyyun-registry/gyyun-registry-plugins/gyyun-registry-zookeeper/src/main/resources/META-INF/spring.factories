@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.plugin.registry.zookeeper.ZookeeperRegistryAutoConfiguration
+  com.gyyun.ds.plugin.registry.zookeeper.ZookeeperRegistryAutoConfiguration

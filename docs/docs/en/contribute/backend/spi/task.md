@@ -2,9 +2,9 @@
 
 #### How to develop task plugins?
 
-org.apache.gyyun.spi.task.TaskChannel
+com.gyyun.ds.spi.task.TaskChannel
 
-The plug-in can implement the above interface. It mainly includes creating tasks (task initialization, task running, etc.) and task cancellation. If it is a yarn task, you need to implement org.apache.gyyun.plugin.task.api.AbstractYarnTask.
+The plug-in can implement the above interface. It mainly includes creating tasks (task initialization, task running, etc.) and task cancellation. If it is a yarn task, you need to implement com.gyyun.ds.plugin.task.api.AbstractYarnTask.
 
 We provide APIs for external access to all tasks in the gyyun-task-api module, while the gyyun-spi module is the spi general code library, which defines all the plug-in modules, such as the alarm module, the registry module, etc., you can read and view in detail .
 

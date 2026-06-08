@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.dao.plugin.postgresql.PostgresqlDaoPluginAutoConfiguration
+  com.gyyun.ds.dao.plugin.postgresql.PostgresqlDaoPluginAutoConfiguration

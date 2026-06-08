@@ -20,7 +20,7 @@
     <property name="log.base" value="logs"/>
 
     <conversionRule conversionWord="message"
-                    converterClass="org.apache.gyyun.plugin.task.api.log.SensitiveDataConverter"/>
+                    converterClass="com.gyyun.ds.plugin.task.api.log.SensitiveDataConverter"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -32,8 +32,8 @@
     </appender>
 
     <appender name="TASKLOGFILE" class="ch.qos.logback.classic.sift.SiftingAppender">
-        <filter class="org.apache.gyyun.plugin.task.api.log.TaskLogFilter"/>
-        <Discriminator class="org.apache.gyyun.plugin.task.api.log.TaskLogDiscriminator">
+        <filter class="com.gyyun.ds.plugin.task.api.log.TaskLogFilter"/>
+        <Discriminator class="com.gyyun.ds.plugin.task.api.log.TaskLogDiscriminator">
             <key>taskInstanceLogFullPath</key>
             <logBase>${log.base}</logBase>
         </Discriminator>

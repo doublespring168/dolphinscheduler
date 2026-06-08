@@ -12,7 +12,7 @@ CLI tools shipped alongside the server. Each tool is a separate `@SpringBootAppl
 
 ## Main package
 
-`org.apache.gyyun.tools`
+`com.gyyun.ds.tools`
 
 ## Key sub-packages
 

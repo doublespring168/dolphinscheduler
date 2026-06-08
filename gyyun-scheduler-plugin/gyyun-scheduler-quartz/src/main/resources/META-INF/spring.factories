@@ -16,5 +16,5 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.scheduler.quartz.QuartzSchedulerDataSourceAutoConfiguration,\
-  org.apache.gyyun.scheduler.quartz.QuartzSchedulerAutoConfiguration
+  com.gyyun.ds.scheduler.quartz.QuartzSchedulerDataSourceAutoConfiguration,\
+  com.gyyun.ds.scheduler.quartz.QuartzSchedulerAutoConfiguration

@@ -4,7 +4,7 @@ Business-logic layer sitting **between** `dao` and the server modules (`api`, `m
 
 ## Main package
 
-`org.apache.gyyun.service`
+`com.gyyun.ds.service`
 
 ## Key sub-packages
 

@@ -9,7 +9,7 @@ Every page of DolphinScheduler's api is abstracted into a class for better maint
 ### Example
 
 The login page's api is abstracted
-as [`LoginPage`](gyyun-api-test-case/src/test/java/org/apache/gyyun/api/test/pages/LoginPage.java)
+as [`LoginPage`](gyyun-api-test-case/src/test/java/com/gyyun/ds/api/test/pages/LoginPage.java)
 , with the following fields,
 
 ```java
@@ -67,7 +67,7 @@ Add VM options to the test configuration in IntelliJ IDEA:
 
 - To run the tests locally, you need to have the DolphinScheduler running locally. You should add `gyyun-api-test/pom.xml` to the maven project
   Since it does not participate in project compilation, it is not in the main project.
-- Running run test class `org.apache.gyyun.api.test.cases.TenantAPITest` in the IDE.
+- Running run test class `com.gyyun.ds.api.test.cases.TenantAPITest` in the IDE.
 
 ---
 ## Running the OIDC API Test

@@ -18,7 +18,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.apache.gyyun</groupId>
+        <groupId>com.gyyun.ds</groupId>
         <artifactId>gyyun-datasource-plugin</artifactId>
         <version>3.4.3-SNAPSHOT</version>
     </parent>
@@ -27,143 +27,143 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-clickhouse</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-databend</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-db2</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-hive</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-mysql</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-oceanbase</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-oracle</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-postgresql</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-sqlserver</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-redshift</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-athena</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-spark</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-presto</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-trino</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-starrocks</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-azure-sql</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-dameng</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-snowflake</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-ssh</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-kyuubi</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-vertica</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-zeppelin</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-doris</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-sagemaker</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-k8s</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-hana</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-aliyunserverlessspark</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-dolphindb</artifactId>
             <version>${project.version}</version>
         </dependency>

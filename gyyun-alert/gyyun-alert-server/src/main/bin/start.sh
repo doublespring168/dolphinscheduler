@@ -66,4 +66,4 @@ done
 
 $JAVA_HOME/bin/java $JAVA_OPTS \
   -cp "$ALERT_HOME/conf""$CP" \
-  org.apache.gyyun.alert.AlertServer
+  com.gyyun.ds.alert.AlertServer

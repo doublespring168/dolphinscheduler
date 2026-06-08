@@ -29,4 +29,4 @@ JAVA_OPTS=${JAVA_OPTS:-"-server -Duser.timezone=${SPRING_JACKSON_TIME_ZONE} -Xms
 $JAVA_HOME/bin/java $JAVA_OPTS \
   -cp "$TOOLS_HOME/conf":"$TOOLS_HOME/sql":"$TOOLS_HOME/libs/*" \
   -Dspring.profiles.active=upgrade,${DATABASE} \
-  org.apache.gyyun.tools.datasource.UpgradeDolphinScheduler
+  com.gyyun.ds.tools.datasource.UpgradeDolphinScheduler

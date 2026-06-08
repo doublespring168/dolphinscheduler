@@ -67,4 +67,4 @@ done
 
 $JAVA_HOME/bin/java $JAVA_OPTS \
   -cp "$MASTER_HOME/conf""$CP" \
-  org.apache.gyyun.server.master.MasterServer
+  com.gyyun.ds.server.master.MasterServer

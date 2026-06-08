@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.dao.plugin.mysql.MysqlDaoPluginAutoConfiguration
+  com.gyyun.ds.dao.plugin.mysql.MysqlDaoPluginAutoConfiguration

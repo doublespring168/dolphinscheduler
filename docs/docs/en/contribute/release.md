@@ -424,7 +424,7 @@ Release notes: https://github.com/apache/gyyun/releases/tag/<VERSION>
 
 The release candidates: https://dist.apache.org/repos/dist/dev/gyyun/<VERSION>/
 
-Maven 2 staging repository: https://repository.apache.org/content/repositories/<STAGING.REPOSITORY>/org/apache/gyyun/
+Maven 2 staging repository: https://repository.apache.org/content/repositories/<STAGING.REPOSITORY>/com/gyyun/ds/
 
 Git tag for the release: https://github.com/apache/gyyun/tree/<VERSION>
 

@@ -18,7 +18,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.apache.gyyun</groupId>
+        <groupId>com.gyyun.ds</groupId>
         <artifactId>gyyun</artifactId>
         <version>3.4.3-SNAPSHOT</version>
     </parent>
@@ -29,7 +29,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.apache.gyyun</groupId>
+                <groupId>com.gyyun.ds</groupId>
                 <artifactId>gyyun-bom</artifactId>
                 <version>${project.version}</version>
                 <type>pom</type>
@@ -41,7 +41,7 @@
     <dependencies>
         <!-- gyyun -->
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-service</artifactId>
             <exclusions>
                 <exclusion>
@@ -52,88 +52,88 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-dao</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-meter</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-common</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-spi</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-all</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-task-api</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-task-all</artifactId>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-ui</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-registry-all</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-scheduler-all</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-storage-api</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-storage-all</artifactId>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-extract-master</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-extract-worker</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-extract-alert</artifactId>
         </dependency>
         <!-- gyyun -->
@@ -261,7 +261,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.gyyun</groupId>
+            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-actuator-authentication</artifactId>
         </dependency>
 

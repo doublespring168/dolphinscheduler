@@ -4,7 +4,7 @@ REST API server. Entry point for the UI and external clients (curl, Python SDK).
 
 ## Main package
 
-`org.apache.gyyun.api`
+`com.gyyun.ds.api`
 
 ## Entry point
 
@@ -90,7 +90,7 @@ Drop the `-Dtest=...` filter to run the whole module.
 
 - `Cannot process instrumented class` — re-run with `-Djacoco.skip=true`, or wipe `target/` for the affected module and re-run.
 - `NoClassDefFoundError: oshi/SystemInfo` or `commons-collections4/CollectionUtils` at test runtime — the bom didn't get installed; redo the setup step including `gyyun-bom` in `-pl`.
-- `class file contains wrong class` — local `~/.m2/.../gyyun-*-dev-SNAPSHOT.jar` is stale/corrupt. Delete the offending `dev-SNAPSHOT` directory under `~/.m2/repository/org/apache/gyyun/` and re-run install.
+- `class file contains wrong class` — local `~/.m2/.../gyyun-*-dev-SNAPSHOT.jar` is stale/corrupt. Delete the offending `dev-SNAPSHOT` directory under `~/.m2/repository/com/gyyun/ds/` and re-run install.
 
 Surefire XML reports land at `target/surefire-reports/TEST-<class>.xml` for the per-test counts.
 

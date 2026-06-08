@@ -4,7 +4,7 @@ Metrics collection + Prometheus exposure + server-load-protection primitives. Au
 
 ## Main package
 
-`org.apache.gyyun.meter`
+`com.gyyun.ds.meter`
 
 ## Key sub-packages
 

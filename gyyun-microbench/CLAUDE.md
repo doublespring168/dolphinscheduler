@@ -4,7 +4,7 @@ JMH (Java Microbenchmark Harness) micro-benchmarks. Used to measure RPC throughp
 
 ## Main package
 
-`org.apache.gyyun.microbench`
+`com.gyyun.ds.microbench`
 
 ## Key sub-packages / classes
 

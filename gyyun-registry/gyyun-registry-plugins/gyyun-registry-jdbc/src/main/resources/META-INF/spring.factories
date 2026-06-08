@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.plugin.registry.jdbc.JdbcRegistryAutoConfiguration
+  com.gyyun.ds.plugin.registry.jdbc.JdbcRegistryAutoConfiguration

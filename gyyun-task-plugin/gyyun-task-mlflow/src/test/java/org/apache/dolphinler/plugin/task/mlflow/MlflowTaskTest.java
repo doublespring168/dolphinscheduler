@@ -17,12 +17,12 @@
 
 package org.apache.dolphinler.plugin.task.mlflow;
 
-import org.apache.gyyun.common.utils.JSONUtils;
-import org.apache.gyyun.common.utils.PropertyUtils;
-import org.apache.gyyun.plugin.task.api.TaskExecutionContext;
-import org.apache.gyyun.plugin.task.mlflow.MlflowConstants;
-import org.apache.gyyun.plugin.task.mlflow.MlflowParameters;
-import org.apache.gyyun.plugin.task.mlflow.MlflowTask;
+import com.gyyun.ds.common.utils.JSONUtils;
+import com.gyyun.ds.common.utils.PropertyUtils;
+import com.gyyun.ds.plugin.task.api.TaskExecutionContext;
+import com.gyyun.ds.plugin.task.mlflow.MlflowConstants;
+import com.gyyun.ds.plugin.task.mlflow.MlflowParameters;
+import com.gyyun.ds.plugin.task.mlflow.MlflowTask;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

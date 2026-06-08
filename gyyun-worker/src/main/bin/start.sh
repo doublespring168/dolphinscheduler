@@ -67,4 +67,4 @@ done
 
 $JAVA_HOME/bin/java $JAVA_OPTS \
   -cp "$WORKER_HOME/conf""$CP" \
-  org.apache.gyyun.server.worker.WorkerServer
+  com.gyyun.ds.server.worker.WorkerServer

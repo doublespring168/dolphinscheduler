@@ -16,9 +16,9 @@
  */
 syntax = "proto3";
 
-package org.apache.gyyun.task.grpc.proto;
+package com.gyyun.ds.task.grpc.proto;
 
-option java_package = "org.apache.gyyun.plugin.task.grpc.generated";
+option java_package = "com.gyyun.ds.plugin.task.grpc.generated";
 option java_multiple_files = true;
 option java_outer_classname = "ParserTesterProto";
 

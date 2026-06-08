@@ -27,10 +27,10 @@ DolphinScheduler 的 E2E 测试使用 docker-compose 部署，当前测试的为
 对于 E2E 测试（前端这一块），使用 [页面模型](https://www.selenium.dev/documentation/guidelines/page_object_models/) 的形式，主要为每一个页面建立一个对应的模型。下面以登录页为例：
 
 ```java
-package org.apache.gyyun.e2e.pages;
+package com.gyyun.ds.e2e.pages;
 
-import org.apache.gyyun.e2e.pages.common.NavBarPage;
-import org.apache.gyyun.e2e.pages.security.TenantPage;
+import com.gyyun.ds.e2e.pages.common.NavBarPage;
+import com.gyyun.ds.e2e.pages.security.TenantPage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -106,7 +106,7 @@ public <T extends SecurityPage.Tab> T goToTab(Class<T> tab) {
 
 ![SecurityPage](../../../img/e2e-test/SecurityPage.png)
 
-对于导航栏选项的跳转，在`org/apache/gyyun/e2e/pages/common/NavBarPage.java` 中提供了 goToNav 的方法。当前支持的页面为：项目管理（ProjectPage）、安全中心（SecurityPage）和资源中心（ResourcePage）。
+对于导航栏选项的跳转，在`com/gyyun/ds/e2e/pages/common/NavBarPage.java` 中提供了 goToNav 的方法。当前支持的页面为：项目管理（ProjectPage）、安全中心（SecurityPage）和资源中心（ResourcePage）。
 
 ```java
     public <T extends NavBarItem> T goToNav(Class<T> nav) {
@@ -174,7 +174,7 @@ public static void setup() {
 
 其余的都是类似的情况，可参考具体的源码来理解。
 
-https://github.com/apache/gyyun/tree/dev/gyyun-e2e/gyyun-e2e-case/src/test/java/org/apache/gyyun/e2e/cases
+https://github.com/apache/gyyun/tree/dev/gyyun-e2e/gyyun-e2e-case/src/test/java/com/gyyun/ds/e2e/cases
 
 ## 三、补充
 

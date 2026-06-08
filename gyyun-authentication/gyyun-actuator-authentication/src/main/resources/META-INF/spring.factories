@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  org.apache.gyyun.authentication.actuator.config.ActuatorAuthenticationAutoConfiguration
+  com.gyyun.ds.authentication.actuator.config.ActuatorAuthenticationAutoConfiguration

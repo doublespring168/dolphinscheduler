@@ -246,10 +246,10 @@ In the early schedule design, if there is no priority design and use the fair sc
 - For details, please refer to the logback configuration of Master and Worker, as shown in the following example:
 
 ```xml
-<conversionRule conversionWord="message" converterClass="org.apache.gyyun.plugin.task.api.log.SensitiveDataConverter"/>
+<conversionRule conversionWord="message" converterClass="com.gyyun.ds.plugin.task.api.log.SensitiveDataConverter"/>
 <appender name="TASKLOGFILE" class="ch.qos.logback.classic.sift.SiftingAppender">
-    <filter class="org.apache.gyyun.plugin.task.api.log.TaskLogFilter"/>
-    <Discriminator class="org.apache.gyyun.plugin.task.api.log.TaskLogDiscriminator">
+    <filter class="com.gyyun.ds.plugin.task.api.log.TaskLogFilter"/>
+    <Discriminator class="com.gyyun.ds.plugin.task.api.log.TaskLogDiscriminator">
         <key>taskAppId</key>
         <logBase>${log.base}</logBase>
     </Discriminator>

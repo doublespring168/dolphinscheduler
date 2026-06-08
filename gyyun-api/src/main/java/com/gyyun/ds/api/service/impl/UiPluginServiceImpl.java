@@ -1,0 +1,90 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.gyyun.ds.api.service.impl;
+
+import com.gyyun.ds.api.dto.ProductInfoDto;
+import com.gyyun.ds.api.enums.Status;
+import com.gyyun.ds.api.exceptions.ServiceException;
+import com.gyyun.ds.api.service.UiPluginService;
+import com.gyyun.ds.common.enums.PluginType;
+import com.gyyun.ds.dao.entity.DsVersion;
+import com.gyyun.ds.dao.entity.PluginDefine;
+import com.gyyun.ds.dao.mapper.PluginDefineMapper;
+import com.gyyun.ds.dao.repository.DsVersionDao;
+
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j
+public class UiPluginServiceImpl extends BaseServiceImpl implements UiPluginService {
+
+    @Autowired
+    PluginDefineMapper pluginDefineMapper;
+
+    @Autowired
+    private DsVersionDao dsVersionDao;
+
+    private String dsVersion;
+
+    @PostConstruct
+    private void init() {
+        dsVersion = dsVersionDao.selectVersion().map(DsVersion::getVersion).orElse("unknown");
+    }
+
+    @Override
+    public List<PluginDefine> queryUiPluginsByType(PluginType pluginType) {
+        if (!pluginType.getHasUi()) {
+            log.warn("Plugin does not have UI.");
+            throw new ServiceException(Status.PLUGIN_NOT_A_UI_COMPONENT);
+        }
+        List<PluginDefine> pluginDefines = pluginDefineMapper.queryByPluginType(pluginType.getDesc());
+
+        if (CollectionUtils.isEmpty(pluginDefines)) {
+            log.warn("Query plugins result is null, check status of plugins.");
+            throw new ServiceException(Status.QUERY_PLUGINS_RESULT_IS_NULL);
+        }
+        return pluginDefines;
+    }
+
+    @Override
+    public PluginDefine queryUiPluginDetailById(int id) {
+        PluginDefine pluginDefine = pluginDefineMapper.queryDetailById(id);
+        if (null == pluginDefine) {
+            log.warn("Query plugins result is empty, pluginId:{}.", id);
+            throw new ServiceException(Status.QUERY_PLUGIN_DETAIL_RESULT_IS_NULL);
+        }
+        return pluginDefine;
+    }
+
+    @Override
+    public ProductInfoDto queryProductInfo() {
+        ProductInfoDto result = new ProductInfoDto();
+        result.setVersion(dsVersion);
+        return result;
+    }
+
+}
