@@ -37,7 +37,7 @@
         <module>gyyun-alert-slack</module>
         <module>gyyun-alert-pagerduty</module>
         <module>gyyun-alert-webexteams</module>
-        <module>gyyun-alert-telegram</module>
+<!--        <module>gyyun-alert-telegram</module>-->
         <module>gyyun-alert-aliyunVoice</module>
         <module>gyyun-alert-prometheus</module>
     </modules>
