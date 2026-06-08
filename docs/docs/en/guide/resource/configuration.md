@@ -17,7 +17,7 @@ But please make sure to change the following configuration at the same time when
 
 The configuration you may need to change:
 
-- Change `resource.storage.upload.base.path` to your local directory path. Please make sure the `tenant resource.hdfs.root.user` has read and write permissions for `resource.storage.upload.base.path`, e,g. `/tmp/dolphinscheduler`. `DolphinScheduler` will create the directory you configure if it does not exist.
+- Change `resource.storage.upload.base.path` to your local directory path. Please make sure the `tenant resource.hdfs.root.user` has read and write permissions for `resource.storage.upload.base.path`, e,g. `/tmp/gyyun`. `DolphinScheduler` will create the directory you configure if it does not exist.
 
 > NOTE:
 > 1. LOCAL mode does not support reading and writing in distributed mode, which mean you can only use your resource in one machine, unless use shared file mount point
@@ -66,7 +66,7 @@ resource.alibaba.cloud.access.key.secret=<your-access-key-secret>
 # alibaba cloud region, required if you set resource.storage.type=OSS
 resource.alibaba.cloud.region=cn-hangzhou
 # oss bucket name, required if you set resource.storage.type=OSS
-resource.alibaba.cloud.oss.bucket.name=dolphinscheduler
+resource.alibaba.cloud.oss.bucket.name=gyyun
 # oss bucket endpoint, required if you set resource.storage.type=OSS
 resource.alibaba.cloud.oss.endpoint=https://oss-cn-hangzhou.aliyuncs.com
 
@@ -84,7 +84,7 @@ resource.huawei.cloud.access.key.id=<your-access-key-id>
 # access key secret, required if you set resource.storage.type=OBS
 resource.huawei.cloud.access.key.secret=<your-access-key-secret>
 # oss bucket name, required if you set resource.storage.type=OBS
-resource.huawei.cloud.obs.bucket.name=dolphinscheduler
+resource.huawei.cloud.obs.bucket.name=gyyun
 # oss bucket endpoint, required if you set resource.storage.type=OBS
 resource.huawei.cloud.obs.endpoint=obs.cn-southwest-2.huaweicloud.com
 
@@ -115,7 +115,7 @@ resource:
         # predefined region code: https://cloud.tencent.com/document/product/436/6224
         region: ap-nanjing
         bucket:
-          name: dolphinscheduler
+          name: gyyun
 
 ```
 

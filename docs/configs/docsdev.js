@@ -573,7 +573,7 @@ export default {
                     },
                     {
                         title: 'PyDolphinScheduler',
-                        link: '/en-us/docs/3.4.2/user_doc/guide/api/pydolphinscheduler.html',
+                        link: '/en-us/docs/3.4.2/user_doc/guide/api/pygyyun.html',
                     },
                     {
                         title: 'Health Check',
@@ -1285,7 +1285,7 @@ export default {
                     },
                     {
                         title: 'PyDolphinScheduler',
-                        link: '/zh-cn/docs/3.4.2/user_doc/guide/api/pydolphinscheduler.html',
+                        link: '/zh-cn/docs/3.4.2/user_doc/guide/api/pygyyun.html',
                     },
                     {
                         title: '健康检查',

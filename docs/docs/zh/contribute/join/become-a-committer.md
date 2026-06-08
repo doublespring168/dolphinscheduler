@@ -17,11 +17,11 @@ PMC会定期基于活跃贡献者们对Dolphinscheduler的贡献从他们中提�
 在Dolphinscheduler中，committer提名只能由现有的PMC成员开始。如果一个新的提交者觉得他/她有资格，他/她应该联系任何现有的PMC成员并进行讨论。如果这一点在PMC的一些成员中得到了认同，那么这个过程就会启动。
 
 建议采取以下步骤（仅需要现有2个PMC成员就可以发起）：
-1. 发送一封标题为"[讨论]晋升xxx为新的committer"的电子邮件到`private@dolphinscheduler.apache.org`，并在邮件中列出该候选人的重要贡献，这样就可以提名流程。
+1. 发送一封标题为"[讨论]晋升xxx为新的committer"的电子邮件到`private@gyyun.apache.org`，并在邮件中列出该候选人的重要贡献，这样就可以提名流程。
 2. 保持讨论要超过3天，但不超过1周，除非有任何明确的反对。
-3. 如果PMC普遍同意该提议，请发送一封题为"[投票]提名xxx成为新的committer"的电子邮件到`private@dolphinscheduler.apache.org`
+3. 如果PMC普遍同意该提议，请发送一封题为"[投票]提名xxx成为新的committer"的电子邮件到`private@gyyun.apache.org`
 4. 保持投票过程超过3天，但不超过1周。至少3 + 1票，且无反对票，则视为"共识批准"。注：+1票 > -1票。
-5. 发送一封题为"[结果] [投票]晋升xxx为新的committer"的电子邮件到`private@dolphinscheduler.apache.org`，并列出投票细节，包括谁是投票者。
+5. 发送一封题为"[结果] [投票]晋升xxx为新的committer"的电子邮件到`private@gyyun.apache.org`，并列出投票细节，包括谁是投票者。
 
 ## 邀请新的committer
 
@@ -31,8 +31,8 @@ PMC成员应使用以下模板向新的committer发送一封电子邮件:
 
 ```
 To: <invitee name>@gmail.com
-Cc: private@dolphinscheduler.apache.org
-Subject: Invitation to become dolphinscheduler committer: <invitee name>
+Cc: private@gyyun.apache.org
+Subject: Invitation to become gyyun committer: <invitee name>
 
 Hello <invitee name>,
 
@@ -56,7 +56,7 @@ contributor, participating as you do now.
 
 A. This personal invitation is a chance for you to 
 accept or decline in private.  Either way, please 
-let us know in reply to the [private@dolphinscheduler.apache.org] 
+let us know in reply to the [private@gyyun.apache.org] 
 address only.
 
 B. If you accept, the next step is to register an iCLA:
@@ -82,10 +82,10 @@ establishing you as a committer.
 
 ## 接受邀请
 
-新的提交者应该回复`private@dolphinscheduler.apache.org`（选择`回复所有`），并表达他/她接受邀请的意愿。
+新的提交者应该回复`private@gyyun.apache.org`（选择`回复所有`），并表达他/她接受邀请的意愿。
 
 一旦接受了邀请，新的committer必须采取以下步骤：
-1. 订阅`dev@dolphinscheduler.apache.org`，通常情况下，这已经完成
+1. 订阅`dev@gyyun.apache.org`，通常情况下，这已经完成
 2. 选择一个不在[apache committers list page](http://people.apache.org/committer-index.html)上的Apache ID
 3. 下载[ICLA](https://www.apache.org/licenses/icla.pdf)（如果新的提交者将项目作为日常工作来贡献，则应下载[CCLA](http://www.apache.org/licenses/cla-corporate.pdf)）
 4. 在`icla.pdf`(或`ccla.pdf`)中填写正确的信息后，打印出来，手写签名，扫描成PDF格式，并作为附件发送至[secretary@apache.org](mailto:secretary@apache.org)。(如果希望使用电子签名，请按照[本页](http://www.apache.org/licenses/contributor-agreements.html#submitting)上的步骤进行)
@@ -107,7 +107,7 @@ for more information about roles at Apache.
 
 几天后，新的committer将收到一封确认创建账户的电子邮件，标题为 `欢迎来到Apache软件基金会(ASF)!`。祝贺你! 现在有了一个正式的Apache ID。
 
-PMC成员应通过[花名册](https://whimsy.apache.org/roster/pmc/dolphinscheduler)将新的提交者加入官方committer名单。
+PMC成员应通过[花名册](https://whimsy.apache.org/roster/pmc/gyyun)将新的提交者加入官方committer名单。
 
 ## 初始化Apache ID和设置开发环境
 
@@ -147,7 +147,7 @@ PMC希望新的committer能够参与发布过程以及发布投票，尽管他�
 
 ```
 To: board@apache.org
-Cc: private@dolphinscheduler.apache.org
+Cc: private@gyyun.apache.org
 Subject: [NOTICE] Jane Doe for Dolphinscheduler PMC
 
 Dolphinscheduler proposes to invite Jane Doe (janedoe) to join the PMC.
@@ -157,4 +157,4 @@ Dolphinscheduler proposes to invite Jane Doe (janedoe) to join the PMC.
 
 72小时后，如果董事会不反对提名（大多数情况下不会反对），那么就可以向候选人发出邀请。
 
-一旦候选人接受邀请，PMC成员应通过[花名册](https://whimsy.apache.org/roster/pmc/dolphinscheduler)将新成员加入PMC正式名单。
+一旦候选人接受邀请，PMC成员应通过[花名册](https://whimsy.apache.org/roster/pmc/gyyun)将新成员加入PMC正式名单。

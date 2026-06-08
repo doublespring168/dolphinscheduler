@@ -22,7 +22,7 @@ variable "db_password" {
 variable "db_username" {
   description = "Database username"
   type        = string
-  default     = "dolphinscheduler"
+  default     = "gyyun"
 }
 variable "db_instance_class" {
   description = "Database instance class"

@@ -97,7 +97,7 @@ MLflow 组件用于执行 MLflow 任务，目前包含Mlflow Projects，和MLflo
 
 **方法A：**
 
-配置文件：/dolphinscheduler/conf/env/dolphinscheduler_env.sh。
+配置文件：/gyyun/conf/env/gyyun_env.sh。
 
 在文件最后添加内容
 
@@ -140,7 +140,7 @@ mlflow server -h 0.0.0.0 -p 5000 --serve-artifacts --backend-store-uri sqlite://
 
 ```yaml
 # mlflow task plugin preset repository
-ml.mlflow.preset_repository=https://github.com/apache/dolphinscheduler-mlflow
+ml.mlflow.preset_repository=https://github.com/apache/gyyun-mlflow
 # mlflow task plugin preset repository version
 ml.mlflow.preset_repository_version="main"
 ```

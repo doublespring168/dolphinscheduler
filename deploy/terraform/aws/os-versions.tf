@@ -35,7 +35,7 @@ data "aws_ami" "amazon-linux" {
   }
 }
 
-data "aws_ami" "dolphinscheduler" {
+data "aws_ami" "gyyun" {
   most_recent = true
   owners      = ["self"]
 

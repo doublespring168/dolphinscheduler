@@ -12,30 +12,30 @@ If you want to deploy DolphinScheduler in production, we recommend you follow [c
 ## Preparation
 
 - JDK：download [JDK][jdk] (1.8 or 11), install and configure environment variable `JAVA_HOME` and append `bin` dir (included in `JAVA_HOME`) to `PATH` variable. You can skip this step if it already exists in your environment.
-- Binary package: download the DolphinScheduler binary package at [download page](https://dolphinscheduler.apache.org/en-us/download/<version>).  <!-- markdown-link-check-disable-line -->
+- Binary package: download the DolphinScheduler binary package at [download page](https://gyyun.apache.org/en-us/download/<version>).  <!-- markdown-link-check-disable-line -->
 
 ## Download Plugin Dependencies
 
-Please refer to the [Download Plugin Dependencies](../installation/pseudo-cluster.md) in pseudo-cluster deployment. Note that standalone minimal operation requires downloading plugin dependencies `dolphinscheduler-task-shell` and `dolphinscheduler-storage-hdfs`.
+Please refer to the [Download Plugin Dependencies](../installation/pseudo-cluster.md) in pseudo-cluster deployment. Note that standalone minimal operation requires downloading plugin dependencies `gyyun-task-shell` and `gyyun-storage-hdfs`.
 
 ### Configure User Exemption and Permissions
 
-Create a deployment user, and make sure to configure `sudo` without password. Here make an example to create user `dolphinscheduler`:
+Create a deployment user, and make sure to configure `sudo` without password. Here make an example to create user `gyyun`:
 
 ```shell
 # To create a user, login as root
-useradd dolphinscheduler
+useradd gyyun
 
 # Add password
-echo "dolphinscheduler" | passwd --stdin dolphinscheduler
+echo "gyyun" | passwd --stdin gyyun
 
 # Configure sudo without password
-sed -i '$dolphinscheduler  ALL=(ALL)  NOPASSWD: ALL' /etc/sudoers
+sed -i '$gyyun  ALL=(ALL)  NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 
 # Modify directory permissions and grant permissions for user you created above
-chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
-chmod -R 755 apache-dolphinscheduler-*-bin
+chown -R gyyun:gyyun apache-gyyun-*-bin
+chmod -R 755 apache-gyyun-*-bin
 ```
 
 > **_NOTICE:_**
@@ -51,29 +51,29 @@ There is a standalone startup script in the binary compressed package, which can
 
 ```shell
 # Extract and start Standalone Server
-tar -xvzf apache-dolphinscheduler-*-bin.tar.gz
-chmod -R 755 apache-dolphinscheduler-*-bin
-cd apache-dolphinscheduler-*-bin
-bash ./bin/dolphinscheduler-daemon.sh start standalone-server
+tar -xvzf apache-gyyun-*-bin.tar.gz
+chmod -R 755 apache-gyyun-*-bin
+cd apache-gyyun-*-bin
+bash ./bin/gyyun-daemon.sh start standalone-server
 ```
 
 ### Login DolphinScheduler
 
-Access address `http://localhost:12345/dolphinscheduler/ui` and login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
+Access address `http://localhost:12345/gyyun/ui` and login DolphinScheduler UI. The default username and password are **admin/gyyun123**
 
 ![login](../../../../img/new_ui/dev/quick-start/login.png)
 
 ### Start or Stop Server
 
-The script `./bin/dolphinscheduler-daemon.sh` can be used not only quickly start standalone, but also to stop the service operation. The following are all the commands:
+The script `./bin/gyyun-daemon.sh` can be used not only quickly start standalone, but also to stop the service operation. The following are all the commands:
 
 ```shell
 # Start Standalone Server
-bash ./bin/dolphinscheduler-daemon.sh start standalone-server
+bash ./bin/gyyun-daemon.sh start standalone-server
 # Stop Standalone Server
-bash ./bin/dolphinscheduler-daemon.sh stop standalone-server
+bash ./bin/gyyun-daemon.sh stop standalone-server
 # Check Standalone Server status
-bash ./bin/dolphinscheduler-daemon.sh status standalone-server
+bash ./bin/gyyun-daemon.sh status standalone-server
 ```
 
 > Note: Python gateway service is disabled by default. If you want to start the Python gateway
@@ -87,5 +87,5 @@ bash ./bin/dolphinscheduler-daemon.sh status standalone-server
 Standalone server use H2 database as its metadata store, it is easy and users do not need to start database before they set up server.
 But if user want to store metabase in other database like MySQL or PostgreSQL, they have to change some configuration. Follow the instructions in [datasource-setting](datasource-setting.md) `Standalone Switching Metadata Database Configuration` section to create and initialize database
 
-> Note: DS uses the /tmp/dolphinscheduler directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file
+> Note: DS uses the /tmp/gyyun directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file
 

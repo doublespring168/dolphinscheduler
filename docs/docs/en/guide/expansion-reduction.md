@@ -21,18 +21,18 @@ Attention: DolphinScheduler itself does not depend on Hadoop, Hive, Spark, but w
 ### Get Installation Package
 
 - Check the version of DolphinScheduler used in your existing environment, and get the installation package of the corresponding version, if the versions are different, there may be compatibility problems.
-- Confirm the unified installation directory of other nodes, this article assumes that DolphinScheduler is installed in `/opt/` directory, and the full path is `/opt/dolphinscheduler`.
-- Please download the corresponding version of the installation package to the server installation directory, uncompress it and rename it to `dolphinscheduler` and store it in the `/opt` directory.
-- Add database dependency package, this document uses Mysql database, add `mysql-connector-java` driver package to `/opt/dolphinscheduler/lib` directory.
+- Confirm the unified installation directory of other nodes, this article assumes that DolphinScheduler is installed in `/opt/` directory, and the full path is `/opt/gyyun`.
+- Please download the corresponding version of the installation package to the server installation directory, uncompress it and rename it to `gyyun` and store it in the `/opt` directory.
+- Add database dependency package, this document uses Mysql database, add `mysql-connector-java` driver package to `/opt/gyyun/lib` directory.
 
 ```shell
 # create the installation directory, please do not create the installation directory in /root, /home and other high privilege directories 
 mkdir -p /opt
 cd /opt
 # decompress
-tar -zxvf apache-dolphinscheduler-<version>-bin.tar.gz -C /opt 
+tar -zxvf apache-gyyun-<version>-bin.tar.gz -C /opt 
 cd /opt
-mv apache-dolphinscheduler-<version>-bin  dolphinscheduler
+mv apache-gyyun-<version>-bin  gyyun
 ```
 
 ```markdown
@@ -44,14 +44,14 @@ Attention: You can copy the installation package directly from an existing envir
 - Create deployment user on **all** expansion machines, and make sure to configure sudo-free. If we plan to deploy scheduling on four expansion machines, ds1, ds2, ds3, and ds4, create deployment users on each machine is prerequisite.
 
 ```shell
-# to create a user, you need to log in with root and set the deployment user name, modify it by yourself, the following take `dolphinscheduler` as an example:
-useradd dolphinscheduler;
+# to create a user, you need to log in with root and set the deployment user name, modify it by yourself, the following take `gyyun` as an example:
+useradd gyyun;
 
-# set the user password, please change it by yourself, the following take `dolphinscheduler123` as an example
-echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
+# set the user password, please change it by yourself, the following take `gyyun123` as an example
+echo "gyyun123" | passwd --stdin gyyun
 
 # configure sudo password-free
-echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+echo 'gyyun  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 ```
@@ -72,9 +72,9 @@ Attention:
   datasource.properties: database connection information 
   zookeeper.properties: information for connecting zk 
   common.properties: Configuration information about the resource store (if hadoop is set up, please check if the core-site.xml and hdfs-site.xml configuration files exist).
-  dolphinscheduler_env.sh: environment Variables
+  gyyun_env.sh: environment Variables
   ```
-- Modify the `dolphinscheduler_env.sh` environment variable in the `bin/env/dolphinscheduler_env.sh` directory according to the machine configuration (the following is the example that all the used software install under `/opt/soft`)
+- Modify the `gyyun_env.sh` environment variable in the `bin/env/gyyun_env.sh` directory according to the machine configuration (the following is the example that all the used software install under `/opt/soft`)
 
   ```shell
       export HADOOP_HOME=/opt/soft/hadoop
@@ -120,7 +120,7 @@ workers="existing worker01:default,existing worker02:default,ds3:default,ds4:def
 - On all new nodes, change the directory permissions so that the deployment user has access to the DolphinScheduler directory
 
 ```shell
-sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
+sudo chown -R gyyun:gyyun gyyun
 ```
 
 ### Restart the Cluster and Verify
@@ -132,19 +132,19 @@ sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
 
 bin/stop-all.sh # stop all services
 
-bash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
-bash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-bash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
-bash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
+bash bin/gyyun-daemon.sh stop master-server  # stop master service
+bash bin/gyyun-daemon.sh stop worker-server  # stop worker service
+bash bin/gyyun-daemon.sh stop api-server     # stop api    service
+bash bin/gyyun-daemon.sh stop alert-server   # stop alert  service
 
 
 # start command::
 bin/start-all.sh # start all services
 
-bash bin/dolphinscheduler-daemon.sh start master-server  # start master service
-bash bin/dolphinscheduler-daemon.sh start worker-server  # start worker service
-bash bin/dolphinscheduler-daemon.sh start api-server     # start api    service
-bash bin/dolphinscheduler-daemon.sh start alert-server   # start alert  service
+bash bin/gyyun-daemon.sh start master-server  # start master service
+bash bin/gyyun-daemon.sh start worker-server  # start worker service
+bash bin/gyyun-daemon.sh start api-server     # start api    service
+bash bin/gyyun-daemon.sh start alert-server   # start alert  service
 
 ```
 
@@ -165,10 +165,10 @@ After successful startup, you can view the logs, which are stored in the `logs` 
 
 ```Log Path
 logs/
-   ├── dolphinscheduler-alert-server.log
-   ├── dolphinscheduler-master-server.log
-   ├── dolphinscheduler-worker-server.log
-   ├── dolphinscheduler-api-server.log
+   ├── gyyun-alert-server.log
+   ├── gyyun-master-server.log
+   ├── gyyun-worker-server.log
+   ├── gyyun-api-server.log
 ```
 
 If the above services start normally and the scheduling system page is normal, check whether there is an expanded Master or Worker service in the [Monitor] of the web system. If it exists, the expansion is complete.
@@ -189,19 +189,19 @@ There are two steps for shrinking. After performing the following two steps, the
 # stop command:
 bin/stop-all.sh # stop all services
 
-bash bin/dolphinscheduler-daemon.sh stop master-server  # stop master service
-bash bin/dolphinscheduler-daemon.sh stop worker-server  # stop worker service
-bash bin/dolphinscheduler-daemon.sh stop api-server     # stop api    service
-bash bin/dolphinscheduler-daemon.sh stop alert-server   # stop alert  service
+bash bin/gyyun-daemon.sh stop master-server  # stop master service
+bash bin/gyyun-daemon.sh stop worker-server  # stop worker service
+bash bin/gyyun-daemon.sh stop api-server     # stop api    service
+bash bin/gyyun-daemon.sh stop alert-server   # stop alert  service
 
 
 # start command:
 bin/start-all.sh # start all services
 
-bash bin/dolphinscheduler-daemon.sh start master-server # start master service
-bash bin/dolphinscheduler-daemon.sh start worker-server # start worker service
-bash bin/dolphinscheduler-daemon.sh start api-server    # start api    service
-bash bin/dolphinscheduler-daemon.sh start alert-server  # start alert  service
+bash bin/gyyun-daemon.sh start master-server # start master service
+bash bin/gyyun-daemon.sh start worker-server # start worker service
+bash bin/gyyun-daemon.sh start api-server    # start api    service
+bash bin/gyyun-daemon.sh start alert-server  # start alert  service
 
 ```
 

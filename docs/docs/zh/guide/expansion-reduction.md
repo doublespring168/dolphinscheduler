@@ -21,18 +21,18 @@
 ### 1.2. 获取安装包
 
 - 确认现有环境使用的DolphinScheduler是哪个版本,获取对应版本的安装包,如果版本不同,可能存在兼容性的问题.
-- 确认其他节点的统一安装目录,本文假设DolphinScheduler统一安装在 /opt/ 目录中,安装全路径为/opt/dolphinscheduler.
-- 请下载对应版本的安装包至服务器安装目录,解压并重名为dolphinscheduler存放在/opt目录中.
-- 添加数据库依赖包,本文使用Mysql数据库,添加mysql-connector-java驱动包到/opt/dolphinscheduler/lib目录中
+- 确认其他节点的统一安装目录,本文假设DolphinScheduler统一安装在 /opt/ 目录中,安装全路径为/opt/gyyun.
+- 请下载对应版本的安装包至服务器安装目录,解压并重名为gyyun存放在/opt目录中.
+- 添加数据库依赖包,本文使用Mysql数据库,添加mysql-connector-java驱动包到/opt/gyyun/lib目录中
 
 ```shell
 # 创建安装目录,安装目录请不要创建在/root、/home等高权限目录 
 mkdir -p /opt
 cd /opt
 # 解压缩
-tar -zxvf apache-dolphinscheduler-<version>-bin.tar.gz -C /opt 
+tar -zxvf apache-gyyun-<version>-bin.tar.gz -C /opt 
 cd /opt
-mv apache-dolphinscheduler-<version>-bin  dolphinscheduler
+mv apache-gyyun-<version>-bin  gyyun
 ```
 
 ```markdown
@@ -44,14 +44,14 @@ mv apache-dolphinscheduler-<version>-bin  dolphinscheduler
 - 在**所有**扩容的机器上创建部署用户，并且一定要配置sudo免密。假如我们计划在ds1,ds2,ds3,ds4这四台扩容机器上部署调度，首先需要在每台机器上都创建部署用户
 
 ```shell
-# 创建用户需使用root登录，设置部署用户名，请自行修改，后面以dolphinscheduler为例
-useradd dolphinscheduler;
+# 创建用户需使用root登录，设置部署用户名，请自行修改，后面以gyyun为例
+useradd gyyun;
 
-# 设置用户密码，请自行修改，后面以dolphinscheduler123为例
-echo "dolphinscheduler123" | passwd --stdin dolphinscheduler
+# 设置用户密码，请自行修改，后面以gyyun123为例
+echo "gyyun123" | passwd --stdin gyyun
 
 # 配置sudo免密
-echo 'dolphinscheduler  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+echo 'gyyun  ALL=(ALL)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 
 ```
@@ -72,9 +72,9 @@ sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
   datasource.properties 中的数据库连接信息. 
   zookeeper.properties 中的连接zk的信息.
   common.properties 中关于资源存储的配置信息(如果设置了hadoop,请检查是否存在core-site.xml和hdfs-site.xml配置文件).
-  dolphinscheduler_env.sh 中的环境变量
+  gyyun_env.sh 中的环境变量
   ```
-- 根据机器配置,修改 conf/env 目录下的 `dolphinscheduler_env.sh` 环境变量(以相关用到的软件都安装在/opt/soft下为例)
+- 根据机器配置,修改 conf/env 目录下的 `gyyun_env.sh` 环境变量(以相关用到的软件都安装在/opt/soft下为例)
 
   ```shell
       export HADOOP_HOME=/opt/soft/hadoop
@@ -119,10 +119,10 @@ workers="现有worker01:default,现有worker02:default,ds3:default,ds4:default"
 
 - 如果扩容的是worker节点,需要设置worker分组.请参考安全中心[创建worker分组](security/security.md)
 
-- 在所有的新增节点上，修改目录权限，使得部署用户对dolphinscheduler目录有操作权限
+- 在所有的新增节点上，修改目录权限，使得部署用户对gyyun目录有操作权限
 
 ```shell
-sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
+sudo chown -R gyyun:gyyun gyyun
 ```
 
 ### 1.4. 重启集群&验证
@@ -133,19 +133,19 @@ sudo chown -R dolphinscheduler:dolphinscheduler dolphinscheduler
 停止命令:
 bin/stop-all.sh 停止所有服务
 
-bash bin/dolphinscheduler-daemon.sh stop master-server  停止 master 服务
-bash bin/dolphinscheduler-daemon.sh stop worker-server  停止 worker 服务
-bash bin/dolphinscheduler-daemon.sh stop api-server     停止 api    服务
-bash bin/dolphinscheduler-daemon.sh stop alert-server   停止 alert  服务
+bash bin/gyyun-daemon.sh stop master-server  停止 master 服务
+bash bin/gyyun-daemon.sh stop worker-server  停止 worker 服务
+bash bin/gyyun-daemon.sh stop api-server     停止 api    服务
+bash bin/gyyun-daemon.sh stop alert-server   停止 alert  服务
 
 
 启动命令:
 bin/start-all.sh 启动所有服务
 
-bash bin/dolphinscheduler-daemon.sh start master-server  启动 master 服务
-bash bin/dolphinscheduler-daemon.sh start worker-server  启动 worker 服务
-bash bin/dolphinscheduler-daemon.sh start api-server     启动 api    服务
-bash bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
+bash bin/gyyun-daemon.sh start master-server  启动 master 服务
+bash bin/gyyun-daemon.sh start worker-server  启动 worker 服务
+bash bin/gyyun-daemon.sh start api-server     启动 api    服务
+bash bin/gyyun-daemon.sh start alert-server   启动 alert  服务
 
 ```
 
@@ -166,10 +166,10 @@ AlertServer          ----- alert服务
 
 ```日志路径
 logs/
-   ├── dolphinscheduler-alert-server.log
-   ├── dolphinscheduler-master-server.log
-   ├── dolphinscheduler-worker-server.log
-   ├── dolphinscheduler-api-server.log
+   ├── gyyun-alert-server.log
+   ├── gyyun-master-server.log
+   ├── gyyun-worker-server.log
+   ├── gyyun-api-server.log
 ```
 
 如果以上服务都正常启动且调度系统页面正常,在web系统的[监控中心]查看是否有扩容的Master或者Worker服务.如果存在,则扩容完成
@@ -190,19 +190,19 @@ logs/
 停止命令:
 bin/stop-all.sh 停止所有服务
 
-bash bin/dolphinscheduler-daemon.sh stop master-server  停止 master 服务
-bash bin/dolphinscheduler-daemon.sh stop worker-server  停止 worker 服务
-bash bin/dolphinscheduler-daemon.sh stop api-server     停止 api    服务
-bash bin/dolphinscheduler-daemon.sh stop alert-server   停止 alert  服务
+bash bin/gyyun-daemon.sh stop master-server  停止 master 服务
+bash bin/gyyun-daemon.sh stop worker-server  停止 worker 服务
+bash bin/gyyun-daemon.sh stop api-server     停止 api    服务
+bash bin/gyyun-daemon.sh stop alert-server   停止 alert  服务
 
 
 启动命令:
 bin/start-all.sh 启动所有服务
 
-bash bin/dolphinscheduler-daemon.sh start master-server  启动 master 服务
-bash bin/dolphinscheduler-daemon.sh start worker-server  启动 worker 服务
-bash bin/dolphinscheduler-daemon.sh start api-server     启动 api    服务
-bash bin/dolphinscheduler-daemon.sh start alert-server   启动 alert  服务
+bash bin/gyyun-daemon.sh start master-server  启动 master 服务
+bash bin/gyyun-daemon.sh start worker-server  启动 worker 服务
+bash bin/gyyun-daemon.sh start api-server     启动 api    服务
+bash bin/gyyun-daemon.sh start alert-server   启动 alert  服务
 
 ```
 

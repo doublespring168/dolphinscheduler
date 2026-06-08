@@ -34,7 +34,7 @@ variable "aws_region" {
 variable "name_prefix" {
   type        = string
   description = "Name prefix for all resources"
-  default     = "dolphinscheduler"
+  default     = "gyyun"
 }
 
 variable "tags" {

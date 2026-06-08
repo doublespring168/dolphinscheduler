@@ -12,13 +12,13 @@
 
 ### 下载新版本的安装包
 
-在[下载](https://dolphinscheduler.apache.org/zh-cn/download)页面下载最新版本的二进制安装包，并将二进制包放到与当前 dolphinscheduler 服务不一样的路径中，以下升级操作都需要在新版本的目录进行。
+在[下载](https://gyyun.apache.org/zh-cn/download)页面下载最新版本的二进制安装包，并将二进制包放到与当前 gyyun 服务不一样的路径中，以下升级操作都需要在新版本的目录进行。
 
 ## 升级步骤
 
-### 停止 dolphinscheduler 所有服务
+### 停止 gyyun 所有服务
 
-根据你部署方式停止 dolphinscheduler 的所有服务。
+根据你部署方式停止 gyyun 的所有服务。
 
 ### 数据库升级
 
@@ -30,7 +30,7 @@ jar 包 并添加到 `./tools/libs` 目录下，设置以下环境变量
         ```shell
         export DATABASE=${DATABASE:-mysql}
         export SPRING_PROFILES_ACTIVE=${DATABASE}
-        export SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
+        export SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3306/gyyun?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
         export SPRING_DATASOURCE_USERNAME={user}
         export SPRING_DATASOURCE_PASSWORD={password}
         ```
@@ -43,14 +43,14 @@ jar 包 并添加到 `./tools/libs` 目录下，设置以下环境变量
 
 #### 示例：
 
-指定已存在目标租户 `abc`，其资源根目录为 `/dolphinscheduler/abc/`。
+指定已存在目标租户 `abc`，其资源根目录为 `/gyyun/abc/`。
 
 执行脚本：`sh ./tools/bin/migrate-resource.sh abc`。
 
 执行结果：
 
-- 原文件资源 `a/b.sh` 迁移至 `/dolphinscheduler/abc/resources/.migrate/a/b.sh`。
-- 原 UDF 资源 `x/y.jar` 迁移至 `/dolphinscheduler/abc/udf/.migrate/x/y.jar`。
+- 原文件资源 `a/b.sh` 迁移至 `/gyyun/abc/resources/.migrate/a/b.sh`。
+- 原 UDF 资源 `x/y.jar` 迁移至 `/gyyun/abc/udf/.migrate/x/y.jar`。
 - 更新 UDF 函数绑定资源信息。
 
 ### 血缘升级

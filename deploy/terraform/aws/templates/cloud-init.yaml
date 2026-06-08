@@ -32,7 +32,7 @@ users:
       - ${ssh_public_key}
 
 write_files:
-  - path: /etc/systemd/system/dolphinscheduler-schema.service
+  - path: /etc/systemd/system/gyyun-schema.service
     content: |
       [Unit]
       Description=DolphinScheduler service to init database schema
@@ -46,16 +46,16 @@ write_files:
       Environment="SPRING_DATASOURCE_USERNAME=${database_username}"
       Environment="SPRING_DATASOURCE_PASSWORD=${database_password}"
       User=ds
-      WorkingDirectory=/opt/dolphinscheduler
-      ExecStart=bash -l /opt/dolphinscheduler/tools/bin/upgrade-schema.sh
+      WorkingDirectory=/opt/gyyun
+      ExecStart=bash -l /opt/gyyun/tools/bin/upgrade-schema.sh
 
       [Install]
       WantedBy=multi-user.target
-  - path: /etc/systemd/system/dolphinscheduler.service
+  - path: /etc/systemd/system/gyyun.service
     content: |
       [Unit]
-      Description=DolphinScheduler Service ${dolphinscheduler_component}
-      Requires=dolphinscheduler-schema.service
+      Description=DolphinScheduler Service ${gyyun_component}
+      Requires=gyyun-schema.service
 
       [Service]
       Environment="DATABASE=postgresql"
@@ -66,8 +66,8 @@ write_files:
       Environment="REGISTRY_ZOOKEEPER_CONNECT_STRING=${zookeeper_connect_string}"
       Environment="WORKER_ALERT_LISTEN_HOST=${alert_server_host}"
       User=ds
-      WorkingDirectory=/opt/dolphinscheduler
-      ExecStart=bash -l /opt/dolphinscheduler/${dolphinscheduler_component}/bin/start.sh
+      WorkingDirectory=/opt/gyyun
+      ExecStart=bash -l /opt/gyyun/${gyyun_component}/bin/start.sh
       Restart=always
 
       [Install]
@@ -76,14 +76,14 @@ write_files:
 packages: []
 
 runcmd:
-  - chown -R ds:ds /opt/dolphinscheduler
-  - find /opt/dolphinscheduler/ -name "start.sh" | xargs -I{} chmod +x {}
-  - find /opt/dolphinscheduler/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.storage.type=.*/resource.storage.type=S3/g" {}
-  - find /opt/dolphinscheduler/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.access.key.id=.*/resource.aws.access.key.id=${s3_access_key_id}/g" {}
-  - find /opt/dolphinscheduler/ -name "common.properties" | xargs -I{} sed -ie "s:^resource.aws.secret.access.key=.*:resource.aws.secret.access.key=${s3_secret_access_key}:g" {}
-  - find /opt/dolphinscheduler/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.region=.*/resource.aws.region=${s3_region}/g" {}
-  - find /opt/dolphinscheduler/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.s3.bucket.name=.*/resource.aws.s3.bucket.name=${s3_bucket_name}/g" {}
-  - find /opt/dolphinscheduler/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.s3.endpoint=.*/resource.aws.s3.endpoint=${s3_endpoint}/g" {}
-  - systemctl enable dolphinscheduler
-  - systemctl start dolphinscheduler-schema
-  - systemctl start dolphinscheduler
+  - chown -R ds:ds /opt/gyyun
+  - find /opt/gyyun/ -name "start.sh" | xargs -I{} chmod +x {}
+  - find /opt/gyyun/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.storage.type=.*/resource.storage.type=S3/g" {}
+  - find /opt/gyyun/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.access.key.id=.*/resource.aws.access.key.id=${s3_access_key_id}/g" {}
+  - find /opt/gyyun/ -name "common.properties" | xargs -I{} sed -ie "s:^resource.aws.secret.access.key=.*:resource.aws.secret.access.key=${s3_secret_access_key}:g" {}
+  - find /opt/gyyun/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.region=.*/resource.aws.region=${s3_region}/g" {}
+  - find /opt/gyyun/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.s3.bucket.name=.*/resource.aws.s3.bucket.name=${s3_bucket_name}/g" {}
+  - find /opt/gyyun/ -name "common.properties" | xargs -I{} sed -ie "s/^resource.aws.s3.endpoint=.*/resource.aws.s3.endpoint=${s3_endpoint}/g" {}
+  - systemctl enable gyyun
+  - systemctl start gyyun-schema
+  - systemctl start gyyun

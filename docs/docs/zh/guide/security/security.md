@@ -1,7 +1,7 @@
 # 安全中心（权限系统）
 
 * 安全中心只有管理员账户才有权限操作，分别有队列管理、租户管理、用户管理、告警组管理、worker分组管理、令牌管理等功能，在用户管理模块可以对资源、数据源、项目等授权
-* 管理员登录，默认用户名/密码：admin/dolphinscheduler123
+* 管理员登录，默认用户名/密码：admin/gyyun123
 
 ## 创建队列
 
@@ -20,7 +20,7 @@
 
 > 注意：
 > 1. 目前仅有 admin 用户可以修改租户；
-> 2. 如果您在 Linux 中手动创建一个租户，则需要将手动创建的租户添加到 dolphinscheduler 启动用户组，以便该租户拥有足够的工作目录权限。
+> 2. 如果您在 Linux 中手动创建一个租户，则需要将手动创建的租户添加到 gyyun 启动用户组，以便该租户拥有足够的工作目录权限。
 
 ![create-tenant](../../../../img/new_ui/dev/security/create-tenant.png)
 
@@ -142,15 +142,15 @@ worker:
 
 ## 环境管理
 
-* 在线配置 worker 运行环境，一个 worker 可以指定多个环境，每个环境等价于 dolphinscheduler_env.sh 文件.
+* 在线配置 worker 运行环境，一个 worker 可以指定多个环境，每个环境等价于 gyyun_env.sh 文件.
 
-* 默认环境为dolphinscheduler_env.sh文件.
+* 默认环境为gyyun_env.sh文件.
 
 * 在任务执行时,可以将任务分配给指定 worker 分组，根据 worker 分组选择对应的环境，最终由该组中的 worker 节点执行环境后执行该任务.
 
 > 创建/更新 环境
 
-- 环境配置等价于dolphinscheduler_env.sh文件内配置
+- 环境配置等价于gyyun_env.sh文件内配置
 
 ![create-environment](../../../../img/new_ui/dev/security/create-environment.png)
 

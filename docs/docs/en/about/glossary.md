@@ -51,24 +51,24 @@ and two date selection methods including **date range** and **date enumeration**
 
 ### 2.Module introduction
 
-- dolphinscheduler-master master module, provides workflow management and orchestration.
+- gyyun-master master module, provides workflow management and orchestration.
 
-- dolphinscheduler-worker worker module, provides task execution management.
+- gyyun-worker worker module, provides task execution management.
 
-- dolphinscheduler-alert alarm module, providing AlertServer service.
+- gyyun-alert alarm module, providing AlertServer service.
 
-- dolphinscheduler-api web application module, providing ApiServer service.
+- gyyun-api web application module, providing ApiServer service.
 
-- dolphinscheduler-common General constant enumeration, utility class, data structure or base class
+- gyyun-common General constant enumeration, utility class, data structure or base class
 
-- dolphinscheduler-dao provides operations such as database access.
+- gyyun-dao provides operations such as database access.
 
-- dolphinscheduler-extract dolphinscheduler extract module, providing master/worker/alert sdk.
+- gyyun-extract gyyun extract module, providing master/worker/alert sdk.
 
-- dolphinscheduler-service service module, including Quartz, Zookeeper, log client access service, easy to call server
+- gyyun-service service module, including Quartz, Zookeeper, log client access service, easy to call server
   module and api module
 
-- dolphinscheduler-ui front-end module
+- gyyun-ui front-end module
 
 ### Sum up
 

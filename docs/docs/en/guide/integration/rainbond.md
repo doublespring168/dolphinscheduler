@@ -10,7 +10,7 @@ This section describes the one-click deployment of high availability DolphinSche
 
 1. Go to Rainbond **Platform Management -> App Marketplace -> Open Source App Store** and search for **dolphinScheduler** to find the DolphinScheduler application.
 
-![](../../../../img/rainbond/appstore-dolphinscheduler.png)
+![](../../../../img/rainbond/appstore-gyyun.png)
 
 2. Click **install** on the right side of DolphinScheduler to go to the installation page. Fill in the corresponding information and click `OK` to start the installation. You will get automatically redirected to the application view.
 
@@ -21,13 +21,13 @@ This section describes the one-click deployment of high availability DolphinSche
 | Select app   | select application                  |
 | app version  | select DolphinScheduler version     |
 
-![](../../../../img/rainbond/install-dolphinscheduler.png)
+![](../../../../img/rainbond/install-gyyun.png)
 
 3. Wait a few minutes, the installation completes and `DolphinScheduler` will be running.
 
-![](../../../../img/rainbond/topology-dolphinscheduler.png)
+![](../../../../img/rainbond/topology-gyyun.png)
 
-4. Click the `access` button in the application to access the DolphinScheduler-API components through the domain name provided by Rainbond by default. Default user password is **admin/dolphinscheduler123**.
+4. Click the `access` button in the application to access the DolphinScheduler-API components through the domain name provided by Rainbond by default. Default user password is **admin/gyyun123**.
 
 ## API Master Worker Node Telescopic
 
@@ -39,11 +39,11 @@ Take `worker` as an example: enter the `component -> Telescopic` page, and set t
 
 To verify `worker` node, enter `DolphinScheduler UI -> Monitoring -> Worker` page to view detailed node information.
 
-![](../../../../img/rainbond/monitor-dolphinscheduler.png)
+![](../../../../img/rainbond/monitor-gyyun.png)
 
 ## Configuration file
 
-API and Worker Services share the configuration file `/opt/dolphinscheduler/conf/common.properties`. To modify the configurations, you only need to modify that of the API service.
+API and Worker Services share the configuration file `/opt/gyyun/conf/common.properties`. To modify the configurations, you only need to modify that of the API service.
 
 ## How to support Python 3？
 

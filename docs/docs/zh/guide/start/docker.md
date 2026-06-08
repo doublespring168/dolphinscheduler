@@ -12,22 +12,22 @@
 
 ## 下载插件依赖
 
-从 3.3.0 版本开始，二进制包不再提供插件依赖，需要用户自行下载。插件依赖包下载地址：[插件依赖包](https://repo.maven.apache.org/maven2/org/apache/dolphinscheduler)
+从 3.3.0 版本开始，二进制包不再提供插件依赖，需要用户自行下载。插件依赖包下载地址：[插件依赖包](https://repo.maven.apache.org/maven2/org/apache/gyyun)
 你也可以执行以下命令来安装插件依赖:
 
 ```shell
 bash ./bin/install-plugins.sh 3.3.0
 ```
 
-通常你并不需要所有的连接器插件，可以通过配置 `conf/plugins_config` 来指定你所需要的插件，例如，你只需要 `dolphinscheduler-task-shell` 插件，那么您可以修改配置文件如下：
+通常你并不需要所有的连接器插件，可以通过配置 `conf/plugins_config` 来指定你所需要的插件，例如，你只需要 `gyyun-task-shell` 插件，那么您可以修改配置文件如下：
 
 ```
 --task-plugins--
-dolphinscheduler-task-shell
+gyyun-task-shell
 --end--
 ```
 
-> **_注意:_** 插件依赖包通常不包含在二进制包中，如果你在启动服务时遇到 `ClassNotFoundException` 错误，请参考相关插件类型的文档检查是否缺少插件依赖包，例如 `dolphinscheduler-datasource-mysql` 中不包含 `mysql-connector-java.jar`
+> **_注意:_** 插件依赖包通常不包含在二进制包中，如果你在启动服务时遇到 `ClassNotFoundException` 错误，请参考相关插件类型的文档检查是否缺少插件依赖包，例如 `gyyun-datasource-mysql` 中不包含 `mysql-connector-java.jar`
 
 ## 启动服务
 
@@ -38,12 +38,12 @@ dolphinscheduler-task-shell
 
 ```shell
 $ DOLPHINSCHEDULER_VERSION=<version>
-$ docker run --name dolphinscheduler-standalone-server -p 12345:12345 -p 25333:25333 -d apache/dolphinscheduler-standalone-server:"${DOLPHINSCHEDULER_VERSION}"
+$ docker run --name gyyun-standalone-server -p 12345:12345 -p 25333:25333 -d apache/gyyun-standalone-server:"${DOLPHINSCHEDULER_VERSION}"
 ```
 
-> 注意：请不要将 apache/dolphinscheduler-standalone-server 镜像作为生产镜像，应该仅仅作为快速体验 DolphinScheduler 的功能的途径。
+> 注意：请不要将 apache/gyyun-standalone-server 镜像作为生产镜像，应该仅仅作为快速体验 DolphinScheduler 的功能的途径。
 > 除了因为他将全部服务运行在一个进程中外，还因为其使用内存数据库 H2 储存其元数据，当服务停止时内存数据库中的数据将会被清空。另外
-> apache/dolphinscheduler-standalone-server 仅包含 DolphinScheduler 核心服务，部分任务组件（如 Spark 和 Flink 等），
+> apache/gyyun-standalone-server 仅包含 DolphinScheduler 核心服务，部分任务组件（如 Spark 和 Flink 等），
 > 告警组件（如 Telegram 和 Dingtalk 等）需要外部的组件或对应的配置后
 
 ### 使用 docker-compose 启动服务
@@ -52,19 +52,19 @@ $ docker run --name dolphinscheduler-standalone-server -p 12345:12345 -p 25333:2
 服务重启的时候保留元数据（如需要挂载到本地路径需要做指定）。他更健壮，能保证用户体验更加完整的 DolphinScheduler 服务。这种方式需要先安装
 [docker-compose](https://docs.docker.com/compose/install/)，链接适用于 Mac，Linux。
 
-确保 docker-compose 顺利安装后，需要获取 `docker-compose.yaml` 文件，通过[下载页面](https://dolphinscheduler.apache.org/en-us/download/<version>)
+确保 docker-compose 顺利安装后，需要获取 `docker-compose.yaml` 文件，通过[下载页面](https://gyyun.apache.org/en-us/download/<version>)
 下载对应版本源码包可能是最快的方法，当下载完源码后就可以运行命令进行部署了。
 
 ```shell
 $ DOLPHINSCHEDULER_VERSION=<version>
-$ tar -zxf apache-dolphinscheduler-"${DOLPHINSCHEDULER_VERSION}"-src.tar.gz
+$ tar -zxf apache-gyyun-"${DOLPHINSCHEDULER_VERSION}"-src.tar.gz
 # Mac Linux 用户
-$ cd apache-dolphinscheduler-"${DOLPHINSCHEDULER_VERSION}"-src/deploy/docker
+$ cd apache-gyyun-"${DOLPHINSCHEDULER_VERSION}"-src/deploy/docker
 
 # 如果需要初始化或者升级数据库结构，需要指定profile为schema
 $ docker-compose --profile schema up -d
 
-# 启动dolphinscheduler所有服务，指定profile为all
+# 启动gyyun所有服务，指定profile为all
 $ docker-compose --profile all up -d
 ```
 
@@ -81,16 +81,16 @@ ZooKeeper 且不想启动新的服务，可以使用这个方式分别启动 Dol
 ```shell
 $ DOLPHINSCHEDULER_VERSION=<version>
 # 初始化数据库，其确保数据库 <DATABASE> 已经存在
-$ docker run -d --name dolphinscheduler-tools \
+$ docker run -d --name gyyun-tools \
     -e DATABASE="postgresql" \
     -e SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5432/<DATABASE>" \
     -e SPRING_DATASOURCE_USERNAME="<USER>" \
     -e SPRING_DATASOURCE_PASSWORD="<PASSWORD>" \
     -e SPRING_JACKSON_TIME_ZONE="UTC" \
     --net host \
-    apache/dolphinscheduler-tools:"${DOLPHINSCHEDULER_VERSION}" tools/bin/upgrade-schema.sh
+    apache/gyyun-tools:"${DOLPHINSCHEDULER_VERSION}" tools/bin/upgrade-schema.sh
 # 启动 DolphinScheduler 对应的服务
-$ docker run -d --name dolphinscheduler-master \
+$ docker run -d --name gyyun-master \
     -e DATABASE="postgresql" \
     -e SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5432/<DATABASE>" \
     -e SPRING_DATASOURCE_USERNAME="<USER>" \
@@ -98,8 +98,8 @@ $ docker run -d --name dolphinscheduler-master \
     -e SPRING_JACKSON_TIME_ZONE="UTC" \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING="localhost:2181" \
     --net host \
-    -d apache/dolphinscheduler-master:"${DOLPHINSCHEDULER_VERSION}"
-$ docker run -d --name dolphinscheduler-worker \
+    -d apache/gyyun-master:"${DOLPHINSCHEDULER_VERSION}"
+$ docker run -d --name gyyun-worker \
     -e DATABASE="postgresql" \
     -e SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5432/<DATABASE>" \
     -e SPRING_DATASOURCE_USERNAME="<USER>" \
@@ -107,8 +107,8 @@ $ docker run -d --name dolphinscheduler-worker \
     -e SPRING_JACKSON_TIME_ZONE="UTC" \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING="localhost:2181" \
     --net host \
-    -d apache/dolphinscheduler-worker:"${DOLPHINSCHEDULER_VERSION}"
-$ docker run -d --name dolphinscheduler-api \
+    -d apache/gyyun-worker:"${DOLPHINSCHEDULER_VERSION}"
+$ docker run -d --name gyyun-api \
     -e DATABASE="postgresql" \
     -e SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5432/<DATABASE>" \
     -e SPRING_DATASOURCE_USERNAME="<USER>" \
@@ -116,8 +116,8 @@ $ docker run -d --name dolphinscheduler-api \
     -e SPRING_JACKSON_TIME_ZONE="UTC" \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING="localhost:2181" \
     --net host \
-    -d apache/dolphinscheduler-api:"${DOLPHINSCHEDULER_VERSION}"
-$ docker run -d --name dolphinscheduler-alert-server \
+    -d apache/gyyun-api:"${DOLPHINSCHEDULER_VERSION}"
+$ docker run -d --name gyyun-alert-server \
     -e DATABASE="postgresql" \
     -e SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5432/<DATABASE>" \
     -e SPRING_DATASOURCE_USERNAME="<USER>" \
@@ -125,7 +125,7 @@ $ docker run -d --name dolphinscheduler-alert-server \
     -e SPRING_JACKSON_TIME_ZONE="UTC" \
     -e REGISTRY_ZOOKEEPER_CONNECT_STRING="localhost:2181" \
     --net host \
-    -d apache/dolphinscheduler-alert-server:"${DOLPHINSCHEDULER_VERSION}"
+    -d apache/gyyun-alert-server:"${DOLPHINSCHEDULER_VERSION}"
 ```
 
 > 注意：如果你本地还没有对应的数据库和 ZooKeeper 服务，但是想要尝试这个启动方式，可以先安装并启动
@@ -133,8 +133,8 @@ $ docker run -d --name dolphinscheduler-alert-server \
 
 ## 登录系统
 
-不管你是用那种方式启动的服务，只要服务启动后，你都可以通过 [http://localhost:12345/dolphinscheduler/ui](http://localhost:12345/dolphinscheduler/ui)
-访问 DolphinScheduler。访问上述链接后会跳转到登陆页面，DolphinScheduler 默认的用户和密码分别为 `admin` 和 `dolphinscheduler123`。
+不管你是用那种方式启动的服务，只要服务启动后，你都可以通过 [http://localhost:12345/gyyun/ui](http://localhost:12345/gyyun/ui)
+访问 DolphinScheduler。访问上述链接后会跳转到登陆页面，DolphinScheduler 默认的用户和密码分别为 `admin` 和 `gyyun123`。
 想要了解更多操作请参考用户手册[快速上手](../start/quick-start.md)。
 
 ![login](../../../../img/new_ui/dev/quick-start/login.png)

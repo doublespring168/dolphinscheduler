@@ -19,6 +19,6 @@ The default Zookeeper Server version supported is 3.8.0.
 Artifact:
 
 ```
-dolphinscheduler-dist/target/apache-dolphinscheduler-${latest.release.version}-bin.tar.gz: Binary package of DolphinScheduler
-dolphinscheduler-dist/target/apache-dolphinscheduler-${latest.release.version}-src.tar.gz: Source code package of DolphinScheduler
+gyyun-dist/target/apache-gyyun-${latest.release.version}-bin.tar.gz: Binary package of DolphinScheduler
+gyyun-dist/target/apache-gyyun-${latest.release.version}-src.tar.gz: Source code package of DolphinScheduler
 ```

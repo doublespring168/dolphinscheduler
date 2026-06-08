@@ -44,7 +44,7 @@ Master模块和Worker模块的日志打印使用如下格式。即在打印的�
 ## 日志配置修改
 
 DolphinScheduler使用[`LogBack`](https://docs.spring.io/spring-boot/docs/2.1.8.RELEASE/reference/html/howto-logging.html)作为日志工具。若您要修改某个包的日志打点级别，您需要修改对应模块的`logback-spring.xml`文件。
-举例来说，若您需要将`standalone`模式下`org.springframework.web`包日志提升到`DEBUG`级别，您需要在`apache-dolphinscheduler-dev-SNAPSHOT-bin/standalone-server/conf/logback-spring.xml`文件中加入如下配置：
+举例来说，若您需要将`standalone`模式下`org.springframework.web`包日志提升到`DEBUG`级别，您需要在`apache-gyyun-dev-SNAPSHOT-bin/standalone-server/conf/logback-spring.xml`文件中加入如下配置：
 
 ```xml
 <configuration scan="true" scanPeriod="120 seconds">

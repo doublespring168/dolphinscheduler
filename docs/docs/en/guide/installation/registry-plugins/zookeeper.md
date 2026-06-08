@@ -10,7 +10,7 @@ If you want to set the registry center as zookeeper,you need to set the registry
 registry:
   type: zookeeper
   zookeeper:
-    namespace: dolphinscheduler
+    namespace: gyyun
     connect-string: localhost:2181
     retry-policy:
       base-sleep-time: 60ms

@@ -16,7 +16,7 @@ We use GitHub Issue and Apache mail thread to record and hold DSIP, for more det
 
 As a DSIP, it should:
 
-- Have a mail thread title started with `[DISCUSS]` in [dev@dolphinscheduler.apache.org][mail-to-dev]
+- Have a mail thread title started with `[DISCUSS]` in [dev@gyyun.apache.org][mail-to-dev]
 - Have a GitHub Issue labeled with `DSIP`, and including the mail thread link in the description.
 
 ### Current DSIPs
@@ -44,7 +44,7 @@ integer in [All DSIPs][all-DSIPs] issues.
 
 ### Send Discuss Mail
 
-After issue labeled with "DSIP", you should send an email to [dev@dolphinscheduler.apache.org][mail-to-dev].
+After issue labeled with "DSIP", you should send an email to [dev@gyyun.apache.org][mail-to-dev].
 Describe the purpose, and the draft design about your idea.
 
 Here is the template for mail
@@ -83,10 +83,10 @@ closed and transfer from [current DSIPs][current-DSIPs] to [past DSIPs][past-DSI
 
 * [[DSIP-1][Feature][Parent] Add Python API for DolphinScheduler][DSIP-1]: Have multiple subtasks and Projects on it.
 
-[all-DSIPs]: https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+label%3A%22DSIP%22+
-[current-DSIPs]: https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+is%3Aopen+label%3A%22DSIP%22
-[past-DSIPs]: https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+is%3Aclosed+label%3A%22DSIP%22+
-[github-issue-choose]: https://github.com/apache/dolphinscheduler/issues/new/choose
-[mail-to-dev]: mailto:dev@dolphinscheduler.apache.org
-[DSIP-1]: https://github.com/apache/dolphinscheduler/issues/6407
+[all-DSIPs]: https://github.com/apache/gyyun/issues?q=is%3Aissue+label%3A%22DSIP%22+
+[current-DSIPs]: https://github.com/apache/gyyun/issues?q=is%3Aissue+is%3Aopen+label%3A%22DSIP%22
+[past-DSIPs]: https://github.com/apache/gyyun/issues?q=is%3Aissue+is%3Aclosed+label%3A%22DSIP%22+
+[github-issue-choose]: https://github.com/apache/gyyun/issues/new/choose
+[mail-to-dev]: mailto:dev@gyyun.apache.org
+[DSIP-1]: https://github.com/apache/gyyun/issues/6407
 

@@ -33,21 +33,21 @@
 
 ### 模块介绍
 
-- dolphinscheduler-master master模块，提供工作流管理和编排服务。
+- gyyun-master master模块，提供工作流管理和编排服务。
 
-- dolphinscheduler-worker worker模块，提供任务执行管理服务。
+- gyyun-worker worker模块，提供任务执行管理服务。
 
-- dolphinscheduler-alert 告警模块，提供 AlertServer 服务。
+- gyyun-alert 告警模块，提供 AlertServer 服务。
 
-- dolphinscheduler-api web应用模块，提供 ApiServer 服务。
+- gyyun-api web应用模块，提供 ApiServer 服务。
 
-- dolphinscheduler-common 通用的常量枚举、工具类、数据结构或者基类
+- gyyun-common 通用的常量枚举、工具类、数据结构或者基类
 
-- dolphinscheduler-dao 提供数据库访问等操作。
+- gyyun-dao 提供数据库访问等操作。
 
-- dolphinscheduler-extract extract模块，包含master/worker/alert的sdk
+- gyyun-extract extract模块，包含master/worker/alert的sdk
 
-- dolphinscheduler-service service模块，包含Quartz、Zookeeper、日志客户端访问服务，便于server模块和api模块调用
+- gyyun-service service模块，包含Quartz、Zookeeper、日志客户端访问服务，便于server模块和api模块调用
 
-- dolphinscheduler-ui 前端模块
+- gyyun-ui 前端模块
 

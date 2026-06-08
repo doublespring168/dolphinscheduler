@@ -13,7 +13,7 @@
 
 如果您所使用的第三方软件并不在以上协议之中，那么很抱歉，您的代码将无法通过审核，建议您找寻其他替代方案。
 
-另外，当您需要使用新的软件的时候，请将您这样做的原因、最终产出结果发邮件至[dev@dolphinscheduler.apache.org]讨论，当得到至少3票PPMC认同的时候，您方可以引入。
+另外，当您需要使用新的软件的时候，请将您这样做的原因、最终产出结果发邮件至[dev@gyyun.apache.org]讨论，当得到至少3票PPMC认同的时候，您方可以引入。
 
 ### 如何在DolphinScheduler合法的使用第三方开源软件
 
@@ -33,9 +33,9 @@ copyright notice that is included in or attached to the work.
 当我们需要添加新的Jar或其他外部资源的时候，我们需要按照以下步骤：
 
 * 在known-dependencies.txt中添加你所需要的jar名称+版本。
-* 在dolphinscheduler-dist/release-docs/LICENSE中添加相关的maven仓库地址。
-* 在dolphinscheduler-dist/release-docs/NOTICE中追加相关的NOTICE文件，此文件请务必和原代码仓库地址中的NOTICE文件一致。
-* 在dolphinscheduler-dist/release-docs/license/下添加相关源代码的协议，文件命名为license+文件名.txt。
+* 在gyyun-dist/release-docs/LICENSE中添加相关的maven仓库地址。
+* 在gyyun-dist/release-docs/NOTICE中追加相关的NOTICE文件，此文件请务必和原代码仓库地址中的NOTICE文件一致。
+* 在gyyun-dist/release-docs/license/下添加相关源代码的协议，文件命名为license+文件名.txt。
 
 #### check dependency license fail
 

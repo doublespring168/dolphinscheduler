@@ -6,14 +6,14 @@ Apache DolphinScheduler通过向外透出指标来提高系统的监控告警能
 ## 快速上手
 
 - 我们提供Apache DolphinScheduler `standalone` 模式下采集并透出指标的能力，提供用户轻松快速的体验。
-- 当您在`standalone`模式下触发任务后，您可通过链接 `http://localhost:12345/dolphinscheduler/actuator/metrics` 访问生成的metrics列表。
-- 当您在`standalone`模式下触发任务后，您可通过链接 `http://localhost:12345/dolphinscheduler/actuator/prometheus` 访问`prometheus格式`指标。
-- 为了给您提供一个一站式的`Prometheus` + `Grafana`体验, 我们已经为您准备好了开箱即用的 `Grafana` 配置。您可在`dolphinscheduler-meter/resources/grafana`找到`Grafana`面板配置。
+- 当您在`standalone`模式下触发任务后，您可通过链接 `http://localhost:12345/gyyun/actuator/metrics` 访问生成的metrics列表。
+- 当您在`standalone`模式下触发任务后，您可通过链接 `http://localhost:12345/gyyun/actuator/prometheus` 访问`prometheus格式`指标。
+- 为了给您提供一个一站式的`Prometheus` + `Grafana`体验, 我们已经为您准备好了开箱即用的 `Grafana` 配置。您可在`gyyun-meter/resources/grafana`找到`Grafana`面板配置。
   您可直接将这些配置导入您的`Grafana`实例中。
 - 如果您想通过`docker`方式体验，可使用如下命令启动我们为您准备好的开箱即用的`Prometheus`和`Grafana`:
 
 ```shell
-cd dolphinscheduler-meter/src/main/resources/grafana-demo
+cd gyyun-meter/src/main/resources/grafana-demo
 docker compose up
 ```
 
@@ -49,7 +49,7 @@ management:
     exclude: [health,metrics]
 ```
 
-- 您也可以通过 dolphinscheduler_env.sh 文件进行统一配置：
+- 您也可以通过 gyyun_env.sh 文件进行统一配置：
 
 ```sh
 export MANAGEMENT_SECURITY_ENABLED=true
@@ -61,8 +61,8 @@ export MANAGEMENT_SECURITY_EXCLUDE="health,metrics"
 - 添加安全认证之后，您可通过链接如下访问`prometheus格式`指标。
 
 ```sh
-curl -u username:password 'http://localhost:12345/dolphinscheduler/actuator/prometheus'
-curl -H 'Authorization: Basic xxxxx' 'http://localhost:12345/dolphinscheduler/actuator/prometheus' 
+curl -u username:password 'http://localhost:12345/gyyun/actuator/prometheus'
+curl -H 'Authorization: Basic xxxxx' 'http://localhost:12345/gyyun/actuator/prometheus' 
 ```
 
 ## 命名规则 & 命名映射

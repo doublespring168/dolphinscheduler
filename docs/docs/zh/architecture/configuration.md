@@ -2,7 +2,7 @@
 
 # 前言
 
-本文档为dolphinscheduler配置文件说明文档。
+本文档为gyyun配置文件说明文档。
 
 # 目录结构
 
@@ -16,9 +16,9 @@ DolphinScheduler的目录结构如下：
 ├── licenses                                    licenses存放目录
 │
 ├── bin                                         DolphinScheduler命令和环境变量配置存放目录
-│   ├── dolphinscheduler-daemon.sh              启动/关闭DolphinScheduler服务脚本
+│   ├── gyyun-daemon.sh              启动/关闭DolphinScheduler服务脚本
 │   ├── env                                     环境变量配置存放目录
-│   │   ├── dolphinscheduler_env.sh             当使用`dolphinscheduler-daemon.sh`脚本起停服务时，运行此脚本加载环境变量配置文件 [如：JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
+│   │   ├── gyyun_env.sh             当使用`gyyun-daemon.sh`脚本起停服务时，运行此脚本加载环境变量配置文件 [如：JAVA_HOME,HADOOP_HOME, HIVE_HOME ...]
 │
 ├── alert-server                                DolphinScheduler alert-server命令、配置和依赖存放目录
 │   ├── bin
@@ -27,7 +27,7 @@ DolphinScheduler的目录结构如下：
 │   ├── conf
 │   │   ├── application.yaml                    alert-server配置文件
 │   │   ├── common.properties                   公共服务（存储等信息）配置文件
-│   │   ├── dolphinscheduler_env.sh             alert-server环境变量配置加载脚本
+│   │   ├── gyyun_env.sh             alert-server环境变量配置加载脚本
 │   │   └── logback-spring.xml                  alert-service日志配置文件
 │   └── libs                                    alert-server依赖jar包存放目录
 │
@@ -38,7 +38,7 @@ DolphinScheduler的目录结构如下：
 │   ├── conf
 │   │   ├── application.yaml                    api-server配置文件
 │   │   ├── common.properties                   公共服务（存储等信息）配置文件
-│   │   ├── dolphinscheduler_env.sh             api-server环境变量配置加载脚本
+│   │   ├── gyyun_env.sh             api-server环境变量配置加载脚本
 │   │   └── logback-spring.xml                  api-service日志配置文件
 │   ├── libs                                    api-server依赖jar包存放目录
 │   └── ui                                      api-server相关前端WEB资源存放目录
@@ -50,7 +50,7 @@ DolphinScheduler的目录结构如下：
 │   ├── conf
 │   │   ├── application.yaml                    master-server配置文件
 │   │   ├── common.properties                   公共服务（存储等信息）配置文件
-│   │   ├── dolphinscheduler_env.sh             master-server环境变量配置加载脚本
+│   │   ├── gyyun_env.sh             master-server环境变量配置加载脚本
 │   │   └── logback-spring.xml                  master-service日志配置文件
 │   └── libs                                    master-server依赖jar包存放目录
 │
@@ -61,7 +61,7 @@ DolphinScheduler的目录结构如下：
 │   ├── conf
 │   │   ├── application.yaml                    standalone-server配置文件
 │   │   ├── common.properties                   公共服务（存储等信息）配置文件
-│   │   ├── dolphinscheduler_env.sh             standalone-server环境变量配置加载脚本
+│   │   ├── gyyun_env.sh             standalone-server环境变量配置加载脚本
 │   │   ├── logback-spring.xml                  standalone-service日志配置文件
 │   │   └── sql                                 DolphinScheduler元数据创建/升级sql文件
 │   ├── libs                                    standalone-server依赖jar包存放目录
@@ -85,7 +85,7 @@ DolphinScheduler的目录结构如下：
 │   ├── conf
 │   │   ├── application.yaml                worker-server配置文件
 │   │   ├── common.properties               公共服务（存储等信息）配置文件
-│   │   ├── dolphinscheduler_env.sh         worker-server环境变量配置加载脚本
+│   │   ├── gyyun_env.sh         worker-server环境变量配置加载脚本
 │   │   └── logback-spring.xml              worker-service日志配置文件
 │   └── libs                                worker-server依赖jar包存放目录
 │
@@ -94,10 +94,10 @@ DolphinScheduler的目录结构如下：
 
 # 配置文件详解
 
-## dolphinscheduler-daemon.sh [启动/关闭DolphinScheduler服务脚本]
+## gyyun-daemon.sh [启动/关闭DolphinScheduler服务脚本]
 
-dolphinscheduler-daemon.sh脚本负责DolphinScheduler的启动&关闭.
-start-all.sh/stop-all.sh最终也是通过dolphinscheduler-daemon.sh对集群进行启动/关闭操作.
+gyyun-daemon.sh脚本负责DolphinScheduler的启动&关闭.
+start-all.sh/stop-all.sh最终也是通过gyyun-daemon.sh对集群进行启动/关闭操作.
 目前DolphinScheduler只是做了一个基本的设置,JVM参数请根据各自资源的实际情况自行设置.
 
 默认简化参数如下:
@@ -137,7 +137,7 @@ export DOLPHINSCHEDULER_OPTS="
 |                          参数                          |                        默认值                        |       描述        |
 |------------------------------------------------------|---------------------------------------------------|-----------------|
 | spring.datasource.driver-class-name                  | org.postgresql.Driver                             | 数据库驱动           |
-| spring.datasource.url                                | jdbc:postgresql://127.0.0.1:5432/dolphinscheduler | 数据库连接地址         |
+| spring.datasource.url                                | jdbc:postgresql://127.0.0.1:5432/gyyun | 数据库连接地址         |
 | spring.datasource.username                           | root                                              | 数据库用户名          |
 | spring.datasource.password                           | root                                              | 数据库密码           |
 | spring.datasource.hikari.connection-test-query       | select 1                                          | 检测连接是否有效的sql    |
@@ -166,7 +166,7 @@ DolphinScheduler默认使用Zookeeper进行集群管理、容错、事件监听�
 
 |                       参数                        |       默认值        |                                                                             描述                                                                             |
 |-------------------------------------------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| registry.zookeeper.namespace                    | dolphinscheduler | Zookeeper集群使用的namespace                                                                                                                                    |
+| registry.zookeeper.namespace                    | gyyun | Zookeeper集群使用的namespace                                                                                                                                    |
 | registry.zookeeper.connect-string               | localhost:2181   | Zookeeper集群连接信息                                                                                                                                            |
 | registry.zookeeper.retry-policy.base-sleep-time | 60ms             | 基本重试时间差                                                                                                                                                    |
 | registry.zookeeper.retry-policy.max-sleep       | 300ms            | 最大重试时间                                                                                                                                                     |
@@ -176,7 +176,7 @@ DolphinScheduler默认使用Zookeeper进行集群管理、容错、事件监听�
 | registry.zookeeper.block-until-connected        | 600ms            | 阻塞直到连接成功的等待时间                                                                                                                                              |
 | registry.zookeeper.digest                       | {用户名:密码}         | 如果zookeeper打开了acl，则需要填写认证信息访问znode，认证信息格式为{用户名}:{密码}。关于Zookeeper ACL详见[https://zookeeper.apache.org/doc/r3.4.14/zookeeperAdmin.html](Apache Zookeeper官方文档) |
 
-DolphinScheduler同样可以通过`bin/env/dolphinscheduler_env.sh`进行Zookeeper相关的配置。
+DolphinScheduler同样可以通过`bin/env/gyyun_env.sh`进行Zookeeper相关的配置。
 
 如果使用etcd作为注册中心，详细请参考[链接](../guide/installation/registry-plugins/etcd.md)。
 如果使用jdbc作为注册中心，详细请参考[链接](../guide/installation/registry-plugins/jdbc.md)。
@@ -195,15 +195,15 @@ common.properties配置文件目前主要是配置hadoop/s3/yarn/applicationId�
 
 |                      参数                       |                       默认值                        | 描述                                                                                                                                                                                                                   |
 |-----------------------------------------------|--------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| data.basedir.path                             | /tmp/dolphinscheduler                            | 本地工作目录,用于存放临时文件                                                                                                                                                                                                      |
+| data.basedir.path                             | /tmp/gyyun                            | 本地工作目录,用于存放临时文件                                                                                                                                                                                                      |
 | resource.storage.type                         | NONE                                             | 资源文件存储类型: HDFS,S3,OSS,GCS,ABS,NONE                                                                                                                                                                                   |
-| resource.upload.path                          | /dolphinscheduler                                | 资源文件存储路径                                                                                                                                                                                                             |
+| resource.upload.path                          | /gyyun                                | 资源文件存储路径                                                                                                                                                                                                             |
 | aws.access.key.id                             | minioadmin                                       | S3 access key                                                                                                                                                                                                        |
 | aws.secret.access.key                         | minioadmin                                       | S3 secret access key                                                                                                                                                                                                 |
 | aws.region                                    | us-east-1                                        | S3 区域                                                                                                                                                                                                                |
 | aws.s3.endpoint                               | http://minio:9000                                | S3 endpoint地址                                                                                                                                                                                                        |
 | hdfs.root.user                                | hdfs                                             | 如果存储类型为HDFS,需要配置拥有对应操作权限的用户                                                                                                                                                                                          |
-| fs.defaultFS                                  | hdfs://mycluster:8020                            | 请求地址如果resource.storage.type=S3,该值类似为: s3a://dolphinscheduler. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录                                                             |
+| fs.defaultFS                                  | hdfs://mycluster:8020                            | 请求地址如果resource.storage.type=S3,该值类似为: s3a://gyyun. 如果resource.storage.type=HDFS, 如果 hadoop 配置了 HA,需要复制core-site.xml 和 hdfs-site.xml 文件到conf目录                                                             |
 | hadoop.security.authentication.startup.state  | false                                            | hadoop是否开启kerberos权限                                                                                                                                                                                                 |
 | java.security.krb5.conf.path                  | /opt/krb5.conf                                   | kerberos配置目录                                                                                                                                                                                                         |
 | login.user.keytab.username                    | hdfs-mycluster@ESZ.COM                           | kerberos登录用户                                                                                                                                                                                                         |
@@ -222,7 +222,7 @@ common.properties配置文件目前主要是配置hadoop/s3/yarn/applicationId�
 | support.hive.oneSession                       | false                                            | 设置hive SQL是否在同一个session中执行                                                                                                                                                                                           |
 | sudo.enable                                   | true                                             | 是否开启sudo                                                                                                                                                                                                             |
 | zeppelin.rest.url                             | http://localhost:8080                            | zeppelin RESTful API 接口地址                                                                                                                                                                                            |
-| appId.collect                                 | log                                              | 收集applicationId方式， 如果用aop方法，将配置log替换为aop，并将`bin/env/dolphinscheduler_env.sh`自动收集applicationId相关环境变量配置的注释取消掉，注意：aop不支持远程主机提交yarn作业的方式比如Beeline客户端提交，且如果用户环境覆盖了dolphinscheduler_env.sh收集applicationId相关环境变量配置，aop方法会失效 |
+| appId.collect                                 | log                                              | 收集applicationId方式， 如果用aop方法，将配置log替换为aop，并将`bin/env/gyyun_env.sh`自动收集applicationId相关环境变量配置的注释取消掉，注意：aop不支持远程主机提交yarn作业的方式比如Beeline客户端提交，且如果用户环境覆盖了gyyun_env.sh收集applicationId相关环境变量配置，aop方法会失效 |
 
 ## Api-server相关配置
 
@@ -232,7 +232,7 @@ common.properties配置文件目前主要是配置hadoop/s3/yarn/applicationId�
 |-------------------------------------------------------|--------------------------------------|-------------------------------------------------|
 | server.port                                           | 12345                                | api服务通讯端口                                       |
 | server.servlet.session.timeout                        | 120m                                 | session超时时间                                     |
-| server.servlet.context-path                           | /dolphinscheduler/                   | 请求路径                                            |
+| server.servlet.context-path                           | /gyyun/                   | 请求路径                                            |
 | spring.servlet.multipart.max-file-size                | 1024MB                               | 最大上传文件大小                                        |
 | spring.servlet.multipart.max-request-size             | 1024MB                               | 最大请求大小                                          |
 | server.jetty.max-http-post-size                       | 5000000                              | jetty服务最大发送请求大小                                 |
@@ -259,7 +259,7 @@ common.properties配置文件目前主要是配置hadoop/s3/yarn/applicationId�
 | casdoor.certificate                                   |                                      | Casdoor中的证书                                     |
 | casdoor.organization-name                             |                                      | Casdoor中的组织名称                                   |
 | casdoor.application-name                              |                                      | Casdoor中的应用名称                                   |
-| casdoor.redirect-url                                  |                                      | dolphinscheduler登录URL                           |
+| casdoor.redirect-url                                  |                                      | gyyun登录URL                           |
 | api.traffic.control.global.switch                     | false                                | 流量控制全局开关                                        |
 | api.traffic.control.max-global-qps-rate               | 300                                  | 全局最大请求数/秒                                       |
 | api.traffic.control.tenant-switch                     | false                                | 流量控制租户开关                                        |
@@ -369,9 +369,9 @@ common.properties配置文件目前主要是配置hadoop/s3/yarn/applicationId�
 
 |                      Parameters                      |                             Default value                             |
 |------------------------------------------------------|-----------------------------------------------------------------------|
-| spring.quartz.properties.org.quartz.threadPool.class | org.apache.dolphinscheduler.scheduler.quartz.QuartzZeroSizeThreadPool |
+| spring.quartz.properties.org.quartz.threadPool.class | org.apache.gyyun.scheduler.quartz.QuartzZeroSizeThreadPool |
 
-## dolphinscheduler_env.sh [环境变量配置]
+## gyyun_env.sh [环境变量配置]
 
 通过类似shell方式提交任务的的时候，会加载该配置文件中的环境变量到主机中。涉及到的 `JAVA_HOME`
 任务类型的环境配置，其中任务类型主要有: Shell任务、Python任务、Spark任务、Flink任务、Datax任务等等。

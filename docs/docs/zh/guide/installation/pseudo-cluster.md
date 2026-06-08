@@ -9,7 +9,7 @@
 伪分布式部署 DolphinScheduler 需要有外部软件的支持
 
 - JDK：下载[JDK][jdk] (1.8 或者 11)，安装并配置 `JAVA_HOME` 环境变量，并将其下的 `bin` 目录追加到 `PATH` 环境变量中。如果你的环境中已存在，可以跳过这步。
-- 二进制包：在[下载页面](https://dolphinscheduler.apache.org/zh-cn/download)下载 DolphinScheduler 二进制包
+- 二进制包：在[下载页面](https://gyyun.apache.org/zh-cn/download)下载 DolphinScheduler 二进制包
 - 数据库：[PostgreSQL](https://www.postgresql.org/download/) (8.2.15+) 或者 [MySQL](https://dev.mysql.com/downloads/mysql/) (5.7+)，两者任选其一即可，如 MySQL 则需要 JDBC Driver 8.0.33
 - 注册中心：当前支持 [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.8.0)，[MYSQL](https://www.mysql.com/)(8.0.33)，[ETCD](https://etcd.io/)
 - 进程树分析
@@ -18,22 +18,22 @@
 
 ## 下载插件依赖
 
-从 3.3.0 版本开始，二进制包不再提供插件依赖，需要用户自行下载。插件依赖包下载地址：[插件依赖包](https://repo.maven.apache.org/maven2/org/apache/dolphinscheduler)
+从 3.3.0 版本开始，二进制包不再提供插件依赖，需要用户自行下载。插件依赖包下载地址：[插件依赖包](https://repo.maven.apache.org/maven2/org/apache/gyyun)
 你也可以执行以下命令来安装插件依赖:
 
 ```shell
 bash ./bin/install-plugins.sh 3.3.0
 ```
 
-通常你并不需要所有的连接器插件，可以通过配置 `conf/plugins_config` 来指定你所需要的插件，例如，你只需要 `dolphinscheduler-task-shell` 插件，那么您可以修改配置文件如下：
+通常你并不需要所有的连接器插件，可以通过配置 `conf/plugins_config` 来指定你所需要的插件，例如，你只需要 `gyyun-task-shell` 插件，那么您可以修改配置文件如下：
 
 ```
 --task-plugins--
-dolphinscheduler-task-shell
+gyyun-task-shell
 --end--
 ```
 
-> **_注意:_** 插件依赖包通常不包含在二进制包中，如果你在启动服务时遇到 `ClassNotFoundException` 错误，请参考相关插件类型的文档检查是否缺少插件依赖包，例如 `dolphinscheduler-datasource-mysql` 中不包含 `mysql-connector-java.jar`
+> **_注意:_** 插件依赖包通常不包含在二进制包中，如果你在启动服务时遇到 `ClassNotFoundException` 错误，请参考相关插件类型的文档检查是否缺少插件依赖包，例如 `gyyun-datasource-mysql` 中不包含 `mysql-connector-java.jar`
 
 ## 准备 DolphinScheduler 启动环境
 
@@ -41,22 +41,22 @@ dolphinscheduler-task-shell
 
 ### 配置用户免密及权限
 
-创建部署用户，并且一定要配置 `sudo` 免密。以创建 dolphinscheduler 用户为例
+创建部署用户，并且一定要配置 `sudo` 免密。以创建 gyyun 用户为例
 
 ```shell
 # 创建用户需使用 root 登录
-useradd dolphinscheduler
+useradd gyyun
 
 # 添加密码
-echo "dolphinscheduler" | passwd --stdin dolphinscheduler
+echo "gyyun" | passwd --stdin gyyun
 
 # 配置 sudo 免密
-sed -i '$dolphinscheduler  ALL=(ALL)  NOPASSWD: ALL' /etc/sudoers
+sed -i '$gyyun  ALL=(ALL)  NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 
-# 修改目录权限，使得部署用户对二进制包解压后的 apache-dolphinscheduler-*-bin 目录有操作权限
-chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
-chmod -R 755 apache-dolphinscheduler-*-bin
+# 修改目录权限，使得部署用户对二进制包解压后的 apache-gyyun-*-bin 目录有操作权限
+chown -R gyyun:gyyun apache-gyyun-*-bin
+chmod -R 755 apache-gyyun-*-bin
 ```
 
 > **_注意:_**
@@ -70,12 +70,12 @@ chmod -R 755 apache-dolphinscheduler-*-bin
 
 ## 修改相关配置
 
-完成基础环境的准备后，需要根据你的机器环境修改配置文件。配置文件可以在目录 `bin/env/dolphinscheduler_env.sh`，`api-server/conf/application.yaml`，
+完成基础环境的准备后，需要根据你的机器环境修改配置文件。配置文件可以在目录 `bin/env/gyyun_env.sh`，`api-server/conf/application.yaml`，
 `master-server/conf/application.yaml`，`worker-server/conf/application.yaml`，`alert-server/conf/application.yaml` 中找到。
 
-### 修改 `dolphinscheduler_env.sh` 文件
+### 修改 `gyyun_env.sh` 文件
 
-文件 `./bin/env/dolphinscheduler_env.sh` 描述了下列配置：
+文件 `./bin/env/gyyun_env.sh` 描述了下列配置：
 
 - DolphinScheduler 的数据库配置，详细配置方法见[初始化数据库]
 - 一些任务类型外部依赖路径或库文件，如 `JAVA_HOME` 和 `SPARK_HOME`都是在这里定义的
@@ -91,7 +91,7 @@ export JAVA_HOME=${JAVA_HOME:-/opt/soft/java}
 # Database related configuration, set database type, username and password
 export DATABASE=${DATABASE:-postgresql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL="jdbc:postgresql://127.0.0.1:5432/dolphinscheduler"
+export SPRING_DATASOURCE_URL="jdbc:postgresql://127.0.0.1:5432/gyyun"
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 
@@ -117,8 +117,8 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME/bin:$PYTHON_LAUNCHER:$JAVA_HOME/bin:$HI
 
 > **_注意:_** 如果您使用的是 MySQL 数据库，需要将 `DATABASE` 设置为 `mysql`，并且修改 `SPRING_DATASOURCE_URL`、`SPRING_DATASOURCE_USERNAME` 和 `SPRING_DATASOURCE_PASSWORD` 为您的数据库配置
 >
-> **_注意:_** dolphinscheduler_env.sh 文件中的配置会覆盖各个服务的配置文件(application.yaml)中的配置，所以如果您在配置文件中配置了某个参数，
-> 而且在 dolphinscheduler_env.sh 文件中也配置了，那么以 dolphinscheduler_env.sh 文件中的配置为准。dolphinscheduler_env.sh 里的配置项格式样例:
+> **_注意:_** gyyun_env.sh 文件中的配置会覆盖各个服务的配置文件(application.yaml)中的配置，所以如果您在配置文件中配置了某个参数，
+> 而且在 gyyun_env.sh 文件中也配置了，那么以 gyyun_env.sh 文件中的配置为准。gyyun_env.sh 里的配置项格式样例:
 > SPRING_DATASOURCE_URL 在 application.yaml 为 spring.datasource.url，以此类推
 
 ## 初始化数据库
@@ -131,58 +131,58 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME/bin:$PYTHON_LAUNCHER:$JAVA_HOME/bin:$HI
 
 ```
 # 启动 api-server
-bash ./bin/dolphinscheduler-daemon.sh start api-server
+bash ./bin/gyyun-daemon.sh start api-server
 
 # 启动 master-server
-bash ./bin/dolphinscheduler-daemon.sh start master-server
+bash ./bin/gyyun-daemon.sh start master-server
 
 # 启动 worker-server
-bash ./bin/dolphinscheduler-daemon.sh start worker-server
+bash ./bin/gyyun-daemon.sh start worker-server
 
 # 启动 alert-server
-bash ./bin/dolphinscheduler-daemon.sh start alert-server
+bash ./bin/gyyun-daemon.sh start alert-server
 
 ```
 
-> **_注意:_** 第一次部署的话，可以通过 bash ./bin/dolphinscheduler-daemon.sh status xxx-server 来进行服务状态查询
+> **_注意:_** 第一次部署的话，可以通过 bash ./bin/gyyun-daemon.sh status xxx-server 来进行服务状态查询
 
 ## 登录 DolphinScheduler
 
-浏览器访问地址 http://localhost:12345/dolphinscheduler/ui 即可登录系统 UI。默认的用户名和密码是 **admin/dolphinscheduler123**
+浏览器访问地址 http://localhost:12345/gyyun/ui 即可登录系统 UI。默认的用户名和密码是 **admin/gyyun123**
 
 ## 启停服务
 
 ```shell
 # 查询服务状态
-bash ./bin/dolphinscheduler-daemon.sh status xxx-server
+bash ./bin/gyyun-daemon.sh status xxx-server
 
 # 启停 Master
-bash ./bin/dolphinscheduler-daemon.sh stop master-server
-bash ./bin/dolphinscheduler-daemon.sh start master-server
+bash ./bin/gyyun-daemon.sh stop master-server
+bash ./bin/gyyun-daemon.sh start master-server
 
 # 启停 Worker
-bash ./bin/dolphinscheduler-daemon.sh start worker-server
-bash ./bin/dolphinscheduler-daemon.sh stop worker-server
+bash ./bin/gyyun-daemon.sh start worker-server
+bash ./bin/gyyun-daemon.sh stop worker-server
 
 # 启停 Api
-bash ./bin/dolphinscheduler-daemon.sh start api-server
-bash ./bin/dolphinscheduler-daemon.sh stop api-server
+bash ./bin/gyyun-daemon.sh start api-server
+bash ./bin/gyyun-daemon.sh stop api-server
 
 # 启停 Alert
-bash ./bin/dolphinscheduler-daemon.sh start alert-server
-bash ./bin/dolphinscheduler-daemon.sh stop alert-server
+bash ./bin/gyyun-daemon.sh start alert-server
+bash ./bin/gyyun-daemon.sh stop alert-server
 ```
 
-> **_注意 1:_**: 每个服务在路径 `<service>/conf/dolphinscheduler_env.sh` 中都有 `dolphinscheduler_env.sh` 文件，这是可以为微
-> 服务需求提供便利。意味着您可以基于不同的环境变量来启动各个服务，只需要在对应服务中配置 `<service>/conf/dolphinscheduler_env.sh` 然后通过 `<service>/bin/start.sh`
-> 命令启动即可。但是如果您使用命令 `/bin/dolphinscheduler-daemon.sh start <service>` 启动服务器，它将会用文件 `bin/env/dolphinscheduler_env.sh`
-> 覆盖 `<service>/conf/dolphinscheduler_env.sh` 然后启动服务，目的是为了减少用户修改配置的成本.
+> **_注意 1:_**: 每个服务在路径 `<service>/conf/gyyun_env.sh` 中都有 `gyyun_env.sh` 文件，这是可以为微
+> 服务需求提供便利。意味着您可以基于不同的环境变量来启动各个服务，只需要在对应服务中配置 `<service>/conf/gyyun_env.sh` 然后通过 `<service>/bin/start.sh`
+> 命令启动即可。但是如果您使用命令 `/bin/gyyun-daemon.sh start <service>` 启动服务器，它将会用文件 `bin/env/gyyun_env.sh`
+> 覆盖 `<service>/conf/gyyun_env.sh` 然后启动服务，目的是为了减少用户修改配置的成本.
 >
 > **_注意 2:_**：服务用途请具体参见《系统架构设计》小节。Python gateway service 默认与 api-server 一起启动，如果您不想启动 Python gateway service
 > 请通过更改 api-server 配置文件 `api-server/conf/application.yaml` 中的 `python-gateway.enabled : false` 来禁用它。
-> **_注意 3:_**: DS默认使用本地模式的目录 /tmp/dolphinscheduler 作为资源中心, 如果需要修改资源中心目录, 请修改配置文件 conf/common.properties 中 resource 的相关配置项
+> **_注意 3:_**: DS默认使用本地模式的目录 /tmp/gyyun 作为资源中心, 如果需要修改资源中心目录, 请修改配置文件 conf/common.properties 中 resource 的相关配置项
 
 [jdk]: https://www.oracle.com/technetwork/java/javase/downloads/index.html
 [zookeeper]: https://zookeeper.apache.org/releases.html
-[issue]: https://github.com/apache/dolphinscheduler/issues/6597
+[issue]: https://github.com/apache/gyyun/issues/6597
 

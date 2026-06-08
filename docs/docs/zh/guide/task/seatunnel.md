@@ -40,7 +40,7 @@
 
 ### 在 DolphinScheduler 中配置 SeaTunnel 环境
 
-若生产环境中要是使用到 SeaTunnel 任务类型，则需要先配置好所需的环境，配置文件如下：`/dolphinscheduler/conf/env/dolphinscheduler_env.sh`。
+若生产环境中要是使用到 SeaTunnel 任务类型，则需要先配置好所需的环境，配置文件如下：`/gyyun/conf/env/gyyun_env.sh`。
 
 ![seatunnel_task01](../../../../img/tasks/demo/seatunnel_task01.png)
 

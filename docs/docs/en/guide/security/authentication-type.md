@@ -4,7 +4,7 @@
 
 ## Change Authentication Type
 
-> dolphinscheduler-api/src/main/resources/application.yaml
+> gyyun-api/src/main/resources/application.yaml
 
 ```yaml
 security:
@@ -104,7 +104,7 @@ Open your favorite browser and visit: **http://`CASDOOR_HOSTNAME`/.well-known/op
 
 ### Step3. Configure Dolphinscheduler
 
-> dolphinscheduler-api/src/main/resources/application.yaml
+> gyyun-api/src/main/resources/application.yaml
 
 ```yaml
 security:
@@ -149,7 +149,7 @@ security:
         github:
           # Set the provider authorization address, for example:https://github.com/login/oauth/authorize
           authorizationUri: ""
-          # dolphinscheduler backend redirection interface address, for example :http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2
+          # gyyun backend redirection interface address, for example :http://127.0.0.1:12345/gyyun/redirect/login/oauth2
           redirectUri: ""
           #  clientId
           clientId: ""
@@ -176,7 +176,7 @@ security:
           provider: google
         gitee:
           authorizationUri: "https://gitee.com/oauth/authorize"
-          redirectUri: "http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2"
+          redirectUri: "http://127.0.0.1:12345/gyyun/redirect/login/oauth2"
           clientId: ""
           clientSecret: ""
           tokenUri: "https://gitee.com/oauth/token?grant_type=authorization_code"
@@ -200,7 +200,7 @@ This implementation is generalized and supports any OIDC-compliant provider, suc
 
 ### Step 1. Enable OIDC in the API's Configuration File
 
-1. To enable OIDC, you first need to set the authentication `type` to `OIDC`, modify the following configuration in `dolphinscheduler-api/src/main/resources/application.yaml`:
+1. To enable OIDC, you first need to set the authentication `type` to `OIDC`, modify the following configuration in `gyyun-api/src/main/resources/application.yaml`:
 
 ```yaml
 security:
@@ -214,14 +214,14 @@ security:
 > **Note**: Before configuring OIDC, ensure you have set the public-facing URLs for the API and UI, as these are crucial for constructing the correct callback URLs for the OIDC provider.
 
 ```yaml
-# dolphinscheduler-api/src/main/resources/application.yaml
+# gyyun-api/src/main/resources/application.yaml
 
 # These top-level URLs are essential for OIDC to function correctly.
 api:
   # The public-facing base URL of the DolphinScheduler API server.
   # This is used to build the `redirect_uri` for the OIDC provider.
   # It must be reachable by the user's browser.
-  base-url: http://localhost:12345/dolphinscheduler
+  base-url: http://localhost:12345/gyyun
   # The public-facing URL of the DolphinScheduler UI.
   # Users will be redirected here after a successful login.
   ui-url: http://localhost:5173
@@ -242,13 +242,13 @@ security:
           display-name: "Login with Keycloak"
           # The URL of your OIDC provider's issuer. This is the core endpoint for OIDC discovery.
           # For Keycloak, it typically ends with /realms/{your-realm-name}.
-          issuer-uri: http://localhost:8080/realms/dolphinscheduler
-          # The relative path to an icon for the login button. The image should be placed in the `dolphinscheduler-ui/public/images/providers-icon/` directory.
+          issuer-uri: http://localhost:8080/realms/gyyun
+          # The relative path to an icon for the login button. The image should be placed in the `gyyun-ui/public/images/providers-icon/` directory.
           icon-uri: "/images/providers-icon/keycloak.png"
           # The Client ID obtained from your OIDC provider after registering DolphinScheduler as a client.
-          client-id: dolphinscheduler-client
+          client-id: gyyun-client
           # The Client Secret obtained from your OIDC provider.
-          client-secret: dolphinscheduler-client-secret
+          client-secret: gyyun-client-secret
           # (Optional) The method used to authenticate with the token endpoint.
           # Can be "client_secret_basic" (default) or "client_secret_post".
           # client-authentication-method: client_secret_basic
@@ -280,7 +280,7 @@ security:
         # A list of group names from the OIDC provider that will grant a user ADMIN privileges in DolphinScheduler.
         # The user's groups are read from the claim specified in "groups-claim".
         admin-group-mapping:
-          - dolphinscheduler-admins
+          - gyyun-admins
 ```
 
 > **Note on `issuer-uri`**: The correct value depends on your environment.
@@ -299,7 +299,7 @@ You need to register DolphinScheduler as a client in your OIDC provider. Here’
 1. Start Keycloak with the provided `docker-compose.yaml` that includes a pre-configured realm, Ensure docker is running in the background:
 
    ```bash
-   cd dolphinscheduler-api-test/dolphinscheduler-api-test-case/src/test/resources/docker/oidc-login/
+   cd gyyun-api-test/gyyun-api-test-case/src/test/resources/docker/oidc-login/
    docker-compose up -d keycloak
    ```
 
@@ -307,14 +307,14 @@ You need to register DolphinScheduler as a client in your OIDC provider. Here’
 
 2. Access the Keycloak Admin Console at `http://localhost:8081` (Username: `admin`, Password: `admin`).
 
-3. Switch to the `dolphinscheduler` realm and verify the imported configuration.
+3. Switch to the `gyyun` realm and verify the imported configuration.
 
-4. Update the **Valid redirect URIs** in the `dolphinscheduler-client` client to match your local setup:
+4. Update the **Valid redirect URIs** in the `gyyun-client` client to match your local setup:
 
-   * `http://localhost:12345/dolphinscheduler/login/oauth2/code/keycloak`
+   * `http://localhost:12345/gyyun/login/oauth2/code/keycloak`
 5. Update **Web origins** to include `http://localhost:5173` to prevent CORS issues.
 6. Save your changes.
-7. Obtain the **Client ID** and **Client Secret** from the `dolphinscheduler-client` client in Keycloak.
+7. Obtain the **Client ID** and **Client Secret** from the `gyyun-client` client in Keycloak.
 8. Use these values in your DolphinScheduler configuration as shown in Step 1.
 9. Once done with the testing/development, you can stop the Keycloak container using:
 
@@ -334,16 +334,16 @@ _**or,**_
 
    This starts Keycloak on port `8080` with an admin user (Username: `admin`, Password: `admin`).
 
-2. **Create a Realm**: If you don't have one, create a new realm (e.g., `dolphinscheduler`).
+2. **Create a Realm**: If you don't have one, create a new realm (e.g., `gyyun`).
 
 3. **Create a Client**:
 
    * Navigate to **Clients** and click **Create client**.
-   * Set the **Client ID** to match your configuration (e.g., `dolphinscheduler-client`).
+   * Set the **Client ID** to match your configuration (e.g., `gyyun-client`).
    * Ensure **Client authentication** is **On**.
    * On the next screen, set **Valid redirect URIs**. This is critical and must match the URL constructed from your `api.base-url`:
-     * `http://{your-dolphinscheduler-host:port}/dolphinscheduler/login/oauth2/code/{registrationId}`
-     * For our example: `http://localhost:12345/dolphinscheduler/login/oauth2/code/keycloak`
+     * `http://{your-gyyun-host:port}/gyyun/login/oauth2/code/{registrationId}`
+     * For our example: `http://localhost:12345/gyyun/login/oauth2/code/keycloak`
    * Set **Web origins** to allow the UI to communicate with Keycloak (e.g., `http://localhost:5173`).
    * **Configure Client Scopes for Email and Profile**:
      * In the Keycloak Admin Console, go to **Client scopes**.
@@ -363,11 +363,11 @@ _**or,**_
    - Give it a **Name** (e.g., "groups mapper").
    - Set the **Token Claim Name** to `groups` (this must match the property in your ). `groups-claim``application.yaml`
    - Ensure **Add to ID token** is enabled. Click **Save**.
-   - Finally, navigate back to your client (**Clients** -> -> **Client Scopes** tab). `dolphinscheduler-client`
+   - Finally, navigate back to your client (**Clients** -> -> **Client Scopes** tab). `gyyun-client`
    - Add your new `groups` scope to the **Default Client Scopes**. This ensures the `groups` claim is included for all users of this client.
 6. **Create Groups and Users**:
 
-* Navigate to **Groups** and create a group with the name you specified in `admin-group-mapping` (e.g., `dolphinscheduler-admins`).
+* Navigate to **Groups** and create a group with the name you specified in `admin-group-mapping` (e.g., `gyyun-admins`).
   * Navigate to **Users**, create a new user, and assign them to this group.
 
 _**or,**_
@@ -375,7 +375,7 @@ _**or,**_
 #### 2.3. If you have existing OIDC provider (Okta, Azure AD, Google, etc.)
 
 1. Follow the provider's documentation to register a new application/client.
-2. Set the redirect URI to `http://{your-dolphinscheduler-host:port}/dolphinscheduler/login/oauth2/code/{registrationId}`.
+2. Set the redirect URI to `http://{your-gyyun-host:port}/gyyun/login/oauth2/code/{registrationId}`.
 3. Obtain the Client ID and Client Secret.
 4. Configure scopes to include `openid`, `profile`, `email`, and any `group/role` claims if needed.
 5. Ensure the user information endpoint provides the necessary claims for username and groups.
@@ -393,5 +393,5 @@ After restarting the DolphinScheduler API server with the new configuration, the
 
 Clicking the button will redirect you to your OIDC provider to authenticate. After a successful login, you will be redirected back to DolphinScheduler and automatically logged in.
 
-> **Note:** When a user clicks a provider's login button, they are first directed to a specific endpoint on the DolphinScheduler backend (e.g., `/dolphinscheduler/oauth2/authorization/keycloak`). The backend then constructs the full request and redirects the user's browser to the OIDC provider's login page.
+> **Note:** When a user clicks a provider's login button, they are first directed to a specific endpoint on the DolphinScheduler backend (e.g., `/gyyun/oauth2/authorization/keycloak`). The backend then constructs the full request and redirects the user's browser to the OIDC provider's login page.
 

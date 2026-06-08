@@ -16,7 +16,7 @@ Dolphinscheduler 资源中心使用本地系统默认是开启的，不需要用
 
 您可能需要涉及如下的修改：
 
-- 将 `resource.storage.upload.base.path` 改为本地存储路径，请确保部署 DolphinScheduler 的用户拥有读写权限，例如：`resource.storage.upload.base.path=/tmp/dolphinscheduler`。当路径不存在时会自动创建文件夹
+- 将 `resource.storage.upload.base.path` 改为本地存储路径，请确保部署 DolphinScheduler 的用户拥有读写权限，例如：`resource.storage.upload.base.path=/tmp/gyyun`。当路径不存在时会自动创建文件夹
 
 > **注意**
 > 1. LOCAL模式不支持分布式模式读写，意味着上传的资源只能在一台机器上使用，除非使用共享文件挂载点
@@ -62,7 +62,7 @@ resource.alibaba.cloud.access.key.secret=<your-access-key-secret>
 # alibaba cloud region, required if you set resource.storage.type=OSS
 resource.alibaba.cloud.region=cn-hangzhou
 # oss bucket name, required if you set resource.storage.type=OSS
-resource.alibaba.cloud.oss.bucket.name=dolphinscheduler
+resource.alibaba.cloud.oss.bucket.name=gyyun
 # oss bucket endpoint, required if you set resource.storage.type=OSS
 resource.alibaba.cloud.oss.endpoint=https://oss-cn-hangzhou.aliyuncs.com
 
@@ -78,7 +78,7 @@ resource.huawei.cloud.access.key.id=<your-access-key-id>
 # access key secret, required if you set resource.storage.type=OBS
 resource.huawei.cloud.access.key.secret=<your-access-key-secret>
 # oss bucket name, required if you set resource.storage.type=OBS
-resource.huawei.cloud.obs.bucket.name=dolphinscheduler
+resource.huawei.cloud.obs.bucket.name=gyyun
 # oss bucket endpoint, required if you set resource.storage.type=OBS
 resource.huawei.cloud.obs.endpoint=obs.cn-southwest-2.huaweicloud.com
 
@@ -107,7 +107,7 @@ resource:
         # COS 区域代码可参考: https://cloud.tencent.com/document/product/436/6224
         region: ap-nanjing
         bucket:
-          name: dolphinscheduler
+          name: gyyun
 
 ```
 

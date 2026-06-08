@@ -2,7 +2,7 @@
 
 ## 表Schema
 
-详见`dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql`目录下的sql文件
+详见`gyyun/gyyun-dao/src/main/resources/sql`目录下的sql文件
 
 ## E-R图
 

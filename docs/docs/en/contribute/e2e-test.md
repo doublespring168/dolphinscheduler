@@ -27,10 +27,10 @@ DolphinScheduler's E2E tests are deployed using docker-compose. The current test
 For E2E test (the front-end part),  the [page model](https://www.selenium.dev/documentation/guidelines/page_object_models/) form is used, mainly to create a corresponding model for each page. The following is an example of a login page.
 
 ```java
-package org.apache.dolphinscheduler.e2e.pages;
+package org.apache.gyyun.e2e.pages;
 
-import org.apache.dolphinscheduler.e2e.pages.common.NavBarPage;
-import org.apache.dolphinscheduler.e2e.pages.security.TenantPage;
+import org.apache.gyyun.e2e.pages.common.NavBarPage;
+import org.apache.gyyun.e2e.pages.security.TenantPage;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -106,7 +106,7 @@ public <T extends SecurityPage.Tab> T goToTab(Class<T> tab) {
 
 ![SecurityPage](../../../img/e2e-test/SecurityPage.png)
 
-For navigation bar options jumping, the goToNav method is provided in `org/apache/dolphinscheduler/e2e/pages/common/NavBarPage.java`. The currently supported pages are: ProjectPage, SecurityPage and ResourcePage.
+For navigation bar options jumping, the goToNav method is provided in `org/apache/gyyun/e2e/pages/common/NavBarPage.java`. The currently supported pages are: ProjectPage, SecurityPage and ResourcePage.
 
 ```java
     public <T extends NavBarItem> T goToNav(Class<T> nav) {
@@ -149,7 +149,7 @@ The browser is loaded using the RemoteWebDriver provided with Selenium. Before e
 @BeforeAll
 public static void setup() {
     new LoginPage(browser)
-            .login("admin", "dolphinscheduler123") 
+            .login("admin", "gyyun123") 
             .goToNav(SecurityPage.class) 
             .goToTab(TenantPage.class)
     ;
@@ -174,7 +174,7 @@ When the preparation is complete, it is time for the formal test case writing. W
 
 The rest are similar cases and can be understood by referring to the specific source code.
 
-https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-e2e/dolphinscheduler-e2e-case/src/test/java/org/apache/dolphinscheduler/e2e/cases
+https://github.com/apache/gyyun/tree/dev/gyyun-e2e/gyyun-e2e-case/src/test/java/org/apache/gyyun/e2e/cases
 
 ## III. Supplements
 

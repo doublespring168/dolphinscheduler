@@ -57,7 +57,7 @@
 
 ### 样例
 
-你可以保存以下YAML文件到本地，然后执行`pydolphinscheduler yaml -f data-transfer.yaml`即可运行Demo.
+你可以保存以下YAML文件到本地，然后执行`pygyyun yaml -f data-transfer.yaml`即可运行Demo.
 
 ```yaml
 # Define the workflow

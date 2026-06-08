@@ -22,7 +22,7 @@ rm -rf dist
 fi
 mkdir dist || true
 
-tar -zxf dolphinscheduler-dist/target/apache-dolphinscheduler*-bin.tar.gz --strip=1 -C dist
+tar -zxf gyyun-dist/target/apache-gyyun*-bin.tar.gz --strip=1 -C dist
 
 # List all modules(jars) that belong to the DolphinScheduler itself, these will be ignored when checking the dependency
 # licenses
@@ -37,7 +37,7 @@ echo '=== Third party dependencies: ' && grep -vf self-modules.txt all-dependenc
 
 # 1. Compare the third-party dependencies with known dependencies, expect that all third-party dependencies are KNOWN
 # and the exit code of the command is 0, otherwise we should add its license to LICENSE file
-# [dolphinscheduler-dist/release-docs/LICENSE] and [dolphinscheduler-dist/release-docs/licenses/]
+# [gyyun-dist/release-docs/LICENSE] and [gyyun-dist/release-docs/licenses/]
 # and add the dependency to known-dependencies.txt.
 #
 # 2. Unify the `sort` behaviour: here we'll sort them again in case that the behaviour of `sort` command in

@@ -23,8 +23,8 @@
         <artifactId>apache</artifactId>
         <version>25</version>
     </parent>
-    <groupId>org.apache.dolphinscheduler</groupId>
-    <artifactId>dolphinscheduler</artifactId>
+    <groupId>org.apache.gyyun</groupId>
+    <artifactId>gyyun</artifactId>
     <version>3.4.3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
@@ -33,32 +33,32 @@
         processing.</description>
 
     <modules>
-        <module>dolphinscheduler-bom</module>
-        <module>dolphinscheduler-alert</module>
-        <module>dolphinscheduler-spi</module>
-        <module>dolphinscheduler-registry</module>
-        <module>dolphinscheduler-task-plugin</module>
-        <module>dolphinscheduler-common</module>
-        <module>dolphinscheduler-api</module>
-        <module>dolphinscheduler-yarn-aop</module>
-        <module>dolphinscheduler-dao</module>
-        <module>dolphinscheduler-dist</module>
-        <module>dolphinscheduler-service</module>
-        <module>dolphinscheduler-microbench</module>
-        <module>dolphinscheduler-standalone-server</module>
-        <module>dolphinscheduler-datasource-plugin</module>
-        <module>dolphinscheduler-meter</module>
-        <module>dolphinscheduler-master</module>
-        <module>dolphinscheduler-worker</module>
-        <module>dolphinscheduler-tools</module>
-        <module>dolphinscheduler-ui</module>
-        <module>dolphinscheduler-scheduler-plugin</module>
-        <module>dolphinscheduler-storage-plugin</module>
-        <module>dolphinscheduler-extract</module>
-        <module>dolphinscheduler-dao-plugin</module>
-        <module>dolphinscheduler-authentication</module>
-        <module>dolphinscheduler-eventbus</module>
-        <module>dolphinscheduler-task-executor</module>
+        <module>gyyun-bom</module>
+        <module>gyyun-alert</module>
+        <module>gyyun-spi</module>
+        <module>gyyun-registry</module>
+        <module>gyyun-task-plugin</module>
+        <module>gyyun-common</module>
+        <module>gyyun-api</module>
+        <module>gyyun-yarn-aop</module>
+        <module>gyyun-dao</module>
+        <module>gyyun-dist</module>
+        <module>gyyun-service</module>
+        <module>gyyun-microbench</module>
+        <module>gyyun-standalone-server</module>
+        <module>gyyun-datasource-plugin</module>
+        <module>gyyun-meter</module>
+        <module>gyyun-master</module>
+        <module>gyyun-worker</module>
+        <module>gyyun-tools</module>
+        <module>gyyun-ui</module>
+        <module>gyyun-scheduler-plugin</module>
+        <module>gyyun-storage-plugin</module>
+        <module>gyyun-extract</module>
+        <module>gyyun-dao-plugin</module>
+        <module>gyyun-authentication</module>
+        <module>gyyun-eventbus</module>
+        <module>gyyun-task-executor</module>
     </modules>
 
     <properties>
@@ -87,7 +87,7 @@
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
         <owasp-dependency-check-maven.version>12.1.3</owasp-dependency-check-maven.version>
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
         <awaitility.version>4.2.0</awaitility.version>
         <truth.version>1.4.2</truth.version>
         <docker.hub>apache</docker.hub>
@@ -110,8 +110,8 @@
         <dependencies>
 
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-master</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-master</artifactId>
                 <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
@@ -125,147 +125,38 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-worker</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-worker</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-api</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-alert-server</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-alert-server</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-standalone-server</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-standalone-server</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-ui</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-ui</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-yarn-aop</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-yarn-aop</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-common</artifactId>
-                <version>${project.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.logging.log4j</groupId>
-                        <artifactId>log4j-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.logging.log4j</groupId>
-                        <artifactId>log4j-to-slf4j</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-dao</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-service</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-meter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-spi</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-tools</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-alert-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-alert-all</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-registry-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-registry-all</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-scheduler-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-scheduler-all</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-datasource-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-datasource-all</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-task-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-task-all</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-storage-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-storage-all</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-extract-base</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-common</artifactId>
                 <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
@@ -279,58 +170,167 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-extract-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-extract-master</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-extract-worker</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-extract-alert</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-dao-api</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-dao-plugin-all</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-meter</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-aws-authentication</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-actuator-authentication</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-spi</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-eventbus</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-tools</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>org.apache.dolphinscheduler</groupId>
-                <artifactId>dolphinscheduler-task-executor</artifactId>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-alert-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-alert-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-registry-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-registry-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-scheduler-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-scheduler-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-datasource-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-datasource-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-task-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-task-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-storage-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-storage-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-extract-base</artifactId>
+                <version>${project.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-to-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-extract-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-extract-master</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-extract-worker</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-extract-alert</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-dao-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-dao-plugin-all</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-aws-authentication</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-actuator-authentication</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-eventbus</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-task-executor</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -496,7 +496,7 @@
                                     <!-- Static code analysis tools like (maven-dependency-plugin) can not detect runtime dependencies, so you should instruct them about runtime dependencies -->
                                     <!-- https://stackoverflow.com/questions/37528928/spring-boot-core-dependencies-seen-as-unused-by-maven-dependency-plugin -->
                                     <ignoredDependency>org.springframework*:*</ignoredDependency>
-                                    <ignoredDependency>org.apache.dolphinscheduler:dolphinscheduler-meter</ignoredDependency>
+                                    <ignoredDependency>org.apache.gyyun:gyyun-meter</ignoredDependency>
                                 </ignoredDependencies>
                                 <ignoreNonCompile>true</ignoreNonCompile>
                             </configuration>
@@ -663,19 +663,19 @@
             </plugin>
         </plugins>
     </build>
-    <url>https://dolphinscheduler.apache.org</url>
+    <url>https://gyyun.apache.org</url>
     <mailingLists>
         <mailingList>
             <name>DolphinScheduler Developer List</name>
-            <subscribe>dev-subscribe@dolphinscheduler.apache.org</subscribe>
-            <unsubscribe>dev-unsubscribe@dolphinscheduler.apache.org</unsubscribe>
-            <post>dev@dolphinscheduler.apache.org</post>
+            <subscribe>dev-subscribe@gyyun.apache.org</subscribe>
+            <unsubscribe>dev-unsubscribe@gyyun.apache.org</unsubscribe>
+            <post>dev@gyyun.apache.org</post>
         </mailingList>
     </mailingLists>
     <scm>
-        <connection>scm:git:https://github.com/apache/dolphinscheduler.git</connection>
-        <developerConnection>scm:git:https://github.com/apache/dolphinscheduler.git</developerConnection>
-        <url>https://github.com/apache/dolphinscheduler</url>
+        <connection>scm:git:https://github.com/apache/gyyun.git</connection>
+        <developerConnection>scm:git:https://github.com/apache/gyyun.git</developerConnection>
+        <url>https://github.com/apache/gyyun</url>
         <tag>HEAD</tag>
     </scm>
 

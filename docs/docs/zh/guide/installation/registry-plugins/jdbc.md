@@ -46,7 +46,7 @@ registry:
   heartbeat-refresh-interval: 3s
   session-timeout: 60s
   hikari-config:
-    jdbc-url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/gyyun
     username: root
     password: root
     maximum-pool-size: 5
@@ -62,7 +62,7 @@ registry:
   heartbeat-refresh-interval: 3s
   session-timeout: 60s
   hikari-config:
-    jdbc-url: jdbc:postgresql://localhost:5432/dolphinscheduler
+    jdbc-url: jdbc:postgresql://localhost:5432/gyyun
     username: root
     password: root
     maximum-pool-size: 5

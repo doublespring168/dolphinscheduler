@@ -58,7 +58,7 @@ The configuration in the figure below indicates that the task gets the file iden
 
 ### Example
 
-You can save the following YAML file locally and then execute `pydolphinscheduler yaml -f data-transfer.yaml` to run the Demo.
+You can save the following YAML file locally and then execute `pygyyun yaml -f data-transfer.yaml` to run the Demo.
 
 ```yaml
 # Define the workflow

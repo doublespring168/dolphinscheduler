@@ -115,7 +115,7 @@ Issue 中可以讨论的内容包括但不限于 Feature 的包含的功能，�
 
 ### Issue 内容模板
 
-https://github.com/apache/dolphinscheduler/tree/dev/.github/ISSUE_TEMPLATE
+https://github.com/apache/gyyun/tree/dev/.github/ISSUE_TEMPLATE
 
 ### Bug 类 Issue
 

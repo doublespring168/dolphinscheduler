@@ -14,7 +14,7 @@ For convenience, we provide a pre-configured Keycloak realm export that sets up 
 1. **Navigate to the API test resources directory** where the Keycloak configuration is located:
 
 ```bash
-cd dolphinscheduler-api-test/dolphinscheduler-api-test-case/src/test/resources/docker/oidc-login/
+cd gyyun-api-test/gyyun-api-test-case/src/test/resources/docker/oidc-login/
 ```
 
 2. **Start Keycloak using Docker Compose**:
@@ -30,12 +30,12 @@ This command starts a Keycloak container on port `8081` (to avoid conflicts with
 
 1. Open your browser and navigate to the **Keycloak Admin Console**: `http://localhost:8081`.
 2. Log in with username `admin` and password `admin`.
-3. In the top-left corner, switch from the `master` realm to the `dolphinscheduler` realm.
-4. You can explore **Clients** (`dolphinscheduler-client`), **Users** (`admin_user`, `general_user`), and **Groups** (`dolphinscheduler-admins`) to see the imported configuration.
+3. In the top-left corner, switch from the `master` realm to the `gyyun` realm.
+4. You can explore **Clients** (`gyyun-client`), **Users** (`admin_user`, `general_user`), and **Groups** (`gyyun-admins`) to see the imported configuration.
 
 ## Step 3: Configure DolphinScheduler API Server
 
-Modify your `dolphinscheduler-api/src/main/resources/application.yaml` to enable OIDC and connect to your local Keycloak instance.
+Modify your `gyyun-api/src/main/resources/application.yaml` to enable OIDC and connect to your local Keycloak instance.
 
 ```yaml
 security:
@@ -47,9 +47,9 @@ security:
                 keycloak:
                     display-name: "Login with Keycloak"
                     # Point to your local Keycloak realm
-                    issuer-uri: http://localhost:8080/realms/dolphinscheduler
-                    client-id: dolphinscheduler-client
-                    client-secret: dolphinscheduler-client-secret
+                    issuer-uri: http://localhost:8080/realms/gyyun
+                    client-id: gyyun-client
+                    client-secret: gyyun-client-secret
                     scope: openid, profile, email, groups
                     user-name-attribute: preferred_username
                     groups-claim: groups
@@ -83,7 +83,7 @@ or,
 Run the frontend development server:
 
 ```bash
-cd dolphinscheduler-ui
+cd gyyun-ui
 pnpm install
 pnpm run dev
 ```
@@ -103,7 +103,7 @@ It is recommended to set up `pre-commit` before pushing your code to GitHub (see
 * **Frontend Changes**: Run the linter to format your TypeScript/Vue code.
 
 ```bash
-cd dolphinscheduler-ui
+cd gyyun-ui
 pnpm run lint
 ```
 

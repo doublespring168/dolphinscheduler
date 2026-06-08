@@ -4,7 +4,7 @@ Kubernetes deployment is DolphinScheduler deployment in a Kubernetes cluster, wh
 
 If you are a new hand and want to experience DolphinScheduler functions, we recommend you install follow [Standalone deployment](standalone.md). If you want to experience more complete functions and schedule massive tasks, we recommend you install follow [pseudo-cluster deployment](pseudo-cluster.md). If you want to deploy DolphinScheduler in production, we recommend you follow [cluster deployment](cluster.md) or [Kubernetes deployment](kubernetes.md).
 
-> **Tip**: You can also try [DolphinScheduler K8S Operator](https://github.com/apache/dolphinscheduler-operator)，which is current on alpha1 stage
+> **Tip**: You can also try [DolphinScheduler K8S Operator](https://github.com/apache/gyyun-operator)，which is current on alpha1 stage
 
 ## Prerequisites
 
@@ -16,60 +16,60 @@ If you are a new hand and want to experience DolphinScheduler functions, we reco
 
 ```bash
 # Choose the corresponding version yourself
-helm upgrade --install dolphinscheduler --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version>
+helm upgrade --install gyyun --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version>
 ```
 
 These commands are used to deploy DolphinScheduler on the Kubernetes cluster by default. The [Appendix-Configuration](#appendix-configuration) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm list`
 
-The **PostgreSQL** (with username `root`, password `root` and database `dolphinscheduler`) and **ZooKeeper** services will start by default.
+The **PostgreSQL** (with username `root`, password `root` and database `gyyun`) and **ZooKeeper** services will start by default.
 
 ## Access DolphinScheduler UI
 
-If `ingress.enabled` in `values.yaml` is set to `true`, you could access `http://${ingress.host}/dolphinscheduler` in browser.
+If `ingress.enabled` in `values.yaml` is set to `true`, you could access `http://${ingress.host}/gyyun` in browser.
 
 > **Tip**: If there is a problem with ingress access, please contact the Kubernetes administrator and refer to the [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 Otherwise, when `api.service.type=ClusterIP` you need to execute `port-forward` commands:
 
 ```bash
-$ kubectl port-forward --address 0.0.0.0 svc/dolphinscheduler-api 12345:12345
-$ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:12345 # with test namespace
+$ kubectl port-forward --address 0.0.0.0 svc/gyyun-api 12345:12345
+$ kubectl port-forward --address 0.0.0.0 -n test svc/gyyun-api 12345:12345 # with test namespace
 ```
 
 > **Tip**: If the error of `unable to do port forwarding: socat not found` appears, you need to install `socat` first.
 
-Access the web: `http://localhost:12345/dolphinscheduler/ui` (Modify the IP address if needed).
+Access the web: `http://localhost:12345/gyyun/ui` (Modify the IP address if needed).
 
 Or when `api.service.type=NodePort` you need to execute the command:
 
 ```bash
 NODE_IP=$(kubectl get no -n {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
-NODE_PORT=$(kubectl get svc {{ template "dolphinscheduler.fullname" . }}-api -n {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}")
-echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
+NODE_PORT=$(kubectl get svc {{ template "gyyun.fullname" . }}-api -n {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}")
+echo http://$NODE_IP:$NODE_PORT/gyyun
 ```
 
-Access the web: `http://$NODE_IP:$NODE_PORT/dolphinscheduler`.
+Access the web: `http://$NODE_IP:$NODE_PORT/gyyun`.
 
-The default username is `admin` and the default password is `dolphinscheduler123`.
+The default username is `admin` and the default password is `gyyun123`.
 
 Please refer to the `Quick Start` in the chapter [Quick Start](../start/quick-start.md) to explore how to use DolphinScheduler.
 
 ## Uninstall the Chart
 
-To uninstall or delete the `dolphinscheduler` deployment:
+To uninstall or delete the `gyyun` deployment:
 
 ```bash
-$ helm uninstall dolphinscheduler
+$ helm uninstall gyyun
 ```
 
-The command removes all the Kubernetes components (except PVC) associated with the `dolphinscheduler` and deletes the release.
+The command removes all the Kubernetes components (except PVC) associated with the `gyyun` and deletes the release.
 
-Run the command below to delete the PVC's associated with `dolphinscheduler`:
+Run the command below to delete the PVC's associated with `gyyun`:
 
 ```bash
-$ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
+$ kubectl delete pvc -l app.kubernetes.io/instance=gyyun
 ```
 
 > **Note**: Deleting the PVC's will delete all data as well. Please be cautious before doing it.
@@ -98,7 +98,7 @@ helm install keda kedacore/keda \
 Secondly, you need to set `worker.keda.enabled` to `true` in `values.yaml` or install the chart by:
 
 ```bash
-helm upgrade --install dolphinscheduler --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> --set worker.keda.enabled=true
+helm upgrade --install gyyun --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> --set worker.keda.enabled=true
 ```
 
 Once autoscaling enabled, the number of workers will scale between `minReplicaCount` and `maxReplicaCount` based on the states
@@ -161,12 +161,12 @@ kubectl get po
 kubectl get po -n test # with test namespace
 ```
 
-View the logs of a pod container named `dolphinscheduler-master-0`:
+View the logs of a pod container named `gyyun-master-0`:
 
 ```
-kubectl logs dolphinscheduler-master-0
-kubectl logs -f dolphinscheduler-master-0 # follow log output
-kubectl logs --tail 10 dolphinscheduler-master-0 -n test # show last 10 lines from the end of the logs
+kubectl logs gyyun-master-0
+kubectl logs -f gyyun-master-0 # follow log output
+kubectl logs --tail 10 gyyun-master-0 -n test # show last 10 lines from the end of the logs
 ```
 
 ### How to Scale API, master and worker on Kubernetes?
@@ -181,8 +181,8 @@ kubectl get deploy -n test # with test namespace
 Scale api to 3 replicas:
 
 ```
-kubectl scale --replicas=3 deploy dolphinscheduler-api
-kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
+kubectl scale --replicas=3 deploy gyyun-api
+kubectl scale --replicas=3 deploy gyyun-api -n test # with test namespace
 ```
 
 List all stateful sets (aka `sts`):
@@ -195,47 +195,47 @@ kubectl get sts -n test # with test namespace
 Scale master to 2 replicas:
 
 ```
-kubectl scale --replicas=2 sts dolphinscheduler-master
-kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
+kubectl scale --replicas=2 sts gyyun-master
+kubectl scale --replicas=2 sts gyyun-master -n test # with test namespace
 ```
 
 Scale worker to 6 replicas:
 
 ```
-kubectl scale --replicas=6 sts dolphinscheduler-worker
-kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
+kubectl scale --replicas=6 sts gyyun-worker
+kubectl scale --replicas=6 sts gyyun-worker -n test # with test namespace
 ```
 
 ### How to Use MySQL as the DolphinScheduler's Database Instead of PostgreSQL?
 
 > Because of the commercial license, we cannot directly use the driver of MySQL.
 >
-> If you want to use MySQL, you can build a new image based on the `apache/dolphinscheduler-<service>` image follow the following instructions:
+> If you want to use MySQL, you can build a new image based on the `apache/gyyun-<service>` image follow the following instructions:
 >
-> Since version 3.0.0, dolphinscheduler has been microserviced and the change of metadata storage requires replacing all services with MySQL driver, which including dolphinscheduler-tools, dolphinscheduler-master, dolphinscheduler-worker, dolphinscheduler-api, dolphinscheduler-alert-server
+> Since version 3.0.0, gyyun has been microserviced and the change of metadata storage requires replacing all services with MySQL driver, which including gyyun-tools, gyyun-master, gyyun-worker, gyyun-api, gyyun-alert-server
 
 1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar).
 
 2. Create a new `Dockerfile` to add MySQL driver:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-<service>:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-<service>:<version>
 # For example
-# FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-tools:<version>
+# FROM gyyun.docker.scarf.sh/apache/gyyun-tools:<version>
 
-# Attention Please, If the build is dolphinscheduler-tools image
-# You need to change the following line to: COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/tools/libs
+# Attention Please, If the build is gyyun-tools image
+# You need to change the following line to: COPY mysql-connector-java-8.0.16.jar /opt/gyyun/tools/libs
 # The other services don't need any changes
-COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/libs
+COPY mysql-connector-java-8.0.16.jar /opt/gyyun/libs
 ```
 
 3. Build a new docker image including MySQL driver:
 
 ```
-docker build -t apache/dolphinscheduler-<service>:mysql-driver .
+docker build -t apache/gyyun-<service>:mysql-driver .
 ```
 
-4. Push the docker image `apache/dolphinscheduler-<service>:mysql-driver` to a docker registry.
+4. Push the docker image `apache/gyyun-<service>:mysql-driver` to a docker registry.
 
 5. Modify image `repository` and update `tag` to `mysql-driver` in `values.yaml`.
 
@@ -250,7 +250,7 @@ externalDatabase:
   port: "3306"
   username: "root"
   password: "root"
-  database: "dolphinscheduler"
+  database: "gyyun"
   params: "useUnicode=true&characterEncoding=UTF-8"
 ```
 
@@ -260,9 +260,9 @@ externalDatabase:
 
 > Because of the commercial license, we cannot directly use the driver of MySQL or Oracle.
 >
-> If you want to add MySQL or Oracle datasource, you can build a new image based on the `apache/dolphinscheduler-<service>` image follow the following instructions:
+> If you want to add MySQL or Oracle datasource, you can build a new image based on the `apache/gyyun-<service>` image follow the following instructions:
 >
-> You need to change the two service images including dolphinscheduler-worker, dolphinscheduler-api.
+> You need to change the two service images including gyyun-worker, gyyun-api.
 
 1. Download the MySQL driver [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar).
    or download the Oracle driver [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (such as `ojdbc8-19.9.0.0.jar`)
@@ -270,24 +270,24 @@ externalDatabase:
 2. Create a new `Dockerfile` to add MySQL or Oracle driver:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-<service>:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-<service>:<version>
 # For example
-# FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-worker:<version>
+# FROM gyyun.docker.scarf.sh/apache/gyyun-worker:<version>
 
 # If you want to support MySQL Datasource
-COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/libs
+COPY mysql-connector-java-8.0.16.jar /opt/gyyun/libs
 
 # If you want to support Oracle Datasource
-COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/libs
+COPY ojdbc8-19.9.0.0.jar /opt/gyyun/libs
 ```
 
 3. Build a new docker image including MySQL or Oracle driver:
 
 ```
-docker build -t apache/dolphinscheduler-<service>:new-driver .
+docker build -t apache/gyyun-<service>:new-driver .
 ```
 
-4. Push the docker image `apache/dolphinscheduler-<service>:new-driver` to a docker registry.
+4. Push the docker image `apache/gyyun-<service>:new-driver` to a docker registry.
 
 5. Modify image `repository` and update `tag` to `new-driver` in `values.yaml`.
 
@@ -297,12 +297,12 @@ docker build -t apache/dolphinscheduler-<service>:new-driver .
 
 ### How to Support Python 2 pip and Custom requirements.txt?
 
-> Just change the image of the dolphinscheduler-worker service.
+> Just change the image of the gyyun-worker service.
 
 1. Create a new `Dockerfile` to install pip:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-worker:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-worker:<version>
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -319,10 +319,10 @@ pip install --no-cache-dir -U pip && \
 2. Build a new docker image including pip:
 
 ```
-docker build -t apache/dolphinscheduler-worker:pip .
+docker build -t apache/gyyun-worker:pip .
 ```
 
-3. Push the docker image `apache/dolphinscheduler-worker:pip` to a docker registry.
+3. Push the docker image `apache/gyyun-worker:pip` to a docker registry.
 
 4. Modify image `repository` and update `tag` to `pip` in `values.yaml`.
 
@@ -332,12 +332,12 @@ docker build -t apache/dolphinscheduler-worker:pip .
 
 ### How to Support Python 3?
 
-> Just change the image of the dolphinscheduler-worker service.
+> Just change the image of the gyyun-worker service.
 
 1. Create a new `Dockerfile` to install Python 3:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-worker:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-worker:<version>
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*
@@ -352,10 +352,10 @@ apt-get install -y --no-install-recommends python3-pip && \
 2. Build a new docker image including Python 3:
 
 ```
-docker build -t apache/dolphinscheduler-worker:python3 .
+docker build -t apache/gyyun-worker:python3 .
 ```
 
-3. Push the docker image `apache/dolphinscheduler-worker:python3` to a docker registry.
+3. Push the docker image `apache/gyyun-worker:python3` to a docker registry.
 
 4. Modify image `repository` and update `tag` to `python3` in `values.yaml`.
 
@@ -378,8 +378,8 @@ Take Spark 2.4.7 as an example:
 4. Copy the Spark 2.4.7 release binary into the Docker container.
 
 ```bash
-kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
-kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
+kubectl cp spark-2.4.7-bin-hadoop2.7.tgz gyyun-worker-0:/opt/soft
+kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz gyyun-worker-0:/opt/soft # with test namespace
 ```
 
 Because the volume `sharedStoragePersistence` is mounted on `/opt/soft`, all files in `/opt/soft` will not be lost.
@@ -387,8 +387,8 @@ Because the volume `sharedStoragePersistence` is mounted on `/opt/soft`, all fil
 5. Attach the container and ensure that `SPARK_HOME` exists.
 
 ```bash
-kubectl exec -it dolphinscheduler-worker-0 bash
-kubectl exec -n test -it dolphinscheduler-worker-0 bash # with test namespace
+kubectl exec -it gyyun-worker-0 bash
+kubectl exec -n test -it gyyun-worker-0 bash # with test namespace
 cd /opt/soft
 tar zxf spark-2.4.7-bin-hadoop2.7.tgz
 rm -f spark-2.4.7-bin-hadoop2.7.tgz
@@ -455,7 +455,7 @@ Modify the following configurations in `values.yaml`:
 common:
   configmap:
     RESOURCE_STORAGE_TYPE: "HDFS"
-    RESOURCE_UPLOAD_PATH: "/dolphinscheduler"
+    RESOURCE_UPLOAD_PATH: "/gyyun"
     FS_DEFAULT_FS: "file:///"
   fsFileResourcePersistence:
     enabled: true
@@ -490,24 +490,24 @@ For example, if you need to deploy worker to both CPU and GPU servers in a clust
 
 ```bash
 # Install master, api-server, alert-server, and other default components, but do not install worker
-helm upgrade --install dolphinscheduler --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> --set worker.enabled=false
+helm upgrade --install gyyun --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> --set worker.enabled=false
 # Disable the installation of other components, only install worker, use the self-built CPU image, deploy to CPU servers with the `x86` label through nodeselector, and use zookeeper as the external registry center
-helm upgrade --install dolphinscheduler-cpu-worker --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> \
+helm upgrade --install gyyun-cpu-worker --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> \
      --set minio.enabled=false --set postgresql.enabled=false --set zookeeper.enabled=false \
      --set master.enabled=false  --set api.enabled=false --set alert.enabled=false \
      --set worker.enabled=true --set image.tag=latest-cpu --set worker.nodeSelector.cpu="x86" \
-     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=dolphinscheduler-zookeeper:2181
+     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=gyyun-zookeeper:2181
 # Disable the installation of other components, only install worker, use the self-built GPU image, deploy to GPU servers with the `a100` label through nodeselector, and use zookeeper as the external registry center
-helm upgrade --install dolphinscheduler-gpu-worker --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> \
+helm upgrade --install gyyun-gpu-worker --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> \
      --set minio.enabled=false --set postgresql.enabled=false --set zookeeper.enabled=false \
      --set master.enabled=false  --set api.enabled=false --set alert.enabled=false \
      --set worker.enabled=true --set image.tag=latest-gpu --set worker.nodeSelector.gpu="a100" \
-     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=dolphinscheduler-zookeeper:2181
+     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=gyyun-zookeeper:2181
 ```
 
 > **Note**: the above steps are for reference only, and specific operations need to be adjusted according to the actual situation.
-> **Note**: DS uses the /tmp/dolphinscheduler directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file
+> **Note**: DS uses the /tmp/gyyun directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file
 
 ## Appendix-Configuration
 
-Ref: [DolphinScheduler Helm Charts](https://github.com/apache/dolphinscheduler/blob/dev/deploy/kubernetes/dolphinscheduler/README.md)
+Ref: [DolphinScheduler Helm Charts](https://github.com/apache/gyyun/blob/dev/deploy/kubernetes/gyyun/README.md)

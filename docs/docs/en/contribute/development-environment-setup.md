@@ -15,9 +15,9 @@ Before setting up the DolphinScheduler development environment, please make sure
 Download the git repository through your git management tool, here we use git-core as an example
 
 ```shell
-mkdir dolphinscheduler
-cd dolphinscheduler
-git clone git@github.com:apache/dolphinscheduler.git
+mkdir gyyun
+cd gyyun
+git clone git@github.com:apache/gyyun.git
 ```
 
 ### Compile Source Code
@@ -60,7 +60,7 @@ DolphinScheduler uses `pnpm` to check and automatically fix frontend code style 
 First, navigate to the frontend project directory:
 
 ```shell
-cd dolphinscheduler-ui
+cd gyyun-ui
 ```
 
 Then, run the following commands to automatically fix ESLint-fixable issues and format the code:
@@ -81,13 +81,13 @@ pnpm exec vue-tsc --noEmit  # Type check
 After modifying files related to Helm templates, you can use the following command to debug the Helm templates:
 
 ```shell
-helm template ./deploy/kubernetes/dolphinscheduler --debug 
+helm template ./deploy/kubernetes/gyyun --debug 
 ```
 
 Once the Helm templates are debugged and verified, use the following command to automatically update the README.md file (manually updating may likely result in incorrect formatting):
 
 ```shell
-./mvnw validate -P helm-doc -pl :dolphinscheduler
+./mvnw validate -P helm-doc -pl :gyyun
 ```
 
 ## Docker image build
@@ -100,7 +100,7 @@ DolphinScheduler will release new Docker images after it released, you could fin
 > -Prelease does not contain plugins, suitable for production environments, and plugins can be downloaded on demand from a network that can access plugins
 
 ```shell
-cd dolphinscheduler
+cd gyyun
 ./mvnw -B clean package \
        -Dmaven.test.skip \
        -Dspotless.skip = true \
@@ -113,7 +113,7 @@ When the command is finished you could find them by command `docker images`.
 - If you want to modify DolphinScheduler source code, build and push Docker images to your registry <HUB_URL>，you can run when finished the modification
 
 ```shell
-cd dolphinscheduler
+cd gyyun
 ./mvnw -B clean deploy \
        -Dmaven.test.skip \
        -Dspotless.skip = true \
@@ -125,7 +125,7 @@ cd dolphinscheduler
 - If you want to modify DolphinScheduler source code, and also want to add customize dependencies of Docker image, you can modify the definition of Dockerfile after modifying the source code. You can run the following command to find all Dockerfile files.
 
 ```shell
-cd dolphinscheduler
+cd gyyun
 find . -iname 'Dockerfile'
 ```
 
@@ -134,7 +134,7 @@ Then run the Docker build command above
 - You could create custom Docker images base on those images if you want to change image like add some dependencies or upgrade package.
 
 ```Dockerfile
-FROM dolphinscheduler-standalone-server
+FROM gyyun-standalone-server
 RUN apt update ; \
     apt install -y <YOUR-CUSTOM-DEPENDENCE> ; \
 ```
@@ -147,8 +147,8 @@ RUN apt update ; \
 
 There are two ways to configure the DolphinScheduler development environment, standalone mode and normal mode
 
-- [Standalone mode](#dolphinscheduler-standalone-quick-start): **Recommended**，more convenient to build development environment, it can cover most scenes.
-- [Normal mode](#dolphinscheduler-normal-mode): Separate server master, worker, api, which can cover more test environments than standalone, and it is more like production environment in real life.
+- [Standalone mode](#gyyun-standalone-quick-start): **Recommended**，more convenient to build development environment, it can cover most scenes.
+- [Normal mode](#gyyun-normal-mode): Separate server master, worker, api, which can cover more test environments than standalone, and it is more like production environment in real life.
 
 ## DolphinScheduler Standalone Quick Start
 
@@ -156,7 +156,7 @@ There are two ways to configure the DolphinScheduler development environment, st
 >
 > Standalone is only supported in DolphinScheduler 1.3.9 and later versions.
 >
-> Standalone server is able to connect to external databases like mysql and postgresql, see [Standalone Deployment](https://dolphinscheduler.apache.org/en-us/docs/3.1.2/guide/installation/standalone) for instructions.
+> Standalone server is able to connect to external databases like mysql and postgresql, see [Standalone Deployment](https://gyyun.apache.org/en-us/docs/3.1.2/guide/installation/standalone) for instructions.
 
 ### Git Branch Choose
 
@@ -167,7 +167,7 @@ Use different Git branch to develop different codes
 
 ### Start backend server
 
-Find the class `org.apache.dolphinscheduler.StandaloneServer` in IntelliJ IDEA and click run main function to startup.
+Find the class `org.apache.gyyun.StandaloneServer` in IntelliJ IDEA and click run main function to startup.
 
 > Note: Please check the option `Add dependencies with "provided" scope to classpath` in the startup configuration before starting, so as to avoid the problem that no dependencies can be found during startup.
 
@@ -175,7 +175,7 @@ Find the class `org.apache.dolphinscheduler.StandaloneServer` in IntelliJ IDEA a
 
 Install frontend dependencies and run it.
 
-> Note: You can see more detail about the frontend setting in [frontend development](https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-ui/README.md).
+> Note: You can see more detail about the frontend setting in [frontend development](https://github.com/apache/gyyun/blob/dev/gyyun-ui/README.md).
 
 If you have not yet installed `pnpm`, you can install it using the following command before running the front-end component:
 
@@ -186,12 +186,12 @@ npm install -g pnpm
 After ensuring that `pnpm` has been installed, run the following command:
 
 ```shell
-cd dolphinscheduler-ui
+cd gyyun-ui
 pnpm install
 pnpm run dev
 ```
 
-The browser access address [http://localhost:5173](http://localhost:5173) can login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
+The browser access address [http://localhost:5173](http://localhost:5173) can login DolphinScheduler UI. The default username and password are **admin/gyyun123**
 
 ## DolphinScheduler Normal Mode
 
@@ -213,9 +213,9 @@ Download [ZooKeeper](https://zookeeper.apache.org/releases.html), and extract it
 
 #### Database
 
-The DolphinScheduler's metadata is stored in relational database. Currently supported MySQL and Postgresql. We use MySQL as an example. Start the database and create a new database named dolphinscheduler as DolphinScheduler metabase
+The DolphinScheduler's metadata is stored in relational database. Currently supported MySQL and Postgresql. We use MySQL as an example. Start the database and create a new database named gyyun as DolphinScheduler metabase
 
-After creating the new database, run the sql file under `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql` directly in MySQL to complete the database initialization
+After creating the new database, run the sql file under `gyyun/gyyun-dao/src/main/resources/sql/gyyun_mysql.sql` directly in MySQL to complete the database initialization
 
 #### Start Backend Server
 
@@ -227,30 +227,30 @@ Following steps will guide how to start the DolphinScheduler backend service
 
 - File change
 
-  - If you use MySQL as your metadata database, you need to modify `dolphinscheduler-bom/pom.xml` and change the `scope` of the `mysql-connector-j` dependency to `compile`. This step is not necessary to use PostgreSQL
-  - Modify database configuration, modify the database configuration in the `dolphinscheduler-master/src/main/resources/application.yaml`
-  - Modify database configuration, modify the database configuration in the `dolphinscheduler-api/src/main/resources/application.yaml`
-  - Modify database configuration, modify the database configuration in the `dolphinscheduler-alert/dolphinscheduler-alert-server/src/main/resources/application.yaml`
+  - If you use MySQL as your metadata database, you need to modify `gyyun-bom/pom.xml` and change the `scope` of the `mysql-connector-j` dependency to `compile`. This step is not necessary to use PostgreSQL
+  - Modify database configuration, modify the database configuration in the `gyyun-master/src/main/resources/application.yaml`
+  - Modify database configuration, modify the database configuration in the `gyyun-api/src/main/resources/application.yaml`
+  - Modify database configuration, modify the database configuration in the `gyyun-alert/gyyun-alert-server/src/main/resources/application.yaml`
 
-We here use MySQL with database, username, password named dolphinscheduler as an example
+We here use MySQL with database, username, password named gyyun as an example
 
 ```application.yaml
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8
-    username: dolphinscheduler
-    password: dolphinscheduler
+    url: jdbc:mysql://127.0.0.1:3306/gyyun?useUnicode=true&characterEncoding=UTF-8
+    username: gyyun
+    password: gyyun
 ```
 
 ##### Server start
 
 There are three services that need to be started, including MasterServer, WorkerServer, ApiApplicationServer.
 
-- MasterServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.master.MasterServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
-- WorkerServer：Execute function `main` in the class `org.apache.dolphinscheduler.server.worker.WorkerServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true`
-- AlertServer：Execute function `main` in the class `org.apache.dolphinscheduler.alert.AlertServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
-- ApiApplicationServer：Execute function `main` in the class `org.apache.dolphinscheduler.api.ApiApplicationServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`. After it started, you could find Open API documentation in http://localhost:12345/dolphinscheduler/swagger-ui/index.html
+- MasterServer：Execute function `main` in the class `org.apache.gyyun.server.master.MasterServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
+- WorkerServer：Execute function `main` in the class `org.apache.gyyun.server.worker.WorkerServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true`
+- AlertServer：Execute function `main` in the class `org.apache.gyyun.alert.AlertServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`
+- ApiApplicationServer：Execute function `main` in the class `org.apache.gyyun.api.ApiApplicationServer` by IntelliJ IDEA, with the configuration _VM Options_ `-DDOCKER=true -Dspring.profiles.active=mysql`. After it started, you could find Open API documentation in http://localhost:12345/gyyun/swagger-ui/index.html
 
 > The `mysql` in the VM Options `-Dspring.profiles.active=mysql` means specified configuration file
 
@@ -259,9 +259,9 @@ There are three services that need to be started, including MasterServer, Worker
 Install frontend dependencies and run it
 
 ```shell
-cd dolphinscheduler-ui
+cd gyyun-ui
 pnpm install
 pnpm run dev
 ```
 
-The browser access address [http://localhost:5173](http://localhost:5173) can login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
+The browser access address [http://localhost:5173](http://localhost:5173) can login DolphinScheduler UI. The default username and password are **admin/gyyun123**

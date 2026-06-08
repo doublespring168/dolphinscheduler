@@ -46,7 +46,7 @@ That is, the workflow instance ID and task instance ID are injected in the print
 ## Logging Configuration
 
 DolphinScheduler uses [LogBack](https://docs.spring.io/spring-boot/docs/2.1.8.RELEASE/reference/html/howto-logging.html) for logging. To change the logging level of a specific package, you need to modify the `logback-spring.xml` file for the corresponding module.
-For example, if you want to enable `DEBUG` logging for `org.springframework.web` package in `standalone` module, you need to add the following configurations in `apache-dolphinscheduler-dev-SNAPSHOT-bin/standalone-server/conf/logback-spring.xml`:
+For example, if you want to enable `DEBUG` logging for `org.springframework.web` package in `standalone` module, you need to add the following configurations in `apache-gyyun-dev-SNAPSHOT-bin/standalone-server/conf/logback-spring.xml`:
 
 ```xml
 <configuration scan="true" scanPeriod="120 seconds">

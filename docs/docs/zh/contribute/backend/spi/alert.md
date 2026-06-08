@@ -4,13 +4,13 @@
 
 DolphinScheduler 正在处于微内核 + 插件化的架构更改之中，所有核心能力如任务、资源存储、注册中心等都将被设计为扩展点，我们希望通过 SPI 来提高 DolphinScheduler 本身的灵活性以及友好性（扩展性）。
 
-告警相关代码可以参考 `dolphinscheduler-alert-api` 模块。该模块定义了告警插件扩展的接口以及一些基础代码，当我们需要实现相关功能的插件化的时候，建议先阅读此块的代码，当然，更建议你阅读文档，这会减少很多时间，不过文档有一定的后滞性，当文档缺失的时候，建议以源码为准（如果有兴趣，我们也欢迎你来提交相关文档），此外，我们几乎不会对扩展接口做变更（不包括新增），除非重大架构调整，出现不兼容升级版本，因此，现有文档一般都能够满足。
+告警相关代码可以参考 `gyyun-alert-api` 模块。该模块定义了告警插件扩展的接口以及一些基础代码，当我们需要实现相关功能的插件化的时候，建议先阅读此块的代码，当然，更建议你阅读文档，这会减少很多时间，不过文档有一定的后滞性，当文档缺失的时候，建议以源码为准（如果有兴趣，我们也欢迎你来提交相关文档），此外，我们几乎不会对扩展接口做变更（不包括新增），除非重大架构调整，出现不兼容升级版本，因此，现有文档一般都能够满足。
 
-我们采用了原生的 JAVA-SPI，当你需要扩展的时候，事实上你只需要关注扩展`org.apache.dolphinscheduler.alert.api.AlertChannelFactory`接口即可，底层相关逻辑如插件加载等内核已经实现，这让我们的开发更加专注且简单。
+我们采用了原生的 JAVA-SPI，当你需要扩展的时候，事实上你只需要关注扩展`org.apache.gyyun.alert.api.AlertChannelFactory`接口即可，底层相关逻辑如插件加载等内核已经实现，这让我们的开发更加专注且简单。
 
 另外，`AlertChannelFactory` 继承自 `PrioritySPI`，这意味着你可以设置插件的优先级，当你有两个插件同名时，你可以通过重写 `getIdentify` 方法来自定义优先级。高优先级的插件会被加载，但是如果你有两个同名且优先级相同的插件，加载插件时服务器会抛出 `IllegalArgumentException`。
 
-顺便提一句，我们采用了一款优秀的前端组件 form-create，它支持基于 json 生成前端 ui 组件，如果插件开发牵扯到前端，我们会通过 json 来生成相关前端 UI 组件，org.apache.dolphinscheduler.spi.params 里面对插件的参数做了封装，它会将相关参数全部全部转化为对应的 json，这意味这你完全可以通过 Java 代码的方式完成前端组件的绘制（这里主要是表单，我们只关心前后端交互的数据）。
+顺便提一句，我们采用了一款优秀的前端组件 form-create，它支持基于 json 生成前端 ui 组件，如果插件开发牵扯到前端，我们会通过 json 来生成相关前端 UI 组件，org.apache.gyyun.spi.params 里面对插件的参数做了封装，它会将相关参数全部全部转化为对应的 json，这意味这你完全可以通过 Java 代码的方式完成前端组件的绘制（这里主要是表单，我们只关心前后端交互的数据）。
 
 本文主要着重讲解 Alert 告警相关设计以及开发。
 
@@ -18,11 +18,11 @@ DolphinScheduler 正在处于微内核 + 插件化的架构更改之中，所有
 
 如果你并不关心它的内部设计，只是想单纯的了解如何开发自己的告警插件，可以略过该内容。
 
-* dolphinscheduler-alert-api
+* gyyun-alert-api
 
-  该模块是 ALERT SPI 的核心模块，该模块定义了告警插件扩展的接口以及一些基础代码，扩展插件必须实现此模块所定义的接口:`org.apache.dolphinscheduler.alert.api.AlertChannelFactory`
+  该模块是 ALERT SPI 的核心模块，该模块定义了告警插件扩展的接口以及一些基础代码，扩展插件必须实现此模块所定义的接口:`org.apache.gyyun.alert.api.AlertChannelFactory`
 
-* dolphinscheduler-alert-plugins
+* gyyun-alert-plugins
 
   该模块是目前我们提供的插件，目前我们已经支持数十种插件，如 Email、DingTalk、Script等。
 
@@ -43,14 +43,14 @@ AlertInfo
 AlertResult
 告警插件发送告警返回信息。
 
-org.apache.dolphinscheduler.spi.params
+org.apache.gyyun.spi.params
 该包下是插件化的参数定义，我们前端使用 from-create 这个前端库，该库可以基于插件定义返回的参数列表 json 来动态生成前端的 ui，因此我们在做 SPI 插件开发的时候无需关心前端。
 
 该 package 下我们目前只封装了 RadioParam，TextParam，PasswordParam，分别用来定义 text 类型的参数，radio 参数和 password 类型的参数。
 
 AbsPluginParams 该类是所有参数的基类，RadioParam 这些类都继承了该类。每个 DS 的告警插件都会在 AlertChannelFactory 的实现中返回一个 AbsPluginParams 的 list。
 
-alert_spi 具体设计可见 issue：[Alert Plugin Design](https://github.com/apache/dolphinscheduler/issues/3049)
+alert_spi 具体设计可见 issue：[Alert Plugin Design](https://github.com/apache/gyyun/issues/3049)
 
 #### Alert SPI 内置实现
 

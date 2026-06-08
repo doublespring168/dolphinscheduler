@@ -1,6 +1,6 @@
 # 提交代码
 
-* 首先从远端仓库*https://github.com/apache/dolphinscheduler.git* fork一份代码到自己的仓库中
+* 首先从远端仓库*https://github.com/apache/gyyun.git* fork一份代码到自己的仓库中
 
 * 远端仓库中目前有三个分支：
 
@@ -15,11 +15,11 @@
 
 * 把自己仓库clone到本地
 
-  ` git clone https://github.com/apache/dolphinscheduler.git`
+  ` git clone https://github.com/apache/gyyun.git`
 
 * 添加远端仓库地址，命名为upstream
 
-  ` git remote add upstream https://github.com/apache/dolphinscheduler.git `
+  ` git remote add upstream https://github.com/apache/gyyun.git `
 
 * 查看仓库：
 
@@ -69,5 +69,5 @@ git checkout -b xxx origin/dev
 
 * 接着社区Committer们会做CodeReview，然后他会与您讨论一些细节（包括设计，实现，性能等）。当团队中所有人员对本次修改满意后，会将提交合并到dev分支
 
-* 最后，恭喜您已经成为了dolphinscheduler的官方贡献者！
+* 最后，恭喜您已经成为了gyyun的官方贡献者！
 

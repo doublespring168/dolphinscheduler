@@ -62,7 +62,7 @@ If you want to export parameters with bash variable instead of constants value, 
 或 HTTP 资源获取设定变量。 您可以使用类似的语法
 
 ```shell
-lines_num=$(wget https://raw.githubusercontent.com/apache/dolphinscheduler/dev/README.md -q -O - | wc -l | xargs)
+lines_num=$(wget https://raw.githubusercontent.com/apache/gyyun/dev/README.md -q -O - | wc -l | xargs)
 echo "#{setValue(set_val_var=${lines_num})}"
 ```
 

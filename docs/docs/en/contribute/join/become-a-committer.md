@@ -19,12 +19,12 @@ Community involvement: Committers should have a constructive and friendly attitu
 In Dolphinscheduler, **new committer nomination** could only be officially started by existing PMC members. If a new committer feels that he/she is qualified, he/she should contact any existing PMC member and discuss. If this is agreed among some members of the PMC, the process will kick off.
 
 The following steps are recommended (to be initiated only by an existing PMC member):
-1. Send an email titled `[DISCUSS] Promote xxx as new committer` to `private@dolphinscheduler.apache.org`. List the important contributions of the candidate,
+1. Send an email titled `[DISCUSS] Promote xxx as new committer` to `private@gyyun.apache.org`. List the important contributions of the candidate,
 so you could gather support from other PMC members for your proposal.
 2. Keep the discussion open for more than 3 days but no more than 1 week, unless there is any express objection or concern.
-3. If the PMC generally agrees to the proposal, send an email titled `[VOTE] Promote xxx as new committer` to `private@dolphinscheduler.apache.org`.
+3. If the PMC generally agrees to the proposal, send an email titled `[VOTE] Promote xxx as new committer` to `private@gyyun.apache.org`.
 4. Keep the voting process open for more than 3 days, but no more than 1 week. Consider the result as `Consensus Approval` if there are `3 + 1` votes with `NO` vetos. Please note that +1 votes > -1 votes.
-5. Send an email titled `[RESULT][VOTE] Promote xxx as new committer` to `private@dolphinscheduler.apache.org`, and list the voting details, including who the voters are.
+5. Send an email titled `[RESULT][VOTE] Promote xxx as new committer` to `private@gyyun.apache.org`, and list the voting details, including who the voters are.
 
 ## Invite new committer
 
@@ -34,8 +34,8 @@ The PMC member should send an email using the following template to the new comm
 
 ```
 To: <invitee name>@gmail.com
-Cc: private@dolphinscheduler.apache.org
-Subject: Invitation to become dolphinscheduler committer: <invitee name>
+Cc: private@gyyun.apache.org
+Subject: Invitation to become gyyun committer: <invitee name>
 
 Hello <invitee name>,
 
@@ -59,7 +59,7 @@ contributor, participating as you do now.
 
 A. This personal invitation is a chance for you to 
 accept or decline in private.  Either way, please 
-let us know in reply to the [private@dolphinscheduler.apache.org] 
+let us know in reply to the [private@gyyun.apache.org] 
 address only.
 
 B. If you accept, the next step is to register an iCLA:
@@ -85,11 +85,11 @@ establishing you as a committer.
 
 ## Invitation acceptance process
 
-The new committer should reply to `private@dolphinscheduler.apache.org` (choose `reply all`), and express his/her intention to accept the invitation.
+The new committer should reply to `private@gyyun.apache.org` (choose `reply all`), and express his/her intention to accept the invitation.
 Then, this invitation will be treated as accepted by the project's PMC. Of course, the new committer may also choose to decline the invitation.
 
 Once the invitation has been accepted, the new committer has to take the following steps:
-1. Subscribe to `dev@dolphinscheduler.apache.org`. Usually this is already done.
+1. Subscribe to `dev@gyyun.apache.org`. Usually this is already done.
 2. Choose a Apache ID that is not on the [apache committers list page](http://people.apache.org/committer-index.html).
 3. Download the [ICLA](https://www.apache.org/licenses/icla.pdf)  (If the new committer contributes to the project as a day job, [CCLA](http://www.apache.org/licenses/cla-corporate.pdf)  is expected).
 4. After filling in the `icla.pdf` (or `ccla.pdf`) with the correct information, print, sign it by hand,  scan it as an PDF, and send it as an attachment to [secretary@apache.org](mailto:secretary@apache.org). (If electronic signature is preferred, please follow the steps on [this page](http://www.apache.org/licenses/contributor-agreements.html#submitting))
@@ -113,7 +113,7 @@ The V.P. could request through the [Apache Account Submission Helper Form](https
 After several days, the new committer will receive an email confirming creation of the account, titled `Welcome to the Apache Software Foundation (ASF)!`.
 Congratulations! The new committer now has an official Apache ID.
 
-The PMC member should add the new committer to the official committer list through [roster](https://whimsy.apache.org/roster/pmc/dolphinscheduler).
+The PMC member should add the new committer to the official committer list through [roster](https://whimsy.apache.org/roster/pmc/gyyun).
 
 ## Set up the Apache ID and dev env
 
@@ -156,7 +156,7 @@ Before sending the invitation, the PMC must also send a NOTICE mail to the Apach
 
 ```
 To: board@apache.org
-Cc: private@dolphinscheduler.apache.org
+Cc: private@gyyun.apache.org
 Subject: [NOTICE] Jane Doe for Dolphinscheduler PMC
 
 Dolphinscheduler proposes to invite Jane Doe (janedoe) to join the PMC.
@@ -166,4 +166,4 @@ Dolphinscheduler proposes to invite Jane Doe (janedoe) to join the PMC.
 
 After 72 hours, if the board doesn't object to the nomination (which it won't most cases), an invitation may then be sent to the candidate.
 
-Once the invitation is accepted, a PMC member should add the new member to the official PMC list through [roster](https://whimsy.apache.org/roster/pmc/dolphinscheduler).
+Once the invitation is accepted, a PMC member should add the new member to the official PMC list through [roster](https://whimsy.apache.org/roster/pmc/gyyun).

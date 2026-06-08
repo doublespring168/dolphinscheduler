@@ -64,7 +64,7 @@ you could use `setValue` in your task, which more flexible such as you can get v
 You can use syntax like
 
 ```shell
-lines_num=$(wget https://raw.githubusercontent.com/apache/dolphinscheduler/dev/README.md -q -O - | wc -l | xargs)
+lines_num=$(wget https://raw.githubusercontent.com/apache/gyyun/dev/README.md -q -O - | wc -l | xargs)
 echo "#{setValue(set_val_var=${lines_num})}"
 ```
 

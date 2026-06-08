@@ -2,14 +2,14 @@
 
 ## Background
 
-Health check are designed to provide a unique way to check the health of the dolphinscheduler service. It includes the health status of modules, such as DB, cache, network, etc.
+Health check are designed to provide a unique way to check the health of the gyyun service. It includes the health status of modules, such as DB, cache, network, etc.
 
 ## Endpoint
 
 ### API-Server
 
 ```shell
-curl --request GET 'http://localhost:12345/dolphinscheduler/actuator/health'
+curl --request GET 'http://localhost:12345/gyyun/actuator/health'
 
 {"status":"UP","components":{"db":{"status":"UP","details":{"database":"H2","validationQuery":"isValid()"}}}}
 ```

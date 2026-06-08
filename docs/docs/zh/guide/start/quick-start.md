@@ -17,7 +17,7 @@
 
 ### 构建您的第一个工作流程
 
-你可以使用默认用户名和密码 `admin/dolphinscheduler123` 登录 DolphinScheduler，访问地址为 http://localhost:12345/dolphinscheduler/ui 。
+你可以使用默认用户名和密码 `admin/gyyun123` 登录 DolphinScheduler，访问地址为 http://localhost:12345/gyyun/ui 。
 
 #### 创建租户
 

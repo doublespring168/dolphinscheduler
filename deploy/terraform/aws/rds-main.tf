@@ -16,7 +16,7 @@
 # under the License.
 
 resource "aws_security_group" "database_sg" {
-  name        = "dolphinscheduler-database"
+  name        = "gyyun-database"
   vpc_id      = aws_vpc._.id
   description = "Allow all inbound for Postgres"
   ingress {
@@ -34,13 +34,13 @@ resource "aws_security_group" "database_sg" {
 }
 
 resource "aws_db_subnet_group" "database_subnet_group" {
-  name       = "dolphinscheduler-database_subnet_group"
+  name       = "gyyun-database_subnet_group"
   subnet_ids = [for subnet in aws_subnet.private : subnet.id]
 }
 
 resource "aws_db_instance" "database" {
-  identifier             = "dolphinscheduler"
-  db_name                = "dolphinscheduler"
+  identifier             = "gyyun"
+  db_name                = "gyyun"
   instance_class         = var.db_instance_class
   allocated_storage      = 5
   engine                 = "postgres"

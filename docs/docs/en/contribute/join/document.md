@@ -4,12 +4,12 @@ Good documentation is critical for any type of software. Any contribution that c
 
 ### Get the document project
 
-Documentation for the DolphinScheduler project is maintained in a separate [git repository](https://github.com/apache/dolphinscheduler-website).
+Documentation for the DolphinScheduler project is maintained in a separate [git repository](https://github.com/apache/gyyun-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
 ```
-git clone https://github.com/<your-github-user-name>/dolphinscheduler-website
+git clone https://github.com/<your-github-user-name>/gyyun-website
 ```
 
 ### Document build guide
@@ -17,7 +17,7 @@ git clone https://github.com/<your-github-user-name>/dolphinscheduler-website
 1. Run `yarn` in the root directory to install the dependencies.
 2. Run commands to collect resources
    2.1. Run `export PROTOCOL_MODE=ssh` tells Git clone resource via SSH protocol instead of HTTPS protocol
-   2.2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](https://github.com/apache/dolphinscheduler-website/blob/master/HOW_PREPARE_WORK.md)
+   2.2. Run `./scripts/prepare_docs.sh` prepare all related resources, for more information you could see [how prepare script work](https://github.com/apache/gyyun-website/blob/master/HOW_PREPARE_WORK.md)
 3. Run `yarn generate` in the root directory to format and prepare the data.
 4. Run `yarn dev` in the root directory to start a local server, you will see the website in 'http://localhost:3000'.
 5. Run `yarn build` to build source code, this will automatically generate a directory called `build`, wait for the execution to complete and into `build` directory.

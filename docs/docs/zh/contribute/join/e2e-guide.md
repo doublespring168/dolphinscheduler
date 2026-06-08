@@ -8,7 +8,7 @@ E2E 测试的主要目的是通过模拟真实的用户场景，验证被测系�
 
 当前社区把 E2E 需要测试的页面已经列出相关的 issue，主要分为 Project Management、Resource Center、DataSource、Security Center 四个页面。
 
-贡献者可以通过 GitHub 然后搜索 [apace/dolphinscheduler](https://github.com/apache/dolphinscheduler)，然后在 [issue](https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+is%3Aopen+e2e+test+cases) 列表中搜索 `e2e test cases` 即可找到对应的任务。如下图：
+贡献者可以通过 GitHub 然后搜索 [apace/gyyun](https://github.com/apache/gyyun)，然后在 [issue](https://github.com/apache/gyyun/issues?q=is%3Aissue+is%3Aopen+e2e+test+cases) 列表中搜索 `e2e test cases` 即可找到对应的任务。如下图：
 
 ![e2e-issue](../../../../img/contribute/join/e2e/e2e-issue.png)
 

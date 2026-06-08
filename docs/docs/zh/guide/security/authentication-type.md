@@ -4,7 +4,7 @@
 
 ## 修改认证方式
 
-> dolphinscheduler-api/src/main/resources/application.yaml
+> gyyun-api/src/main/resources/application.yaml
 
 ```yaml
 security:
@@ -99,7 +99,7 @@ Casdoor 是基于 OAuth 2.0、OIDC、SAML 和 CAS 的面向 UI 的身份访问�
 
 ### 步骤3. 配置 Dolphinscheduler
 
-> dolphinscheduler-api/src/main/resources/application.yaml
+> gyyun-api/src/main/resources/application.yaml
 
 ```yaml
 security:
@@ -123,7 +123,7 @@ casdoor:
 
 ## 通过OAuth2授权认证登录
 
-dolphinscheduler可以同时支持多种OAuth2的provider，只需要在配置文件中打开Oauth2的开关并进行简单的配置即可。
+gyyun可以同时支持多种OAuth2的provider，只需要在配置文件中打开Oauth2的开关并进行简单的配置即可。
 
 ### 步骤1. 获取OAuth2客户端凭据
 
@@ -144,7 +144,7 @@ security:
         github:
           # 设置provider的授权地址，例如https://github.com/login/oauth/authorize
           authorizationUri: ""
-          # dolphinscheduler的后端重定向接口地址，例如http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2
+          # gyyun的后端重定向接口地址，例如http://127.0.0.1:12345/gyyun/redirect/login/oauth2
           redirectUri: ""
           # oauth2的 clientId
           clientId: ""
@@ -171,7 +171,7 @@ security:
           provider: google
         gitee:
           authorizationUri: "https://gitee.com/oauth/authorize"
-          redirectUri: "http://127.0.0.1:12345/dolphinscheduler/redirect/login/oauth2"
+          redirectUri: "http://127.0.0.1:12345/gyyun/redirect/login/oauth2"
           clientId: ""
           clientSecret: ""
           tokenUri: "https://gitee.com/oauth/token?grant_type=authorization_code"

@@ -14,7 +14,7 @@ provide both video and text in this tutorial, you can choose the way you prefer
 
 ### Setup Dolphinscheduler
 
-You have to install and start dolphinscheduler first before go ahead. For beginners, we recommend setting up
+You have to install and start gyyun first before go ahead. For beginners, we recommend setting up
 DolphinScheduler with the official Docker image or with the standalone server.
 
 * [standalone server](../installation/standalone.md)
@@ -22,8 +22,8 @@ DolphinScheduler with the official Docker image or with the standalone server.
 
 ### Build Your First Workflow
 
-You can log in DolphinScheduler through http://localhost:12345/dolphinscheduler/ui and the default username/password
-is `admin/dolphinscheduler123`.
+You can log in DolphinScheduler through http://localhost:12345/gyyun/ui and the default username/password
+is `admin/gyyun123`.
 
 ![login](../../../../img/start/login.gif)
 

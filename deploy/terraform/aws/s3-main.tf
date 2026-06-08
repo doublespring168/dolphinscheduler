@@ -30,7 +30,7 @@ module "s3_bucket" {
 
 resource "aws_iam_user" "s3" {
   name = "${var.name_prefix}-s3"
-  path = "/dolphinscheduler/"
+  path = "/gyyun/"
 }
 
 resource "aws_iam_access_key" "s3" {

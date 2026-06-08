@@ -1,6 +1,6 @@
 # 任务总体存储结构
 
-在dolphinscheduler中创建的所有任务都保存在t_ds_process_definition 表中.
+在gyyun中创建的所有任务都保存在t_ds_process_definition 表中.
 
 该数据库表结构如下表所示:
 

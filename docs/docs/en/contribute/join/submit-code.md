@@ -1,6 +1,6 @@
 # Submit Code
 
-* First from the remote repository *https://github.com/apache/dolphinscheduler.git* fork a copy of the code into your own repository
+* First from the remote repository *https://github.com/apache/gyyun.git* fork a copy of the code into your own repository
 
 * There are currently three branches in the remote repository:
 
@@ -10,9 +10,9 @@
   * dev              daily development branch
     Every day dev development branch, newly submitted code can pull request to this branch.
 * Clone your repository to your local
-  `git clone https://github.com/apache/dolphinscheduler.git`
+  `git clone https://github.com/apache/gyyun.git`
 * Add remote repository address, named upstream
-  `git remote add upstream https://github.com/apache/dolphinscheduler.git`
+  `git remote add upstream https://github.com/apache/gyyun.git`
 * View repository
       `git remote -v`
 
@@ -58,5 +58,5 @@ Make sure that the branch `xxx` is building successfully on the latest code of t
 
 * Then the community Committers will do CodeReview, and then he will discuss some details (including design, implementation, performance, etc.) with you. When everyone on the team is satisfied with this modification, the commit will be merged into the dev branch
 
-* Finally, congratulations, you have become an official contributor to dolphinscheduler!
+* Finally, congratulations, you have become an official contributor to gyyun!
 

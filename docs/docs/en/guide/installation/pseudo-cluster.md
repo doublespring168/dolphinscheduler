@@ -9,7 +9,7 @@ If you are a new hand and want to experience DolphinScheduler functions, we reco
 Pseudo-cluster deployment of DolphinScheduler requires external software support:
 
 - JDK：download [JDK][jdk] (1.8 or 11), install and configure environment variable `JAVA_HOME` and append `bin` dir (included in `JAVA_HOME`) to `PATH` variable. You can skip this step if it already exists in your environment.
-- Binary package: Download the DolphinScheduler binary package at [download page](https://dolphinscheduler.apache.org/en-us/download)
+- Binary package: Download the DolphinScheduler binary package at [download page](https://gyyun.apache.org/en-us/download)
 - Database: [PostgreSQL](https://www.postgresql.org/download/) (8.2.15+) or [MySQL](https://dev.mysql.com/downloads/mysql/) (5.7+), you can choose one of the two, such as MySQL requires JDBC Driver 8.0.33
 - Registry Center: [ZooKeeper](https://zookeeper.apache.org/releases.html) (3.8.0+), [MYSQL](https://www.mysql.com/)(8.0.33), [ETCD](https://etcd.io/)
 - Process tree analysis
@@ -18,22 +18,22 @@ Pseudo-cluster deployment of DolphinScheduler requires external software support
 
 ## Download Plugins Dependencies
 
-Starting from version 3.3.0, the binary package no longer provides plugin dependencies, and users need to download them by themselves. The plugin dependency package download address: [Plugin Dependency Package](https://repo.maven.apache.org/maven2/org/apache/dolphinscheduler)
+Starting from version 3.3.0, the binary package no longer provides plugin dependencies, and users need to download them by themselves. The plugin dependency package download address: [Plugin Dependency Package](https://repo.maven.apache.org/maven2/org/apache/gyyun)
 You can also execute the following command to install plugin dependencies:
 
 ```shell
 bash ./bin/install-plugins.sh 3.3.0
 ```
 
-Usually, you do not need all connector plugins, you can specify the plugins you need by configuring `conf/plugins_config`. For example, if you only need the `dolphinscheduler-task-shell` plugin, you can modify the configuration file as follows:
+Usually, you do not need all connector plugins, you can specify the plugins you need by configuring `conf/plugins_config`. For example, if you only need the `gyyun-task-shell` plugin, you can modify the configuration file as follows:
 
 ```
 --task-plugins--
-dolphinscheduler-task-shell
+gyyun-task-shell
 --end--
 ```
 
-> **_Note:_** The plugin dependency package is usually not included in the binary package. If you encounter a `ClassNotFoundException` error when starting the service, please refer to the documentation of the relevant plugin type to check if the plugin dependency package is missing. For example, `dolphinscheduler-datasource-mysql` does not include `mysql-connector-java.jar`.
+> **_Note:_** The plugin dependency package is usually not included in the binary package. If you encounter a `ClassNotFoundException` error when starting the service, please refer to the documentation of the relevant plugin type to check if the plugin dependency package is missing. For example, `gyyun-datasource-mysql` does not include `mysql-connector-java.jar`.
 
 ## DolphinScheduler Startup Environment
 
@@ -41,22 +41,22 @@ dolphinscheduler-task-shell
 
 ### Configure User Exemption and Permissions
 
-Create a deployment user, and make sure to configure `sudo` without password. Here make an example to create user `dolphinscheduler`:
+Create a deployment user, and make sure to configure `sudo` without password. Here make an example to create user `gyyun`:
 
 ```shell
 # To create a user, login as root
-useradd dolphinscheduler
+useradd gyyun
 
 # Add password
-echo "dolphinscheduler" | passwd --stdin dolphinscheduler
+echo "gyyun" | passwd --stdin gyyun
 
 # Configure sudo without password
-sed -i '$dolphinscheduler  ALL=(ALL)  NOPASSWD: ALL' /etc/sudoers
+sed -i '$gyyun  ALL=(ALL)  NOPASSWD: ALL' /etc/sudoers
 sed -i 's/Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 
 # Modify directory permissions and grant permissions for user you created above
-chown -R dolphinscheduler:dolphinscheduler apache-dolphinscheduler-*-bin
-chmod -R 755 apache-dolphinscheduler-*-bin
+chown -R gyyun:gyyun apache-gyyun-*-bin
+chmod -R 755 apache-gyyun-*-bin
 ```
 
 > **_NOTICE:_**
@@ -71,11 +71,11 @@ If you use Zookeeper as the registry center, you need to install Zookeeper and s
 ## Modify Configuration
 
 After completing the preparation of the basic environment, you need to modify the configuration file according to the
-environment you used. Change the environment configurations via `export <ENV_NAME>=<VALUE>`. The configuration files are located in directory `bin/env` as `dolphinscheduler_env.sh`.
+environment you used. Change the environment configurations via `export <ENV_NAME>=<VALUE>`. The configuration files are located in directory `bin/env` as `gyyun_env.sh`.
 
-### Modify `dolphinscheduler_env.sh`
+### Modify `gyyun_env.sh`
 
-File `./bin/env/dolphinscheduler_env.sh`,`api-server/conf/application.yaml`，
+File `./bin/env/gyyun_env.sh`,`api-server/conf/application.yaml`，
 `master-server/conf/application.yaml`，`worker-server/conf/application.yaml`，`alert-server/conf/application.yaml` describes the following configurations:
 
 - Database configuration of DolphinScheduler, see [Initialize the Database](#initialize-the-database) for detailed instructions.
@@ -93,7 +93,7 @@ export JAVA_HOME=${JAVA_HOME:-/opt/soft/java}
 # Database related configuration, set database type, username and password
 export DATABASE=${DATABASE:-postgresql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL="jdbc:postgresql://127.0.0.1:5432/dolphinscheduler"
+export SPRING_DATASOURCE_URL="jdbc:postgresql://127.0.0.1:5432/gyyun"
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 
@@ -119,8 +119,8 @@ export PATH=$HADOOP_HOME/bin:$SPARK_HOME/bin:$PYTHON_LAUNCHER:$JAVA_HOME/bin:$HI
 
 > **_Note:_** If you use MySQL database, set `DATABASE` to `mysql`, and modify `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME` and `SPRING_DATASOURCE_PASSWORD` to your database configuration.
 >
-> **_Note:_** The configuration in `dolphinscheduler_env.sh` will overwrite the configuration in each service's configuration file (application.yaml), so if you configure a parameter in the application.yaml file and also configure it in `dolphinscheduler_env.sh`,
-> the configuration in `dolphinscheduler_env.sh` will take precedence. The configuration format in `dolphinscheduler_env.sh` is as follows:
+> **_Note:_** The configuration in `gyyun_env.sh` will overwrite the configuration in each service's configuration file (application.yaml), so if you configure a parameter in the application.yaml file and also configure it in `gyyun_env.sh`,
+> the configuration in `gyyun_env.sh` will take precedence. The configuration format in `gyyun_env.sh` is as follows:
 > `SPRING_DATASOURCE_URL` in `application.yaml` is `spring.datasource.url`, and so on.
 
 ## Initialize the Database
@@ -133,58 +133,58 @@ The server log will be stored in the `xxx-server/logs` folder.
 
 ```
 # Start api-server
-bash ./bin/dolphinscheduler-daemon.sh start api-server
+bash ./bin/gyyun-daemon.sh start api-server
 
 # Start master-server
-bash ./bin/dolphinscheduler-daemon.sh start master-server
+bash ./bin/gyyun-daemon.sh start master-server
 
 # Start worker-server
-bash ./bin/dolphinscheduler-daemon.sh start worker-server
+bash ./bin/gyyun-daemon.sh start worker-server
 
 # Start alert-server
-bash ./bin/dolphinscheduler-daemon.sh start alert-server
+bash ./bin/gyyun-daemon.sh start alert-server
 ```
 
-> **_Note:_** For the first time deployment, you can check the status of server through bash ./bin/dolphinscheduler-daemon.sh status xxx-server
+> **_Note:_** For the first time deployment, you can check the status of server through bash ./bin/gyyun-daemon.sh status xxx-server
 
 ## Login DolphinScheduler
 
-Access address `http://localhost:12345/dolphinscheduler/ui` and login DolphinScheduler UI. The default username and password are **admin/dolphinscheduler123**
+Access address `http://localhost:12345/gyyun/ui` and login DolphinScheduler UI. The default username and password are **admin/gyyun123**
 
 ## Start or Stop Server
 
 ```shell
 # Check the status of DolphinScheduler server
-bash ./bin/dolphinscheduler-daemon.sh status xxx-server
+bash ./bin/gyyun-daemon.sh status xxx-server
 
 # Start or stop DolphinScheduler Master
-bash ./bin/dolphinscheduler-daemon.sh stop master-server
-bash ./bin/dolphinscheduler-daemon.sh start master-server
+bash ./bin/gyyun-daemon.sh stop master-server
+bash ./bin/gyyun-daemon.sh start master-server
 
 # Start or stop DolphinScheduler Worker
-bash ./bin/dolphinscheduler-daemon.sh start worker-server
-bash ./bin/dolphinscheduler-daemon.sh stop worker-server
+bash ./bin/gyyun-daemon.sh start worker-server
+bash ./bin/gyyun-daemon.sh stop worker-server
 
 # Start or stop DolphinScheduler Api
-bash ./bin/dolphinscheduler-daemon.sh start api-server
-bash ./bin/dolphinscheduler-daemon.sh stop api-server
+bash ./bin/gyyun-daemon.sh start api-server
+bash ./bin/gyyun-daemon.sh stop api-server
 
 # Start or stop Alert
-bash ./bin/dolphinscheduler-daemon.sh start alert-server
-bash ./bin/dolphinscheduler-daemon.sh stop alert-server
+bash ./bin/gyyun-daemon.sh start alert-server
+bash ./bin/gyyun-daemon.sh stop alert-server
 ```
 
-> **_Note1:_**: Each server have `dolphinscheduler_env.sh` file in path `<service>/conf/dolphinscheduler_env.sh` which
+> **_Note1:_**: Each server have `gyyun_env.sh` file in path `<service>/conf/gyyun_env.sh` which
 > for micro-services need. It means that you could start all servers by command `<service>/bin/start.sh` with different
-> environment variable from `<service>/conf/dolphinscheduler_env.sh`. But it will use file `bin/env/dolphinscheduler_env.sh` overwrite
-> `<service>/conf/dolphinscheduler_env.sh` if you start server with command `/bin/dolphinscheduler-daemon.sh start <service>`.
+> environment variable from `<service>/conf/gyyun_env.sh`. But it will use file `bin/env/gyyun_env.sh` overwrite
+> `<service>/conf/gyyun_env.sh` if you start server with command `/bin/gyyun-daemon.sh start <service>`.
 >
 > **_Note2:_**: Please refer to the section of "System Architecture Design" for service usage. Python gateway service is
 > started along with the api-server, and if you do not want to start Python gateway service please disabled it by changing
 > the yaml config `python-gateway.enabled : false` in api-server's configuration path `api-server/conf/application.yaml`
-> **_Note3:_**: DS uses the /tmp/dolphinscheduler directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file
+> **_Note3:_**: DS uses the /tmp/gyyun directory as the resource center by default. If you need to change the directory of the resource center, change the resource items in the conf/common.properties file
 
 [jdk]: https://www.oracle.com/technetwork/java/javase/downloads/index.html
 [zookeeper]: https://zookeeper.apache.org/releases.html
-[issue]: https://github.com/apache/dolphinscheduler/issues/6597
+[issue]: https://github.com/apache/gyyun/issues/6597
 

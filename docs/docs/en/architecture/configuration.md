@@ -18,9 +18,9 @@ The directory structure of DolphinScheduler is as follows:
 ├── licenses                                    directory of licenses
 │
 ├── bin                                         directory of DolphinScheduler application commands, configurations scripts
-│   ├── dolphinscheduler-daemon.sh              script to start or shut down DolphinScheduler application
+│   ├── gyyun-daemon.sh              script to start or shut down DolphinScheduler application
 │   ├── env                                     directory of scripts to load environment variables
-│   │   ├── dolphinscheduler_env.sh             script to export environment variables [eg: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...] when you start or stop service using script `dolphinscheduler-daemon.sh`
+│   │   ├── gyyun_env.sh             script to export environment variables [eg: JAVA_HOME,HADOOP_HOME, HIVE_HOME ...] when you start or stop service using script `gyyun-daemon.sh`
 │
 ├── alert-server                                directory of DolphinScheduler alert-server commands, configurations scripts and libs
 │   ├── bin
@@ -29,7 +29,7 @@ The directory structure of DolphinScheduler is as follows:
 │   ├── conf
 │   │   ├── application.yaml                    configurations of alert-server
 │   │   ├── common.properties                   configurations of common-service like storage, credentials, etc.
-│   │   ├── dolphinscheduler_env.sh             script to load environment variables for alert-server
+│   │   ├── gyyun_env.sh             script to load environment variables for alert-server
 │   │   └── logback-spring.xml                  configurations of alert-service log
 │   └── libs                                    directory of alert-server libs
 │
@@ -40,7 +40,7 @@ The directory structure of DolphinScheduler is as follows:
 │   ├── conf
 │   │   ├── application.yaml                    configurations of api-server
 │   │   ├── common.properties                   configurations of common-service like storage, credentials, etc.
-│   │   ├── dolphinscheduler_env.sh             script to load environment variables for api-server
+│   │   ├── gyyun_env.sh             script to load environment variables for api-server
 │   │   └── logback-spring.xml                  configurations of api-service log
 │   ├── libs                                    directory of api-server libs
 │   └── ui                                      directory of api-server related front-end web resources
@@ -52,7 +52,7 @@ The directory structure of DolphinScheduler is as follows:
 │   ├── conf
 │   │   ├── application.yaml                    configurations of master-server
 │   │   ├── common.properties                   configurations of common-service like storage, credentials, etc.
-│   │   ├── dolphinscheduler_env.sh             script to load environment variables for master-server
+│   │   ├── gyyun_env.sh             script to load environment variables for master-server
 │   │   └── logback-spring.xml                  configurations of master-service log
 │   └── libs                                    directory of master-server libs
 │
@@ -63,7 +63,7 @@ The directory structure of DolphinScheduler is as follows:
 │   ├── conf
 │   │   ├── application.yaml                    configurations of standalone-server
 │   │   ├── common.properties                   configurations of common-service like storage, credentials, etc.
-│   │   ├── dolphinscheduler_env.sh             script to load environment variables for standalone-server
+│   │   ├── gyyun_env.sh             script to load environment variables for standalone-server
 │   │   ├── logback-spring.xml                  configurations of standalone-service log
 │   │   └── sql                                 .sql files to create or upgrade DolphinScheduler metadata
 │   ├── libs                                    directory of standalone-server libs
@@ -85,7 +85,7 @@ The directory structure of DolphinScheduler is as follows:
 │   ├── conf
 │   │   ├── application.yaml                configurations of worker-server
 │   │   ├── common.properties               configurations of common-service like storage, credentials, etc.
-│   │   ├── dolphinscheduler_env.sh         script to load environment variables for worker-server
+│   │   ├── gyyun_env.sh         script to load environment variables for worker-server
 │   │   └── logback-spring.xml              configurations of worker-service log
 │   └── libs                                directory of worker-server libs
 │
@@ -94,10 +94,10 @@ The directory structure of DolphinScheduler is as follows:
 
 ## Configurations in Details
 
-### dolphinscheduler-daemon.sh [startup or shutdown DolphinScheduler application]
+### gyyun-daemon.sh [startup or shutdown DolphinScheduler application]
 
-dolphinscheduler-daemon.sh is responsible for DolphinScheduler startup and shutdown.
-Essentially, start-all.sh or stop-all.sh startup and shutdown the cluster via dolphinscheduler-daemon.sh.
+gyyun-daemon.sh is responsible for DolphinScheduler startup and shutdown.
+Essentially, start-all.sh or stop-all.sh startup and shutdown the cluster via gyyun-daemon.sh.
 Currently, DolphinScheduler just makes a basic config, remember to config further JVM options based on your practical
 situation of resources.
 
@@ -138,7 +138,7 @@ The default configuration is as follows:
 |                      Parameters                      |                   Default value                   |                  Description                  |
 |------------------------------------------------------|---------------------------------------------------|-----------------------------------------------|
 | spring.datasource.driver-class-name                  | org.postgresql.Driver                             | datasource driver                             |
-| spring.datasource.url                                | jdbc:postgresql://127.0.0.1:5432/dolphinscheduler | datasource connection url                     |
+| spring.datasource.url                                | jdbc:postgresql://127.0.0.1:5432/gyyun | datasource connection url                     |
 | spring.datasource.username                           | root                                              | datasource username                           |
 | spring.datasource.password                           | root                                              | datasource password                           |
 | spring.datasource.hikari.connection-test-query       | select 1                                          | validate connection by running the SQL        |
@@ -151,7 +151,7 @@ The default configuration is as follows:
 | spring.datasource.hikari.leak-detection-threshold    | 0                                                 | Connection leak detection threshold           |
 | spring.datasource.hikari.initialization-fail-timeout | 1                                                 | Connection pool initialization failed timeout |
 
-Note that DolphinScheduler also supports database configuration through `bin/env/dolphinscheduler_env.sh`.
+Note that DolphinScheduler also supports database configuration through `bin/env/gyyun_env.sh`.
 
 ### Registry Related configuration
 
@@ -167,7 +167,7 @@ The default configuration is as follows:
 
 |                   Parameters                    |     Default value     |                                                                                       Description                                                                                       |
 |-------------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| registry.zookeeper.namespace                    | dolphinscheduler      | namespace of zookeeper                                                                                                                                                                  |
+| registry.zookeeper.namespace                    | gyyun      | namespace of zookeeper                                                                                                                                                                  |
 | registry.zookeeper.connect-string               | localhost:2181        | the connection string of zookeeper                                                                                                                                                      |
 | registry.zookeeper.retry-policy.base-sleep-time | 60ms                  | time to wait between subsequent retries                                                                                                                                                 |
 | registry.zookeeper.retry-policy.max-sleep       | 300ms                 | maximum time to wait between subsequent retries                                                                                                                                         |
@@ -177,7 +177,7 @@ The default configuration is as follows:
 | registry.zookeeper.block-until-connected        | 600ms                 | waiting time to block until the connection succeeds                                                                                                                                     |
 | registry.zookeeper.digest                       | {username}:{password} | digest of zookeeper to access znode, works only when acl is enabled, for more details please check [https://zookeeper.apache.org/doc/r3.4.14/zookeeperAdmin.html](Apache Zookeeper doc) |
 
-Note that DolphinScheduler also supports zookeeper related configuration through `bin/env/dolphinscheduler_env.sh`.
+Note that DolphinScheduler also supports zookeeper related configuration through `bin/env/gyyun_env.sh`.
 
 For ETCD Registry, please see more details
 on [link](../guide/installation/registry-plugins/etcd.md).
@@ -199,11 +199,11 @@ The default configuration is as follows:
 
 |                  Parameters                   |                  Default value                   |                                                                                                                                                                                                             Description                                                                                                                                                                                                              |
 |-----------------------------------------------|--------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| data.basedir.path                             | /tmp/dolphinscheduler                            | local directory used to store temp files                                                                                                                                                                                                                                                                                                                                                                                             |
+| data.basedir.path                             | /tmp/gyyun                            | local directory used to store temp files                                                                                                                                                                                                                                                                                                                                                                                             |
 | resource.storage.type                         | NONE                                             | type of resource files: HDFS, S3, OSS, GCS, ABS, NONE                                                                                                                                                                                                                                                                                                                                                                                |
-| resource.upload.path                          | /dolphinscheduler                                | storage path of resource files                                                                                                                                                                                                                                                                                                                                                                                                       |
+| resource.upload.path                          | /gyyun                                | storage path of resource files                                                                                                                                                                                                                                                                                                                                                                                                       |
 | hdfs.root.user                                | hdfs                                             | configure users with corresponding permissions if storage type is HDFS                                                                                                                                                                                                                                                                                                                                                               |
-| fs.defaultFS                                  | hdfs://mycluster:8020                            | If resource.storage.type=S3, then the request url would be similar to 's3a://dolphinscheduler'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, copy core-site.xml and hdfs-site.xml into 'conf' directory                                                                                                                                                                                                           |
+| fs.defaultFS                                  | hdfs://mycluster:8020                            | If resource.storage.type=S3, then the request url would be similar to 's3a://gyyun'. Otherwise if resource.storage.type=HDFS and hadoop supports HA, copy core-site.xml and hdfs-site.xml into 'conf' directory                                                                                                                                                                                                           |
 | hadoop.security.authentication.startup.state  | false                                            | whether hadoop grant kerberos permission                                                                                                                                                                                                                                                                                                                                                                                             |
 | java.security.krb5.conf.path                  | /opt/krb5.conf                                   | kerberos config directory                                                                                                                                                                                                                                                                                                                                                                                                            |
 | login.user.keytab.username                    | hdfs-mycluster@ESZ.COM                           | kerberos username                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -222,7 +222,7 @@ The default configuration is as follows:
 | support.hive.oneSession                       | false                                            | specify whether hive SQL is executed in the same session                                                                                                                                                                                                                                                                                                                                                                             |
 | sudo.enable                                   | true                                             | whether to enable sudo                                                                                                                                                                                                                                                                                                                                                                                                               |
 | zeppelin.rest.url                             | http://localhost:8080                            | the RESTful API url of zeppelin                                                                                                                                                                                                                                                                                                                                                                                                      |
-| appId.collect                                 | log                                              | way to collect applicationId, if use aop, alter the configuration from log to aop, annotation of applicationId auto collection related configuration in `bin/env/dolphinscheduler_env.sh` should be removed. Note: Aop way doesn't support submitting yarn job on remote host by client mode like Beeline, and will failure if override applicationId collection-related environment configuration in dolphinscheduler_env.sh, and . |
+| appId.collect                                 | log                                              | way to collect applicationId, if use aop, alter the configuration from log to aop, annotation of applicationId auto collection related configuration in `bin/env/gyyun_env.sh` should be removed. Note: Aop way doesn't support submitting yarn job on remote host by client mode like Beeline, and will failure if override applicationId collection-related environment configuration in gyyun_env.sh, and . |
 
 ### Api-server related configuration
 
@@ -232,7 +232,7 @@ Location: `api-server/conf/application.yaml`
 |-------------------------------------------------------|--------------------------------------|------------------------------------------------------------------------------------------------|
 | server.port                                           | 12345                                | api service communication port                                                                 |
 | server.servlet.session.timeout                        | 120m                                 | session timeout                                                                                |
-| server.servlet.context-path                           | /dolphinscheduler/                   | request path                                                                                   |
+| server.servlet.context-path                           | /gyyun/                   | request path                                                                                   |
 | spring.servlet.multipart.max-file-size                | 1024MB                               | maximum file size                                                                              |
 | spring.servlet.multipart.max-request-size             | 1024MB                               | maximum request size                                                                           |
 | server.jetty.max-http-post-size                       | 5000000                              | jetty maximum post size                                                                        |
@@ -363,12 +363,12 @@ The default configuration is as follows:
 
 |                      Parameters                      |                             Default value                             |
 |------------------------------------------------------|-----------------------------------------------------------------------|
-| spring.quartz.properties.org.quartz.threadPool.class | org.apache.dolphinscheduler.scheduler.quartz.QuartzZeroSizeThreadPool |
+| spring.quartz.properties.org.quartz.threadPool.class | org.apache.gyyun.scheduler.quartz.QuartzZeroSizeThreadPool |
 
-### dolphinscheduler_env.sh [load environment variables configs]
+### gyyun_env.sh [load environment variables configs]
 
 When using shell to commit tasks, DolphinScheduler will export environment variables
-from `bin/env/dolphinscheduler_env.sh`. The
+from `bin/env/gyyun_env.sh`. The
 mainly configuration including `JAVA_HOME` and other environment paths.
 
 ```bash

@@ -28,28 +28,28 @@ Restful URI 的设计基于资源：
 
 ```
 Method: GET
-/dolphinscheduler/alert-groups
+/gyyun/alert-groups
 ```
 
 + 当 URI 为单个资源时表示查询此资源，例如下面样例表示查询对应的 `alter-group`。
 
 ```
 Method: GET
-/dolphinscheduler/alter-groups/{id}
+/gyyun/alter-groups/{id}
 ```
 
 + 此外，我们还可以根据 URI 来表示查询子资源，如下：
 
 ```
 Method: GET
-/dolphinscheduler/projects/{projectId}/tasks
+/gyyun/projects/{projectId}/tasks
 ```
 
 **上述的关于查询的方式都表示分页查询，如果我们需要查询全部数据的话，则需在 URI 的后面加 `/list` 来区分。分页查询和查询全部不要混用一个 API。**
 
 ```
 Method: GET
-/dolphinscheduler/alert-groups/list
+/gyyun/alert-groups/list
 ```
 
 ### ② 创建操作 - POST
@@ -60,14 +60,14 @@ Method: GET
 
 ```
 Method: POST
-/dolphinscheduler/alter-groups
+/gyyun/alter-groups
 ```
 
 + 创建子资源也是类似的操作：
 
 ```
 Method: POST
-/dolphinscheduler/alter-groups/{alterGroupId}/tasks
+/gyyun/alter-groups/{alterGroupId}/tasks
 ```
 
 ### ③ 修改操作 - PUT
@@ -76,7 +76,7 @@ Method: POST
 
 ```
 Method: PUT
-/dolphinscheduler/alter-groups/{alterGroupId}
+/gyyun/alter-groups/{alterGroupId}
 ```
 
 ### ④ 删除操作 -DELETE
@@ -87,14 +87,14 @@ Method: PUT
 
 ```
 Method: DELETE
-/dolphinscheduler/alter-groups/{alterGroupId}
+/gyyun/alter-groups/{alterGroupId}
 ```
 
 + 批量删除：对传入的 id 数组进行批量删除，使用 POST 方法。**（这里不要用 DELETE 方法，因为 DELETE 请求的 body 在语义上没有任何意义，而且有可能一些网关，代理，防火墙在收到 DELETE 请求后会把请求的 body 直接剥离掉。）**
 
 ```
 Method: POST
-/dolphinscheduler/alter-groups/batch-delete
+/gyyun/alter-groups/batch-delete
 ```
 
 ### ⑤ 部分更新操作 -PATCH
@@ -105,7 +105,7 @@ Method: POST
 
 ```
 Method: PATCH
-/dolphinscheduler/alter-groups/{alterGroupId}
+/gyyun/alter-groups/{alterGroupId}
 ```
 
 ### ⑥ 其他操作
@@ -113,8 +113,8 @@ Method: PATCH
 除增删改查外的操作，我们同样也通过 `url` 定位到对应的资源，然后再在路径后面追加对其进行的操作。例如：
 
 ```
-/dolphinscheduler/alert-groups/verify-name
-/dolphinscheduler/projects/{projectCode}/process-instances/{code}/view-gantt
+/gyyun/alert-groups/verify-name
+/gyyun/projects/{projectCode}/process-instances/{code}/view-gantt
 ```
 
 ## 3. 参数设计
@@ -130,6 +130,6 @@ Method: PATCH
 整个项目的 URI 需要以 `/<project_name>` 作为基础路径，从而标识这类 API 都是项目下的，即：
 
 ```
-/dolphinscheduler
+/gyyun
 ```
 

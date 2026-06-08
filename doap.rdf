@@ -21,23 +21,23 @@
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
          xmlns:asfext="http://projects.apache.org/ns/asfext#"
          xmlns:foaf="http://xmlns.com/foaf/0.1/">
-  <Project rdf:about="https://dolphinscheduler.apache.org">
+  <Project rdf:about="https://gyyun.apache.org">
     <created>2023-09-09</created>
     <license rdf:resource="https://spdx.org/licenses/Apache-2.0" />
     <name>Apache DolphinScheduler</name>
-    <homepage rdf:resource="https://dolphinscheduler.apache.org" />
-    <asfext:pmc rdf:resource="https://dolphinscheduler.apache.org" />
+    <homepage rdf:resource="https://gyyun.apache.org" />
+    <asfext:pmc rdf:resource="https://gyyun.apache.org" />
     <shortdesc>Apache DolphinScheduler is a modern data orchestration platform.</shortdesc>
     <description>Apache DolphinScheduler is the modern data orchestration platform. Agile to create high performance workflow with low-code. It is also provided powerful user interface, dedicated to solving complex task dependencies in the data pipeline and providing various types of jobs available out of the box</description>
-    <bug-database rdf:resource="https://github.com/apache/dolphinscheduler/issues" />
-    <mailing-list rdf:resource="https://lists.apache.org/list.html?dev@dolphinscheduler.apache.org" />
-    <download-page rdf:resource="https://dolphinscheduler.apache.org/en-us/download" />
+    <bug-database rdf:resource="https://github.com/apache/gyyun/issues" />
+    <mailing-list rdf:resource="https://lists.apache.org/list.html?dev@gyyun.apache.org" />
+    <download-page rdf:resource="https://gyyun.apache.org/en-us/download" />
     <programming-language>Java</programming-language>
     <category rdf:resource="https://projects.apache.org/category/big-data" />
     <repository>
       <GitRepository>
-        <location rdf:resource="https://github.com/apache/dolphinscheduler.git"/>
-        <browse rdf:resource="https://github.com/apache/dolphinscheduler"/>
+        <location rdf:resource="https://github.com/apache/gyyun.git"/>
+        <browse rdf:resource="https://github.com/apache/gyyun"/>
       </GitRepository>
     </repository>
   </Project>

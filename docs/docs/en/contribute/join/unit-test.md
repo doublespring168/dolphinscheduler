@@ -22,7 +22,7 @@
 ### 3. Test coverage setpoint
 
 - At this stage, the default value for test coverage of Delta change codes is >= 60%, the higher the better.
-- We can see the test reports on this page:  https://codecov.io/gh/apache/dolphinscheduler
+- We can see the test reports on this page:  https://codecov.io/gh/apache/gyyun
 
 ## Fundamental guidelines for unit test
 

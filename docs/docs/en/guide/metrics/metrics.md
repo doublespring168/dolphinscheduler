@@ -6,14 +6,14 @@ Currently, we only support `Prometheus Exporter` but more are coming soon.
 ## Quick Start
 
 - We enable Apache DolphinScheduler to export metrics in `standalone` mode to help users get hands dirty easily.
-- After triggering tasks in `standalone` mode, you could access metrics list by visiting url `http://localhost:12345/dolphinscheduler/actuator/metrics`.
-- After triggering tasks in `standalone` mode, you could access `prometheus-format` metrics by visiting url `http://localhost:12345/dolphinscheduler/actuator/prometheus`.
+- After triggering tasks in `standalone` mode, you could access metrics list by visiting url `http://localhost:12345/gyyun/actuator/metrics`.
+- After triggering tasks in `standalone` mode, you could access `prometheus-format` metrics by visiting url `http://localhost:12345/gyyun/actuator/prometheus`.
 - For a better experience with `Prometheus` and `Grafana`, we have prepared the out-of-the-box `Grafana` configurations for you, you could find the `Grafana` dashboards
-  at `dolphinscheduler-meter/resources/grafana` and directly import these dashboards to your `Grafana` instance.
+  at `gyyun-meter/resources/grafana` and directly import these dashboards to your `Grafana` instance.
 - If you want to try with `docker`, you can use the following command to start the out-of-the-box `Prometheus` and `Grafana`:
 
 ```shell
-cd dolphinscheduler-meter/src/main/resources/grafana-demo
+cd gyyun-meter/src/main/resources/grafana-demo
 docker compose up
 ```
 
@@ -50,7 +50,7 @@ management:
     exclude: [health,metrics]
 ```
 
-- Alternatively, you can configure it globally via the dolphinscheduler_env.sh file:
+- Alternatively, you can configure it globally via the gyyun_env.sh file:
 
 ```sh
 export MANAGEMENT_SECURITY_ENABLED=true
@@ -62,8 +62,8 @@ export MANAGEMENT_SECURITY_EXCLUDE="health,metrics"
 - After enabling security authentication, you could access `prometheus-format` metrics using the following commands:
 
 ```sh
-curl -u username:password 'http://localhost:12345/dolphinscheduler/actuator/prometheus'
-curl -H 'Authorization: Basic xxxxx' 'http://localhost:12345/dolphinscheduler/actuator/prometheus' 
+curl -u username:password 'http://localhost:12345/gyyun/actuator/prometheus'
+curl -H 'Authorization: Basic xxxxx' 'http://localhost:12345/gyyun/actuator/prometheus' 
 ```
 
 ## Naming Convention & Mapping

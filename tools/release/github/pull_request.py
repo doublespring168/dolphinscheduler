@@ -30,7 +30,7 @@ class PullRequest:
     url_search = "https://api.github.com/search/issues"
     url_pr = "https://api.github.com/repos/{}/pulls/{}"
 
-    def __init__(self, token: str, repo: Optional[str] = "apache/dolphinscheduler"):
+    def __init__(self, token: str, repo: Optional[str] = "apache/gyyun"):
         self.token = token
         self.repo = repo
         self.headers = {

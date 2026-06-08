@@ -23,7 +23,7 @@
 - Prepare: Create a stored procedure in the database, e.g.
 
   ```
-  CREATE PROCEDURE dolphinscheduler.test(in in1 INT, out out1 INT)
+  CREATE PROCEDURE gyyun.test(in in1 INT, out out1 INT)
   begin
   set out1=in1;
   END

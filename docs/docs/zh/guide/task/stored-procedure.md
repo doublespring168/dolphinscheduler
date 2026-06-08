@@ -11,7 +11,7 @@
 - 前提：在该数据库里面创建存储过程，如：
 
 ```
-CREATE PROCEDURE dolphinscheduler.test(in in1 INT, out out1 INT)
+CREATE PROCEDURE gyyun.test(in in1 INT, out out1 INT)
 begin
 	set out1=in1;
 END

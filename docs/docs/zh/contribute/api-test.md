@@ -19,11 +19,11 @@ DolphinScheduler 的 API 测试使用 docker-compose 部署，当前测试的为
 对于 API 测试，使用 [页面模型](https://www.selenium.dev/documentation/guidelines/page_object_models/) 的形式，主要为每一个页面建立一个对应的模型。下面以登录页为例：
 
 ```java
-package org.apache.dolphinscheduler.api.test.pages;
+package org.apache.gyyun.api.test.pages;
 
 
-import org.apache.dolphinscheduler.api.test.entity.HttpResponse;
-import org.apache.dolphinscheduler.api.test.utils.RequestClient;
+import org.apache.gyyun.api.test.entity.HttpResponse;
+import org.apache.gyyun.api.test.utils.RequestClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,7 +80,7 @@ public final class LoginPage {
 
 其余的都是类似的情况，可参考具体的源码来理解。
 
-https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-api-test/dolphinscheduler-api-test-case/src/test/java/org/apache/dolphinscheduler/api/test/cases
+https://github.com/apache/gyyun/tree/dev/gyyun-api-test/gyyun-api-test-case/src/test/java/org/apache/gyyun/api/test/cases
 
 ## 补充
 

@@ -8,9 +8,9 @@ If you are using MySQL or ORACLE data source, you need to place the correspondin
 
 #### How to do Datasource plugin development?
 
-org.apache.dolphinscheduler.spi.datasource.DataSourceChannel
-org.apache.dolphinscheduler.spi.datasource.DataSourceChannelFactory
-org.apache.dolphinscheduler.spi.datasource.client.DataSourceClient
+org.apache.gyyun.spi.datasource.DataSourceChannel
+org.apache.gyyun.spi.datasource.DataSourceChannelFactory
+org.apache.gyyun.spi.datasource.client.DataSourceClient
 
 1. In the first step, the data source plug-in can implement the above interfaces and inherit the general client. For details, refer to the implementation of data source plug-ins such as sqlserver and mysql. The addition methods of all RDBMS plug-ins are the same.
 

@@ -8,7 +8,7 @@ The current community E2E test has not yet reached full coverage, so this docume
 
 The E2E test pages are currently divided into four pages: Project Management, Resource Center, DataSource, and Security Center.
 
-Contributors can find the task by going to GitHub, searching for [apace/dolphinscheduler](https://github.com/apache/dolphinscheduler), and then searching for `e2e test cases` in the [issue list](https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+is%3Aopen+e2e+test+cases). As shown below.
+Contributors can find the task by going to GitHub, searching for [apace/gyyun](https://github.com/apache/gyyun), and then searching for `e2e test cases` in the [issue list](https://github.com/apache/gyyun/issues?q=is%3Aissue+is%3Aopen+e2e+test+cases). As shown below.
 
 ![e2e-issue](../../../../img/contribute/join/e2e/e2e-issue.png)
 

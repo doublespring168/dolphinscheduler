@@ -8,7 +8,7 @@ Apache DolphinScheduler is a distributed, visual DAG workflow-scheduling platfor
 
 ## Tech stack (project-wide)
 
-- **Java 1.8** (do not assume 11+ APIs; `dolphinscheduler-api-test` is the only Java 11 island).
+- **Java 1.8** (do not assume 11+ APIs; `gyyun-api-test` is the only Java 11 island).
 - **Spring Boot 2.6.1** across servers, **Jetty** (Tomcat is excluded transitively).
 - **MyBatis-Plus** for ORM; **HikariCP** for the metadata DB pool, **Druid** inside user-facing datasource plugins.
 - **Quartz** for cron scheduling (via `scheduler-plugin`).
@@ -23,11 +23,11 @@ A production deployment runs **four independent services** (plus an external reg
 
 | Service | Module | Main class | Default ports |
 |---------|--------|------------|---------------|
-| **API** | [`dolphinscheduler-api`](dolphinscheduler-api/CLAUDE.md) | `org.apache.dolphinscheduler.api.ApiApplicationServer` | `12345` (HTTP / UI + REST) |
-| **Master** | [`dolphinscheduler-master`](dolphinscheduler-master/CLAUDE.md) | `org.apache.dolphinscheduler.server.master.MasterServer` | `5679` (RPC) |
-| **Worker** | [`dolphinscheduler-worker`](dolphinscheduler-worker/CLAUDE.md) | `org.apache.dolphinscheduler.server.worker.WorkerServer` | `1235` (RPC) |
-| **Alert** | [`dolphinscheduler-alert`](dolphinscheduler-alert/CLAUDE.md) (to `-alert-server`) | `org.apache.dolphinscheduler.alert.AlertServer` | `50053` (HTTP), `50052` (RPC) |
-| Standalone (dev only) | [`dolphinscheduler-standalone-server`](dolphinscheduler-standalone-server/CLAUDE.md) | `org.apache.dolphinscheduler.StandaloneServer` | `12345` + `50052` (API + alert; master/worker use in-JVM calls) |
+| **API** | [`gyyun-api`](gyyun-api/CLAUDE.md) | `org.apache.gyyun.api.ApiApplicationServer` | `12345` (HTTP / UI + REST) |
+| **Master** | [`gyyun-master`](gyyun-master/CLAUDE.md) | `org.apache.gyyun.server.master.MasterServer` | `5679` (RPC) |
+| **Worker** | [`gyyun-worker`](gyyun-worker/CLAUDE.md) | `org.apache.gyyun.server.worker.WorkerServer` | `1235` (RPC) |
+| **Alert** | [`gyyun-alert`](gyyun-alert/CLAUDE.md) (to `-alert-server`) | `org.apache.gyyun.alert.AlertServer` | `50053` (HTTP), `50052` (RPC) |
+| Standalone (dev only) | [`gyyun-standalone-server`](gyyun-standalone-server/CLAUDE.md) | `org.apache.gyyun.StandaloneServer` | `12345` + `50052` (API + alert; master/worker use in-JVM calls) |
 
 Every service is a `@SpringBootApplication` on Jetty and implements `IStoppable`. Scale Master / Worker / Alert horizontally; coordination happens via the registry (Zookeeper by default). API is stateless and also scales horizontally behind a load balancer.
 
@@ -43,31 +43,31 @@ Ports are overridable via `server.port` / service-specific keys in each service'
 ./mvnw clean install -Prelease -Dzk-3.4
 
 # Skip UI build (faster iteration on backend only)
-./mvnw -pl '!dolphinscheduler-ui' clean install
+./mvnw -pl '!gyyun-ui' clean install
 
 # Build one module (+ its required siblings)
-./mvnw -pl dolphinscheduler-master -am clean install
+./mvnw -pl gyyun-master -am clean install
 
 # Format (Spotless is configured)
 ./mvnw spotless:apply
 
 # Standalone server (after building)
-cd dolphinscheduler-standalone-server/target && ./bin/start.sh
+cd gyyun-standalone-server/target && ./bin/start.sh
 ```
 
-Binary artifact: `dolphinscheduler-dist/target/apache-dolphinscheduler-*-bin.tar.gz`.
+Binary artifact: `gyyun-dist/target/apache-gyyun-*-bin.tar.gz`.
 
 ## Test
 
 ```bash
 # Unit tests for one module
-./mvnw -pl dolphinscheduler-master test
+./mvnw -pl gyyun-master test
 
 # API integration tests (separate reactor, requires Docker)
-mvn -pl dolphinscheduler-api-test/dolphinscheduler-api-test-case test
+mvn -pl gyyun-api-test/gyyun-api-test-case test
 
 # E2E browser tests (Selenium + Docker)
-mvn -pl dolphinscheduler-e2e/dolphinscheduler-e2e-case test
+mvn -pl gyyun-e2e/gyyun-e2e-case test
 
 # Apple Silicon: add -Dm1_chip=true to the Docker-driven suites
 ```
@@ -80,49 +80,49 @@ Click into a module's `CLAUDE.md` for details. Each description is one line here
 
 ### Core execution
 
-- [`dolphinscheduler-master`](dolphinscheduler-master/CLAUDE.md) - workflow orchestration engine; consumes `Command`s, runs the DAG state machine, dispatches to workers.
-- [`dolphinscheduler-worker`](dolphinscheduler-worker/CLAUDE.md) - runs physical tasks dispatched from master; hosts task plugins.
-- [`dolphinscheduler-task-executor`](dolphinscheduler-task-executor/CLAUDE.md) - reusable task-lifecycle framework embedded by the worker.
-- [`dolphinscheduler-alert`](dolphinscheduler-alert/CLAUDE.md) - alert server + channel plugins (email, Feishu, DingTalk, ...).
+- [`gyyun-master`](gyyun-master/CLAUDE.md) - workflow orchestration engine; consumes `Command`s, runs the DAG state machine, dispatches to workers.
+- [`gyyun-worker`](gyyun-worker/CLAUDE.md) - runs physical tasks dispatched from master; hosts task plugins.
+- [`gyyun-task-executor`](gyyun-task-executor/CLAUDE.md) - reusable task-lifecycle framework embedded by the worker.
+- [`gyyun-alert`](gyyun-alert/CLAUDE.md) - alert server + channel plugins (email, Feishu, DingTalk, ...).
 
 ### API layer
 
-- [`dolphinscheduler-api`](dolphinscheduler-api/CLAUDE.md) - REST API server (entry point for UI, Python SDK, external clients).
-- [`dolphinscheduler-api-test`](dolphinscheduler-api-test/CLAUDE.md) - integration tests against the REST API (Docker Compose + Testcontainers).
-- [`dolphinscheduler-authentication`](dolphinscheduler-authentication/CLAUDE.md) - Actuator-endpoint auth + AWS credential helpers (NOT the main login path).
+- [`gyyun-api`](gyyun-api/CLAUDE.md) - REST API server (entry point for UI, Python SDK, external clients).
+- [`gyyun-api-test`](gyyun-api-test/CLAUDE.md) - integration tests against the REST API (Docker Compose + Testcontainers).
+- [`gyyun-authentication`](gyyun-authentication/CLAUDE.md) - Actuator-endpoint auth + AWS credential helpers (NOT the main login path).
 
 ### Shared libraries
 
-- [`dolphinscheduler-common`](dolphinscheduler-common/CLAUDE.md) - foundation utilities (everything depends on this).
-- [`dolphinscheduler-dao`](dolphinscheduler-dao/CLAUDE.md) - MyBatis DAO layer + SQL migration scripts.
-- [`dolphinscheduler-service`](dolphinscheduler-service/CLAUDE.md) - business logic between DAO and the servers.
-- [`dolphinscheduler-spi`](dolphinscheduler-spi/CLAUDE.md) - Service-Provider Interface root (every plugin depends on this).
-- [`dolphinscheduler-extract`](dolphinscheduler-extract/CLAUDE.md) - RPC interface contracts between servers.
-- [`dolphinscheduler-eventbus`](dolphinscheduler-eventbus/CLAUDE.md) - in-process event-bus abstractions.
-- [`dolphinscheduler-registry`](dolphinscheduler-registry/CLAUDE.md) - pluggable registry (Zookeeper / Etcd / JDBC).
-- [`dolphinscheduler-meter`](dolphinscheduler-meter/CLAUDE.md) - metrics (Prometheus) + server load-protection primitives.
+- [`gyyun-common`](gyyun-common/CLAUDE.md) - foundation utilities (everything depends on this).
+- [`gyyun-dao`](gyyun-dao/CLAUDE.md) - MyBatis DAO layer + SQL migration scripts.
+- [`gyyun-service`](gyyun-service/CLAUDE.md) - business logic between DAO and the servers.
+- [`gyyun-spi`](gyyun-spi/CLAUDE.md) - Service-Provider Interface root (every plugin depends on this).
+- [`gyyun-extract`](gyyun-extract/CLAUDE.md) - RPC interface contracts between servers.
+- [`gyyun-eventbus`](gyyun-eventbus/CLAUDE.md) - in-process event-bus abstractions.
+- [`gyyun-registry`](gyyun-registry/CLAUDE.md) - pluggable registry (Zookeeper / Etcd / JDBC).
+- [`gyyun-meter`](gyyun-meter/CLAUDE.md) - metrics (Prometheus) + server load-protection primitives.
 
 ### Plugin families
 
-- [`dolphinscheduler-task-plugin`](dolphinscheduler-task-plugin/CLAUDE.md) - task-type plugins (shell, SQL, Spark, Flink, K8s, EMR, ...). 33 concrete plugins.
-- [`dolphinscheduler-datasource-plugin`](dolphinscheduler-datasource-plugin/CLAUDE.md) - user-facing datasource plugins (MySQL, Hive, Trino, Snowflake, ...). 28 concrete plugins.
-- [`dolphinscheduler-storage-plugin`](dolphinscheduler-storage-plugin/CLAUDE.md) - resource storage (S3, HDFS, OSS, GCS, ABS, OBS, COS).
-- [`dolphinscheduler-scheduler-plugin`](dolphinscheduler-scheduler-plugin/CLAUDE.md) - cron scheduler (Quartz today).
-- [`dolphinscheduler-dao-plugin`](dolphinscheduler-dao-plugin/CLAUDE.md) - metadata-DB dialect support (MySQL / PostgreSQL / H2).
+- [`gyyun-task-plugin`](gyyun-task-plugin/CLAUDE.md) - task-type plugins (shell, SQL, Spark, Flink, K8s, EMR, ...). 33 concrete plugins.
+- [`gyyun-datasource-plugin`](gyyun-datasource-plugin/CLAUDE.md) - user-facing datasource plugins (MySQL, Hive, Trino, Snowflake, ...). 28 concrete plugins.
+- [`gyyun-storage-plugin`](gyyun-storage-plugin/CLAUDE.md) - resource storage (S3, HDFS, OSS, GCS, ABS, OBS, COS).
+- [`gyyun-scheduler-plugin`](gyyun-scheduler-plugin/CLAUDE.md) - cron scheduler (Quartz today).
+- [`gyyun-dao-plugin`](gyyun-dao-plugin/CLAUDE.md) - metadata-DB dialect support (MySQL / PostgreSQL / H2).
 
 ### Build, ops, tools
 
-- [`dolphinscheduler-bom`](dolphinscheduler-bom/CLAUDE.md) - Maven BOM; central dependency version pinning.
-- [`dolphinscheduler-dist`](dolphinscheduler-dist/CLAUDE.md) - assembles the release tarball + Docker images.
-- [`dolphinscheduler-standalone-server`](dolphinscheduler-standalone-server/CLAUDE.md) - all-in-one JVM with H2 (dev / smoke tests).
-- [`dolphinscheduler-tools`](dolphinscheduler-tools/CLAUDE.md) - CLIs for schema upgrade + resource / lineage migration.
-- [`dolphinscheduler-microbench`](dolphinscheduler-microbench/CLAUDE.md) - JMH micro-benchmarks.
-- [`dolphinscheduler-yarn-aop`](dolphinscheduler-yarn-aop/CLAUDE.md) - AspectJ weaver capturing YARN ApplicationIds.
+- [`gyyun-bom`](gyyun-bom/CLAUDE.md) - Maven BOM; central dependency version pinning.
+- [`gyyun-dist`](gyyun-dist/CLAUDE.md) - assembles the release tarball + Docker images.
+- [`gyyun-standalone-server`](gyyun-standalone-server/CLAUDE.md) - all-in-one JVM with H2 (dev / smoke tests).
+- [`gyyun-tools`](gyyun-tools/CLAUDE.md) - CLIs for schema upgrade + resource / lineage migration.
+- [`gyyun-microbench`](gyyun-microbench/CLAUDE.md) - JMH micro-benchmarks.
+- [`gyyun-yarn-aop`](gyyun-yarn-aop/CLAUDE.md) - AspectJ weaver capturing YARN ApplicationIds.
 
 ### Frontend & E2E
 
-- [`dolphinscheduler-ui`](dolphinscheduler-ui/CLAUDE.md) - Vue 3 frontend.
-- [`dolphinscheduler-e2e`](dolphinscheduler-e2e/CLAUDE.md) - Selenium browser tests.
+- [`gyyun-ui`](gyyun-ui/CLAUDE.md) - Vue 3 frontend.
+- [`gyyun-e2e`](gyyun-e2e/CLAUDE.md) - Selenium browser tests.
 
 ---
 
@@ -134,15 +134,15 @@ A **user** hits the UI, which calls the API server. The API server writes to the
 
 | Looking for... | Start here |
 |----------------|------------|
-| A REST endpoint | `dolphinscheduler-api/src/main/java/.../api/controller/` |
-| Workflow execution logic | `dolphinscheduler-master/src/main/java/.../server/master/engine/` |
-| Task execution logic | `dolphinscheduler-worker` + the specific `task-plugin/<type>` |
-| How "X" is stored | `dolphinscheduler-dao/src/main/java/.../dao/entity/` |
-| SQL schema / upgrade | `dolphinscheduler-dao/src/main/resources/sql/` |
-| RPC contract between servers | `dolphinscheduler-extract/dolphinscheduler-extract-<role>` |
-| UI page source | `dolphinscheduler-ui/src/views/<feature>/` |
-| API call in the UI | `dolphinscheduler-ui/src/service/modules/<resource>.ts` |
-| Version of a dependency | `dolphinscheduler-bom/pom.xml` |
+| A REST endpoint | `gyyun-api/src/main/java/.../api/controller/` |
+| Workflow execution logic | `gyyun-master/src/main/java/.../server/master/engine/` |
+| Task execution logic | `gyyun-worker` + the specific `task-plugin/<type>` |
+| How "X" is stored | `gyyun-dao/src/main/java/.../dao/entity/` |
+| SQL schema / upgrade | `gyyun-dao/src/main/resources/sql/` |
+| RPC contract between servers | `gyyun-extract/gyyun-extract-<role>` |
+| UI page source | `gyyun-ui/src/views/<feature>/` |
+| API call in the UI | `gyyun-ui/src/service/modules/<resource>.ts` |
+| Version of a dependency | `gyyun-bom/pom.xml` |
 
 ## Project-wide conventions
 
@@ -155,7 +155,7 @@ A **user** hits the UI, which calls the API server. The API server writes to the
 
 ## External references
 
-- Release docs (version-specific): https://dolphinscheduler.apache.org/en-us/docs
-- GitHub issues: https://github.com/apache/dolphinscheduler/issues
-- Python SDK: https://dolphinscheduler.apache.org/python/main/index.html
+- Release docs (version-specific): https://gyyun.apache.org/en-us/docs
+- GitHub issues: https://github.com/apache/gyyun/issues
+- Python SDK: https://gyyun.apache.org/python/main/index.html
 - Contribution guide: [`docs/docs/en/contribute/join/contribute.md`](docs/docs/en/contribute/join/contribute.md)

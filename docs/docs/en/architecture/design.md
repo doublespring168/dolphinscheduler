@@ -64,7 +64,7 @@
   ZooKeeper service, MasterServer and WorkerServer nodes in the system all use ZooKeeper for cluster management and fault tolerance. With evolving needs and modern deployment environments, DolphinScheduler now supports event monitoring and distributed locks not only based on ZooKeeper, but also on **JDBC** and **Etcd** implementations.
 
 - **JDBC**
-  DolphinScheduler also provides a JDBC-based registry implementation, located in the `dolphinscheduler-registry/dolphinscheduler-registry-plugins/dolphinscheduler-registry-jdbc` module. Unlike external systems such as ZooKeeper or Etcd, the JDBC approach leverages a relational database to support event monitoring and distributed locking, making it well-suited for environments that already rely on SQL databases.
+  DolphinScheduler also provides a JDBC-based registry implementation, located in the `gyyun-registry/gyyun-registry-plugins/gyyun-registry-jdbc` module. Unlike external systems such as ZooKeeper or Etcd, the JDBC approach leverages a relational database to support event monitoring and distributed locking, making it well-suited for environments that already rely on SQL databases.
 
   - **Event Monitoring**
 
@@ -91,7 +91,7 @@
 
 - **Etcd**
 
-  DolphinScheduler also provides an Etcd-based registry implementation. The Etcd-based registry, implemented in the module `dolphinscheduler-registry/dolphinscheduler-registry-plugins/dolphinscheduler-registry-etcd`, leverages the Jetcd client library to interact with an Etcd cluster. This implementation provides several key functionalities:
+  DolphinScheduler also provides an Etcd-based registry implementation. The Etcd-based registry, implemented in the module `gyyun-registry/gyyun-registry-plugins/gyyun-registry-etcd`, leverages the Jetcd client library to interact with an Etcd cluster. This implementation provides several key functionalities:
 
   - **Event Monitoring**
     - **Watch API**
@@ -246,10 +246,10 @@ In the early schedule design, if there is no priority design and use the fair sc
 - For details, please refer to the logback configuration of Master and Worker, as shown in the following example:
 
 ```xml
-<conversionRule conversionWord="message" converterClass="org.apache.dolphinscheduler.plugin.task.api.log.SensitiveDataConverter"/>
+<conversionRule conversionWord="message" converterClass="org.apache.gyyun.plugin.task.api.log.SensitiveDataConverter"/>
 <appender name="TASKLOGFILE" class="ch.qos.logback.classic.sift.SiftingAppender">
-    <filter class="org.apache.dolphinscheduler.plugin.task.api.log.TaskLogFilter"/>
-    <Discriminator class="org.apache.dolphinscheduler.plugin.task.api.log.TaskLogDiscriminator">
+    <filter class="org.apache.gyyun.plugin.task.api.log.TaskLogFilter"/>
+    <Discriminator class="org.apache.gyyun.plugin.task.api.log.TaskLogDiscriminator">
         <key>taskAppId</key>
         <logBase>${log.base}</logBase>
     </Discriminator>

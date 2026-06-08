@@ -22,7 +22,7 @@
 export default {
   rootPath: '',
   port: 8080,
-  domain: 'dolphinscheduler.apache.org',
+  domain: 'gyyun.apache.org',
   copyToDist: ['asset', 'img', 'file', '.asf.yaml', 'sitemap.xml', '.nojekyll', '.htaccess', 'googled0df7b96f277a143.html'],
   docsLatest: '3.4.1',
   defaultSearch: 'google', // default search engine
@@ -30,7 +30,7 @@ export default {
   'en-us': {
     banner: {
       text: '🤔 Have queries regarding Apache DolphinScheduler, Join Slack channel to discuss them ',
-      link: 'https://s.apache.org/dolphinscheduler-slack'
+      link: 'https://s.apache.org/gyyun-slack'
     },
     pageMenu: [
       {
@@ -137,7 +137,7 @@ export default {
           name: 'Slack',
           img1: '/img/slack.png',
           img2: '/img/slack-selected.png',
-          link: 'https://s.apache.org/dolphinscheduler-slack',
+          link: 'https://s.apache.org/gyyun-slack',
         },
         {
           name: 'Email List',
@@ -158,7 +158,7 @@ export default {
   'zh-cn': {
     banner: {
       text: '🤔 有关于 Apache DolphinScheduler 的疑问，加入 Slack 频道来讨论他们 ',
-      link: 'https://s.apache.org/dolphinscheduler-slack'
+      link: 'https://s.apache.org/gyyun-slack'
     },
     pageMenu: [
       {
@@ -267,7 +267,7 @@ export default {
           name: 'Slack',
           img1: '/img/slack.png',
           img2: '/img/slack-selected.png',
-          link: 'https://s.apache.org/dolphinscheduler-slack',
+          link: 'https://s.apache.org/gyyun-slack',
         },
         {
           name: '邮件列表',

@@ -2,7 +2,7 @@
 
 Only the administrator account in the security center has permission to operate, which includes queue management, tenant management, user management, alarm group management, worker group management, token management and other functions. In the user management module, you can authorize resources, data sources, projects, etc.
 
-Administrator login, default username/password: admin/dolphinscheduler123
+Administrator login, default username/password: admin/gyyun123
 
 ## Create Queue
 
@@ -21,7 +21,7 @@ Administrator login, default username/password: admin/dolphinscheduler123
 
 > Note:
 > 1. Currently, only admin users can modify tenant.
-> 2. If you create a tenant manually in the Linux, you need to add the manually created tenant to the dolphinscheduler bootstrap user's group, so that the tenant will have enough working directory permissions.
+> 2. If you create a tenant manually in the Linux, you need to add the manually created tenant to the gyyun bootstrap user's group, so that the tenant will have enough working directory permissions.
 
 ![create-tenant](../../../../img/new_ui/dev/security/create-tenant.png)
 
@@ -149,13 +149,13 @@ worker:
 
 ## Environmental Management
 
-- Configure the worker running environment online, a worker can specify multiple environments, each environment is equivalent to the `dolphinscheduler_env.sh` file.
-- The default environment is the `dolphinscheduler_env.sh` file.
+- Configure the worker running environment online, a worker can specify multiple environments, each environment is equivalent to the `gyyun_env.sh` file.
+- The default environment is the `gyyun_env.sh` file.
 - When the task is executed, the task can be assigned to the specified worker group, and the corresponding environment can be selected according to the worker group, and finally the worker node in the group executes the environment and then executes the task.
 
 ### Add or update environment
 
-The environment configuration is equivalent to the configuration in the `dolphinscheduler_env.sh` file.
+The environment configuration is equivalent to the configuration in the `gyyun_env.sh` file.
 
 ![create-environment](../../../../img/new_ui/dev/security/create-environment.png)
 

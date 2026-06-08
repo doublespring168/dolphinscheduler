@@ -24,7 +24,7 @@ Note：**Due to the large number of services, it is recommended that the single-
 
 ## Q: Which mailboxes does the system support?
 
-A: Support most mailboxes, qq, 163, 126, 139, outlook, aliyun, etc. are supported. Support TLS and SSL protocols, these can be configured in the ui of dolphinscheduler:
+A: Support most mailboxes, qq, 163, 126, 139, outlook, aliyun, etc. are supported. Support TLS and SSL protocols, these can be configured in the ui of gyyun:
 [How to setup email alarm](../en/guide/alert/email.md).
 
 ---
@@ -54,7 +54,7 @@ A: We also support **the priority of processes and tasks**. Priority We have fiv
 
 ---
 
-## Q: dolphinscheduler-grpc gives an error
+## Q: gyyun-grpc gives an error
 
 A: Execute in the root directory: mvn -U clean package assembly:assembly -Dmaven.test.skip=true , then refresh the entire project.
 version 1.3 not use grpc, we use netty directly
@@ -75,15 +75,15 @@ A: Install **npm install node-sass --unsafe-perm** separately, then **npm instal
 
 ## Q: UI cannot log in normally.
 
-A: 1, if it is node startup, check whether the .env API_BASE configuration under dolphinscheduler-ui is the Api Server service address.
+A: 1, if it is node startup, check whether the .env API_BASE configuration under gyyun-ui is the Api Server service address.
 
-​ 2, If it is nginx booted and installed via **install-dolphinscheduler-ui.sh**, check if the proxy_pass configuration in **/etc/nginx/conf.d/dolphinscheduler.conf** is the Api Server service address
+​ 2, If it is nginx booted and installed via **install-gyyun-ui.sh**, check if the proxy_pass configuration in **/etc/nginx/conf.d/gyyun.conf** is the Api Server service address
 
 ​ 3, if the above configuration is correct, then please check if the Api Server service is normal,
 
-​ curl http://localhost:12345/dolphinscheduler/users/get-user-info, check the Api Server log,
+​ curl http://localhost:12345/gyyun/users/get-user-info, check the Api Server log,
 
-​ if Prompt cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null, which proves that the Api Server service is normal.
+​ if Prompt cn.gyyun.api.interceptor.LoginHandlerInterceptor:[76] - session info is null, which proves that the Api Server service is normal.
 
 ​ 4, if there is no problem above, you need to check if **server.context-path and server.port configuration** in **application.properties** is correct
 
@@ -111,9 +111,9 @@ A: 1, **first check whether the WorkerServer service exists through jps**, or di
 
 A: Provide Docker image and Dockerfile.
 
-Docker image address: https://hub.docker.com/r/apache/dolphinscheduler
+Docker image address: https://hub.docker.com/r/apache/gyyun
 
-Dockerfile address: https://github.com/apache/dolphinscheduler/tree/dev/dolphinscheduler-dist/src/main/docker
+Dockerfile address: https://github.com/apache/gyyun/tree/dev/gyyun-dist/src/main/docker
 
 ---
 
@@ -121,9 +121,9 @@ Dockerfile address: https://github.com/apache/dolphinscheduler/tree/dev/dolphins
 
 A: 1, if the replacement variable contains special characters, **use the \ transfer character to transfer**
 
-​ 2, installPath="/data1_1T/dolphinscheduler", **this directory can not be the same as the install.sh directory currently installed with one click.**
+​ 2, installPath="/data1_1T/gyyun", **this directory can not be the same as the install.sh directory currently installed with one click.**
 
-​ 3, deployUser = "dolphinscheduler", **the deployment user must have sudo privileges**, because the worker is executed by sudo -u tenant sh xxx.command
+​ 3, deployUser = "gyyun", **the deployment user must have sudo privileges**, because the worker is executed by sudo -u tenant sh xxx.command
 
 ​ 4, monitorServerState = "false", whether the service monitoring script is started, the default is not to start the service monitoring script. **If the service monitoring script is started, the master and worker services are monitored every 5 minutes, and if the machine is down, it will automatically restart.**
 
@@ -220,7 +220,7 @@ A: 1, in **the process definition list**, click the **Start** button.
 
 ## Q : Python task setting Python version
 
-A: 1，**for the version after 1.0.3** only need to modify `$PYTHON_LAUNCHER` in `bin/env/dolphinscheduler_env.sh`
+A: 1，**for the version after 1.0.3** only need to modify `$PYTHON_LAUNCHER` in `bin/env/gyyun_env.sh`
 
 ```
 export PYTHON_LAUNCHER=/bin/python/bin/python3
@@ -298,23 +298,23 @@ change into
 
 ## Q : how to add a worker server
 
-A: 1, Create deployment user and hosts mapping, please refer 1.3 part of [cluster deployment](https://dolphinscheduler.apache.org/en-us/docs/3.1.2/user_doc/installation/cluster)
+A: 1, Create deployment user and hosts mapping, please refer 1.3 part of [cluster deployment](https://gyyun.apache.org/en-us/docs/3.1.2/user_doc/installation/cluster)
 
-​ 2, Configure hosts mapping and ssh access and modify directory permissions. please refer 1.4 part of [cluster deployment](https://dolphinscheduler.apache.org/en-us/docs/3.1.2/user_doc/installation/cluster)
+​ 2, Configure hosts mapping and ssh access and modify directory permissions. please refer 1.4 part of [cluster deployment](https://gyyun.apache.org/en-us/docs/3.1.2/user_doc/installation/cluster)
 
 ​ 3, Copy the deployment directory from worker server that has already deployed
 
 ​ 4, Go to bin dir, then start worker server
 
         ```
-        ./dolphinscheduler-daemon.sh start worker-server
+        ./gyyun-daemon.sh start worker-server
         ```
 
 ---
 
 ## Q : When DolphinScheduler release a new version, and the change between current version and latest, and how to upgrade, and version number specification
 
-A: 1, The release process of Apache Project happens in the mailing list. You can subscribe DolphinScheduler's mailing list and then when the release is in process, you'll receive release emails. Please follow this [introduction](https://github.com/apache/dolphinscheduler#get-help) to subscribe DolphinScheduler's mailing list.
+A: 1, The release process of Apache Project happens in the mailing list. You can subscribe DolphinScheduler's mailing list and then when the release is in process, you'll receive release emails. Please follow this [introduction](https://github.com/apache/gyyun#get-help) to subscribe DolphinScheduler's mailing list.
 
 2, When new version published, there would be release note which describe the change log, and there also have upgrade document for the previous version to new's.
 
@@ -393,7 +393,7 @@ zookeeper.connection.timeout=30000
 <p align="center">
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
-A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolphinscheduler/pull/2595) has solved this bug, brief change log:
+A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/gyyun/pull/2595) has solved this bug, brief change log:
 
 ```
 1. add zookeeper environment variable ZOO_4LW_COMMANDS_WHITELIST in docker-compose.yml file.
@@ -411,12 +411,12 @@ A: This problem is solved in dev-1.3.0. This [pr](https://github.com/apache/dolp
    <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
  </p>
 
-A: This [bug](https://github.com/apache/dolphinscheduler/issues/1477) describe the problem detail and it has been solved in version 1.2.1.
+A: This [bug](https://github.com/apache/gyyun/issues/1477) describe the problem detail and it has been solved in version 1.2.1.
 
 For version under 1.2.1, some tips for this situation:
 
 ```
-1. clear the task queue in zk for path: /dolphinscheduler/task_queue
+1. clear the task queue in zk for path: /gyyun/task_queue
 2. change the state of the task to failed( integer value: 6).
 3. run the work flow by recover from failed
 ```
@@ -451,9 +451,9 @@ A: The scheduling system not support second frequency task.
 
 ---
 
-## Q : Compile front-end code(dolphinscheduler-ui) show error cannot download "https://github.com/sass/node-sass/releases/download/v4.13.1/darwin-x64-72_binding.node"
+## Q : Compile front-end code(gyyun-ui) show error cannot download "https://github.com/sass/node-sass/releases/download/v4.13.1/darwin-x64-72_binding.node"
 
-A: 1, cd dolphinscheduler-ui and delete node_modules directory
+A: 1, cd gyyun-ui and delete node_modules directory
 
 ```
 sudo rm -rf node_modules
@@ -466,7 +466,7 @@ sudo npm uninstall node-sass
 sudo npm i node-sass --sass_binary_site=https://npmmirror.com/mirrors/node-sass/
 ```
 
-3, if the 2nd step failure, please, [referer url](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/en/contribute/frontend-development.md)
+3, if the 2nd step failure, please, [referer url](https://github.com/apache/gyyun/blob/dev/docs/docs/en/contribute/frontend-development.md)
 
 ```
 sudo npm rebuild node-sass
@@ -498,7 +498,7 @@ Default is postgresql driver because of license problem.
 
 A: 1, Where is the executed server? Specify one worker to run the task, you can create worker group in Security Center, then the task can be send to the particular worker. If a worker group have multiple servers, which server actually execute is determined by scheduling and has randomness.
 
-​ 2, If it is a shell file of a path on the server, how to point to the path? The server shell file, involving permissions issues, it is not recommended to do so. It is recommended that you use the storage function of the resource center, and then use the resource reference in the shell editor. The system will help you download the script to the execution directory. If the task dependent on resource center files, worker use "hdfs dfs -get" to get the resource files in HDFS, then run the task in /tmp/escheduler/exec/process, this path can be customized when installing dolphinscheduler.
+​ 2, If it is a shell file of a path on the server, how to point to the path? The server shell file, involving permissions issues, it is not recommended to do so. It is recommended that you use the storage function of the resource center, and then use the resource reference in the shell editor. The system will help you download the script to the execution directory. If the task dependent on resource center files, worker use "hdfs dfs -get" to get the resource files in HDFS, then run the task in /tmp/escheduler/exec/process, this path can be customized when installing gyyun.
 
 3, Which user execute the task? Task is run by the tenant through "sudo -u ${tenant}", tenant is a linux user.
 
@@ -533,8 +533,8 @@ A: 1, We can successfully create scheduled task and add one record into t_schedu
 
 ## Q : What is the address of swagger ui
 
-A: 1, For version 3.1.0+ is [http://apiServerIp:apiServerPort/dolphinscheduler/swagger-ui/index.html],
-for version 1.2+ is [http://apiServerIp:apiServerPort/dolphinscheduler/doc.html] others is [http://apiServerIp:apiServerPort/escheduler/doc.html].
+A: 1, For version 3.1.0+ is [http://apiServerIp:apiServerPort/gyyun/swagger-ui/index.html],
+for version 1.2+ is [http://apiServerIp:apiServerPort/gyyun/doc.html] others is [http://apiServerIp:apiServerPort/escheduler/doc.html].
 
 ---
 
@@ -583,9 +583,9 @@ A: 1, It is currently judged according to natural days, at the end of last month
 
 ## Q : DS Backend Interface Document
 
-A: 1, http://localhost:8888/dolphinscheduler/swagger-ui/index.html?language=en.
+A: 1, http://localhost:8888/gyyun/swagger-ui/index.html?language=en.
 
-## During the operation of dolphinscheduler, the ip address is obtained incorrectly
+## During the operation of gyyun, the ip address is obtained incorrectly
 
 When the master service and worker service are registered with zookeeper, relevant information will be created in the form of ip:port
 
@@ -595,7 +595,7 @@ If the ip address is obtained incorrectly, please check the network information.
   <img src="../../img/network/network_config.png" width="60%" />
 </p>
 
-You can use the three strategies provided by dolphinscheduler to get the available ip:
+You can use the three strategies provided by gyyun to get the available ip:
 
 - default: First using internal network card to obtain the IP address, and then using external network card. If all above fail, use the address of the first available network card
 - inner: Use the internal network card to obtain the ip address, if fails thrown an exception.
@@ -616,19 +616,19 @@ dolphin.scheduler.network.interface.preferred=eth1
 
 After configuration is modified, restart the service to activation
 
-If the ip address is still wrong, please download [dolphinscheduler-netutils.jar] to the machine, execute the following commands and feedback the output to the community developers:
+If the ip address is still wrong, please download [gyyun-netutils.jar] to the machine, execute the following commands and feedback the output to the community developers:
 
 ```shell
-java -jar target/dolphinscheduler-netutils.jar
+java -jar target/gyyun-netutils.jar
 ```
 
 ## Configure sudo to be secret free, which is used to solve the problem of using the default configuration sudo authority to be too large or unable to apply for root authority
 
-Configure the sudo permission of the dolphinscheduler account to be an ordinary user manager within the scope of some ordinary users, and restrict specified users to run certain commands on the specified host. For detailed configuration, please see sudo rights management
-For example, sudo permission management configuration dolphinscheduler OS account can only operate the permissions of users userA, userB, userC (users userA, userB, and userC are used for multi-tenant submitting jobs to the big data cluster)
+Configure the sudo permission of the gyyun account to be an ordinary user manager within the scope of some ordinary users, and restrict specified users to run certain commands on the specified host. For detailed configuration, please see sudo rights management
+For example, sudo permission management configuration gyyun OS account can only operate the permissions of users userA, userB, userC (users userA, userB, and userC are used for multi-tenant submitting jobs to the big data cluster)
 
 ```shell
-echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+echo 'gyyun  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 ```
 
@@ -642,13 +642,13 @@ A: By deploying different worker in different yarn clusters, the steps are as fo
 
 2. Changing `yarn.application.status.address` to current emr's yarn url in the `conf/common.properties`
 
-3. Execute command `bin/dolphinscheduler-daemon.sh start worker-server` to start worker-server
+3. Execute command `bin/gyyun-daemon.sh start worker-server` to start worker-server
 
 ---
 
 ## Q：Update process definition error: Duplicate key TaskDefinition
 
-A: Before DS 2.0.4 (after 2.0.0-alpha), there may be a problem of duplicate keys TaskDefinition due to version switching, which may cause the update workflow to fail; you can refer to the following SQL to delete duplicate data, taking MySQL as an example: (Note: Before operating, be sure to back up the original data, the SQL from pr[#8408](https://github.com/apache/dolphinscheduler/pull/8408))
+A: Before DS 2.0.4 (after 2.0.0-alpha), there may be a problem of duplicate keys TaskDefinition due to version switching, which may cause the update workflow to fail; you can refer to the following SQL to delete duplicate data, taking MySQL as an example: (Note: Before operating, be sure to back up the original data, the SQL from pr[#8408](https://github.com/apache/gyyun/pull/8408))
 
 ```SQL
 DELETE FROM t_ds_process_task_relation_log WHERE id IN

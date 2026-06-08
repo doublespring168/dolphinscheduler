@@ -6,15 +6,15 @@
 
 以下聊天室是Apache DolphinScheduler的正式组成部分：
 
-​	Slack工作区的网址：http://asf-dolphinscheduler.slack.com/
+​	Slack工作区的网址：http://asf-gyyun.slack.com/
 
-​	你可以通过该邀请链接加入：https://join.slack.com/t/asf-dolphinscheduler/shared_invite/zt-1e0s4agia-Ofkxa93zStmqTm9UsQBE8g
+​	你可以通过该邀请链接加入：https://join.slack.com/t/asf-gyyun/shared_invite/zt-1e0s4agia-Ofkxa93zStmqTm9UsQBE8g
 
 此聊天室用于与DolphinScheduler使用相关的问题讨论。
 
 ## 邮件列表
 
-- [dev@dolphinscheduler.apache.org](https://lists.apache.org/list.html?dev@dolphinscheduler.apache.org) 是为那些想为DolphinScheduler贡献代码的人准备的。 [(订阅)](mailto:dev-subscribe@dolphinscheduler.apache.org?subject=(send%20this%20email%20to%20subscribe)) [(退订)](mailto:dev-unsubscribe@dolphinscheduler.apache.org?subject=(send%20this%20email%20to%20unsubscribe)) [(存档)](http://lists.apache.org/list.html?dev@dolphinscheduler.apache.org)
+- [dev@gyyun.apache.org](https://lists.apache.org/list.html?dev@gyyun.apache.org) 是为那些想为DolphinScheduler贡献代码的人准备的。 [(订阅)](mailto:dev-subscribe@gyyun.apache.org?subject=(send%20this%20email%20to%20subscribe)) [(退订)](mailto:dev-unsubscribe@gyyun.apache.org?subject=(send%20this%20email%20to%20unsubscribe)) [(存档)](http://lists.apache.org/list.html?dev@gyyun.apache.org)
 
 使用电子邮件时的一些快速提示：
 

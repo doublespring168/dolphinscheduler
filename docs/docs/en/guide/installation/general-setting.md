@@ -18,7 +18,7 @@ DolphinScheduler support time zone setting.
 
 Server Time Zone
 
-The default time zone is UTC when using `bin/dolphinshceduler_daemon.sh` to start the server, you could update `SPRING_JACKSON_TIME_ZONE` in `bin/env/dolphinscheduler_env.sh`, such as `export SPRING_JACKSON_TIME_ZONE=${SPRING_JACKSON_TIME_ZONE:-Asia/Shanghai}`.<br>
+The default time zone is UTC when using `bin/dolphinshceduler_daemon.sh` to start the server, you could update `SPRING_JACKSON_TIME_ZONE` in `bin/env/gyyun_env.sh`, such as `export SPRING_JACKSON_TIME_ZONE=${SPRING_JACKSON_TIME_ZONE:-Asia/Shanghai}`.<br>
 If you start server in IDEA, the default time zone is your local time zone, you could add the JVM parameter to update server time zone, such as `-Duser.timezone=UTC`. Time zone list refer to [List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 User Time zone

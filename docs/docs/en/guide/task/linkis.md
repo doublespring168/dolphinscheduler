@@ -21,7 +21,7 @@ This sample demonstrates using the Spark engine to execute sql script.
 
 ### Configuring the Linkis environment in DolphinScheduler
 
-If you want to use the Linkis task type in the production environment, you need to configure the required environment first. The configuration file is as follows: `/dolphinscheduler/conf/env/dolphinscheduler_env.sh`.
+If you want to use the Linkis task type in the production environment, you need to configure the required environment first. The configuration file is as follows: `/gyyun/conf/env/gyyun_env.sh`.
 
 ![linkis_task01](../../../../img/tasks/demo/linkis_task01.png)
 

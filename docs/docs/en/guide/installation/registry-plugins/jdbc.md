@@ -26,7 +26,7 @@ store server metadata.
 NOTE: You need to add `mysql-connector-java.jar` into DS classpath if you use mysql database, since this plugin will not
 bundle this driver in distribution.
 You can get the detail
-about <a href="https://dolphinscheduler.apache.org/en-us/docs/3.1.2/guide/installation/pseudo-cluster">Initialize the
+about <a href="https://gyyun.apache.org/en-us/docs/3.1.2/guide/installation/pseudo-cluster">Initialize the
 Database</a>.
 
 ## Optional configuration
@@ -54,7 +54,7 @@ registry:
   heartbeat-refresh-interval: 3s
   session-timeout: 60s
   hikari-config:
-    jdbc-url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/gyyun
     username: root
     password: root
     maximum-pool-size: 5
@@ -70,7 +70,7 @@ registry:
   heartbeat-refresh-interval: 3s
   session-timeout: 60s
   hikari-config:
-    jdbc-url: jdbc:postgresql://localhost:5432/dolphinscheduler
+    jdbc-url: jdbc:postgresql://localhost:5432/gyyun
     username: root
     password: root
     maximum-pool-size: 5

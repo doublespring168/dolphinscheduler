@@ -24,14 +24,14 @@ A：DolphinScheduler 由 5 个服务组成，MasterServer、WorkerServer、ApiSe
 
 ## Q：系统支持哪些邮箱？
 
-A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支持。支持 **TLS 和 SSL** 协议，可以在 dolphinscheduler 的 ui 中进行配置：
+A：支持绝大多数邮箱，qq、163、126、139、outlook、aliyun 等皆支持。支持 **TLS 和 SSL** 协议，可以在 gyyun 的 ui 中进行配置：
 [如何配置邮箱告警](../zh/guide/alert/email.md)。
 
 ---
 
 ## Q：常用的系统变量时间参数有哪些，如何使用？
 
-A：请参考[使用手册](https://dolphinscheduler.apache.org/zh-cn/docs/latest/user_doc/guide/parameter/built-in.html) 第 8 小节
+A：请参考[使用手册](https://gyyun.apache.org/zh-cn/docs/latest/user_doc/guide/parameter/built-in.html) 第 8 小节
 
 ---
 
@@ -53,7 +53,7 @@ A：我们同时 **支持流程和任务的优先级**。优先级我们有 **HI
 
 ---
 
-## Q：dolphinscheduler-grpc 报错
+## Q：gyyun-grpc 报错
 
 A：在 1.2 及以前版本中，在根目录下执行：mvn -U clean package assembly:assembly -Dmaven.test.skip=true,然后刷新下整个项目就好，1.3 版本中不再使用 GRPC 进行通信了
 
@@ -73,17 +73,17 @@ A：单独安装 **npm install node-sass --unsafe-perm**，之后再 **npm insta
 
 ## Q：UI 不能正常登陆访问
 
-A： 1，如果是 node 启动的查看 dolphinscheduler-ui 下的 .env 文件里的 API_BASE 配置是否是 Api Server 服务地址
+A： 1，如果是 node 启动的查看 gyyun-ui 下的 .env 文件里的 API_BASE 配置是否是 Api Server 服务地址
 
-​ 2，如果是 nginx 启动的并且是通过 **install-dolphinscheduler-ui.sh** 安装的，查看
+​ 2，如果是 nginx 启动的并且是通过 **install-gyyun-ui.sh** 安装的，查看
 
-​ **/etc/nginx/conf.d/dolphinscheduler.conf** 中的 proxy_pass 配置是否是 Api Server 服务地址
+​ **/etc/nginx/conf.d/gyyun.conf** 中的 proxy_pass 配置是否是 Api Server 服务地址
 
 ​ 3，如果以上配置都是正确的，那么请查看 Api Server 服务是否是正常的，
 
-​ curl http://localhost:12345/dolphinscheduler/users/get-user-info 查看 Api Server 日志，
+​ curl http://localhost:12345/gyyun/users/get-user-info 查看 Api Server 日志，
 
-​ 如果提示 cn.dolphinscheduler.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明 Api Server 服务是正常的
+​ 如果提示 cn.gyyun.api.interceptor.LoginHandlerInterceptor:[76] - session info is null，则证明 Api Server 服务是正常的
 
 ​ 4，如果以上都没有问题，需要查看一下 **application.properties** 中的 **server.context-path 和 server.port 配置**是否正确
 注意：1.3 版本直接使用 Jetty 进行前端代码的解析，无需再安装配置 nginx 了
@@ -112,9 +112,9 @@ A： 1，首先通过 **jps 查看 WorkerServer 服务是否存在**，或者从
 
 A： 1，如果替换变量中包含特殊字符，**请用 \ 转移符进行转移**
 
-​ 2，installPath="/data1_1T/dolphinscheduler"，**这个目录不能和当前要一键安装的 install.sh 目录是一样的**
+​ 2，installPath="/data1_1T/gyyun"，**这个目录不能和当前要一键安装的 install.sh 目录是一样的**
 
-​ 3，deployUser="dolphinscheduler"，**部署用户必须具有 sudo 权限**，因为 worker 是通过 sudo -u 租户 sh xxx.command 进行执行的
+​ 3，deployUser="gyyun"，**部署用户必须具有 sudo 权限**，因为 worker 是通过 sudo -u 租户 sh xxx.command 进行执行的
 
 ​ 4，monitorServerState="false"，服务监控脚本是否启动，默认是不启动服务监控脚本的。**如果启动服务监控脚本，则每 5 分钟定时来监控 master 和 worker 的服务是否 down 机，如果 down 机则会自动重启**
 
@@ -126,7 +126,7 @@ A： 1，如果替换变量中包含特殊字符，**请用 \ 转移符进行转
 
 ## Q：流程定义和流程实例下线异常
 
-A ： 对于 **1.0.4 以前的版本中**，修改 dolphinscheduler-api cn.dolphinscheduler.api.quartz 包下的代码即可
+A ： 对于 **1.0.4 以前的版本中**，修改 gyyun-api cn.gyyun.api.quartz 包下的代码即可
 
 ```
 public boolean deleteJob(String jobName, String jobGroupName) {
@@ -199,7 +199,7 @@ A： 1，在 **流程定义列表**，点击 **启动** 按钮
 
 ## Q：Python 任务设置 Python 版本
 
-A： 只需要修改 `bin/env/dolphinscheduler_env.sh` 中的 PYTHON_LAUNCHER
+A： 只需要修改 `bin/env/gyyun_env.sh` 中的 PYTHON_LAUNCHER
 
 ```
 export PYTHON_LAUNCHER=/bin/python
@@ -269,9 +269,9 @@ A： 将 hive pom
 
 ## Q：如何增加一台工作服务器
 
-A： 1，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/3.1.2/installation/cluster) 1.3 小节，创建部署用户和 hosts 映射
+A： 1，参考官网[部署文档](https://gyyun.apache.org/zh-cn/docs/3.1.2/installation/cluster) 1.3 小节，创建部署用户和 hosts 映射
 
-​ 2，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/docs/3.1.2/installation/cluster) 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
+​ 2，参考官网[部署文档](https://gyyun.apache.org/zh-cn/docs/3.1.2/installation/cluster) 1.4 小节，配置 hosts 映射和 ssh 打通及修改目录权限.
 ​ 1.4 小节的最后一步是在当前新增机器上执行的，即需要给部署目录部署用户的权限
 
 ​ 3，复制正在运行的服务器上的部署目录到新机器的同样的部署目录下
@@ -279,14 +279,14 @@ A： 1，参考官网[部署文档](https://dolphinscheduler.apache.org/zh-cn/do
 ​ 4，到 bin 下，启动 worker server
 
 ```
-./dolphinscheduler-daemon.sh start worker-server
+./gyyun-daemon.sh start worker-server
 ```
 
 ---
 
 ## Q：DolphinScheduler 什么时候发布新版本，同时新旧版本区别，以及如何升级，版本号规范
 
-A：1，Apache 项目的发版流程是通过邮件列表完成的。 你可以订阅 DolphinScheduler 的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/dolphinscheduler#get-help)来订阅 DolphinScheduler 的邮件列表。
+A：1，Apache 项目的发版流程是通过邮件列表完成的。 你可以订阅 DolphinScheduler 的邮件列表，订阅之后如果有发版，你就可以收到邮件。请参照这篇[指引](https://github.com/apache/gyyun#get-help)来订阅 DolphinScheduler 的邮件列表。
 
 2，当项目发版的时候，会有发版说明告知具体的变更内容，同时也会有从旧版本升级到新版本的升级文档。
 
@@ -366,7 +366,7 @@ zookeeper.connection.timeout=30000
 <p align="center">
    <img src="https://user-images.githubusercontent.com/42579056/80374318-13c98780-88c9-11ea-8d5f-53448b957f02.png" width="60%" />
  </p>
-A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/apache/dolphinscheduler/pull/2595) 已经解决了这个 bug，主要的改动点：
+A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/apache/gyyun/pull/2595) 已经解决了这个 bug，主要的改动点：
 
 ```
 在docker-compose.yml文件中增加zookeeper的环境变量ZOO_4LW_COMMANDS_WHITELIST。
@@ -383,11 +383,11 @@ A：这个问题在 dev-1.3.0 版本解决了。这个 [pr](https://github.com/a
 <p align="center">
    <img src="https://user-images.githubusercontent.com/51871547/80302626-b1478d00-87dd-11ea-97d4-08aa2244a6d0.jpg" width="60%" />
  </p>
-A：这个 [bug](https://github.com/apache/dolphinscheduler/issues/1477)  描述了问题的详情。这个问题在 1.2.1 版本已经被修复了。
+A：这个 [bug](https://github.com/apache/gyyun/issues/1477)  描述了问题的详情。这个问题在 1.2.1 版本已经被修复了。
 对于 1.2.1 以下的版本，这种情况的一些提示：
 
 ```
-1，清空 zk 下这个路径的任务：/dolphinscheduler/task_queue
+1，清空 zk 下这个路径的任务：/gyyun/task_queue
 2，修改任务状态为失败（int 值 6）
 3，运行工作流来从失败中恢复
 ```
@@ -422,9 +422,9 @@ A：调度系统不支持秒级任务。
 
 ---
 
-## Q：编译前后端代码 (dolphinscheduler-ui) 报错不能下载"https://github.com/sass/node-sass/releases/download/v4.13.1/darwin-x64-72_binding.node"
+## Q：编译前后端代码 (gyyun-ui) 报错不能下载"https://github.com/sass/node-sass/releases/download/v4.13.1/darwin-x64-72_binding.node"
 
-A：1，cd dolphinscheduler-ui 然后删除 node_modules 目录
+A：1，cd gyyun-ui 然后删除 node_modules 目录
 
 ```
 sudo rm -rf node_modules
@@ -437,7 +437,7 @@ sudo npm uninstall node-sass
 sudo npm i node-sass --sass_binary_site=https://npmmirror.com/mirrors/node-sass/
 ```
 
-3，如果步骤 2 报错，请重新构建 node-saas [参考链接](https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/zh/contribute/frontend-development.md)
+3，如果步骤 2 报错，请重新构建 node-saas [参考链接](https://github.com/apache/gyyun/blob/dev/docs/docs/zh/contribute/frontend-development.md)
 
 ```
 sudo npm rebuild node-sass
@@ -504,7 +504,7 @@ A：1，我们可以成功创建调度任务，并且表 t_scheduler_schedules �
 
 ## Q：请问 swagger ui 的地址是什么
 
-A：1， 3.1.0+ 版本地址是 [http://apiServerIp:apiServerPort/dolphinscheduler/swagger-ui/index.html], 1.2+ 版本地址是：[http://apiServerIp:apiServerPort/dolphinscheduler/swagger-ui/index.html?language=zh_CN&lang=cn]，其它版本是 [http://apiServerIp:apiServerPort/escheduler/swagger-ui/index.html?language=zh_CN&lang=cn]。
+A：1， 3.1.0+ 版本地址是 [http://apiServerIp:apiServerPort/gyyun/swagger-ui/index.html], 1.2+ 版本地址是：[http://apiServerIp:apiServerPort/gyyun/swagger-ui/index.html?language=zh_CN&lang=cn]，其它版本是 [http://apiServerIp:apiServerPort/escheduler/swagger-ui/index.html?language=zh_CN&lang=cn]。
 
 ---
 
@@ -551,9 +551,9 @@ A：1，目前是按照自然天来判断，上月末：判断时间是工作流
 
 ## Q：DS 后端接口文档
 
-A：1，http://localhost:8888/dolphinscheduler/swagger-ui/index.html?language=zh_CN&lang=zh。
+A：1，http://localhost:8888/gyyun/swagger-ui/index.html?language=zh_CN&lang=zh。
 
-## dolphinscheduler 在运行过程中，ip 地址获取错误的问题
+## gyyun 在运行过程中，ip 地址获取错误的问题
 
 master 服务、worker 服务在 zookeeper 注册时，会以 ip:port 的形式创建相关信息
 
@@ -563,7 +563,7 @@ master 服务、worker 服务在 zookeeper 注册时，会以 ip:port 的形式�
   <img src="../../img/network/network_config.png" width="60%" />
 </p>
 
-可以使用 dolphinscheduler 提供的三种策略，获取可用 ip：
+可以使用 gyyun 提供的三种策略，获取可用 ip：
 
 - default: 优先获取内网网卡获取 ip 地址，其次获取外网网卡获取 ip 地址，在前两项失效情况下，使用第一块可用网卡的地址
 - inner: 使用内网网卡获取 ip 地址，如果获取失败抛出异常信息
@@ -584,19 +584,19 @@ dolphin.scheduler.network.interface.preferred=eth1
 
 以上配置修改后重启服务生效
 
-如果 ip 地址获取依然错误，请下载 [dolphinscheduler-netutils.jar] 到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：
+如果 ip 地址获取依然错误，请下载 [gyyun-netutils.jar] 到相应机器，执行以下命令以进一步排障，并反馈给社区开发人员：
 
 ```shell
-java -jar target/dolphinscheduler-netutils.jar
+java -jar target/gyyun-netutils.jar
 ```
 
 ## 配置 sudo 免密，用于解决默认配置 sudo 权限过大或不能申请 root 权限的使用问题
 
-配置 dolphinscheduler OS 账号的 sudo 权限为部分普通用户范围内的一个普通用户管理者，限制指定用户在指定主机上运行某些命令，详细配置请看 sudo 权限管理
-例如 sudo 权限管理配置 dolphinscheduler OS 账号只能操作用户 userA,userB,userC 的权限（其中用户 userA,userB,userC 用于多租户向大数据集群提交作业）
+配置 gyyun OS 账号的 sudo 权限为部分普通用户范围内的一个普通用户管理者，限制指定用户在指定主机上运行某些命令，详细配置请看 sudo 权限管理
+例如 sudo 权限管理配置 gyyun OS 账号只能操作用户 userA,userB,userC 的权限（其中用户 userA,userB,userC 用于多租户向大数据集群提交作业）
 
 ```shell
-echo 'dolphinscheduler  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
+echo 'gyyun  ALL=(userA,userB,userC)  NOPASSWD: NOPASSWD: ALL' >> /etc/sudoers
 sed -i 's/Defaults    requirett/#Defaults    requirett/g' /etc/sudoers
 ```
 
@@ -610,13 +610,13 @@ A：将 Worker 节点分别部署至多个 Yarn 集群，步骤如下（例如 A
 
 2. 将 `conf/common.properties` 中的 `yarn.application.status.address` 修改为当前集群的 Yarn 的信息
 
-3. 通过 `bin/dolphinscheduler-daemon.sh start worker-server` 启动 worker-server
+3. 通过 `bin/gyyun-daemon.sh start worker-server` 启动 worker-server
 
 ---
 
 ## Q：Update process definition error: Duplicate key TaskDefinition
 
-A：在 DS 2.0.4 之前（2.0.0-alpha 之后），可能存在版本切换的重复键问题，导致更新工作流失败；可参考如下 SQL 进行重复数据的删除，以 MySQL 为例：（注意：操作前请务必备份原数据，SQL 来源于 pr [#8408](https://github.com/apache/dolphinscheduler/pull/8408)）
+A：在 DS 2.0.4 之前（2.0.0-alpha 之后），可能存在版本切换的重复键问题，导致更新工作流失败；可参考如下 SQL 进行重复数据的删除，以 MySQL 为例：（注意：操作前请务必备份原数据，SQL 来源于 pr [#8408](https://github.com/apache/gyyun/pull/8408)）
 
 ```SQL
 DELETE FROM t_ds_process_task_relation_log WHERE id IN

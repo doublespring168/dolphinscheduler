@@ -25,28 +25,28 @@ Use URI to locate the resource, and use GET to indicate query.
 
 ```
 Method: GET
-/dolphinscheduler/alert-groups
+/gyyun/alert-groups
 ```
 
 + When the URI is a single resource, it means to query this resource. For example, the following example means to query the specified `alter-group`.
 
 ```
 Method: GET
-/dolphinscheduler/alter-groups/{id}
+/gyyun/alter-groups/{id}
 ```
 
 + In addition, we can also express query sub-resources based on URI, as follows:
 
 ```
 Method: GET
-/dolphinscheduler/projects/{projectId}/tasks
+/gyyun/projects/{projectId}/tasks
 ```
 
 **The above examples all represent paging query. If we need to query all data, we need to add `/list` after the URI to distinguish. Do not mix the same API for both paged query and query.**
 
 ```
 Method: GET
-/dolphinscheduler/alert-groups/list
+/gyyun/alert-groups/list
 ```
 
 ### ② Create - POST
@@ -57,14 +57,14 @@ Use URI to locate the resource, use POST to indicate create, and then return the
 
 ```
 Method: POST
-/dolphinscheduler/alter-groups
+/gyyun/alter-groups
 ```
 
 + create sub-resources is also the same as above.
 
 ```
 Method: POST
-/dolphinscheduler/alter-groups/{alterGroupId}/tasks
+/gyyun/alter-groups/{alterGroupId}/tasks
 ```
 
 ### ③ Modify - PUT
@@ -74,7 +74,7 @@ Use URI to locate the resource, use PUT to indicate modify.
 
 ```
 Method: PUT
-/dolphinscheduler/alter-groups/{alterGroupId}
+/gyyun/alter-groups/{alterGroupId}
 ```
 
 ### ④ Delete -DELETE
@@ -85,14 +85,14 @@ Use URI to locate the resource, use DELETE to indicate delete.
 
 ```
 Method: DELETE
-/dolphinscheduler/alter-groups/{alterGroupId}
+/gyyun/alter-groups/{alterGroupId}
 ```
 
 + batch deletion: batch delete the id array，we should use POST. **（Do not use the DELETE method, because the body of the DELETE request has no semantic meaning, and it is possible that some gateways, proxies, and firewalls will directly strip off the request body after receiving the DELETE request.）**
 
 ```
 Method: POST
-/dolphinscheduler/alter-groups/batch-delete
+/gyyun/alter-groups/batch-delete
 ```
 
 ### ⑤ Partial Modifications -PATCH
@@ -101,7 +101,7 @@ Use URI to locate the resource, use PATCH to partial modifications.
 
 ```
 Method: PATCH
-/dolphinscheduler/alter-groups/{alterGroupId}
+/gyyun/alter-groups/{alterGroupId}
 ```
 
 ### ⑥ Others
@@ -109,8 +109,8 @@ Method: PATCH
 In addition to creating, deleting, modifying and querying, we also locate the corresponding resource through url, and then append operations to it after the path, such as:
 
 ```
-/dolphinscheduler/alert-groups/verify-name
-/dolphinscheduler/projects/{projectCode}/process-instances/{code}/view-gantt
+/gyyun/alert-groups/verify-name
+/gyyun/projects/{projectCode}/process-instances/{code}/view-gantt
 ```
 
 ## 3. Parameter design
@@ -126,6 +126,6 @@ In the case of paging, if the parameter entered by the user is less than 1, the 
 The URI of the project needs to use `/<project_name>` as the base path, so as to identify that these APIs are under this project.
 
 ```
-/dolphinscheduler
+/gyyun
 ```
 

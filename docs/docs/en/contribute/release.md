@@ -154,9 +154,9 @@ to [here](http://maven.apache.org/guides/mini/guide-encryption.html) firstly and
 
 Compared with the last release, the `release-docs` of the current release needs to be updated to the latest, if there are dependencies and versions changes
 
-- `dolphinscheduler-dist/release-docs/LICENSE`
-- `dolphinscheduler-dist/release-docs/NOTICE`
-- `dolphinscheduler-dist/release-docs/licenses`
+- `gyyun-dist/release-docs/LICENSE`
+- `gyyun-dist/release-docs/NOTICE`
+- `gyyun-dist/release-docs/licenses`
 
 ### Set Release in Environment
 
@@ -171,11 +171,11 @@ GH_USERNAME=<YOUR-GITHUB-USERNAME>
 GH_REMOTE=<GITHUB-REMOTE>  # we use `upstream` or `origin` mostly base on your release environment
 
 A_USERNAME=<YOUR-APACHE-USERNAME>
-SVN_DIR=<PATH-TO-SVN-ROOT>  # to keep binary package checkout from SVN, the sub path end with `/dolphinscheduler/dev` and `/dolphinscheduler/release` will be create
+SVN_DIR=<PATH-TO-SVN-ROOT>  # to keep binary package checkout from SVN, the sub path end with `/gyyun/dev` and `/gyyun/release` will be create
 ```
 
 > Note: We can use the variable directly in you bash after we set environment, without changing anything. For example, we
-> can use command `git clone -b "${VERSION}"-prepare https://github.com/apache/dolphinscheduler.git` to clone the release branch
+> can use command `git clone -b "${VERSION}"-prepare https://github.com/apache/gyyun.git` to clone the release branch
 > and it can be successful by converting the `"${VERSION}"` to `<THE-VERSION-YOU-RELEASE>`. But you have to change `<VERSION>` manually in
 > some of not bash step like [vote mail](#vote-procedure), we are using `<VERSION>` instead of `"${VERSION}"` to notice release
 > manager they have to change by hand.
@@ -186,13 +186,13 @@ We need to update some documentation before the Maven release. For example, to r
 
 - Version in the code:
   - `sql`:
-    - `dolphinscheduler_mysql.sql`: `t_ds_version` needs to be updated to `VERSION`
-    - `dolphinscheduler_postgre.sql`: `t_ds_version` needs to be updated to `VERSION`
-    - `dolphinscheduler_h2.sql`: `t_ds_version` needs to be updated to `VERSION`
+    - `gyyun_mysql.sql`: `t_ds_version` needs to be updated to `VERSION`
+    - `gyyun_postgre.sql`: `t_ds_version` needs to be updated to `VERSION`
+    - `gyyun_h2.sql`: `t_ds_version` needs to be updated to `VERSION`
     - `upgrade`: whether to add `VERSION_schema` if there are some upgrade DDL or DML, can skip this step if no any DDL or DML added.
     - `soft_version`: need to be updated to `VERSION`
   - `deploy/docker/.env`: `HUB` change to `apache`，`TAG` change to `VERSION`
-  - `deploy/kubernetes/dolphinscheduler`:
+  - `deploy/kubernetes/gyyun`:
     - `Chart.yaml`: `appVersion` and `version` needs to be updated to x.y.z
     - `values.yaml`: `image.tag` needs to be updated to x.y.z
   - `config`
@@ -209,7 +209,7 @@ We need to update some documentation before the Maven release. For example, to r
 ### Modify Correct year in NOTICE file
 
 The NOTICE file needs to be checked, changing the correct year in the second line to the current year. Files to check include
-- `dolphinscheduler-dist/release-docs/NOTICE`
+- `gyyun-dist/release-docs/NOTICE`
 - `NOTICE`
 
 ### Maven Release
@@ -225,7 +225,7 @@ git push "${GH_REMOTE}" "${VERSION}"-release
 export GPG_TTY=$(tty)
 ```
 
-> Note: If you release in remote host without source code, you should run `git clone -b "${VERSION}"-prepare https://github.com/apache/dolphinscheduler.git`
+> Note: If you release in remote host without source code, you should run `git clone -b "${VERSION}"-prepare https://github.com/apache/gyyun.git`
 > first to clone the source code. And then make sure you set `GH_REMOTE="origin"` to make all command work fine.
 
 ```shell
@@ -294,13 +294,13 @@ If there is any problem in gpg signature, `Close` will fail, but you can see the
 We need to checkout Dolphinscheduler dev release directory to local, and
 
 ```shell
-SVN_DIR_DEV="${SVN_DIR}/dolphinscheduler/dev"
-SVN_DIR_RELEASE="${SVN_DIR}/dolphinscheduler/release"
+SVN_DIR_DEV="${SVN_DIR}/gyyun/dev"
+SVN_DIR_RELEASE="${SVN_DIR}/gyyun/release"
 # Optional, only if the SVN root path not exists.
 mkdir -p "${SVN_DIR_DEV}"
 
 # When you first time checkout from this path
-svn --username="${A_USERNAME}" co https://dist.apache.org/repos/dist/dev/dolphinscheduler "${SVN_DIR_DEV}"
+svn --username="${A_USERNAME}" co https://dist.apache.org/repos/dist/dev/gyyun "${SVN_DIR_DEV}"
 # Or update when the svn directory exists, and you already checkout
 svn --username="${A_USERNAME}" update "${SVN_DIR_DEV}"
 ```
@@ -317,7 +317,7 @@ change the working directory to another one because this step needs checkout and
 mkdir -p "${SVN_DIR_RELEASE}"
 
 cd "${SVN_DIR_RELEASE}"
-svn --username="${A_USERNAME}" co https://dist.apache.org/repos/dist/release/dolphinscheduler
+svn --username="${A_USERNAME}" co https://dist.apache.org/repos/dist/release/gyyun
 # Change the placeholder <YOUR-GPG-KEY-ID> to your id
 gpg -a --export <YOUR-GPG-KEY-ID> >> KEYS
 svn add *
@@ -332,20 +332,20 @@ Create folder by version number, and move the source code packages, binary packa
 mkdir -p "${SVN_DIR_DEV}/${VERSION}"
 
 # Add to SVN
-cp -f "${SOURCE_CODE_DIR}"/dolphinscheduler-dist/target/*.tar.gz "${SVN_DIR_DEV}/${VERSION}"
-cp -f "${SOURCE_CODE_DIR}"/dolphinscheduler-dist/target/*.tar.gz.asc "${SVN_DIR_DEV}/${VERSION}"
+cp -f "${SOURCE_CODE_DIR}"/gyyun-dist/target/*.tar.gz "${SVN_DIR_DEV}/${VERSION}"
+cp -f "${SOURCE_CODE_DIR}"/gyyun-dist/target/*.tar.gz.asc "${SVN_DIR_DEV}/${VERSION}"
 
 # Create sign
 cd "${SVN_DIR_DEV}/${VERSION}"
-shasum -a 512 apache-dolphinscheduler-"${VERSION}"-src.tar.gz >> apache-dolphinscheduler-"${VERSION}"-src.tar.gz.sha512
-shasum -b -a 512 apache-dolphinscheduler-"${VERSION}"-bin.tar.gz >> apache-dolphinscheduler-"${VERSION}"-bin.tar.gz.sha512
+shasum -a 512 apache-gyyun-"${VERSION}"-src.tar.gz >> apache-gyyun-"${VERSION}"-src.tar.gz.sha512
+shasum -b -a 512 apache-gyyun-"${VERSION}"-bin.tar.gz >> apache-gyyun-"${VERSION}"-bin.tar.gz.sha512
 
 # Check sha512
-shasum -c apache-dolphinscheduler-"${VERSION}"-src.tar.gz.sha512
-shasum -c apache-dolphinscheduler-"${VERSION}"-bin.tar.gz.sha512
+shasum -c apache-gyyun-"${VERSION}"-src.tar.gz.sha512
+shasum -c apache-gyyun-"${VERSION}"-bin.tar.gz.sha512
 # Check gpg signature
-gpg --verify apache-dolphinscheduler-"${VERSION}"-src.tar.gz.asc
-gpg --verify apache-dolphinscheduler-"${VERSION}"-bin.tar.gz.asc
+gpg --verify apache-gyyun-"${VERSION}"-src.tar.gz.asc
+gpg --verify apache-gyyun-"${VERSION}"-bin.tar.gz.asc
 
 # Commit to Apache SVN
 cd "${SVN_DIR_DEV}"
@@ -354,14 +354,14 @@ svn --username="${A_USERNAME}" commit -m "release ${VERSION}"
 ```
 
 > Note: You have to create gpg signature manually when you can not find your `asc` file, the command
-> `gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-"${VERSION}"-bin.tar.gz` and
-> `gpg --armor --detach-sign --digest-algo=SHA512 apache-dolphinscheduler-"${VERSION}"-src.tar.gz` will create them
+> `gpg --armor --detach-sign --digest-algo=SHA512 apache-gyyun-"${VERSION}"-bin.tar.gz` and
+> `gpg --armor --detach-sign --digest-algo=SHA512 apache-gyyun-"${VERSION}"-src.tar.gz` will create them
 
 ### Check Released Files
 
 #### Check source package
 
-Decompress `apache-dolphinscheduler-<VERSION>-src.tar.gz` then check the following items:
+Decompress `apache-gyyun-<VERSION>-src.tar.gz` then check the following items:
 
 - Check whether source tarball is oversized for including nonessential files
 - `LICENSE` and `NOTICE` files exist
@@ -374,7 +374,7 @@ Decompress `apache-dolphinscheduler-<VERSION>-src.tar.gz` then check the followi
 
 #### Check binary packages
 
-Decompress `apache-dolphinscheduler-<VERSION>-bin.tar.gz` to check the following items:
+Decompress `apache-gyyun-<VERSION>-bin.tar.gz` to check the following items:
 
 - `LICENSE` and `NOTICE` files exist
 - Correct year in `NOTICE` file
@@ -388,20 +388,20 @@ Decompress `apache-dolphinscheduler-<VERSION>-bin.tar.gz` to check the following
 
 ### Update Release Notes
 
-You should create a release note in GitHub by [new release note](https://github.com/apache/dolphinscheduler/releases/new).
+You should create a release note in GitHub by [new release note](https://github.com/apache/gyyun/releases/new).
 It should be done before vote mail because we need the release note in the mail. You could use command
-`python release.py changelog` in directory `tools/release` to creat the changelog.([Usage](https://github.com/apache/dolphinscheduler/blob/dev/tools/release/README.md)
+`python release.py changelog` in directory `tools/release` to creat the changelog.([Usage](https://github.com/apache/gyyun/blob/dev/tools/release/README.md)
 
 > NOTE: Or if you prefer to create manually, you can use command `git log --pretty="- %s" <PREVIOUS-RELEASE-SHA>..<CURRENT-RELEASE-SHA> > changelog.md`
 > (some log maybe not correct, you should filter them by yourself) and classify them and paste them to GitHub release note page
 
 ### Vote procedure
 
-DolphinScheduler community vote: send the vote e-mail to `dev@dolphinscheduler.apache.org`. PMC needs to check the
+DolphinScheduler community vote: send the vote e-mail to `dev@gyyun.apache.org`. PMC needs to check the
 rightness of the version according to the document before they vote. After at least 72 hours and with at least 3
 `+1 and no -1 PMC member` votes, it can come to the next stage of the vote.
 
-Announce the vote result: send the result vote e-mail to `dev@dolphinscheduler.apache.org`。
+Announce the vote result: send the result vote e-mail to `dev@gyyun.apache.org`。
 
 ### Templates
 
@@ -420,19 +420,19 @@ Hello DolphinScheduler Community,
 
 This is a call for vote to release Apache DolphinScheduler version <VERSION>
 
-Release notes: https://github.com/apache/dolphinscheduler/releases/tag/<VERSION>
+Release notes: https://github.com/apache/gyyun/releases/tag/<VERSION>
 
-The release candidates: https://dist.apache.org/repos/dist/dev/dolphinscheduler/<VERSION>/
+The release candidates: https://dist.apache.org/repos/dist/dev/gyyun/<VERSION>/
 
-Maven 2 staging repository: https://repository.apache.org/content/repositories/<STAGING.REPOSITORY>/org/apache/dolphinscheduler/
+Maven 2 staging repository: https://repository.apache.org/content/repositories/<STAGING.REPOSITORY>/org/apache/gyyun/
 
-Git tag for the release: https://github.com/apache/dolphinscheduler/tree/<VERSION>
+Git tag for the release: https://github.com/apache/gyyun/tree/<VERSION>
 
-Release Commit ID: https://github.com/apache/dolphinscheduler/commit/<SHA-VALUE>
+Release Commit ID: https://github.com/apache/gyyun/commit/<SHA-VALUE>
 
-Keys to verify the Release Candidate: https://downloads.apache.org/dolphinscheduler/KEYS
+Keys to verify the Release Candidate: https://downloads.apache.org/gyyun/KEYS
 
-Look at here for how to verify this release candidate: https://github.com/apache/dolphinscheduler/blob/dev/docs/docs/en/contribute/release.md
+Look at here for how to verify this release candidate: https://github.com/apache/gyyun/blob/dev/docs/docs/en/contribute/release.md
 
 The vote will be open for at least 72 hours or until necessary number of votes are reached.
 
@@ -484,10 +484,10 @@ Thanks everyone for taking time to check this release and help us.
 
 ```shell
 # move to release directory
-svn mv -m "release ${VERSION}" https://dist.apache.org/repos/dist/dev/dolphinscheduler/"${VERSION}" https://dist.apache.org/repos/dist/release/dolphinscheduler/
+svn mv -m "release ${VERSION}" https://dist.apache.org/repos/dist/dev/gyyun/"${VERSION}" https://dist.apache.org/repos/dist/release/gyyun/
 
 # remove old release directory
-svn delete -m "remove old release" https://dist.apache.org/repos/dist/release/dolphinscheduler/<PREVIOUS-RELEASE-VERSION>
+svn delete -m "remove old release" https://dist.apache.org/repos/dist/release/gyyun/<PREVIOUS-RELEASE-VERSION>
 
 ```
 
@@ -498,16 +498,16 @@ and then find DolphinScheduler in [apache staging repositories](https://reposito
 Website should be present before you send the announce mail this section will tell you how to change the website. For example,
 the release version is `<VERSION>`, the following updates are required(note it will take effect immediately when the PR is merged):
 
-- Repository **apache/dolphinscheduler-website**:
+- Repository **apache/gyyun-website**:
   - `config/download.json`: add the download of the `<VERSION>` release package
   - `scripts/conf.sh`: Add new release version `<VERSION>` key-value pair to variable `DEV_RELEASE_DOCS_VERSIONS`
-- Repository **apache/dolphinscheduler** (dev branch):
+- Repository **apache/gyyun** (dev branch):
   - `docs/configs/site.js`:
     - `docsLatest`: update to `<VERSION>`
     - `docs0`: The `text` of two places of `en-us/zh-cn` needs to be updated to `latest(<VERSION>)`
   - `docs/configs/index.md.jsx`: Add `<VERSION>: docsxyzConfig` and add new `import` for the new `docsxyzConfig`
   - `docs/docs/en/history-versions.md` and `docs/docs/zh/history-versions.md`: Add new `<VERSION>` release docs.
-  - `.github/ISSUE_TEMPLATE/bug-report.yml`: DolphinScheduler's GitHub [bug-report](https://github.com/apache/dolphinscheduler/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)
+  - `.github/ISSUE_TEMPLATE/bug-report.yml`: DolphinScheduler's GitHub [bug-report](https://github.com/apache/gyyun/blob/dev/.github/ISSUE_TEMPLATE/bug-report.yml)
     issue template have **Version** selection bottom. So after released we should add the new `<VERSION>` to
     bug-report.yml
 
@@ -521,7 +521,7 @@ verify that they work as expected.
 
 ### Send Announcement E-mail Community
 
-You should send announcement E-mail after release process finished. The E-mail should send to `dev@dolphinscheduler.apache.org`
+You should send announcement E-mail after release process finished. The E-mail should send to `dev@gyyun.apache.org`
 and cc to `announce@apache.org`, Note: **Mail format requires plain text format**.
 
 Announcement e-mail template as below：
@@ -543,16 +543,16 @@ Dolphin Scheduler is a distributed and easy-to-extend visual workflow scheduler 
 dedicated to solving the complex task dependencies in data processing, making the scheduler system out of the box for data processing.
 
 
-Download Links: https://dolphinscheduler.apache.org/en-us/download
+Download Links: https://gyyun.apache.org/en-us/download
 
-Release Notes: https://github.com/apache/dolphinscheduler/releases/tag/<VERSION>
+Release Notes: https://github.com/apache/gyyun/releases/tag/<VERSION>
 
-Website: https://dolphinscheduler.apache.org/
+Website: https://gyyun.apache.org/
 
 DolphinScheduler Resources:
-- Issue: https://github.com/apache/dolphinscheduler/issues/
-- Mailing list: dev@dolphinscheduler.apache.org
-- Documents: https://dolphinscheduler.apache.org/en-us/docs/<VERSION>/about/introduction
+- Issue: https://github.com/apache/gyyun/issues/
+- Mailing list: dev@gyyun.apache.org
+- Documents: https://gyyun.apache.org/en-us/docs/<VERSION>/about/introduction
 ```
 
 ## Remove prepare branch

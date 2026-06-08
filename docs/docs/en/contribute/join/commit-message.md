@@ -22,7 +22,7 @@ Header is required; body and footer are optional. Aim for a Subject under 72 cha
 | `Improvement` | Enhancement to an existing feature (refactor, perf, UX polish)                                            | Yes                  |
 | `Fix`         | Bug fix                                                                                                   | Yes                  |
 | `Doc`         | Documentation only                                                                                        | Yes                  |
-| `DSIP`        | A change implementing a [DSIP](https://github.com/apache/dolphinscheduler/issues?q=label%3ADSIP) proposal | Yes (the DSIP issue) |
+| `DSIP`        | A change implementing a [DSIP](https://github.com/apache/gyyun/issues?q=label%3ADSIP) proposal | Yes (the DSIP issue) |
 | `Chore`       | Build, CI, test scaffolding, dependency bumps, trivial cleanup                                            | No                   |
 
 Every type **except `Chore`** must carry an Issue ID. If no Issue exists for the change, file one first or reclassify it as `Chore`.
@@ -41,7 +41,7 @@ A short imperative sentence describing the change.
 
 ### Body (optional, recommended for non-trivial changes)
 
-When the change is not self-evident from the Subject, add a bullet list of the main changes. Keep it tight — one line per change point. Lengthy rationale, design notes, or testing plans go in the **Pull Request description** (see [PULL_REQUEST_TEMPLATE.md](https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md)), not in the commit message.
+When the change is not self-evident from the Subject, add a bullet list of the main changes. Keep it tight — one line per change point. Lengthy rationale, design notes, or testing plans go in the **Pull Request description** (see [PULL_REQUEST_TEMPLATE.md](https://github.com/apache/gyyun/blob/dev/.github/PULL_REQUEST_TEMPLATE.md)), not in the commit message.
 
 ### Footer (optional)
 
@@ -84,7 +84,7 @@ Avoid:
 
 ## References
 
-- [PULL_REQUEST_TEMPLATE.md](https://github.com/apache/dolphinscheduler/blob/dev/.github/PULL_REQUEST_TEMPLATE.md)
+- [PULL_REQUEST_TEMPLATE.md](https://github.com/apache/gyyun/blob/dev/.github/PULL_REQUEST_TEMPLATE.md)
 - [Pull Request Notice](./pull-request.md)
 - [Apache Geode commit message format](https://cwiki.apache.org/confluence/display/GEODE/Commit+Message+Format)
 - [On commit messages — Peter Hutterer](http://who-t.blogspot.com/2009/12/on-commit-messages.html)

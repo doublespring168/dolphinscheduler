@@ -12,7 +12,7 @@
 ```shell
 export DATABASE=mysql
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL="jdbc:mysql://{address}/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
+export SPRING_DATASOURCE_URL="jdbc:mysql://{address}/gyyun?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 ```
@@ -31,11 +31,11 @@ DolphinScheduler 元数据存储在关系型数据库中，目前支持 PostgreS
 ```shell
 mysql -uroot -p
 
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+mysql> CREATE DATABASE gyyun DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
 # 修改 {user} 和 {password} 为你希望的用户名和密码
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
+mysql> GRANT ALL PRIVILEGES ON gyyun.* TO '{user}'@'%' IDENTIFIED BY '{password}';
+mysql> GRANT ALL PRIVILEGES ON gyyun.* TO '{user}'@'localhost' IDENTIFIED BY '{password}';
 
 mysql> flush privileges;
 ```
@@ -45,13 +45,13 @@ mysql> flush privileges;
 ```shell
 mysql -uroot -p
 
-mysql> CREATE DATABASE dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+mysql> CREATE DATABASE gyyun DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
 # 修改 {user} 和 {password} 为你希望的用户名和密码
 mysql> CREATE USER '{user}'@'%' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'%';
+mysql> GRANT ALL PRIVILEGES ON gyyun.* TO '{user}'@'%';
 mysql> CREATE USER '{user}'@'localhost' IDENTIFIED BY '{password}';
-mysql> GRANT ALL PRIVILEGES ON dolphinscheduler.* TO '{user}'@'localhost';
+mysql> GRANT ALL PRIVILEGES ON gyyun.* TO '{user}'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
 
@@ -61,14 +61,14 @@ mysql> FLUSH PRIVILEGES;
 # 采用命令行工具登陆 PostgreSQL
 psql
 # 创建数据库
-postgres=# CREATE DATABASE dolphinscheduler;
+postgres=# CREATE DATABASE gyyun;
 # 修改 {user} 和 {password} 为你希望的用户名和密码
 postgres=# CREATE USER {user} PASSWORD {password};
-postgres=# ALTER DATABASE dolphinscheduler OWNER TO {user};
+postgres=# ALTER DATABASE gyyun OWNER TO {user};
 # 退出 PostgreSQL
 postgres=#\q
 # 在终端执行如下命令，向配置文件新增登陆权限，并重载 PostgreSQL 配置，替换 {ip} 为对应的 DS 集群服务器 IP 地址段
-echo "host    dolphinscheduler   {user}    {ip}     md5" >> $PGDATA/pg_hba.conf
+echo "host    gyyun   {user}    {ip}     md5" >> $PGDATA/pg_hba.conf
 pg_ctl reload
 ```
 
@@ -86,7 +86,7 @@ pg_ctl reload
 # for mysql
 export DATABASE=${DATABASE:-mysql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone={your_timezone}"
+export SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3306/gyyun?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone={your_timezone}"
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 ```
@@ -97,7 +97,7 @@ export SPRING_DATASOURCE_PASSWORD={password}
 # for postgresql
 export DATABASE=${DATABASE:-postgresql}
 export SPRING_PROFILES_ACTIVE=${DATABASE}
-export SPRING_DATASOURCE_URL="jdbc:postgresql://127.0.0.1:5432/dolphinscheduler"
+export SPRING_DATASOURCE_URL="jdbc:postgresql://127.0.0.1:5432/gyyun"
 export SPRING_DATASOURCE_USERNAME={user}
 export SPRING_DATASOURCE_PASSWORD={password}
 ```

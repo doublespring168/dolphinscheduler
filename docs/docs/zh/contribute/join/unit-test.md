@@ -24,7 +24,7 @@ Unit Test
 ### 3.测试覆盖率设定值
 
 * 在现阶段，Delta 更改代码的测试覆盖设定值为：>＝60%，越高越好。
-* 我们可以在这个页面中看到测试报告: https://codecov.io/gh/apache/dolphinscheduler
+* 我们可以在这个页面中看到测试报告: https://codecov.io/gh/apache/gyyun
 
 ## 单元测试基本准则
 

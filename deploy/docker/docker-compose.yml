@@ -17,7 +17,7 @@
 version: "3.8"
 
 services:
-  dolphinscheduler-postgresql:
+  gyyun-postgresql:
     image: bitnamilegacy/postgresql:15.2.0-debian-11-r9
 
     ports:
@@ -26,72 +26,72 @@ services:
     environment:
       POSTGRESQL_USERNAME: root
       POSTGRESQL_PASSWORD: root
-      POSTGRESQL_DATABASE: dolphinscheduler
+      POSTGRESQL_DATABASE: gyyun
     volumes:
-      - dolphinscheduler-postgresql:/bitnami/postgresql
+      - gyyun-postgresql:/bitnami/postgresql
     healthcheck:
       test: ["CMD", "bash", "-c", "cat < /dev/null > /dev/tcp/127.0.0.1/5432"]
       interval: 5s
       timeout: 60s
       retries: 120
     networks:
-      - dolphinscheduler
+      - gyyun
 
-  dolphinscheduler-zookeeper:
+  gyyun-zookeeper:
     image: bitnamilegacy/zookeeper:3.7.1-debian-11-r99
     profiles: ["all"]
     environment:
       ALLOW_ANONYMOUS_LOGIN: "yes"
       ZOO_4LW_COMMANDS_WHITELIST: srvr,ruok,wchs,cons
     volumes:
-      - dolphinscheduler-zookeeper:/bitnami/zookeeper
+      - gyyun-zookeeper:/bitnami/zookeeper
     healthcheck:
       test: ["CMD", "bash", "-c", "cat < /dev/null > /dev/tcp/127.0.0.1/2181"]
       interval: 5s
       timeout: 60s
       retries: 120
     networks:
-      - dolphinscheduler
+      - gyyun
 
-  dolphinscheduler-schema-initializer:
-    image: ${HUB}/dolphinscheduler-tools:${TAG}
+  gyyun-schema-initializer:
+    image: ${HUB}/gyyun-tools:${TAG}
     env_file: .env
     profiles: ["schema"]
     command: [ tools/bin/upgrade-schema.sh ]
     depends_on:
-      dolphinscheduler-postgresql:
+      gyyun-postgresql:
         condition: service_healthy
     volumes:
-      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
-      - dolphinscheduler-shared-local:/opt/soft
-      - dolphinscheduler-resource-local:/dolphinscheduler
+      - gyyun-logs:/opt/gyyun/logs
+      - gyyun-shared-local:/opt/soft
+      - gyyun-resource-local:/gyyun
     networks:
-      - dolphinscheduler
+      - gyyun
 
-  dolphinscheduler-api:
-    image: ${HUB}/dolphinscheduler-api:${TAG}
+  gyyun-api:
+    image: ${HUB}/gyyun-api:${TAG}
     ports:
       - "12345:12345"
       - "25333:25333"
     profiles: ["all"]
     env_file: .env
     healthcheck:
-      test: [ "CMD", "curl", "http://localhost:12345/dolphinscheduler/actuator/health" ]
+      test: [ "CMD", "curl", "http://localhost:12345/gyyun/actuator/health" ]
       interval: 30s
       timeout: 5s
       retries: 3
     depends_on:
-      dolphinscheduler-zookeeper:
+      gyyun-zookeeper:
         condition: service_healthy
     volumes:
-      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
-      - dolphinscheduler-shared-local:/opt/soft
-      - dolphinscheduler-resource-local:/dolphinscheduler
+      - gyyun-logs:/opt/gyyun/logs
+      - gyyun-shared-local:/opt/soft
+      - gyyun-resource-local:/gyyun
     networks:
-      - dolphinscheduler
+      - gyyun
 
-  dolphinscheduler-alert:
-    image: ${HUB}/dolphinscheduler-alert-server:${TAG}
+  gyyun-alert:
+    image: ${HUB}/gyyun-alert-server:${TAG}
     profiles: ["all"]
     env_file: .env
     healthcheck:
@@ -100,15 +100,15 @@ services:
       timeout: 5s
       retries: 3
     depends_on:
-      dolphinscheduler-zookeeper:
+      gyyun-zookeeper:
         condition: service_healthy
     volumes:
-      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
+      - gyyun-logs:/opt/gyyun/logs
     networks:
-      - dolphinscheduler
+      - gyyun
 
-  dolphinscheduler-master:
-    image: ${HUB}/dolphinscheduler-master:${TAG}
+  gyyun-master:
+    image: ${HUB}/gyyun-master:${TAG}
     profiles: ["all"]
     env_file: .env
     healthcheck:
@@ -117,16 +117,16 @@ services:
       timeout: 5s
       retries: 3
     depends_on:
-      dolphinscheduler-zookeeper:
+      gyyun-zookeeper:
         condition: service_healthy
     volumes:
-      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
-      - dolphinscheduler-shared-local:/opt/soft
+      - gyyun-logs:/opt/gyyun/logs
+      - gyyun-shared-local:/opt/soft
     networks:
-      - dolphinscheduler
+      - gyyun
 
-  dolphinscheduler-worker:
-    image: ${HUB}/dolphinscheduler-worker:${TAG}
+  gyyun-worker:
+    image: ${HUB}/gyyun-worker:${TAG}
     profiles: ["all"]
     env_file: .env
     healthcheck:
@@ -135,24 +135,24 @@ services:
       timeout: 5s
       retries: 3
     depends_on:
-      dolphinscheduler-zookeeper:
+      gyyun-zookeeper:
         condition: service_healthy
     volumes:
-      - dolphinscheduler-worker-data:/tmp/dolphinscheduler
-      - dolphinscheduler-logs:/opt/dolphinscheduler/logs
-      - dolphinscheduler-shared-local:/opt/soft
-      - dolphinscheduler-resource-local:/dolphinscheduler
+      - gyyun-worker-data:/tmp/gyyun
+      - gyyun-logs:/opt/gyyun/logs
+      - gyyun-shared-local:/opt/soft
+      - gyyun-resource-local:/gyyun
     networks:
-      - dolphinscheduler
+      - gyyun
 
 networks:
-  dolphinscheduler:
+  gyyun:
     driver: bridge
 
 volumes:
-  dolphinscheduler-postgresql:
-  dolphinscheduler-zookeeper:
-  dolphinscheduler-worker-data:
-  dolphinscheduler-logs:
-  dolphinscheduler-shared-local:
-  dolphinscheduler-resource-local:
+  gyyun-postgresql:
+  gyyun-zookeeper:
+  gyyun-worker-data:
+  gyyun-logs:
+  gyyun-shared-local:
+  gyyun-resource-local:

@@ -4,7 +4,7 @@ Kubernetes 部署目的是在 Kubernetes 集群中部署 DolphinScheduler 服务
 
 如果你是新手，想要体验 DolphinScheduler 的功能，推荐使用[Standalone](standalone.md)方式体检。如果你想体验更完整的功能，或者更大的任务量，推荐使用[伪集群部署](pseudo-cluster.md)。如果你是在生产中使用，推荐使用[集群部署](cluster.md)或者[kubernetes](kubernetes.md)
 
-> **提示**: 您也可以尝试使用[DolphinScheduler K8S Operator](https://github.com/apache/dolphinscheduler-operator)，目前处于 alpha1 阶段
+> **提示**: 您也可以尝试使用[DolphinScheduler K8S Operator](https://github.com/apache/gyyun-operator)，目前处于 alpha1 阶段
 
 ## 先决条件
 
@@ -12,64 +12,64 @@ Kubernetes 部署目的是在 Kubernetes 集群中部署 DolphinScheduler 服务
 - [Kubernetes](https://kubernetes.io/) 1.12+
 - PV 供应(需要基础设施支持)
 
-## 安装 dolphinscheduler
+## 安装 gyyun
 
 ```bash
 # 自行选择对应的版本
-helm upgrade --install dolphinscheduler --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version>
+helm upgrade --install gyyun --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version>
 ```
 
 这些命令以默认配置在 Kubernetes 集群上部署 DolphinScheduler，[附录-配置](#附录-配置)部分列出了可以在安装过程中配置的参数 <!-- markdown-link-check-disable-line -->
 
 > **提示**: 列出所有已发布的版本，使用 `helm list`
 
-**PostgreSQL** (用户 `root`, 密码 `root`, 数据库 `dolphinscheduler`) 和 **ZooKeeper** 服务将会默认启动
+**PostgreSQL** (用户 `root`, 密码 `root`, 数据库 `gyyun`) 和 **ZooKeeper** 服务将会默认启动
 
 ## 访问 DolphinScheduler 前端页面
 
-如果 `values.yaml` 文件中的 `ingress.enabled` 被设置为 `true`, 在浏览器中访问 `http://${ingress.host}/dolphinscheduler` 即可
+如果 `values.yaml` 文件中的 `ingress.enabled` 被设置为 `true`, 在浏览器中访问 `http://${ingress.host}/gyyun` 即可
 
 > **提示**: 如果 ingress 访问遇到问题，请联系 Kubernetes 管理员并查看 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 否则，当 `api.service.type=ClusterIP` 时，你需要执行 port-forward 端口转发命令：
 
 ```bash
-$ kubectl port-forward --address 0.0.0.0 svc/dolphinscheduler-api 12345:12345
-$ kubectl port-forward --address 0.0.0.0 -n test svc/dolphinscheduler-api 12345:12345 # 使用 test 命名空间
+$ kubectl port-forward --address 0.0.0.0 svc/gyyun-api 12345:12345
+$ kubectl port-forward --address 0.0.0.0 -n test svc/gyyun-api 12345:12345 # 使用 test 命名空间
 ```
 
 > **提示**: 如果出现 `unable to do port forwarding: socat not found` 错误, 需要先安装 `socat`
 
-访问前端页面：http://localhost:12345/dolphinscheduler/ui，如果有需要请修改成对应的 IP 地址
+访问前端页面：http://localhost:12345/gyyun/ui，如果有需要请修改成对应的 IP 地址
 
 或者当 `api.service.type=NodePort` 时，你需要执行命令：
 
 ```bash
 NODE_IP=$(kubectl get no -n {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
-NODE_PORT=$(kubectl get svc {{ template "dolphinscheduler.fullname" . }}-api -n {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}")
-echo http://$NODE_IP:$NODE_PORT/dolphinscheduler
+NODE_PORT=$(kubectl get svc {{ template "gyyun.fullname" . }}-api -n {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}")
+echo http://$NODE_IP:$NODE_PORT/gyyun
 ```
 
-然后访问前端页面: http://localhost:12345/dolphinscheduler/ui
+然后访问前端页面: http://localhost:12345/gyyun/ui
 
-默认的用户是`admin`，默认的密码是`dolphinscheduler123`
+默认的用户是`admin`，默认的密码是`gyyun123`
 
 请参考用户手册章节的[快速上手](../start/quick-start.md)查看如何使用 DolphinScheduler
 
-## 卸载 dolphinscheduler
+## 卸载 gyyun
 
-卸载名为 `dolphinscheduler` 的版本(release)，请执行：
+卸载名为 `gyyun` 的版本(release)，请执行：
 
 ```bash
-$ helm uninstall dolphinscheduler
+$ helm uninstall gyyun
 ```
 
-该命令将删除与 `dolphinscheduler` 相关的所有 Kubernetes 组件（但 PVC 除外），并删除版本(release)
+该命令将删除与 `gyyun` 相关的所有 Kubernetes 组件（但 PVC 除外），并删除版本(release)
 
-要删除与 `dolphinscheduler` 相关的 PVC，请执行：
+要删除与 `gyyun` 相关的 PVC，请执行：
 
 ```bash
-$ kubectl delete pvc -l app.kubernetes.io/instance=dolphinscheduler
+$ kubectl delete pvc -l app.kubernetes.io/instance=gyyun
 ```
 
 > **注意**: 删除 PVC 也会删除所有数据，请谨慎操作！
@@ -98,7 +98,7 @@ helm install keda kedacore/keda \
 其次，您需要将 `values.yaml` 中的 `worker.keda.enabled` 配置设置成 `true`，或者您可以通过以下命令安装 chart：
 
 ```bash
-helm upgrade --install dolphinscheduler --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> --set worker.keda.enabled=true
+helm upgrade --install gyyun --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> --set worker.keda.enabled=true
 ```
 
 一旦自动扩缩容功能启用，worker的数量将基于任务状态在 `minReplicaCount` 和 `maxReplicaCount` 之间弹性扩缩。
@@ -160,12 +160,12 @@ kubectl get po
 kubectl get po -n test # with test namespace
 ```
 
-查看名为 dolphinscheduler-master-0 的 pod 容器的日志:
+查看名为 gyyun-master-0 的 pod 容器的日志:
 
 ```
-kubectl logs dolphinscheduler-master-0
-kubectl logs -f dolphinscheduler-master-0 # 跟随日志输出
-kubectl logs --tail 10 dolphinscheduler-master-0 -n test # 显示倒数10行日志
+kubectl logs gyyun-master-0
+kubectl logs -f gyyun-master-0 # 跟随日志输出
+kubectl logs --tail 10 gyyun-master-0 -n test # 显示倒数10行日志
 ```
 
 ### 如何在 Kubernetes 上扩缩容 api, master 和 worker？
@@ -180,8 +180,8 @@ kubectl get deploy -n test # with test namespace
 扩缩容 api 至 3 个副本:
 
 ```
-kubectl scale --replicas=3 deploy dolphinscheduler-api
-kubectl scale --replicas=3 deploy dolphinscheduler-api -n test # with test namespace
+kubectl scale --replicas=3 deploy gyyun-api
+kubectl scale --replicas=3 deploy gyyun-api -n test # with test namespace
 ```
 
 列出所有 statefulsets (别名 `sts`):
@@ -194,47 +194,47 @@ kubectl get sts -n test # with test namespace
 扩缩容 master 至 2 个副本:
 
 ```
-kubectl scale --replicas=2 sts dolphinscheduler-master
-kubectl scale --replicas=2 sts dolphinscheduler-master -n test # with test namespace
+kubectl scale --replicas=2 sts gyyun-master
+kubectl scale --replicas=2 sts gyyun-master -n test # with test namespace
 ```
 
 扩缩容 worker 至 6 个副本:
 
 ```
-kubectl scale --replicas=6 sts dolphinscheduler-worker
-kubectl scale --replicas=6 sts dolphinscheduler-worker -n test # with test namespace
+kubectl scale --replicas=6 sts gyyun-worker
+kubectl scale --replicas=6 sts gyyun-worker -n test # with test namespace
 ```
 
 ### 如何用 MySQL 替代 PostgreSQL 作为 DolphinScheduler 的数据库？
 
 > 由于商业许可证的原因，我们不能直接使用 MySQL 的驱动包.
 >
-> 如果你要使用 MySQL, 你可以基于官方镜像 `apache/dolphinscheduler-<service>` 进行构建.
+> 如果你要使用 MySQL, 你可以基于官方镜像 `apache/gyyun-<service>` 进行构建.
 >
-> 从 3.0.0 版本起，dolphinscheduler 已经微服务化，更改元数据存储需要对把所有的服务都替换为 MySQL 驱动包，包括 dolphinscheduler-tools, dolphinscheduler-master, dolphinscheduler-worker, dolphinscheduler-api, dolphinscheduler-alert-server .
+> 从 3.0.0 版本起，gyyun 已经微服务化，更改元数据存储需要对把所有的服务都替换为 MySQL 驱动包，包括 gyyun-tools, gyyun-master, gyyun-worker, gyyun-api, gyyun-alert-server .
 
 1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
 
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 的驱动包:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-<service>:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-<service>:<version>
 # 例如
-# FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-tools:<version>
+# FROM gyyun.docker.scarf.sh/apache/gyyun-tools:<version>
 
-# 注意，如果构建的是dolphinscheduler-tools镜像
-# 需要将下面一行修改为COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/tools/libs
+# 注意，如果构建的是gyyun-tools镜像
+# 需要将下面一行修改为COPY mysql-connector-java-8.0.16.jar /opt/gyyun/tools/libs
 # 其他服务保持不变即可
-COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/libs
+COPY mysql-connector-java-8.0.16.jar /opt/gyyun/libs
 ```
 
 3. 构建一个包含 MySQL 驱动包的新镜像:
 
 ```
-docker build -t apache/dolphinscheduler-<service>:mysql-driver .
+docker build -t apache/gyyun-<service>:mysql-driver .
 ```
 
-4. 推送 docker 镜像 `apache/dolphinscheduler-<service>:mysql-driver` 到一个 docker registry 中
+4. 推送 docker 镜像 `apache/gyyun-<service>:mysql-driver` 到一个 docker registry 中
 
 5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `mysql-driver`
 
@@ -249,19 +249,19 @@ externalDatabase:
   port: "3306"
   username: "root"
   password: "root"
-  database: "dolphinscheduler"
+  database: "gyyun"
   params: "useUnicode=true&characterEncoding=UTF-8"
 ```
 
-8. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
+8. 部署 gyyun (详见**安装 gyyun**)
 
 ### 如何在数据源中心支持 MySQL 或者 Oracle 数据源？
 
 > 由于商业许可证的原因，我们不能直接使用 MySQL 或者 Oracle 的驱动包.
 >
-> 如果你要添加 MySQL 或者 Oracle, 你可以基于官方镜像 `apache/dolphinscheduler-<service>` 进行构建.
+> 如果你要添加 MySQL 或者 Oracle, 你可以基于官方镜像 `apache/gyyun-<service>` 进行构建.
 >
-> 需要更改 dolphinscheduler-worker, dolphinscheduler-api 两个服务的镜像.
+> 需要更改 gyyun-worker, gyyun-api 两个服务的镜像.
 
 1. 下载 MySQL 驱动包 [mysql-connector-java-8.0.16.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.16/mysql-connector-java-8.0.16.jar)
    或者 Oracle 驱动包 [ojdbc8.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/) (例如 `ojdbc8-19.9.0.0.jar`)
@@ -269,39 +269,39 @@ externalDatabase:
 2. 创建一个新的 `Dockerfile`，用于添加 MySQL 或者 Oracle 驱动包:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-<service>:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-<service>:<version>
 # 例如
-# FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-worker:<version>
+# FROM gyyun.docker.scarf.sh/apache/gyyun-worker:<version>
 
 # 如果你想支持 MySQL 数据源
-COPY mysql-connector-java-8.0.16.jar /opt/dolphinscheduler/libs
+COPY mysql-connector-java-8.0.16.jar /opt/gyyun/libs
 
 # 如果你想支持 Oracle 数据源
-COPY ojdbc8-19.9.0.0.jar /opt/dolphinscheduler/libs
+COPY ojdbc8-19.9.0.0.jar /opt/gyyun/libs
 ```
 
 3. 构建一个包含 MySQL 或者 Oracle 驱动包的新镜像:
 
 ```
-docker build -t apache/dolphinscheduler-<service>:new-driver .
+docker build -t apache/gyyun-<service>:new-driver .
 ```
 
-4. 推送 docker 镜像 `apache/dolphinscheduler-<service>:new-driver` 到一个 docker registry 中
+4. 推送 docker 镜像 `apache/gyyun-<service>:new-driver` 到一个 docker registry 中
 
 5. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `new-driver`
 
-6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
+6. 部署 gyyun (详见**安装 gyyun**)
 
 7. 在数据源中心添加一个 MySQL 或者 Oracle 数据源
 
 ### 如何支持 Python 2 pip 以及自定义 requirements.txt？
 
-> 只需要更改 dolphinscheduler-worker 服务的镜像.
+> 只需要更改 gyyun-worker 服务的镜像.
 
 1. 创建一个新的 `Dockerfile`，用于安装 pip:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-worker:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-worker:<version>
 COPY requirements.txt /tmp
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python-pip && \
@@ -318,25 +318,25 @@ pip install --no-cache-dir -U pip && \
 2. 构建一个包含 pip 的新镜像:
 
 ```
-docker build -t apache/dolphinscheduler-worker:pip .
+docker build -t apache/gyyun-worker:pip .
 ```
 
-3. 推送 docker 镜像 `apache/dolphinscheduler-worker:pip` 到一个 docker registry 中
+3. 推送 docker 镜像 `apache/gyyun-worker:pip` 到一个 docker registry 中
 
 4. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `pip`
 
-5. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
+5. 部署 gyyun (详见**安装 gyyun**)
 
 6. 在一个新 Python 任务下验证 pip
 
 ### 如何支持 Python 3？
 
-> 只需要更改 dolphinscheduler-worker 服务的镜像.
+> 只需要更改 gyyun-worker 服务的镜像.
 
 1. 创建一个新的 `Dockerfile`，用于安装 Python 3:
 
 ```
-FROM dolphinscheduler.docker.scarf.sh/apache/dolphinscheduler-worker:<version>
+FROM gyyun.docker.scarf.sh/apache/gyyun-worker:<version>
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 && \
     rm -rf /var/lib/apt/lists/*
@@ -351,16 +351,16 @@ apt-get install -y --no-install-recommends python3-pip && \
 2. 构建一个包含 Python 3 的新镜像:
 
 ```
-docker build -t apache/dolphinscheduler-worker:python3 .
+docker build -t apache/gyyun-worker:python3 .
 ```
 
-3. 推送 docker 镜像 `apache/dolphinscheduler-worker:python3` 到一个 docker registry 中
+3. 推送 docker 镜像 `apache/gyyun-worker:python3` 到一个 docker registry 中
 
 4. 修改 `values.yaml` 文件中 image 的 `repository` 字段，并更新 `tag` 为 `python3`
 
 5. 修改 `values.yaml` 文件中的 `PYTHON_LAUNCHER` 为 `/usr/bin/python3`
 
-6. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
+6. 部署 gyyun (详见**安装 gyyun**)
 
 7. 在一个新 Python 任务下验证 Python 3
 
@@ -372,13 +372,13 @@ docker build -t apache/dolphinscheduler-worker:python3 .
 
 2. 确保 `common.sharedStoragePersistence.enabled` 开启
 
-3. 部署 dolphinscheduler (详见**安装 dolphinscheduler**)
+3. 部署 gyyun (详见**安装 gyyun**)
 
 4. 复制 Spark 2.4.7 二进制包到 Docker 容器中
 
 ```bash
-kubectl cp spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft
-kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/soft # with test namespace
+kubectl cp spark-2.4.7-bin-hadoop2.7.tgz gyyun-worker-0:/opt/soft
+kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz gyyun-worker-0:/opt/soft # with test namespace
 ```
 
 因为存储卷 `sharedStoragePersistence` 被挂载到 `/opt/soft`, 因此 `/opt/soft` 中的所有文件都不会丢失
@@ -386,8 +386,8 @@ kubectl cp -n test spark-2.4.7-bin-hadoop2.7.tgz dolphinscheduler-worker-0:/opt/
 5. 登录到容器并确保 `SPARK_HOME` 存在
 
 ```bash
-kubectl exec -it dolphinscheduler-worker-0 bash
-kubectl exec -n test -it dolphinscheduler-worker-0 bash # with test namespace
+kubectl exec -it gyyun-worker-0 bash
+kubectl exec -n test -it gyyun-worker-0 bash # with test namespace
 cd /opt/soft
 tar zxf spark-2.4.7-bin-hadoop2.7.tgz
 rm -f spark-2.4.7-bin-hadoop2.7.tgz
@@ -454,7 +454,7 @@ common:
 common:
   configmap:
     RESOURCE_STORAGE_TYPE: "HDFS"
-    RESOURCE_UPLOAD_PATH: "/dolphinscheduler"
+    RESOURCE_UPLOAD_PATH: "/gyyun"
     FS_DEFAULT_FS: "file:///"
   fsFileResourcePersistence:
     enabled: true
@@ -489,24 +489,24 @@ common:
 
 ```bash
 # 安装 master、api-server、alert-server以及其他默认组件，但是不安装 worker
-helm upgrade --install dolphinscheduler --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> --set worker.enabled=false
+helm upgrade --install gyyun --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> --set worker.enabled=false
 # 禁用其他组件的安装，只安装 worker，使用自行建构建的 CPU镜像，通过 nodeselector部署到附带 x86标签的 CPU服务器，使用 zookeeper作为外部注册中心
-helm upgrade --install dolphinscheduler-cpu-worker --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> \
+helm upgrade --install gyyun-cpu-worker --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> \
      --set minio.enabled=false --set postgresql.enabled=false --set zookeeper.enabled=false \
      --set master.enabled=false  --set api.enabled=false --set alert.enabled=false \
      --set worker.enabled=true --set image.tag=latest-cpu --set worker.nodeSelector.cpu="x86" \
-     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=dolphinscheduler-zookeeper:2181
+     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=gyyun-zookeeper:2181
 # 禁用其他组件的安装，只安装 worker，使用自行建构建的 GPU 镜像，通过 nodeselector部署到附带 a100标签的 gpu服务器，使用zookeeper作为外部注册中心
-helm upgrade --install dolphinscheduler-gpu-worker --create-namespace --namespace dolphinscheduler oci://registry-1.docker.io/apache/dolphinscheduler-helm --version <version> \
+helm upgrade --install gyyun-gpu-worker --create-namespace --namespace gyyun oci://registry-1.docker.io/apache/gyyun-helm --version <version> \
      --set minio.enabled=false --set postgresql.enabled=false --set zookeeper.enabled=false \
      --set master.enabled=false  --set api.enabled=false --set alert.enabled=false \
      --set worker.enabled=true --set image.tag=latest-gpu --set worker.nodeSelector.gpu="a100" \
-     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=dolphinscheduler-zookeeper:2181
+     --set externalRegistry.registryPluginName=zookeeper --set externalRegistry.registryServers=gyyun-zookeeper:2181
 ```
 
 > **注意**:以上步骤仅供参考，具体操作需要根据实际情况进行调整。
-> **注意**: DS默认使用本地模式的目录 /tmp/dolphinscheduler 作为资源中心, 如果需要修改资源中心目录, 请修改配置文件 conf/common.properties 中 resource 的相关配置项
+> **注意**: DS默认使用本地模式的目录 /tmp/gyyun 作为资源中心, 如果需要修改资源中心目录, 请修改配置文件 conf/common.properties 中 resource 的相关配置项
 
 ## 附录-配置
 
-参考 [DolphinScheduler Helm Charts](https://github.com/apache/dolphinscheduler/blob/dev/deploy/kubernetes/dolphinscheduler/README.md)
+参考 [DolphinScheduler Helm Charts](https://github.com/apache/gyyun/blob/dev/deploy/kubernetes/gyyun/README.md)

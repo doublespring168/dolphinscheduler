@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one or more
+  ~ contributor license agreements.  See the NOTICE file distributed with
+  ~ this work for additional information regarding copyright ownership.
+  ~ The ASF licenses this file to You under the Apache License, Version 2.0
+  ~ (the "License"); you may not use this file except in compliance with
+  ~ the License.  You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.apache.gyyun</groupId>
+        <artifactId>gyyun</artifactId>
+        <version>3.4.3-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>gyyun-task-plugin</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>gyyun-task-all</module>
+        <module>gyyun-task-api</module>
+        <module>gyyun-task-shell</module>
+        <module>gyyun-task-datax</module>
+        <module>gyyun-task-flink</module>
+        <module>gyyun-task-grpc</module>
+        <module>gyyun-task-http</module>
+        <module>gyyun-task-mr</module>
+        <module>gyyun-task-python</module>
+        <module>gyyun-task-spark</module>
+        <module>gyyun-task-sql</module>
+        <module>gyyun-task-sqoop</module>
+        <module>gyyun-task-procedure</module>
+        <module>gyyun-task-seatunnel</module>
+        <module>gyyun-task-emr</module>
+        <module>gyyun-task-k8s</module>
+        <module>gyyun-task-zeppelin</module>
+        <module>gyyun-task-jupyter</module>
+        <module>gyyun-task-mlflow</module>
+        <module>gyyun-task-openmldb</module>
+        <module>gyyun-task-dvc</module>
+        <module>gyyun-task-dinky</module>
+        <module>gyyun-task-java</module>
+        <module>gyyun-task-sagemaker</module>
+        <module>gyyun-task-chunjun</module>
+        <module>gyyun-task-flink-stream</module>
+        <module>gyyun-task-hivecli</module>
+        <module>gyyun-task-dms</module>
+        <module>gyyun-task-datasync</module>
+        <module>gyyun-task-kubeflow</module>
+        <module>gyyun-task-linkis</module>
+        <module>gyyun-task-datafactory</module>
+        <module>gyyun-task-remoteshell</module>
+        <module>gyyun-task-aliyunserverlessspark</module>
+        <module>gyyun-task-emr-serverless</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.gyyun</groupId>
+                <artifactId>gyyun-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -12,7 +12,7 @@ You have to pay attention to the following open-source software protocols which 
 
 If the 3rd party software is not present at the above policy, we are sorry that your code can not pass the audit and we suggest searching for other substitute plans.
 
-Besides,  when you demand new dependencies in the project, please email us about the reason and the outcome of the influence to dev@dolphinscheduler.apache.org to discuss. Besides, you need at least 3 positive votes from the PPMC to finish the whole step.
+Besides,  when you demand new dependencies in the project, please email us about the reason and the outcome of the influence to dev@gyyun.apache.org to discuss. Besides, you need at least 3 positive votes from the PPMC to finish the whole step.
 
 ### How to Legally Use 3rd Party Open-source Software in the DolphinScheduler
 
@@ -31,9 +31,9 @@ In general, we would have our License-check scripts to our project. DolphinSched
 We need to follow the following steps when we need to add new jars or external resources:
 
 * Add the name and the version of the jar file in the known-dependencies.txt
-* Add relevant maven repository address under 'dolphinscheduler-dist/release-docs/LICENSE' directory
-* Append relevant NOTICE files under 'dolphinscheduler-dist/release-docs/NOTICE' directory and make sure they are no different to the original repository
-* Add relevant source code protocols under 'dolphinscheduler-dist/release-docs/license/' directory and the file name should be named as license+filename.txt. Eg: license-zk.txt
+* Add relevant maven repository address under 'gyyun-dist/release-docs/LICENSE' directory
+* Append relevant NOTICE files under 'gyyun-dist/release-docs/NOTICE' directory and make sure they are no different to the original repository
+* Add relevant source code protocols under 'gyyun-dist/release-docs/license/' directory and the file name should be named as license+filename.txt. Eg: license-zk.txt
 
 ### References
 

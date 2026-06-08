@@ -20,7 +20,7 @@ ds_ami_name = "my-test-ds-2"
 ds_version  = "3.1.1"
 
 # If you want to use a locally built distribution tar, set the `ds_tar` to the tar file location.
-ds_tar      = "~/workspace/dolphinscheduler/dolphinscheduler-dist/target/apache-dolphinscheduler-3.1.3-SNAPSHOT-bin.tar.gz"
+ds_tar      = "~/workspace/gyyun/gyyun-dist/target/apache-gyyun-3.1.3-SNAPSHOT-bin.tar.gz"
 EOF
 ```
 
@@ -75,7 +75,7 @@ terraform apply -var-file=terraform.tfvars -auto-approve
 # Open DolphinScheduler UI
 
 ```shell
-open http://$(terraform output -json api_server_instance_public_dns | jq -r '.[0]'):12345/dolphinscheduler/ui
+open http://$(terraform output -json api_server_instance_public_dns | jq -r '.[0]'):12345/gyyun/ui
 ```
 
 # Inputs
@@ -87,14 +87,14 @@ open http://$(terraform output -json api_server_instance_public_dns | jq -r '.[0
 | <a name="input_aws_secret_key"></a> [aws\_secret\_key](#input\_aws\_secret\_key) | AWS secret key | `string` | n/a | yes |
 | <a name="input_db_instance_class"></a> [db\_instance\_class](#input\_db\_instance\_class) | Database instance class | `string` | `"db.t3.micro"` | no |
 | <a name="input_db_password"></a> [db\_password](#input\_db\_password) | Database password | `string` | n/a | yes |
-| <a name="input_db_username"></a> [db\_username](#input\_db\_username) | Database username | `string` | `"dolphinscheduler"` | no |
-| <a name="input_ds_ami_name"></a> [ds\_ami\_name](#input\_ds\_ami\_name) | Name of DolphinScheduler AMI | `string` | `"dolphinscheduler-ami"` | no |
+| <a name="input_db_username"></a> [db\_username](#input\_db\_username) | Database username | `string` | `"gyyun"` | no |
+| <a name="input_ds_ami_name"></a> [ds\_ami\_name](#input\_ds\_ami\_name) | Name of DolphinScheduler AMI | `string` | `"gyyun-ami"` | no |
 | <a name="input_ds_component_replicas"></a> [ds\_component\_replicas](#input\_ds\_component\_replicas) | Replicas of the DolphinScheduler Components | `map(number)` | <pre>{<br>  "alert": 1,<br>  "api": 1,<br>  "master": 1,<br>  "standalone_server": 0,<br>  "worker": 1<br>}</pre> | no |
 | <a name="input_ds_version"></a> [ds\_version](#input\_ds\_version) | DolphinScheduler Version | `string` | `"3.1.1"` | no |
-| <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Name prefix for all resources | `string` | `"dolphinscheduler"` | no |
+| <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Name prefix for all resources | `string` | `"gyyun"` | no |
 | <a name="input_private_subnet_cidr_blocks"></a> [private\_subnet\_cidr\_blocks](#input\_private\_subnet\_cidr\_blocks) | Available CIDR blocks for private subnets | `list(string)` | <pre>[<br>  "10.0.101.0/24",<br>  "10.0.102.0/24",<br>  "10.0.103.0/24",<br>  "10.0.104.0/24"<br>]</pre> | no |
 | <a name="input_public_subnet_cidr_blocks"></a> [public\_subnet\_cidr\_blocks](#input\_public\_subnet\_cidr\_blocks) | CIDR blocks for the public subnets | `list(string)` | <pre>[<br>  "10.0.1.0/24",<br>  "10.0.2.0/24",<br>  "10.0.3.0/24",<br>  "10.0.4.0/24"<br>]</pre> | no |
-| <a name="input_s3_bucket_prefix"></a> [s3\_bucket\_prefix](#input\_s3\_bucket\_prefix) | n/a | `string` | `"dolphinscheduler-test-"` | no |
+| <a name="input_s3_bucket_prefix"></a> [s3\_bucket\_prefix](#input\_s3\_bucket\_prefix) | n/a | `string` | `"gyyun-test-"` | no |
 | <a name="input_subnet_count"></a> [subnet\_count](#input\_subnet\_count) | Number of subnets | `map(number)` | <pre>{<br>  "private": 2,<br>  "public": 1<br>}</pre> | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | <pre>{<br>  "Deployment": "Test"<br>}</pre> | no |
 | <a name="input_vm_associate_public_ip_address"></a> [vm\_associate\_public\_ip\_address](#input\_vm\_associate\_public\_ip\_address) | Associate a public IP address to the EC2 instance | `map(bool)` | <pre>{<br>  "alert": true,<br>  "api": true,<br>  "master": true,<br>  "standalone_server": true,<br>  "worker": true<br>}</pre> | no |

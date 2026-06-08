@@ -105,7 +105,7 @@ Please install [anaconda](https://docs.continuum.io/anaconda/install/) or [minic
 
 **Method A:**
 
-Config anaconda environment in `/dolphinscheduler/conf/env/dolphinscheduler_env.sh`.
+Config anaconda environment in `/gyyun/conf/env/gyyun_env.sh`.
 
 Add the following content to the file:
 
@@ -149,7 +149,7 @@ If you can't access github, you can modify the following fields in the `common.p
 
 ```yaml
 # mlflow task plugin preset repository
-ml.mlflow.preset_repository=https://github.com/apache/dolphinscheduler-mlflow
+ml.mlflow.preset_repository=https://github.com/apache/gyyun-mlflow
 # mlflow task plugin preset repository version
 ml.mlflow.preset_repository_version="main"
 ```

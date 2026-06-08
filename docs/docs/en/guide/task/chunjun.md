@@ -28,7 +28,7 @@ This example demonstrates importing data from Hive into MySQL.
 
 ### Configuring the ChunJun environment in DolphinScheduler
 
-If you are using the ChunJun task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: `/dolphinscheduler/conf/env/dolphinscheduler_env.sh`.
+If you are using the ChunJun task type in a production environment, it is necessary to configure the required environment first. The configuration file is as follows: `/gyyun/conf/env/gyyun_env.sh`.
 
 ![chunjun_task01](../../../../img/tasks/demo/chunjun_task01.png)
 

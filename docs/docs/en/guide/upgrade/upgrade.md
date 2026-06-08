@@ -12,14 +12,14 @@ To prevent data loss by some miss-operation, it is recommended to back up data b
 
 ### Download the Latest Version Installation Package
 
-Download the latest binary distribute package from [download](https://dolphinscheduler.apache.org/en-us/download) and then put it in the different
+Download the latest binary distribute package from [download](https://gyyun.apache.org/en-us/download) and then put it in the different
 directory where current service running. And all below command is running in this directory.
 
 ## Upgrade
 
 ### Stop All Services of DolphinScheduler
 
-Stop all services of dolphinscheduler according to your deployment method..
+Stop all services of gyyun according to your deployment method..
 
 ### Upgrade Database
 
@@ -31,7 +31,7 @@ jar package and add it to the `./tools/libs` directory, then export the followin
         ```shell
         export DATABASE=${DATABASE:-mysql}
         export SPRING_PROFILES_ACTIVE=${DATABASE}
-        export SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
+        export SPRING_DATASOURCE_URL="jdbc:mysql://127.0.0.1:3306/gyyun?useUnicode=true&characterEncoding=UTF-8&useSSL=false"
         export SPRING_DATASOURCE_USERNAME={user}
         export SPRING_DATASOURCE_PASSWORD={password}
         ```
@@ -44,14 +44,14 @@ After refactoring resource center in version 3.2.0, original resources become un
 
 #### Example
 
-Assign an existed target tenant `abc`, the base resource path is `/dolphinscheduler/abc/`.
+Assign an existed target tenant `abc`, the base resource path is `/gyyun/abc/`.
 
 Execute script: `sh ./tools/bin/migrate-resource.sh abc`.
 
 Execution result:
 
-- The original file resource `a/b.sh` migrates to `/dolphinscheduler/abc/resources/.migrate/a/b.sh`.
-- The original UDF resource `x/y.jar` migrates to `/dolphinscheduler/abc/udf/.migrate/x/y.jar`.
+- The original file resource `a/b.sh` migrates to `/gyyun/abc/resources/.migrate/a/b.sh`.
+- The original UDF resource `x/y.jar` migrates to `/gyyun/abc/udf/.migrate/x/y.jar`.
 - Update UDF function's bound resource info.
 
 ### Upgrade Lineage

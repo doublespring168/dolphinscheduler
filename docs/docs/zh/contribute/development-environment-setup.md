@@ -15,9 +15,9 @@
 通过你 git 管理工具下载 git 代码，下面以 git-core 为例
 
 ```shell
-mkdir dolphinscheduler
-cd dolphinscheduler
-git clone git@github.com:apache/dolphinscheduler.git
+mkdir gyyun
+cd gyyun
+git clone git@github.com:apache/gyyun.git
 ```
 
 ### 编译源码
@@ -57,7 +57,7 @@ DolphinScheduler使用`pnpm`检查并修复前端代码风格和格式问题。
 首先，进入前端项目文件夹：
 
 ```shell
-cd dolphinscheduler-ui
+cd gyyun-ui
 ```
 
 然后，运行以下命令来自动修复 ESLint 可修复的问题，并格式化代码。
@@ -78,13 +78,13 @@ pnpm exec vue-tsc --noEmit  # 类型检查
 当您修改了Helm模板相关的文件后， 可以使用如下命令来调试 Helm 模板：
 
 ```shell
-helm template ./deploy/kubernetes/dolphinscheduler --debug 
+helm template ./deploy/kubernetes/gyyun --debug 
 ```
 
 Helm模板调试通过之后，需要使用如下命令来自动更新README.md文件（手动更新很可能格式不符合要求）：
 
 ```shell
-./mvnw validate -P helm-doc -pl :dolphinscheduler
+./mvnw validate -P helm-doc -pl :gyyun
 ```
 
 ## Docker镜像构建
@@ -97,7 +97,7 @@ DolphinScheduler 每次发版都会同时发布 Docker 镜像，你可以在 [Do
 > -Prelease 不包含插件，适合生产环境，有能访问插件的网络可以按需下载
 
 ```shell
-cd dolphinscheduler
+cd gyyun
 ./mvnw -B clean package \
        -Dmaven.test.skip \
        -Dspotless.skip=true \
@@ -110,7 +110,7 @@ cd dolphinscheduler
 * 如果你想基于源码进行改造，然后构建Docker镜像并推送到 <HUB_URL>，可以在代码改造完成后运行
 
 ```shell
-cd dolphinscheduler
+cd gyyun
 ./mvnw -B clean deploy \
        -Dmaven.test.skip \
        -Dspotless.skip = true \
@@ -122,7 +122,7 @@ cd dolphinscheduler
 * 如果你不仅需要改造源码，还想要自定义 Docker 镜像打包的依赖，可以在修改源码的同时修改 Dockerfile 的定义。你可以运行以下命令找到所有的 Dockerfile 文件
 
 ```shell
-cd dolphinscheduler
+cd gyyun
 find . -iname 'Dockerfile'
 ```
 
@@ -131,7 +131,7 @@ find . -iname 'Dockerfile'
 * 如果你因为个性化需求想要自己打包 Docker 镜像，最佳实践是基于 DolphinScheduler 对应镜像编写 Dockerfile 文件
 
 ```Dockerfile
-FROM dolphinscheduler-standalone-server
+FROM gyyun-standalone-server
 RUN apt update ; \
     apt install -y <YOUR-CUSTOM-DEPENDENCE> ; \
 ```
@@ -144,8 +144,8 @@ RUN apt update ; \
 
 DolphinScheduler 开发环境配置有两个方式，分别是standalone模式，以及普通模式
 
-* [standalone模式](#dolphinscheduler-standalone快速开发模式)：**推荐使用，但仅支持 1.3.9 及以后的版本**，方便快速的开发环境搭建，能解决大部分场景的开发
-* [普通模式](#dolphinscheduler-普通开发模式)：master、worker、api等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多
+* [standalone模式](#gyyun-standalone快速开发模式)：**推荐使用，但仅支持 1.3.9 及以后的版本**，方便快速的开发环境搭建，能解决大部分场景的开发
+* [普通模式](#gyyun-普通开发模式)：master、worker、api等单独启动，能更好的的模拟真实生产环境，可以覆盖的测试环境更多
 
 ## DolphinScheduler Standalone快速开发模式
 
@@ -162,7 +162,7 @@ DolphinScheduler 开发环境配置有两个方式，分别是standalone模式�
 
 ### 启动后端
 
-在 IntelliJ IDEA 找到并启动类 `org.apache.dolphinscheduler.StandaloneServer` 即可完成后端启动
+在 IntelliJ IDEA 找到并启动类 `org.apache.gyyun.StandaloneServer` 即可完成后端启动
 
 > 注意：启动前请在启动配置里将 `Add dependencies with "provided" scope to classpath` 选项勾选上，这样可以避免启动时找不到依赖的问题
 
@@ -170,7 +170,7 @@ DolphinScheduler 开发环境配置有两个方式，分别是standalone模式�
 
 安装前端依赖并运行前端组件
 
-> 注意：你可以在[frontend development](https://github.com/apache/dolphinscheduler/blob/dev/dolphinscheduler-ui/README.md)里查看更多前端的相关配置
+> 注意：你可以在[frontend development](https://github.com/apache/gyyun/blob/dev/gyyun-ui/README.md)里查看更多前端的相关配置
 
 在运行前端组件前，如果你还没有安装`pnpm`，可以使用以下命令安装：
 
@@ -181,12 +181,12 @@ npm install -g pnpm
 确保`pnpm`已经安装完成后，运行以下命令：
 
 ```shell
-cd dolphinscheduler-ui
+cd gyyun-ui
 pnpm install
 pnpm run dev
 ```
 
-截止目前，前后端已成功运行起来，浏览器访问[http://localhost:5173](http://localhost:5173)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录
+截止目前，前后端已成功运行起来，浏览器访问[http://localhost:5173](http://localhost:5173)，并使用默认账户密码 **admin/gyyun123** 即可完成登录
 
 ## DolphinScheduler 普通开发模式
 
@@ -207,9 +207,9 @@ pnpm run dev
 
 #### 数据库
 
-DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 PostgreSQL。下面以MySQL为例，启动数据库并创建新 database 作为 DolphinScheduler 元数据库，这里以数据库名 dolphinscheduler 为例
+DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关系型数据库包括 MySQL 以及 PostgreSQL。下面以MySQL为例，启动数据库并创建新 database 作为 DolphinScheduler 元数据库，这里以数据库名 gyyun 为例
 
-创建完新数据库后，将 `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql/dolphinscheduler_mysql.sql` 下的 sql 文件直接在 MySQL 中运行，完成数据库初始化
+创建完新数据库后，将 `gyyun/gyyun-dao/src/main/resources/sql/gyyun_mysql.sql` 下的 sql 文件直接在 MySQL 中运行，完成数据库初始化
 
 #### 启动后端
 
@@ -221,30 +221,30 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
 
 * 必要的修改
 
-  * 如果使用 MySQL 作为元数据库，需要先修改 `dolphinscheduler-bom/pom.xml`，将 `mysql-connector-j` 依赖的 `scope` 改为 `compile`，使用 PostgreSQL 则不需要
-  * 修改 Master 数据库配置，修改 `dolphinscheduler-master/src/main/resources/application.yaml` 文件中的数据库配置
-  * 修改 Api 数据库配置，修改 `dolphinscheduler-api/src/main/resources/application.yaml` 文件中的数据库配置
-  * 修改 Alert 数据库配置，修改 `dolphinscheduler-alert/dolphinscheduler-alert-server/src/main/resources/application.yaml` 文件中的数据库配置
+  * 如果使用 MySQL 作为元数据库，需要先修改 `gyyun-bom/pom.xml`，将 `mysql-connector-j` 依赖的 `scope` 改为 `compile`，使用 PostgreSQL 则不需要
+  * 修改 Master 数据库配置，修改 `gyyun-master/src/main/resources/application.yaml` 文件中的数据库配置
+  * 修改 Api 数据库配置，修改 `gyyun-api/src/main/resources/application.yaml` 文件中的数据库配置
+  * 修改 Alert 数据库配置，修改 `gyyun-alert/gyyun-alert-server/src/main/resources/application.yaml` 文件中的数据库配置
 
-  本样例以 MySQL 为例，其中数据库名为 dolphinscheduler，账户名密码均为 dolphinscheduler
+  本样例以 MySQL 为例，其中数据库名为 gyyun，账户名密码均为 gyyun
 
   ```application.yaml
   spring:
     datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/dolphinscheduler?useUnicode=true&characterEncoding=UTF-8
-      username: dolphinscheduler
-      password: dolphinscheduler
+      url: jdbc:mysql://127.0.0.1:3306/gyyun?useUnicode=true&characterEncoding=UTF-8
+      username: gyyun
+      password: gyyun
   ```
 
 ##### 启动服务
 
 我们需要启动三个服务，包括 MasterServer，WorkerServer，ApiApplicationServer
 
-* MasterServer：在 IntelliJ IDEA 中执行 `org.apache.dolphinscheduler.server.master.MasterServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true -Dspring.profiles.active=mysql`
-* WorkerServer：在 IntelliJ IDEA 中执行 `org.apache.dolphinscheduler.server.worker.WorkerServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true`
-* AlertServer：在 IntelliJ IDEA 中执行 `org.apache.dolphinscheduler.alert.AlertServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true -Dspring.profiles.active=mysql`
-* ApiApplicationServer：在 IntelliJ IDEA 中执行 `org.apache.dolphinscheduler.api.ApiApplicationServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true -Dspring.profiles.active=mysql`。启动完成可以浏览 Open API 文档，地址为 http://localhost:12345/dolphinscheduler/swagger-ui/index.html
+* MasterServer：在 IntelliJ IDEA 中执行 `org.apache.gyyun.server.master.MasterServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true -Dspring.profiles.active=mysql`
+* WorkerServer：在 IntelliJ IDEA 中执行 `org.apache.gyyun.server.worker.WorkerServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true`
+* AlertServer：在 IntelliJ IDEA 中执行 `org.apache.gyyun.alert.AlertServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true -Dspring.profiles.active=mysql`
+* ApiApplicationServer：在 IntelliJ IDEA 中执行 `org.apache.gyyun.api.ApiApplicationServer` 中的 `main` 方法，并配置 *VM Options* `-DDOCKER=true -Dspring.profiles.active=mysql`。启动完成可以浏览 Open API 文档，地址为 http://localhost:12345/gyyun/swagger-ui/index.html
 
 > VM Options `-Dspring.profiles.active=mysql` 中 `mysql` 表示指定的配置文件
 
@@ -253,9 +253,9 @@ DolphinScheduler 的元数据存储在关系型数据库中，目前支持的关
 安装前端依赖并运行前端组件
 
 ```shell
-cd dolphinscheduler-ui
+cd gyyun-ui
 pnpm install
 pnpm run dev
 ```
 
-截止目前，前后端已成功运行起来，浏览器访问[http://localhost:5173](http://localhost:5173)，并使用默认账户密码 **admin/dolphinscheduler123** 即可完成登录
+截止目前，前后端已成功运行起来，浏览器访问[http://localhost:5173](http://localhost:5173)，并使用默认账户密码 **admin/gyyun123** 即可完成登录

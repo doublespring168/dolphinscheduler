@@ -14,7 +14,7 @@ DSIP 的目的是通知社区完成或即将完成的重大变更。
 
 作为 DSIP，它应该包含如下部分：
 
-- 在 [dev@dolphinscheduler.apache.org][mail-to-dev] 中有一个以 `[DISCUSS][DSIP` 为开头的邮件。
+- 在 [dev@gyyun.apache.org][mail-to-dev] 中有一个以 `[DISCUSS][DSIP` 为开头的邮件。
 - 有一个打了 "DSIP" 标签的 GitHub Issue，并在描述中包含邮链接。
 
 ### 当前的 DSIPs
@@ -42,7 +42,7 @@ integer in [All DSIPs][all-DSIPs] issues.
 
 ### 发送讨论邮件
 
-在您的问题被标记为 "DSIP" 后，您应该发送电子邮件至 [dev@dolphinscheduler.apache.org][mail-to-dev] 描述提案的目的，以及设计草案。
+在您的问题被标记为 "DSIP" 后，您应该发送电子邮件至 [dev@gyyun.apache.org][mail-to-dev] 描述提案的目的，以及设计草案。
 
 下面是邮件的模板
 
@@ -77,10 +77,10 @@ integer in [All DSIPs][all-DSIPs] issues.
 
 * [[DSIP-1][Feature][Parent] Add Python API for DolphinScheduler][DSIP-1]: 有多个子任务和项目。
 
-[all-DSIPs]: https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+label%3A%22DSIP%22+
-[current-DSIPs]: https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+is%3Aopen+label%3A%22DSIP%22
-[past-DSIPs]: https://github.com/apache/dolphinscheduler/issues?q=is%3Aissue+is%3Aclosed+label%3A%22DSIP%22+
-[github-issue-choose]: https://github.com/apache/dolphinscheduler/issues/new/choose
-[mail-to-dev]: mailto:dev@dolphinscheduler.apache.org
-[DSIP-1]: https://github.com/apache/dolphinscheduler/issues/6407
+[all-DSIPs]: https://github.com/apache/gyyun/issues?q=is%3Aissue+label%3A%22DSIP%22+
+[current-DSIPs]: https://github.com/apache/gyyun/issues?q=is%3Aissue+is%3Aopen+label%3A%22DSIP%22
+[past-DSIPs]: https://github.com/apache/gyyun/issues?q=is%3Aissue+is%3Aclosed+label%3A%22DSIP%22+
+[github-issue-choose]: https://github.com/apache/gyyun/issues/new/choose
+[mail-to-dev]: mailto:dev@gyyun.apache.org
+[DSIP-1]: https://github.com/apache/gyyun/issues/6407
 

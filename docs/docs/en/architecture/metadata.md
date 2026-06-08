@@ -2,7 +2,7 @@
 
 ## Table Schema
 
-see sql files in `dolphinscheduler/dolphinscheduler-dao/src/main/resources/sql`
+see sql files in `gyyun/gyyun-dao/src/main/resources/sql`
 
 ---
 

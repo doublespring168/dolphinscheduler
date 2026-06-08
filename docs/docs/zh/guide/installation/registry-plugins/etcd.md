@@ -11,16 +11,16 @@ registry:
   type: etcd
   endpoints: "http://etcd0:2379, http://etcd1:2379, http://etcd2:2379"
   # The options below have default values
-  namespace: dolphinscheduler
+  namespace: gyyun
   connection-timeout: 9s
   # The unit is milliseconds
   retry-delay: 60ms
   retry-max-delay: 300ms
   retry-max-duration: 1500ms
   # The following ssl options are set according to personal needs
-  cert-file: "deploy/kubernetes/dolphinscheduler/etcd-certs/ca.crt"
-  key-cert-chain-file: "deploy/kubernetes/dolphinscheduler/etcd-certs/client.crt"
-  key-file: "deploy/kubernetes/dolphinscheduler/etcd-certs/client.pem"
+  cert-file: "deploy/kubernetes/gyyun/etcd-certs/ca.crt"
+  key-cert-chain-file: "deploy/kubernetes/gyyun/etcd-certs/client.crt"
+  key-file: "deploy/kubernetes/gyyun/etcd-certs/client.pem"
   # The following auth options are set according to personal needs
   user: ""
   password: ""

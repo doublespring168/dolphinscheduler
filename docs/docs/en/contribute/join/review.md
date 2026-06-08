@@ -1,6 +1,6 @@
 # Community Review
 
-Beside submit Issues and pull requests to the GitHub repository mentioned in [team](https://dolphinscheduler.apache.org/en-us/community), another important way to
+Beside submit Issues and pull requests to the GitHub repository mentioned in [team](https://gyyun.apache.org/en-us/community), another important way to
 contribute to DolphinScheduler is reviewing GitHub Issues or Pull Requests. You can not only know the latest new and
 direction of the community, but also understand the good design in others during you reviewing. At the same time, you can
 increase your exposure in the community and accumulate your honor.
@@ -12,7 +12,7 @@ in [GitHub Discussion][discussion-result-review-wanted].
 > Note: It is only users mentioned in the [GitHub Discussion][discussion-result-review-wanted] can review Issues or Pull
 > Requests, Community advocates **Anyone is encouraged to review Issues and Pull Requests**. Users in
 > [GitHub Discussion][discussion-result-review-wanted] show their willing to review when we collect in the mail thread.
-> The advantage of this list is when the community has discussion, in addition to the mention Members in [team](https://dolphinscheduler.apache.org/en-us/community),
+> The advantage of this list is when the community has discussion, in addition to the mention Members in [team](https://gyyun.apache.org/en-us/community),
 > you can also find some help in [GitHub Discussion][discussion-result-review-wanted] people. If you want to join the
 > [GitHub Discussion][discussion-result-review-wanted], please comment in that discussion and leave a module you are interested
 > in, and the maintainer will add you to the list.
@@ -119,37 +119,37 @@ Pull Requests have some unique labels of it own
 > We encourage everyone in the community to review Pull Requests
 
 [mail-review-wanted]: https://lists.apache.org/thread/9flwlzrp69xjn6v8tdkbytq8glqp2k51
-[discussion-result-review-wanted]: https://github.com/apache/dolphinscheduler/discussions/7545
-[label-wontfix]: https://github.com/apache/dolphinscheduler/labels/wontfix
-[label-duplicate]: https://github.com/apache/dolphinscheduler/labels/duplicate
-[label-need-more-information]: https://github.com/apache/dolphinscheduler/labels/need%20more%20information
-[label-win-os]: https://github.com/apache/dolphinscheduler/labels/win-os
-[label-waiting-for-reply]: https://github.com/apache/dolphinscheduler/labels/Waiting%20for%20reply
-[label-waiting-for-review]: https://github.com/apache/dolphinscheduler/labels/Waiting%20for%20review
-[label-user-experience]: https://github.com/apache/dolphinscheduler/labels/user%20experience
-[label-development]: https://github.com/apache/dolphinscheduler/labels/development
-[label-ui]: https://github.com/apache/dolphinscheduler/labels/UI
-[label-suggestion]: https://github.com/apache/dolphinscheduler/labels/suggestion
-[label-security]: https://github.com/apache/dolphinscheduler/labels/security
-[label-python]: https://github.com/apache/dolphinscheduler/labels/Python
-[label-plug-in]: https://github.com/apache/dolphinscheduler/labels/plug-in
-[label-document]: https://github.com/apache/dolphinscheduler/labels/document
-[label-docker]: https://github.com/apache/dolphinscheduler/labels/docker
-[label-all-list]: https://github.com/apache/dolphinscheduler/labels
-[label-chore]: https://github.com/apache/dolphinscheduler/labels/Chore
-[label-good-first-issue]: https://github.com/apache/dolphinscheduler/labels/good%20first%20issue
-[label-help-wanted]: https://github.com/apache/dolphinscheduler/labels/help%20wanted
-[label-easy-to-fix]: https://github.com/apache/dolphinscheduler/labels/easy%20to%20fix
-[label-priority-high]: https://github.com/apache/dolphinscheduler/labels/priority%3Ahigh
-[label-priority-middle]: https://github.com/apache/dolphinscheduler/labels/priority%3Amiddle
-[label-priority-low]: https://github.com/apache/dolphinscheduler/labels/priority%3Alow
-[label-miss-document]: https://github.com/apache/dolphinscheduler/labels/miss%20document
-[label-first-time-contributor]: https://github.com/apache/dolphinscheduler/labels/first%20time%20contributor
-[label-do-not-merge]: https://github.com/apache/dolphinscheduler/labels/don%27t%20merge
-[label-e2e]: https://github.com/apache/dolphinscheduler/labels/e2e
-[label-need-verify]: https://github.com/apache/dolphinscheduler/labels/need%20to%20verify
-[issue-choose]: https://github.com/apache/dolphinscheduler/issues/new/choose
-[all-issues]: https://github.com/apache/dolphinscheduler/issues
-[all-prs]: https://github.com/apache/dolphinscheduler/pulls
+[discussion-result-review-wanted]: https://github.com/apache/gyyun/discussions/7545
+[label-wontfix]: https://github.com/apache/gyyun/labels/wontfix
+[label-duplicate]: https://github.com/apache/gyyun/labels/duplicate
+[label-need-more-information]: https://github.com/apache/gyyun/labels/need%20more%20information
+[label-win-os]: https://github.com/apache/gyyun/labels/win-os
+[label-waiting-for-reply]: https://github.com/apache/gyyun/labels/Waiting%20for%20reply
+[label-waiting-for-review]: https://github.com/apache/gyyun/labels/Waiting%20for%20review
+[label-user-experience]: https://github.com/apache/gyyun/labels/user%20experience
+[label-development]: https://github.com/apache/gyyun/labels/development
+[label-ui]: https://github.com/apache/gyyun/labels/UI
+[label-suggestion]: https://github.com/apache/gyyun/labels/suggestion
+[label-security]: https://github.com/apache/gyyun/labels/security
+[label-python]: https://github.com/apache/gyyun/labels/Python
+[label-plug-in]: https://github.com/apache/gyyun/labels/plug-in
+[label-document]: https://github.com/apache/gyyun/labels/document
+[label-docker]: https://github.com/apache/gyyun/labels/docker
+[label-all-list]: https://github.com/apache/gyyun/labels
+[label-chore]: https://github.com/apache/gyyun/labels/Chore
+[label-good-first-issue]: https://github.com/apache/gyyun/labels/good%20first%20issue
+[label-help-wanted]: https://github.com/apache/gyyun/labels/help%20wanted
+[label-easy-to-fix]: https://github.com/apache/gyyun/labels/easy%20to%20fix
+[label-priority-high]: https://github.com/apache/gyyun/labels/priority%3Ahigh
+[label-priority-middle]: https://github.com/apache/gyyun/labels/priority%3Amiddle
+[label-priority-low]: https://github.com/apache/gyyun/labels/priority%3Alow
+[label-miss-document]: https://github.com/apache/gyyun/labels/miss%20document
+[label-first-time-contributor]: https://github.com/apache/gyyun/labels/first%20time%20contributor
+[label-do-not-merge]: https://github.com/apache/gyyun/labels/don%27t%20merge
+[label-e2e]: https://github.com/apache/gyyun/labels/e2e
+[label-need-verify]: https://github.com/apache/gyyun/labels/need%20to%20verify
+[issue-choose]: https://github.com/apache/gyyun/issues/new/choose
+[all-issues]: https://github.com/apache/gyyun/issues
+[all-prs]: https://github.com/apache/gyyun/pulls
 [gh-review-pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews
 

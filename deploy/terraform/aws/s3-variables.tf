@@ -17,5 +17,5 @@
 
 variable "s3_bucket_prefix" {
   type    = string
-  default = "dolphinscheduler-test-"
+  default = "gyyun-test-"
 }

@@ -39,7 +39,7 @@ variable "ds_tar" {
 variable "ds_ami_name" {
   type        = string
   description = "Name of DolphinScheduler AMI"
-  default     = "dolphinscheduler-ami"
+  default     = "gyyun-ami"
 }
 
 packer {
@@ -71,12 +71,12 @@ source "amazon-ebs" "linux" {
 }
 
 build {
-  name    = "dolphinscheduler-ami"
+  name    = "gyyun-ami"
   sources = ["source.amazon-ebs.linux"]
 
   provisioner "file" {
     source      = var.ds_tar
-    destination = "~/dolphinscheduler.tar.gz"
+    destination = "~/gyyun.tar.gz"
   }
 
   provisioner "shell" {
@@ -84,9 +84,9 @@ build {
       "sudo yum remove -y java",
       "sudo yum install -y java-1.8.0-amazon-corretto.x86_64",
       "echo 'export JAVA_HOME=/etc/alternatives/jre' | sudo tee /etc/profile.d/java_home.sh",
-      "sudo mkdir -p /opt/dolphinscheduler",
-      "sudo tar zxvf /home/ec2-user/dolphinscheduler.tar.gz --strip-components 1 -C /opt/dolphinscheduler",
-      "sudo find /opt/dolphinscheduler/ -name start.sh | xargs -I{} sudo chmod +x {}",
+      "sudo mkdir -p /opt/gyyun",
+      "sudo tar zxvf /home/ec2-user/gyyun.tar.gz --strip-components 1 -C /opt/gyyun",
+      "sudo find /opt/gyyun/ -name start.sh | xargs -I{} sudo chmod +x {}",
     ]
   }
 
