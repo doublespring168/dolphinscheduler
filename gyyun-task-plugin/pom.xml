@@ -41,7 +41,6 @@
         <module>gyyun-task-sqoop</module>
         <module>gyyun-task-procedure</module>
         <module>gyyun-task-seatunnel</module>
-        <module>gyyun-task-emr</module>
         <module>gyyun-task-k8s</module>
         <module>gyyun-task-zeppelin</module>
         <module>gyyun-task-jupyter</module>
@@ -50,18 +49,14 @@
         <module>gyyun-task-dvc</module>
         <module>gyyun-task-dinky</module>
         <module>gyyun-task-java</module>
-        <module>gyyun-task-sagemaker</module>
         <module>gyyun-task-chunjun</module>
         <module>gyyun-task-flink-stream</module>
         <module>gyyun-task-hivecli</module>
-        <module>gyyun-task-dms</module>
-        <module>gyyun-task-datasync</module>
         <module>gyyun-task-kubeflow</module>
         <module>gyyun-task-linkis</module>
         <module>gyyun-task-datafactory</module>
         <module>gyyun-task-remoteshell</module>
         <module>gyyun-task-aliyunserverlessspark</module>
-        <module>gyyun-task-emr-serverless</module>
     </modules>
 
     <dependencyManagement>

@@ -29,7 +29,6 @@
     <modules>
         <module>gyyun-storage-api</module>
         <module>gyyun-storage-all</module>
-        <module>gyyun-storage-s3</module>
         <module>gyyun-storage-hdfs</module>
         <module>gyyun-storage-oss</module>
         <module>gyyun-storage-gcs</module>

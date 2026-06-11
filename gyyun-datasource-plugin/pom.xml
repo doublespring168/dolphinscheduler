@@ -39,8 +39,6 @@
         <module>gyyun-datasource-presto</module>
         <module>gyyun-datasource-api</module>
         <module>gyyun-datasource-all</module>
-        <module>gyyun-datasource-redshift</module>
-        <module>gyyun-datasource-athena</module>
         <module>gyyun-datasource-kyuubi</module>
         <module>gyyun-datasource-trino</module>
         <module>gyyun-datasource-starrocks</module>
@@ -52,7 +50,6 @@
         <module>gyyun-datasource-snowflake</module>
         <module>gyyun-datasource-vertica</module>
         <module>gyyun-datasource-doris</module>
-        <module>gyyun-datasource-sagemaker</module>
         <module>gyyun-datasource-k8s</module>
         <module>gyyun-datasource-hana</module>
         <module>gyyun-datasource-aliyunserverlessspark</module>

@@ -107,18 +107,6 @@
 
         <dependency>
             <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-task-emr</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-task-emr-serverless</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-task-zeppelin</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -167,12 +155,6 @@
 
         <dependency>
             <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-task-sagemaker</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-task-hivecli</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -180,18 +162,6 @@
         <dependency>
             <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-task-chunjun</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-task-dms</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-task-datasync</artifactId>
             <version>${project.version}</version>
         </dependency>
 

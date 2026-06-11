@@ -73,16 +73,6 @@
         </dependency>
         <dependency>
             <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-datasource-redshift</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-datasource-athena</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-spark</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -140,11 +130,6 @@
         <dependency>
             <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-datasource-doris</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-datasource-sagemaker</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

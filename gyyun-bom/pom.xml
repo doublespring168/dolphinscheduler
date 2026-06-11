@@ -102,8 +102,6 @@
         <aspectj.version>1.9.7</aspectj.version>
         <trino-jdbc.version>402</trino-jdbc.version>
         <azure-identity.version>1.7.1</azure-identity.version>
-        <redshift-jdbc42.version>2.1.0.9</redshift-jdbc42.version>
-        <aws-java-sdk-redshift.version>1.12.300</aws-java-sdk-redshift.version>
         <azure-resourcemanager.version>2.21.0</azure-resourcemanager.version>
         <azure-resourcemanager-datafactory.version>1.0.0-beta.19</azure-resourcemanager-datafactory.version>
         <snowflake-jdbc.version>3.13.29</snowflake-jdbc.version>
@@ -466,7 +464,6 @@
                 <groupId>com.mysql</groupId>
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql-connector.version}</version>
-                <scope>test</scope>
             </dependency>
 
             <dependency>
@@ -749,32 +746,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-emr</artifactId>
-                <version>${aws-sdk.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-emrserverless</artifactId>
-                <version>${aws-sdk.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-s3</artifactId>
-                <version>${aws-sdk.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-sagemaker</artifactId>
-                <version>${aws-sdk.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-dms</artifactId>
-                <version>${aws-sdk.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun-sdk-oss.version}</version>
@@ -858,13 +829,6 @@
                 <artifactId>snakeyaml</artifactId>
                 <version>${snakeyaml.version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/datasync -->
-            <dependency>
-                <groupId>software.amazon.awssdk</groupId>
-                <artifactId>datasync</artifactId>
-                <version>${datasync.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
@@ -885,18 +849,6 @@
                 <groupId>com.azure.resourcemanager</groupId>
                 <artifactId>azure-resourcemanager-datafactory</artifactId>
                 <version>${azure-resourcemanager-datafactory.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.amazon.redshift</groupId>
-                <artifactId>redshift-jdbc42</artifactId>
-                <version>${redshift-jdbc42.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-redshift</artifactId>
-                <version>${aws-java-sdk-redshift.version}</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.fabric8</groupId>

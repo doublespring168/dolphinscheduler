@@ -35,8 +35,6 @@ public class RemoteLogHandlerFactory {
         String target = PropertyUtils.getUpperCaseString(Constants.REMOTE_LOGGING_TARGET);
         if ("OSS".equals(target)) {
             return OssRemoteLogHandler.getInstance();
-        } else if ("S3".equals(target)) {
-            return S3RemoteLogHandler.getInstance();
         } else if ("GCS".equals(target)) {
             return GcsRemoteLogHandler.getInstance();
         } else if ("ABS".equals(target)) {

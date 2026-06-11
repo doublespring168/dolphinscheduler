@@ -40,12 +40,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- gyyun -->
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-aws-authentication</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>

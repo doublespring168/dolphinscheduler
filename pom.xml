@@ -312,12 +312,6 @@
 
             <dependency>
                 <groupId>com.gyyun.ds</groupId>
-                <artifactId>gyyun-aws-authentication</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.gyyun.ds</groupId>
                 <artifactId>gyyun-actuator-authentication</artifactId>
                 <version>${project.version}</version>
             </dependency>

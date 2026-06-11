@@ -33,11 +33,6 @@
         </dependency>
         <dependency>
             <groupId>com.gyyun.ds</groupId>
-            <artifactId>gyyun-storage-s3</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.gyyun.ds</groupId>
             <artifactId>gyyun-storage-hdfs</artifactId>
             <version>${project.version}</version>
         </dependency>

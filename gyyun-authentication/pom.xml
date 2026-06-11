@@ -27,7 +27,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>gyyun-aws-authentication</module>
         <module>gyyun-actuator-authentication</module>
     </modules>
 

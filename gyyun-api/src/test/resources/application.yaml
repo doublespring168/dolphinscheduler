@@ -46,7 +46,7 @@ registry:
   type: zookeeper
   zookeeper:
     namespace: gyyun
-    connect-string: localhost:2181
+    connect-string: localhost:4206
     retry-policy:
       base-sleep-time: 60ms
       max-sleep: 300ms

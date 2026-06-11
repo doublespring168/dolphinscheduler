@@ -68,13 +68,48 @@
         </encoder>
     </appender>
 
-    <root level="INFO">
-        <if condition="${DOCKER:-false}">
-            <then>
-                <appender-ref ref="STDOUT"/>
-            </then>
-        </if>
-        <appender-ref ref="TASKLOGFILE"/>
-        <appender-ref ref="WORKERLOGFILE"/>
+
+
+    <!-- 按照每天生成日志文件 -->
+    <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <file>${LOG_PATH}/${APP_NAME}/info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--&lt;!&ndash; 日志文件输出的文件名 &ndash;&gt;!-->
+            <FileNamePattern>${LOG_PATH}/${APP_NAME}/info/info.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+            <!--&lt;!&ndash; 日志文件最大的保存历史 数量&ndash;&gt;!-->
+            <maxFileSize>200MB</maxFileSize>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+
+    </appender>
+
+
+    <appender name="ASYNC_STDOUT" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <includeCallerData>true</includeCallerData>
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <appender name="ASYNC_FILE_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>512</queueSize>
+        <includeCallerData>true</includeCallerData>
+        <appender-ref ref="FILE_INFO"/>
+    </appender>
+
+
+    <root level="debug">
+        <appender-ref ref="ASYNC_STDOUT"/>
+        <appender-ref ref="ASYNC_FILE_INFO"/>
     </root>
+
 </configuration>
