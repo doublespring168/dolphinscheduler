@@ -1,4 +1,14 @@
 #!/bin/bash
+###
+ # @Author: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @Date: 2026-06-08 19:14:37
+ # @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @LastEditTime: 2026-06-13 18:15:05
+ # @FilePath: /ala-ds/gyyun-dist/src/main/assembly/assembly-plugins.sh
+ # @Description: 
+ # 
+ # Copyright (c) 2026 by 【 tech.darcy.zhang@outlook.com 】, All Rights Reserved. 
+### 
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -20,14 +30,14 @@ set -xeo pipefail
 PLUGINS_ASSEMBLY_SKIP=$1
 
 DIST_DIR="$(pwd)/target"
-BIN_TAR_FILE="$DIST_DIR/apache-gyyun-*-bin.tar.gz"
+BIN_TAR_FILE="$DIST_DIR/gyyun-*-bin.tar.gz"
 if [ ! -f $BIN_TAR_FILE ]; then
   echo "$BIN_TAR_FILE not found!!!"
   exit 1
 fi
 
-cd $DIST_DIR && tar -zxf apache-gyyun-*-bin.tar.gz
-cd $DIST_DIR/apache-gyyun-*-bin
+cd $DIST_DIR && tar -zxf gyyun-*-bin.tar.gz
+cd $DIST_DIR/gyyun-*-bin
 BIN_DIR=$(pwd)
 
 # move *-plugins/target/*-plugin/target/*.jar to *-plugins/
@@ -79,6 +89,6 @@ cd $BIN_DIR/standalone-server && ln -s ../tools/sql/sql sql
 
 # repack bin tar
 BIN_TAR_FILE_NAME=$(basename $BIN_TAR_FILE)
-cd $DIST_DIR && tar -zcf $BIN_TAR_FILE_NAME apache-gyyun-*-bin
+cd $DIST_DIR && tar -zcf $BIN_TAR_FILE_NAME gyyun-*-bin
 
 echo "assembly-plugins.sh done"
