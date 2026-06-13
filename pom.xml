@@ -675,7 +675,7 @@
 
     <profiles>
         <profile>
-            <id>apache-release</id>
+            <id>gyyun-release</id>
             <build>
                 <plugins>
                     <plugin>

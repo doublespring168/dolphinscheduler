@@ -28,8 +28,8 @@
     <name>${project.artifactId}</name>
 
     <properties>
-        <node.version>v16.14.0</node.version>
-        <pnpm.version>v7.1.0</pnpm.version>
+        <node.version>v20.19.0</node.version>
+        <pnpm.version>v10.28.1</pnpm.version>
         <sonar.sources>src</sonar.sources>
         <frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
     </properties>
