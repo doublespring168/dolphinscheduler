@@ -1,4 +1,14 @@
 #!/bin/bash
+###
+ # @Author: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @Date: 2026-06-08 19:14:37
+ # @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @LastEditTime: 2026-06-13 19:38:49
+ # @FilePath: /ala-ds/gyyun-dist/src/main/docker/docker-push.sh
+ # @Description: 
+ # 
+ # Copyright (c) 2026 by 【 tech.darcy.zhang@outlook.com 】, All Rights Reserved. 
+### 
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -19,13 +29,13 @@ set -xeo pipefail
 
 DOCKER_HUB=$1
 DOCKER_TAG=$2
-DOCKER_REPO_BASE=gyyun
+DOCKER_REPO_BASE=$3
 
 CURRENT_HOME=$(dirname $(readlink -f "$0"))
 
-docker buildx build --push --no-cache --platform linux/amd64,linux/arm64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG -f ${CURRENT_HOME}/api-server.dockerfile .
-docker buildx build --push --platform linux/amd64,linux/arm64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG -f ${CURRENT_HOME}/master-server.dockerfile .
-docker buildx build --push --platform linux/amd64,linux/arm64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-worker:$DOCKER_TAG -f ${CURRENT_HOME}/worker-server.dockerfile .
-docker buildx build --push --platform linux/amd64,linux/arm64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-alert-server:$DOCKER_TAG -f ${CURRENT_HOME}/alert-server.dockerfile .
-docker buildx build --push --platform linux/amd64,linux/arm64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-standalone-server:$DOCKER_TAG -f ${CURRENT_HOME}/standalone-server.dockerfile .
-docker buildx build --push --platform linux/amd64,linux/arm64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-tools:$DOCKER_TAG -f ${CURRENT_HOME}/tools.dockerfile .
+docker buildx build --push --no-cache --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG -f ${CURRENT_HOME}/api-server.dockerfile .
+docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG -f ${CURRENT_HOME}/master-server.dockerfile .
+docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-worker:$DOCKER_TAG -f ${CURRENT_HOME}/worker-server.dockerfile .
+docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-alert-server:$DOCKER_TAG -f ${CURRENT_HOME}/alert-server.dockerfile .
+docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-standalone-server:$DOCKER_TAG -f ${CURRENT_HOME}/standalone-server.dockerfile .
+docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-tools:$DOCKER_TAG -f ${CURRENT_HOME}/tools.dockerfile .

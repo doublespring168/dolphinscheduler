@@ -15,22 +15,29 @@
 # limitations under the License.
 #
 
-FROM eclipse-temurin:8-jdk
+FROM r.gyykj.com/gyy-base/alpine-jdk:8-amd64
 
 ENV DOCKER=true
 ENV TZ=Asia/Shanghai
-ENV DOLPHINSCHEDULER_HOME=/opt/gyyun
+ENV DOLPHINSCHEDULER_HOME=/gyy_program
 
-RUN apt update ; \
-    apt install -y sudo ; \
-    rm -rf /var/lib/apt/lists/*
+# RUN apk add --no-cache bash sudo tzdata && \
+RUN addgroup -g 2025 -S gyy && \
+    adduser gyy -D -G gyy -u 2025 -s /bin/sh && \
+    mkdir -p /gyy_workspace /gyy_program
 
 WORKDIR $DOLPHINSCHEDULER_HOME
 
-COPY ./target/apache-gyyun-*-bin.tar.gz $DOLPHINSCHEDULER_HOME
-RUN tar -zxvf apache-gyyun-*-bin.tar.gz --strip-components=1 ; \
-    rm -f apache-gyyun-*-bin.tar.gz
+COPY ./target/gyyun-*-bin.tar.gz $DOLPHINSCHEDULER_HOME
+RUN tar -zxvf gyyun-*-bin.tar.gz --strip-components=1 && \
+    rm -f gyyun-*-bin.tar.gz && \
+    chown -R gyy /gyy_workspace && \
+    chgrp -R gyy /gyy_workspace && \
+    chown -R gyy /gyy_program && \
+    chgrp -R gyy /gyy_program
+
+USER gyy
 
 EXPOSE 12345 25333
 
-CMD [ "/bin/bash", "/opt/gyyun/worker-server/bin/start.sh" ]
+CMD [ "/bin/bash", "/gyy_program/worker-server/bin/start.sh" ]

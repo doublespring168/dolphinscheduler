@@ -17,5 +17,8 @@
 
 FROM apache/gyyun-standalone-server:ci
 
-RUN apt update \
-    && apt install -y --no-install-recommends python3
+USER root
+
+RUN apk add --no-cache python3
+
+USER gyy
