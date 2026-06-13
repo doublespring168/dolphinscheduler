@@ -15,16 +15,14 @@
 # limitations under the License.
 #
 
-FROM r.gyykj.com/gyy-base/alpine-jdk:8-amd64
+FROM r.gyykj.com/gyy-base/openeuler-jdk:1.8-amd64
 
 ENV DOCKER=true
 ENV TZ=Asia/Shanghai
 ENV DOLPHINSCHEDULER_HOME=/gyy_program
 
 # RUN apk add --no-cache bash sudo tzdata && \
-RUN addgroup -g 2025 -S gyy && \
-    adduser gyy -D -G gyy -u 2025 -s /bin/sh && \
-    mkdir -p /gyy_workspace /gyy_program
+RUN mkdir -p /gyy_workspace /gyy_program
 
 WORKDIR $DOLPHINSCHEDULER_HOME
 
@@ -34,10 +32,11 @@ RUN tar -zxvf gyyun-*-bin.tar.gz --strip-components=1 && \
     chown -R gyy /gyy_workspace && \
     chgrp -R gyy /gyy_workspace && \
     chown -R gyy /gyy_program && \
-    chgrp -R gyy /gyy_program
+    chgrp -R gyy /gyy_program && \
+    chmod +x -R /gyy_program/master-server/bin
 
 USER gyy
 
 EXPOSE 12345 25333
 
-CMD [ "/bin/bash", "/gyy_program/master-server/bin/start.sh" ]
+CMD [ "/bin/sh", "/gyy_program/master-server/bin/start.sh" ]

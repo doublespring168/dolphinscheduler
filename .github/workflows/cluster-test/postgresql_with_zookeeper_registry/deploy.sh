@@ -1,4 +1,14 @@
-#!/bin/bash
+#!/bin/sh
+###
+ # @Author: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @Date: 2026-06-08 14:40:07
+ # @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @LastEditTime: 2026-06-13 20:59:22
+ # @FilePath: /ala-ds/.github/workflows/cluster-test/postgresql_with_zookeeper_registry/deploy.sh
+ # @Description: 
+ # 
+ # Copyright (c) 2026 by 【 tech.darcy.zhang@outlook.com 】, All Rights Reserved. 
+### 
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with

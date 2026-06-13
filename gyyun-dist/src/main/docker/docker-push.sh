@@ -32,10 +32,32 @@ DOCKER_TAG=$2
 DOCKER_REPO_BASE=$3
 
 CURRENT_HOME=$(dirname $(readlink -f "$0"))
+DOCKER_IMAGES_HOME=${CURRENT_HOME}/../../../docker-images
+
+mkdir -p "$DOCKER_IMAGES_HOME"
+
+save_image() {
+  local image_name=$1
+  local archive_name=$2
+
+  docker pull --platform linux/amd64 "$image_name"
+  docker save "$image_name" | gzip -c > "$DOCKER_IMAGES_HOME/$archive_name.tgz"
+}
 
 docker buildx build --push --no-cache --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG -f ${CURRENT_HOME}/api-server.dockerfile .
+save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG" "$DOCKER_REPO_BASE-api"
+
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG -f ${CURRENT_HOME}/master-server.dockerfile .
+save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG" "$DOCKER_REPO_BASE-master"
+
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-worker:$DOCKER_TAG -f ${CURRENT_HOME}/worker-server.dockerfile .
+save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-worker:$DOCKER_TAG" "$DOCKER_REPO_BASE-worker"
+
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-alert-server:$DOCKER_TAG -f ${CURRENT_HOME}/alert-server.dockerfile .
+save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-alert-server:$DOCKER_TAG" "$DOCKER_REPO_BASE-alert-server"
+
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-standalone-server:$DOCKER_TAG -f ${CURRENT_HOME}/standalone-server.dockerfile .
+save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-standalone-server:$DOCKER_TAG" "$DOCKER_REPO_BASE-standalone-server"
+
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-tools:$DOCKER_TAG -f ${CURRENT_HOME}/tools.dockerfile .
+save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-tools:$DOCKER_TAG" "$DOCKER_REPO_BASE-tools"

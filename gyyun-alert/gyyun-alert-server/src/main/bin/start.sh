@@ -1,4 +1,14 @@
-#!/bin/bash
+#!/bin/sh
+###
+ # @Author: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @Date: 2026-06-08 19:43:03
+ # @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
+ # @LastEditTime: 2026-06-13 20:57:36
+ # @FilePath: /ala-ds/gyyun-alert/gyyun-alert-server/src/main/bin/start.sh
+ # @Description: 
+ # 
+ # Copyright (c) 2026 by 【 tech.darcy.zhang@outlook.com 】, All Rights Reserved. 
+### 
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
