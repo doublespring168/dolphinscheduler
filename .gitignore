@@ -61,4 +61,4 @@ docs/superpowers/
 .claude/worktrees
 CLAUDE.local.md
 AGENT.local.md
-gyyun-ui/node/
+gyyun-ui/node/**
