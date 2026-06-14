@@ -19,6 +19,8 @@ import {
   defineComponent,
   getCurrentInstance,
   onMounted,
+  onUnmounted,
+  ref,
   toRefs,
   withKeys
 } from 'vue'
@@ -46,6 +48,19 @@ import type {
   OidcProvider
 } from '@/service/modules/login/types'
 
+const websites = [
+  { name: '中文站', url: 'gyyun.com', flag: 'cn' },
+  { name: '英语站', url: 'us.gyyun.com', flag: 'en' },
+  { name: '俄语站', url: 'ru.gyyun.com', flag: 'ru' }
+]
+
+const formatDateTime = (date: Date) => {
+  const pad = (value: number) => String(value).padStart(2, '0')
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+    date.getDate()
+  )} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+}
+
 const login = defineComponent({
   name: 'login',
   setup() {
@@ -69,8 +84,22 @@ const login = defineComponent({
     }
 
     const trim = getCurrentInstance()?.appContext.config.globalProperties.trim
+    const currentTime = ref(formatDateTime(new Date()))
+    let timer: number | undefined
 
     cookies.set('language', localesStore.getLocales, { path: '/' })
+
+    onMounted(() => {
+      timer = window.setInterval(() => {
+        currentTime.value = formatDateTime(new Date())
+      }, 1000)
+    })
+
+    onUnmounted(() => {
+      if (timer) {
+        window.clearInterval(timer)
+      }
+    })
 
     onMounted(async () => {
       const ssoLoginUrlRes = await ssoLoginUrl()
@@ -99,6 +128,7 @@ const login = defineComponent({
       ...toRefs(state),
       localesStore,
       trim,
+      currentTime,
       oauth2Providers,
       oidcProviders,
       gotoOAuth2Page
@@ -107,123 +137,231 @@ const login = defineComponent({
   render() {
     return (
       <div class={styles.container}>
-        <div class={styles['language-switch']}>
-          <NSwitch
-            onUpdateValue={this.handleChange}
-            default-value={this.localesStore.getLocales}
-            checked-value='en_US'
-            unchecked-value='zh_CN'
-          >
-            {{
-              checked: () => 'en_US',
-              unchecked: () => 'zh_CN'
-            }}
-          </NSwitch>
-        </div>
-        <div class={styles['login-model']}>
-          <div class={styles.logo}>
-            <div class={styles['logo-text']}>GYYun 作业中枢平台</div>
-          </div>
-          <div
-            class={styles['form-model']}
-            v-show={this.loginForm.ssoLoginUrl.length === 0}
-          >
-            <NForm rules={this.rules} ref='loginFormRef'>
-              <NFormItem
-                label={this.t('login.userName')}
-                label-style={{ color: 'var(--ala-color-navy)' }}
-                path='userName'
-              >
-                <NInput
-                  allowInput={this.trim}
-                  class='input-user-name'
-                  type='text'
-                  size='large'
-                  v-model={[this.loginForm.userName, 'value']}
-                  placeholder={this.t('login.userName_tips')}
-                  autofocus
-                  onKeydown={withKeys(this.handleLogin, ['enter'])}
-                />
-              </NFormItem>
-              <NFormItem
-                label={this.t('login.userPassword')}
-                label-style={{ color: 'var(--ala-color-navy)' }}
-                path='userPassword'
-              >
-                <NInput
-                  allowInput={this.trim}
-                  class='input-password'
-                  type='password'
-                  size='large'
-                  v-model={[this.loginForm.userPassword, 'value']}
-                  placeholder={this.t('login.userPassword_tips')}
-                  onKeydown={withKeys(this.handleLogin, ['enter'])}
-                />
-              </NFormItem>
-            </NForm>
-            <NButton
-              class='btn-login'
-              round
-              type='info'
-              disabled={
-                !this.loginForm.userName || !this.loginForm.userPassword
-              }
-              style={{ width: '100%' }}
-              onClick={this.handleLogin}
-            >
-              {this.t('login.login')}
-            </NButton>
-          </div>
-          <div
-            class={styles['form-model']}
-            v-show={this.loginForm.ssoLoginUrl.length !== 0}
-          >
-            <a href={this.loginForm.ssoLoginUrl} style='text-decoration:none'>
-              <NButton
-                class='btn-login-sso'
-                round
-                type='info'
-                style={{ width: '100%', marginTop: '30px' }}
-                onClick={this.handleLogin}
-              >
-                {this.t('login.ssoLogin')}
-              </NButton>
-            </a>
-          </div>
-          {(this.oauth2Providers.length > 0 ||
-            this.oidcProviders.length > 0) && (
-            <NDivider>{this.t('login.loginWithOAuth2')}</NDivider>
-          )}
-
-          <NSpace class={styles['oauth2-provider']} justify='center'>
-            {this.oauth2Providers?.map((e: OAuth2Provider) => {
-              return e.iconUri ? (
-                <div onClick={() => this.gotoOAuth2Page(e)}>
-                  <NImage preview-disabled width='30' src={e.iconUri}></NImage>{' '}
+        <header class={styles['top-panel']}>
+          <div class={styles.websites}>
+            {websites.map((item) => (
+              <div class={styles.website} key={item.url}>
+                <div class={styles['website-icon']}>
+                  <svg viewBox='0 0 24 24' aria-hidden='true'>
+                    {item.flag === 'cn' && (
+                      <>
+                        <rect width='24' height='24' rx='12' fill='#ffffff' />
+                        <path
+                          d='M4 5.6L5.1 8.9H8.6L5.8 11l1.1 3.3L4 12.3 1.1 14.3 2.2 11 0 8.9h3.5z'
+                          fill='#ffde00'
+                        />
+                        <rect x='11.4' y='4.8' width='2.2' height='14.4' rx='1.1' fill='#d52b1e' />
+                        <rect x='16.8' y='6.4' width='2.2' height='11.2' rx='1.1' fill='#d52b1e' />
+                        <rect x='14.1' y='9.2' width='4.9' height='2.2' rx='1.1' fill='#d52b1e' />
+                        <rect x='13.1' y='6.1' width='2' height='2' rx='1' fill='#d52b1e' />
+                        <rect x='17.2' y='10.2' width='2' height='2' rx='1' fill='#d52b1e' />
+                        <rect x='13.1' y='14.2' width='2' height='2' rx='1' fill='#d52b1e' />
+                        <rect x='17.2' y='14.2' width='2' height='2' rx='1' fill='#d52b1e' />
+                      </>
+                    )}
+                    {item.flag === 'en' && (
+                      <>
+                        <rect width='24' height='24' rx='12' fill='#012169' />
+                        <path d='M0 3.5L3.5 0H6L0 6zM24 3.5L20.5 0H18L24 6zM0 20.5L3.5 24H6l-6-6zM24 20.5L20.5 24H18l6-6z' fill='#ffffff' />
+                        <path d='M9 0h6v9h9v6h-9v9H9v-9H0V9h9z' fill='#ffffff' />
+                        <path d='M10.6 0h2.8v24h-2.8zM0 10.6h24v2.8H0z' fill='#c8102e' />
+                      </>
+                    )}
+                    {item.flag === 'ru' && (
+                      <>
+                        <rect width='24' height='24' rx='12' fill='#0039a6' />
+                        <rect y='8' width='24' height='8' fill='#d52b1e' />
+                        <rect y='0' width='24' height='8' fill='#ffffff' />
+                      </>
+                    )}
+                  </svg>
                 </div>
-              ) : (
-                <NButton onClick={() => this.gotoOAuth2Page(e)}>
-                  {e.provider}
-                </NButton>
-              )
-            })}
-            {this.oidcProviders?.map((e: OidcProvider) => {
-              const authUrl = `/gyyun/oauth2/authorization/${e.id}`
-              return (
-                <a href={authUrl} class={styles['oidc-provider-link']}>
-                  <NButton block class={styles['oidc-provider-btn']}>
-                    <div class={styles['oidc-btn-content']}>
-                      {e.iconUri && (
-                        <img src={e.iconUri} class={styles['oidc-btn-icon']} />
-                      )}
-                      <span>{e.displayName}</span>
-                    </div>
+                <div>
+                  <span class={styles['website-name']}>{item.name}</span>
+                  <a
+                    class={styles.url}
+                    target='_blank'
+                    rel='noreferrer'
+                    href={`https://${item.url}`}
+                  >
+                    {item.url}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class={styles['company-info']}>
+            <span>深圳市谷雨云科技有限公司</span>
+            <span>( GYYun Technologies Co.,Ltd. )</span>
+          </div>
+          <div class={styles['top-actions']}>
+            <span class={styles['current-date-time']}>当前时间：{this.currentTime}</span>
+            <span class={styles['phone-number']}>400-800-9202</span>
+            <NSwitch
+              onUpdateValue={this.handleChange}
+              default-value={this.localesStore.getLocales}
+              checked-value='en_US'
+              unchecked-value='zh_CN'
+            >
+              {{
+                checked: () => 'en_US',
+                unchecked: () => 'zh_CN'
+              }}
+            </NSwitch>
+          </div>
+        </header>
+
+        <main class={styles['login-layout']}>
+          <div class={styles.title}>
+            <h1>GYYun 作业中枢平台</h1>
+          </div>
+          <section class={styles['section-left']}>
+            <h2>领先的作业调度与数据处理中枢平台。</h2>
+            <p>
+              GYYun
+              作业中枢平台面向企业级数据处理、业务批量作业、实时任务、离线计算和跨系统流程协同场景，提供统一的任务编排、依赖管理、调度执行、资源管控、运行监控、告警通知、日志追踪和权限治理能力。平台能够帮助研发、数据、运维和业务团队在同一工作台中管理作业全生命周期，从任务创建、参数配置、发布上线、周期运行到异常恢复形成闭环，减少分散脚本、人工巡检和重复运维带来的不确定性。通过标准化的作业模型、可视化的运行视图和稳定的调度能力，企业可以更清晰地掌握核心任务状态，更快速地定位问题，更可靠地保障关键链路按时完成。平台坚持安全、稳定、高效、可扩展的建设理念，支持多项目、多环境、多角色协同使用，持续降低系统建设成本和日常运维复杂度，为企业数字化运营提供可信赖的作业中枢支撑。
+            </p>
+          </section>
+
+          <section class={styles['section-right']}>
+            <div class={styles['form-stack']}>
+              <div class={styles['form-background-2']} />
+              <div class={styles['form-background-1']} />
+              <div class={styles['login-model']}>
+                <div class={styles.logo}>
+                  <div class={styles['logo-text']}>GYYun 作业中枢平台</div>
+                  <h3>欢迎回来</h3>
+                </div>
+                <div
+                  class={styles['form-model']}
+                  v-show={this.loginForm.ssoLoginUrl.length === 0}
+                >
+                  <NForm rules={this.rules} ref='loginFormRef'>
+                    <NFormItem
+                      label={this.t('login.userName')}
+                      label-style={{ color: '#333333' }}
+                      path='userName'
+                    >
+                      <NInput
+                        allowInput={this.trim}
+                        class='input-user-name'
+                        type='text'
+                        size='large'
+                        v-model={[this.loginForm.userName, 'value']}
+                        placeholder={this.t('login.userName_tips')}
+                        autofocus
+                        onKeydown={withKeys(this.handleLogin, ['enter'])}
+                      />
+                    </NFormItem>
+                    <NFormItem
+                      label={this.t('login.userPassword')}
+                      label-style={{ color: '#333333' }}
+                      path='userPassword'
+                    >
+                      <NInput
+                        allowInput={this.trim}
+                        class='input-password'
+                        type='password'
+                        size='large'
+                        v-model={[this.loginForm.userPassword, 'value']}
+                        placeholder={this.t('login.userPassword_tips')}
+                        onKeydown={withKeys(this.handleLogin, ['enter'])}
+                      />
+                    </NFormItem>
+                  </NForm>
+                  <NButton
+                    class='btn-login'
+                    round
+                    type='info'
+                    disabled={
+                      !this.loginForm.userName || !this.loginForm.userPassword
+                    }
+                    style={{ width: '100%' }}
+                    onClick={this.handleLogin}
+                  >
+                    {this.t('login.login')}
                   </NButton>
-                </a>
-              )
-            })}
-          </NSpace>
-        </div>
+                </div>
+                <div
+                  class={styles['form-model']}
+                  v-show={this.loginForm.ssoLoginUrl.length !== 0}
+                >
+                  <a
+                    href={this.loginForm.ssoLoginUrl}
+                    style='text-decoration:none'
+                  >
+                    <NButton
+                      class='btn-login-sso'
+                      round
+                      type='info'
+                      style={{ width: '100%', marginTop: '30px' }}
+                      onClick={this.handleLogin}
+                    >
+                      {this.t('login.ssoLogin')}
+                    </NButton>
+                  </a>
+                </div>
+                {(this.oauth2Providers.length > 0 ||
+                  this.oidcProviders.length > 0) && (
+                  <NDivider>{this.t('login.loginWithOAuth2')}</NDivider>
+                )}
+
+                <NSpace class={styles['oauth2-provider']} justify='center'>
+                  {this.oauth2Providers?.map((e: OAuth2Provider) => {
+                    return e.iconUri ? (
+                      <div onClick={() => this.gotoOAuth2Page(e)}>
+                        <NImage
+                          preview-disabled
+                          width='30'
+                          src={e.iconUri}
+                        ></NImage>{' '}
+                      </div>
+                    ) : (
+                      <NButton onClick={() => this.gotoOAuth2Page(e)}>
+                        {e.provider}
+                      </NButton>
+                    )
+                  })}
+                  {this.oidcProviders?.map((e: OidcProvider) => {
+                    const authUrl = `/gyyun/oauth2/authorization/${e.id}`
+                    return (
+                      <a href={authUrl} class={styles['oidc-provider-link']}>
+                        <NButton block class={styles['oidc-provider-btn']}>
+                          <div class={styles['oidc-btn-content']}>
+                            {e.iconUri && (
+                              <img
+                                src={e.iconUri}
+                                class={styles['oidc-btn-icon']}
+                              />
+                            )}
+                            <span>{e.displayName}</span>
+                          </div>
+                        </NButton>
+                      </a>
+                    )
+                  })}
+                </NSpace>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class={styles.bottom}>
+          <p class={styles['remark-cn']}>
+            深圳市谷雨云科技有限公司致力于构建透明、公开的商业合作环境，以尊重并保护合作伙伴和自身共同利益。为此，公司也希望与合作伙伴共同遵守所有适用的法律法规，包括联合国安理会、中国、美国、欧盟等，以上感谢。
+          </p>
+          <p class={styles['remark-en']}>
+            GYYun is committed to building an open, transparent business
+            community. We value and aim to protect mutual interests of both
+            cooperative partners and GYYun .To this end, GYYun works together
+            with cooperative partners to comply with all applicable laws and
+            regulations of the United Nations Security Council, China, United
+            States, and the European Union, Thanks.
+          </p>
+          <p class={styles.copyright}>
+            @Copyright 2025~{new Date().getFullYear()} 深圳市谷雨云科技有限公司
+          </p>
+        </footer>
       </div>
     )
   }
