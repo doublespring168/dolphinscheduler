@@ -65,6 +65,7 @@ services:
       - gyyun-logs:/opt/gyyun/logs
       - gyyun-shared-local:/opt/soft
       - gyyun-resource-local:/gyyun
+      - ${GYUN_PLUGINS:-./plugins}:/gyy_program/plugins:ro
     networks:
       - gyyun
 
@@ -87,6 +88,7 @@ services:
       - gyyun-logs:/opt/gyyun/logs
       - gyyun-shared-local:/opt/soft
       - gyyun-resource-local:/gyyun
+      - ${GYUN_PLUGINS:-./plugins}:/gyy_program/plugins:ro
     networks:
       - gyyun
 
@@ -104,6 +106,7 @@ services:
         condition: service_healthy
     volumes:
       - gyyun-logs:/opt/gyyun/logs
+      - ${GYUN_PLUGINS:-./plugins}:/gyy_program/plugins:ro
     networks:
       - gyyun
 
@@ -122,6 +125,7 @@ services:
     volumes:
       - gyyun-logs:/opt/gyyun/logs
       - gyyun-shared-local:/opt/soft
+      - ${GYUN_PLUGINS:-./plugins}:/gyy_program/plugins:ro
     networks:
       - gyyun
 
@@ -142,6 +146,7 @@ services:
       - gyyun-logs:/opt/gyyun/logs
       - gyyun-shared-local:/opt/soft
       - gyyun-resource-local:/gyyun
+      - ${GYUN_PLUGINS:-./plugins}:/gyy_program/plugins:ro
     networks:
       - gyyun
 

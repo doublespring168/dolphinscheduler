@@ -30,14 +30,19 @@ set -xeo pipefail
 PLUGINS_ASSEMBLY_SKIP=$1
 
 DIST_DIR="$(pwd)/target"
-BIN_TAR_FILE="$DIST_DIR/gyyun-*-bin.tar.gz"
-if [ ! -f $BIN_TAR_FILE ]; then
-  echo "$BIN_TAR_FILE not found!!!"
+BIN_TAR_FILE=$(find "$DIST_DIR" -maxdepth 1 -type f -name '*gyyun*bin.tar.gz' -print -quit)
+if [ -z "$BIN_TAR_FILE" ]; then
+  echo "$DIST_DIR/*gyyun*bin.tar.gz not found!!!"
   exit 1
 fi
 
-cd $DIST_DIR && tar -zxf gyyun-*-bin.tar.gz
-cd $DIST_DIR/gyyun-*-bin
+cd $DIST_DIR && tar -zxf "$BIN_TAR_FILE"
+BIN_DIR=$(find "$DIST_DIR" -maxdepth 1 -type d -name '*gyyun*bin' -print -quit)
+if [ -z "$BIN_DIR" ]; then
+  echo "$DIST_DIR/*gyyun*bin not found!!!"
+  exit 1
+fi
+cd "$BIN_DIR"
 BIN_DIR=$(pwd)
 
 # move *-plugins/target/*-plugin/target/*.jar to *-plugins/
@@ -88,7 +93,7 @@ done
 cd $BIN_DIR/standalone-server && ln -s ../tools/sql/sql sql
 
 # repack bin tar
-BIN_TAR_FILE_NAME=$(basename $BIN_TAR_FILE)
-cd $DIST_DIR && tar -zcf $BIN_TAR_FILE_NAME gyyun-*-bin
+BIN_TAR_FILE_NAME=$(basename "$BIN_TAR_FILE")
+cd $DIST_DIR && tar -zcf "$BIN_TAR_FILE_NAME" "$(basename "$BIN_DIR")"
 
 echo "assembly-plugins.sh done"

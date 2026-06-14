@@ -15,6 +15,20 @@
 # limitations under the License.
 #
 
+FROM r.gyykj.com/gyy-base/openeuler-jdk:1.8-amd64 AS gyyun-dist
+
+WORKDIR /tmp/gyyun-dist
+
+COPY ./target/*gyyun-*-bin.tar.gz /tmp/gyyun-bin.tar.gz
+RUN tar -zxf /tmp/gyyun-bin.tar.gz -C /tmp/gyyun-dist --strip-components=1 --exclude='*/plugins/*' && \
+    rm -f /tmp/gyyun-bin.tar.gz && \
+    rm -rf /tmp/gyyun-dist/plugins && \
+    mkdir -p \
+      /tmp/gyyun-dist/plugins/alert-plugins \
+      /tmp/gyyun-dist/plugins/datasource-plugins \
+      /tmp/gyyun-dist/plugins/storage-plugins \
+      /tmp/gyyun-dist/plugins/task-plugins
+
 FROM r.gyykj.com/gyy-base/openeuler-jdk:1.8-amd64
 
 ENV DOCKER=true
@@ -26,10 +40,11 @@ RUN mkdir -p /gyy_workspace /gyy_program
 
 WORKDIR $DOLPHINSCHEDULER_HOME
 
-COPY ./target/gyyun-*-bin.tar.gz $DOLPHINSCHEDULER_HOME
-RUN tar -zxvf gyyun-*-bin.tar.gz --strip-components=1 && \
-    rm -f gyyun-*-bin.tar.gz && \
-    chown -R gyy /gyy_workspace && \
+COPY --from=gyyun-dist /tmp/gyyun-dist/libs ./libs
+COPY --from=gyyun-dist /tmp/gyyun-dist/plugins ./plugins
+COPY --from=gyyun-dist /tmp/gyyun-dist/api-server ./api-server
+
+RUN chown -R gyy /gyy_workspace && \
     chgrp -R gyy /gyy_workspace && \
     chown -R gyy /gyy_program && \
     chgrp -R gyy /gyy_program && \

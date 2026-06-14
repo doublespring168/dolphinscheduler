@@ -29,6 +29,7 @@ node_modules
 npm-debug.log
 .vscode
 logs/*
+deploy/docker/plugins/
 .mvn/
 .www
 t.*

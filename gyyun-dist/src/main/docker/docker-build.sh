@@ -22,6 +22,29 @@ DOCKER_TAG=$2
 DOCKER_REPO_BASE=gyyun
 
 CURRENT_HOME=$(dirname $(readlink -f "$0"))
+DIST_TARGET_DIR="${CURRENT_HOME}/../../../target"
+PLUGIN_VOLUME_DIR=${PLUGIN_VOLUME_DIR:-"${CURRENT_HOME}/../../../../deploy/docker/plugins"}
+
+prepare_plugin_volume_dir() {
+  local plugin_source
+
+  plugin_source=$(find "${DIST_TARGET_DIR}" -maxdepth 2 -type d -path "${DIST_TARGET_DIR}/*gyyun-*-bin/plugins" -print -quit)
+
+  rm -rf "${PLUGIN_VOLUME_DIR}"
+  mkdir -p \
+    "${PLUGIN_VOLUME_DIR}/alert-plugins" \
+    "${PLUGIN_VOLUME_DIR}/datasource-plugins" \
+    "${PLUGIN_VOLUME_DIR}/storage-plugins" \
+    "${PLUGIN_VOLUME_DIR}/task-plugins"
+
+  if [ -n "${plugin_source}" ]; then
+    cp -a "${plugin_source}/." "${PLUGIN_VOLUME_DIR}/"
+  fi
+
+  echo "Prepared plugin bind mount directory: ${PLUGIN_VOLUME_DIR}"
+}
+
+prepare_plugin_volume_dir
 
 docker buildx build --load --no-cache -t $DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG -t $DOCKER_HUB/$DOCKER_REPO_BASE-api:latest -f ${CURRENT_HOME}/api-server.dockerfile .
 docker buildx build --load -t $DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG -t $DOCKER_HUB/$DOCKER_REPO_BASE-master:latest -f ${CURRENT_HOME}/master-server.dockerfile .
