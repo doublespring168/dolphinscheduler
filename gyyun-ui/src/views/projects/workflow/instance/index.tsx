@@ -112,7 +112,7 @@ export default defineComponent({
               v-model:checked-row-keys={this.checkedRowKeys}
               row-class-name='items-workflow-instances'
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 v-model:page={this.page}
                 v-model:page-size={this.pageSize}

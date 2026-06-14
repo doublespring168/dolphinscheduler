@@ -152,7 +152,7 @@ const list = defineComponent({
               scrollX={this.tableWidth}
               row-class-name='items'
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 v-model:page={this.page}
                 v-model:page-size={this.pageSize}

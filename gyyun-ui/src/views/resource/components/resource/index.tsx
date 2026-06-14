@@ -266,7 +266,7 @@ export default defineComponent({
                   row-class-name='items'
                   scrollX={tableWidth}
                 />
-                <NSpace justify='center'>
+                <NSpace justify='end'>
                   <NPagination
                     v-model:page={this.pagination.page}
                     v-model:pageSize={this.pagination.pageSize}

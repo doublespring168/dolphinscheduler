@@ -100,7 +100,7 @@ const UsersManage = defineComponent({
               loading={this.loading}
               scrollX={this.columnsRef.tableWidth}
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 v-model:page={this.page}
                 v-model:page-size={this.pageSize}

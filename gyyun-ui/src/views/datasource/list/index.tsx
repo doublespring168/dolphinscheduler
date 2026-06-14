@@ -168,7 +168,7 @@ const list = defineComponent({
               striped
               scrollX={columns.tableWidth}
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 page={page}
                 page-size={pageSize}

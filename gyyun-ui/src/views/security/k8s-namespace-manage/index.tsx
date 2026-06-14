@@ -132,7 +132,7 @@ const k8sNamespaceManage = defineComponent({
               data={this.tableData}
               scrollX={this.tableWidth}
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 v-model:page={this.page}
                 v-model:page-size={this.pageSize}

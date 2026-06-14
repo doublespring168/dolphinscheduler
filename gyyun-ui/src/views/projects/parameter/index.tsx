@@ -147,7 +147,7 @@ export default defineComponent({
               size={'small'}
               scrollX={this.tableWidth}
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 v-model:page={this.page}
                 v-model:page-size={this.pageSize}

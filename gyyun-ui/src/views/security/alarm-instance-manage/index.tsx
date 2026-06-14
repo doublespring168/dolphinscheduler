@@ -148,7 +148,7 @@ const AlarmInstanceManage = defineComponent({
               loading={loading}
               striped
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 page={page}
                 page-size={pageSize}

@@ -166,7 +166,7 @@ const AuditLog = defineComponent({
               scrollX={this.tableWidth}
               data={this.tableData}
             />
-            <NSpace justify='center'>
+            <NSpace justify='end'>
               <NPagination
                 v-model:page={this.page}
                 v-model:page-size={this.pageSize}
