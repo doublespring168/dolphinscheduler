@@ -3,7 +3,7 @@
  # @Author: darcy.zhang , tech.darcy.zhang@outlook.com
  # @Date: 2026-06-08 19:14:37
  # @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
- # @LastEditTime: 2026-06-13 19:38:49
+ # @LastEditTime: 2026-06-14 10:24:05
  # @FilePath: /ala-ds/gyyun-dist/src/main/docker/docker-push.sh
  # @Description: 
  # 
@@ -44,20 +44,22 @@ save_image() {
   docker save "$image_name" | gzip -c > "$DOCKER_IMAGES_HOME/$archive_name.tgz"
 }
 
+docker rmi $DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG 
 docker buildx build --push --no-cache --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG -f ${CURRENT_HOME}/api-server.dockerfile .
 save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-api:$DOCKER_TAG" "$DOCKER_REPO_BASE-api"
 
+docker rmi $DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG 
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG -f ${CURRENT_HOME}/master-server.dockerfile .
 save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-master:$DOCKER_TAG" "$DOCKER_REPO_BASE-master"
 
+docker rmi $DOCKER_HUB/$DOCKER_REPO_BASE-worker:$DOCKER_TAG 
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-worker:$DOCKER_TAG -f ${CURRENT_HOME}/worker-server.dockerfile .
 save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-worker:$DOCKER_TAG" "$DOCKER_REPO_BASE-worker"
 
+docker rmi $DOCKER_HUB/$DOCKER_REPO_BASE-alert-server:$DOCKER_TAG 
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-alert-server:$DOCKER_TAG -f ${CURRENT_HOME}/alert-server.dockerfile .
 save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-alert-server:$DOCKER_TAG" "$DOCKER_REPO_BASE-alert-server"
 
-docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-standalone-server:$DOCKER_TAG -f ${CURRENT_HOME}/standalone-server.dockerfile .
-save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-standalone-server:$DOCKER_TAG" "$DOCKER_REPO_BASE-standalone-server"
-
+docker rmi $DOCKER_HUB/$DOCKER_REPO_BASE-tools:$DOCKER_TAG 
 docker buildx build --push --platform linux/amd64 -t $DOCKER_HUB/$DOCKER_REPO_BASE-tools:$DOCKER_TAG -f ${CURRENT_HOME}/tools.dockerfile .
 save_image "$DOCKER_HUB/$DOCKER_REPO_BASE-tools:$DOCKER_TAG" "$DOCKER_REPO_BASE-tools"
