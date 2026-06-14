@@ -21,11 +21,13 @@ import com.gyyun.ds.api.interceptor.LocaleChangeInterceptor;
 import com.gyyun.ds.api.interceptor.LoginHandlerInterceptor;
 import com.gyyun.ds.api.interceptor.RateLimitInterceptor;
 
+import java.io.File;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -48,9 +50,13 @@ public class AppConfiguration implements WebMvcConfigurer {
     public static final String REGISTER_PATH_PATTERN = "/users/register";
     public static final String PATH_PATTERN = "/**";
     public static final String LOCALE_LANGUAGE_COOKIE = "language";
+    private static final String DOLPHINSCHEDULER_HOME = "DOLPHINSCHEDULER_HOME";
 
     @Autowired
     private ApiConfig apiConfig;
+
+    @Autowired
+    private Environment environment;
 
     @Bean
     public CorsFilter corsFilter() {
@@ -115,7 +121,8 @@ public class AppConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-        registry.addResourceHandler("/ui/**").addResourceLocations("file:ui/");
+        registry.addResourceHandler("/ui/**")
+                .addResourceLocations(getUiResourceLocation(environment.getRequiredProperty(DOLPHINSCHEDULER_HOME)));
     }
 
     @Override
@@ -132,5 +139,17 @@ public class AppConfiguration implements WebMvcConfigurer {
     @Override
     public void configureContentNegotiation(final ContentNegotiationConfigurer configurer) {
         configurer.favorPathExtension(false);
+    }
+
+    static String getUiResourceLocation(String dolphinSchedulerHome) {
+        if (dolphinSchedulerHome == null || dolphinSchedulerHome.trim().isEmpty()) {
+            throw new IllegalStateException(DOLPHINSCHEDULER_HOME + " is not set");
+        }
+        return toFileResourceLocation(new File(dolphinSchedulerHome.trim(), "api-server/ui"));
+    }
+
+    private static String toFileResourceLocation(File directory) {
+        String location = directory.toURI().toString();
+        return location.endsWith("/") ? location : location + "/";
     }
 }

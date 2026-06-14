@@ -20,6 +20,7 @@ set -eo pipefail
 BIN_DIR=$(dirname $(readlink -f "$0"))
 DOLPHINSCHEDULER_HOME=$(cd ${BIN_DIR}/../..;pwd)
 API_HOME=$(cd ${BIN_DIR}/..;pwd)
+export DOLPHINSCHEDULER_HOME
 
 source "$API_HOME/conf/gyyun_env.sh"
 

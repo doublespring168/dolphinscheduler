@@ -29,6 +29,8 @@ spring:
     username: sa
     password: ""
 
+DOLPHINSCHEDULER_HOME: target
+
 mybatis-plus:
   mapper-locations: classpath:com/gyyun/ds/dao/mapper/*Mapper.xml
   type-aliases-package: com.gyyun.ds.dao.entity
