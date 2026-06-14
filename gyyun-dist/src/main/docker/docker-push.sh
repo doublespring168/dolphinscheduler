@@ -3,7 +3,7 @@
  # @Author: darcy.zhang , tech.darcy.zhang@outlook.com
  # @Date: 2026-06-08 19:14:37
  # @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
- # @LastEditTime: 2026-06-14 10:24:05
+ # @LastEditTime: 2026-06-14 16:28:15
  # @FilePath: /ala-ds/gyyun-dist/src/main/docker/docker-push.sh
  # @Description: 
  # 
@@ -25,7 +25,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-set -xeo pipefail
 
 DOCKER_HUB=$1
 DOCKER_TAG=$2
