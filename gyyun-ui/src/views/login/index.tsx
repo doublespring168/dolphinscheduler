@@ -122,7 +122,7 @@ const login = defineComponent({
         </div>
         <div class={styles['login-model']}>
           <div class={styles.logo}>
-            <div class={styles['logo-img']} />
+            <div class={styles['logo-text']}>GYYun 作业中枢平台</div>
           </div>
           <div
             class={styles['form-model']}

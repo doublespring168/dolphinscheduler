@@ -25,7 +25,6 @@ import Logo from '../logo'
 import Locales from '../locales'
 import Timezone from '../timezone'
 import User from '../user'
-import Theme from '../theme'
 
 const Navbar = defineComponent({
   name: 'Navbar',
@@ -93,7 +92,6 @@ const Navbar = defineComponent({
               default: this.t('menu.ui_setting')
             }}
           </NButton>
-          <Theme />
           <Locales localesOptions={this.localesOptions} />
           <Timezone timezoneOptions={this.timezoneOptions} />
           <User userDropdownOptions={this.userDropdownOptions} />

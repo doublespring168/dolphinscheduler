@@ -42,11 +42,12 @@
       justify-content: center;
       padding-top: 30px;
 
-      .logo-img {
-        width: 280px;
-        height: 60px;
-        background: url('../../assets/images/logo-light.svg') 50% no-repeat;
-        margin: 0 auto;
+      .logo-text {
+        color: #409eff;
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 60px;
+        white-space: nowrap;
       }
     }
 

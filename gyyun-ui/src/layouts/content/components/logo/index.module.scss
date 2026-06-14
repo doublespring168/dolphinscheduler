@@ -16,15 +16,13 @@
  */
 
 .logo {
+  display: flex;
+  align-items: center;
   width: 180px;
   height: 100%;
   margin-left: 16px;
-}
-
-.logo-dark {
-  background: url('../../../../assets/images/logo-dark.svg') 100% no-repeat;
-}
-
-.logo-light {
-  background: url('../../../../assets/images/logo-light.svg') 100% no-repeat;
+  color: #409eff;
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
 }
