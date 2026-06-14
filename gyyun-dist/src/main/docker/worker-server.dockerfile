@@ -37,6 +37,6 @@ RUN tar -zxvf gyyun-*-bin.tar.gz --strip-components=1 && \
 
 USER gyy
 
-EXPOSE 12345 25333
+EXPOSE 1234 1235
 
 CMD [ "/bin/sh", "/gyy_program/worker-server/bin/start.sh" ]

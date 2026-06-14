@@ -37,6 +37,6 @@ RUN tar -zxvf gyyun-*-bin.tar.gz --strip-components=1 && \
 
 USER gyy
 
-EXPOSE 12345 25333
+EXPOSE 5678 5679
 
 CMD [ "/bin/sh", "/gyy_program/master-server/bin/start.sh" ]
