@@ -86,7 +86,7 @@ export function useTable(
         title: t('project.workflow.operation'),
         key: 'operation',
         render: (_row: any) => {
-          return h(NSpace, null, {
+          return h(NSpace, { size: 8 }, {
             default: () => [
               h(
                 NPopconfirm,

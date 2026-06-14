@@ -100,7 +100,7 @@ export function useTable() {
         key: 'operation',
         ...COLUMN_WIDTH_CONFIG['operation'](2),
         render(row: any) {
-          return h(NSpace, null, {
+          return h(NSpace, { size: 8 }, {
             default: () => [
               h(
                 NTooltip,

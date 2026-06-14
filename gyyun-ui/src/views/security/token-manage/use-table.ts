@@ -69,7 +69,7 @@ export function useTable() {
         title: t('security.token.operation'),
         key: 'operation',
         render(row: any) {
-          return h(NSpace, null, {
+          return h(NSpace, { size: 8 }, {
             default: () => [
               h(
                 NTooltip,

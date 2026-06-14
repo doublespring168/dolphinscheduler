@@ -131,7 +131,7 @@ const login = defineComponent({
             <NForm rules={this.rules} ref='loginFormRef'>
               <NFormItem
                 label={this.t('login.userName')}
-                label-style={{ color: 'black' }}
+                label-style={{ color: 'var(--ala-color-navy)' }}
                 path='userName'
               >
                 <NInput
@@ -147,7 +147,7 @@ const login = defineComponent({
               </NFormItem>
               <NFormItem
                 label={this.t('login.userPassword')}
-                label-style={{ color: 'black' }}
+                label-style={{ color: 'var(--ala-color-navy)' }}
                 path='userPassword'
               >
                 <NInput

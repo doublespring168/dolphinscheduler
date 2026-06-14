@@ -19,7 +19,7 @@ import { CSSProperties, defineComponent, PropType } from 'vue'
 import { NCard } from 'naive-ui'
 
 const headerStyle = {
-  borderBottom: '1px solid var(--n-border-color)'
+  borderBottom: '1px solid var(--ala-color-border)'
 }
 
 const contentStyle = {

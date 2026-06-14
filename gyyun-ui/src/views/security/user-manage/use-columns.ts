@@ -129,7 +129,7 @@ export function useColumns(onCallback: Function) {
         key: 'operation',
         ...COLUMN_WIDTH_CONFIG['operation'](4),
         render: (rowData: InternalRowData, unused: number) => {
-          return h(NSpace, null, {
+          return h(NSpace, { size: 8 }, {
             default: () => [
               h(
                 NDropdown,

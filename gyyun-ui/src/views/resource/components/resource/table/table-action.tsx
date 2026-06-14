@@ -120,7 +120,7 @@ export default defineComponent({
   render() {
     const { t } = useI18n()
     return (
-      <NSpace>
+      <NSpace size={8}>
         {
           <NTooltip trigger={'hover'}>
             {{

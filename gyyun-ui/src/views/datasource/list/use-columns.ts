@@ -99,7 +99,7 @@ export function useColumns(onCallback: Function) {
         key: 'operation',
         ...COLUMN_WIDTH_CONFIG['operation'](2),
         render: (rowData) => {
-          return h(NSpace, null, {
+          return h(NSpace, { size: 8 }, {
             default: () => [
               h(NTooltip, null, {
                 trigger: () =>

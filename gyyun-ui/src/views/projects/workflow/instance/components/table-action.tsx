@@ -105,7 +105,7 @@ export default defineComponent({
     const state = this.row?.state
 
     return (
-      <NSpace>
+      <NSpace size={8}>
         <NTooltip trigger={'hover'}>
           {{
             default: () => t('project.workflow.edit'),

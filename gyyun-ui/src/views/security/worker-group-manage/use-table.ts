@@ -90,7 +90,7 @@ export function useTable() {
             return false
           }
 
-          return h(NSpace, null, {
+          return h(NSpace, { size: 8 }, {
             default: () => [
               h(
                 NTooltip,

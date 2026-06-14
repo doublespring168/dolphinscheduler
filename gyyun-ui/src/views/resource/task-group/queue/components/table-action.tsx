@@ -59,7 +59,7 @@ const TableAction = defineComponent({
     const { t, handleEditPriority, handleStartTask } = this
 
     return (
-      <NSpace>
+      <NSpace size={8}>
         <NTooltip trigger={'hover'}>
           {{
             default: () => t('resource.task_group_queue.modify_priority'),

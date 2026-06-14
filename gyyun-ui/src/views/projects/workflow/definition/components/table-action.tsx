@@ -111,7 +111,7 @@ export default defineComponent({
     const schedule = this.row?.schedule
 
     return (
-      <NSpace>
+      <NSpace size={8}>
         <NTooltip trigger={'hover'}>
           {{
             default: () => t('project.workflow.edit'),

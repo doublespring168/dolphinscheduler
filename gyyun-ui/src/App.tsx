@@ -29,6 +29,7 @@ import {
 import { useThemeStore } from '@/store/theme/theme'
 import { useLocalesStore } from '@/store/locales/locales'
 import themeList from '@/themes'
+import { alaTokens } from '@/themes/tokens'
 
 const App = defineComponent({
   name: 'App',
@@ -64,7 +65,12 @@ const App = defineComponent({
       <NConfigProvider
         theme={this.currentTheme}
         theme-overrides={themeOverrides}
-        style={{ width: '100%', height: '100vh' }}
+        style={{
+          width: '100%',
+          height: '100vh',
+          fontFamily: alaTokens.fontFamily,
+          background: alaTokens.colorBg
+        }}
         date-locale={
           String(this.localesStore.getLocales) === 'zh_CN' ? dateZhCN : dateEnUS
         }

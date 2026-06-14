@@ -18,6 +18,7 @@
 import { defineComponent, ref, PropType } from 'vue'
 import { NLayoutSider, NMenu } from 'naive-ui'
 import { useMenuClick } from './use-menuClick'
+import { alaTokens } from '@/themes/tokens'
 
 const Sidebar = defineComponent({
   name: 'Sidebar',
@@ -49,6 +50,8 @@ const Sidebar = defineComponent({
     return (
       <NLayoutSider
         bordered
+        width={alaTokens.siderWidth}
+        collapsedWidth={alaTokens.siderCollapsedWidth}
         nativeScrollbar={false}
         show-trigger='bar'
         collapse-mode='width'

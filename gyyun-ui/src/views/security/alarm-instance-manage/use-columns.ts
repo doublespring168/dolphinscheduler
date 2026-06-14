@@ -52,7 +52,7 @@ export function useColumns(onCallback: Function) {
         key: 'operation',
         width: 150,
         render: (rowData) => {
-          return h(NSpace, null, {
+          return h(NSpace, { size: 8 }, {
             default: () => [
               h(NTooltip, null, {
                 trigger: () =>
