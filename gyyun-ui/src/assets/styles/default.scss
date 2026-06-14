@@ -315,8 +315,6 @@ button,
 }
 
 .n-card:has(.n-pagination) .n-data-table .n-data-table-td {
-  height: var(--ala-table-row-height);
-  padding: 15px 16px;
   background: #fff;
   border-bottom: 1px solid var(--ala-table-row-border);
   color: var(--ala-table-text-color);
