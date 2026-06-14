@@ -87,6 +87,7 @@
     <root level="debug">
         <appender-ref ref="ASYNC_STDOUT"/>
         <appender-ref ref="ASYNC_FILE_INFO"/>
+        <appender-ref ref="APILOGFILE"/>
     </root>
 
 </configuration>
