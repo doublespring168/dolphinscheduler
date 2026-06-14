@@ -106,7 +106,17 @@ const yarnQueueManage = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              v-model:value={this.searchVal}
+              placeholder={t('security.yarn_queue.search_tips')}
+              onSearch={onSearch}
+            />
+            <NButton size='small' type='primary' onClick={onSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton
               size='small'
               type='primary'
@@ -115,18 +125,6 @@ const yarnQueueManage = defineComponent({
             >
               {t('security.yarn_queue.create_queue')}
             </NButton>
-            <NSpace>
-              <Search
-                v-model:value={this.searchVal}
-                placeholder={t('security.yarn_queue.search_tips')}
-                onSearch={onSearch}
-              />
-              <NButton size='small' type='primary' onClick={onSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('menu.yarn_queue_manage')}>

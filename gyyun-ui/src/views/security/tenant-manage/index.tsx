@@ -96,7 +96,17 @@ const tenementManage = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              v-model:value={this.searchVal}
+              placeholder={t('security.tenant.search_tips')}
+              onSearch={this.handleSearch}
+            />
+            <NButton size='small' type='primary' onClick={this.handleSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton
               size='small'
               onClick={this.handleModalChange}
@@ -105,18 +115,6 @@ const tenementManage = defineComponent({
             >
               {t('security.tenant.create_tenant')}
             </NButton>
-            <NSpace>
-              <Search
-                v-model:value={this.searchVal}
-                placeholder={t('security.tenant.search_tips')}
-                onSearch={this.handleSearch}
-              />
-              <NButton size='small' type='primary' onClick={this.handleSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('menu.tenant_manage')}>

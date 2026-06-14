@@ -89,7 +89,7 @@ export default defineComponent({
       updateValue
     } = this
     return (
-      <NSpace justify='end'>
+      <NSpace justify='start' align='center'>
         {h(NSelect, {
           style: {
             width: '310px'

@@ -118,7 +118,18 @@ const list = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              v-model:value={this.searchVal}
+              placeholder={t('project.list.project_tips')}
+              onSearch={this.handleSearch}
+              onClear={this.onClearSearch}
+            />
+            <NButton size='small' type='primary' onClick={this.handleSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton
               size='small'
               onClick={this.handleModalChange}
@@ -127,20 +138,6 @@ const list = defineComponent({
             >
               {t('project.list.create_project')}
             </NButton>
-            <NSpace>
-              <Search
-                v-model:value={this.searchVal}
-                placeholder={t('project.list.project_tips')}
-                onSearch={this.handleSearch}
-                onClear={this.onClearSearch}
-              />
-
-              <NButton size='small' type='primary' onClick={this.handleSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('project.list.project_list')}>

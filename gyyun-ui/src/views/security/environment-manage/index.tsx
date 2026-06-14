@@ -106,7 +106,17 @@ const environmentManage = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              v-model:value={this.searchVal}
+              placeholder={t('security.environment.search_tips')}
+              onSearch={onSearch}
+            />
+            <NButton size='small' type='primary' onClick={onSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton
               size='small'
               type='primary'
@@ -115,18 +125,6 @@ const environmentManage = defineComponent({
             >
               {t('security.environment.create_environment')}
             </NButton>
-            <NSpace>
-              <Search
-                v-model:value={this.searchVal}
-                placeholder={t('security.environment.search_tips')}
-                onSearch={onSearch}
-              />
-              <NButton size='small' type='primary' onClick={onSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('menu.environment_manage')}>

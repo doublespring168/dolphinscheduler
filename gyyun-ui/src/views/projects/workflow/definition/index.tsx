@@ -147,7 +147,18 @@ export default defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              placeholder={t('resource.function.enter_keyword_tips')}
+              v-model:value={this.searchVal}
+              onSearch={this.handleSearch}
+              onClear={this.onClearSearch}
+            />
+            <NButton type='primary' size='small' onClick={this.handleSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NSpace>
               <NButton
                 type='primary'
@@ -166,19 +177,6 @@ export default defineComponent({
                   {t('project.workflow.create_workflow_dynamic')}
                 </NButton>
               )}
-            </NSpace>
-            <NSpace>
-              <Search
-                placeholder={t('resource.function.enter_keyword_tips')}
-                v-model:value={this.searchVal}
-                onSearch={this.handleSearch}
-                onClear={this.onClearSearch}
-              />
-              <NButton type='primary' size='small' onClick={this.handleSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
             </NSpace>
           </NSpace>
         </Card>

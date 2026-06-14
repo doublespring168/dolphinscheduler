@@ -106,7 +106,17 @@ const tokenManage = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              v-model:value={this.searchVal}
+              placeholder={t('security.token.search_tips')}
+              onSearch={onSearch}
+            />
+            <NButton size='small' type='primary' onClick={onSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton
               class='btn-create-token'
               size='small'
@@ -115,18 +125,6 @@ const tokenManage = defineComponent({
             >
               {t('security.token.create_token')}
             </NButton>
-            <NSpace>
-              <Search
-                v-model:value={this.searchVal}
-                placeholder={t('security.token.search_tips')}
-                onSearch={onSearch}
-              />
-              <NButton size='small' type='primary' onClick={onSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('menu.token_manage')}>

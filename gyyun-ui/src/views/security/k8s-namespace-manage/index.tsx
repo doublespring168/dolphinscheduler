@@ -106,22 +106,20 @@ const k8sNamespaceManage = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              v-model:value={this.searchVal}
+              placeholder={t('security.k8s_namespace.search_tips')}
+              onSearch={onSearch}
+            />
+            <NButton size='small' type='primary' onClick={onSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton size='small' type='primary' onClick={handleModalChange}>
               {t('security.k8s_namespace.create_namespace')}
             </NButton>
-            <NSpace>
-              <Search
-                v-model:value={this.searchVal}
-                placeholder={t('security.k8s_namespace.search_tips')}
-                onSearch={onSearch}
-              />
-              <NButton size='small' type='primary' onClick={onSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('menu.k8s_namespace_manage')}>

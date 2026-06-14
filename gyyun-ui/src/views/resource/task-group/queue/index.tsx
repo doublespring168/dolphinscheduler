@@ -167,7 +167,7 @@ const taskGroupQueue = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='end'>
+          <NSpace justify='start' align='center'>
             <NSelect
               size='small'
               options={taskGroupOptions}

@@ -69,7 +69,16 @@ const UsersManage = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              v-model:value={this.searchVal}
+              onSearch={this.onUpdatedList}
+            />
+            <NButton type='primary' size='small' onClick={this.onUpdatedList}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton
               onClick={this.onAddUser}
               type='primary'
@@ -78,17 +87,6 @@ const UsersManage = defineComponent({
             >
               {this.t('security.user.create_user')}
             </NButton>
-            <NSpace>
-              <Search
-                v-model:value={this.searchVal}
-                onSearch={this.onUpdatedList}
-              />
-              <NButton type='primary' size='small' onClick={this.onUpdatedList}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={this.t('menu.user_manage')}>

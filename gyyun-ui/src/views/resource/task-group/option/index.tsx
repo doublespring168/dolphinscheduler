@@ -148,7 +148,19 @@ const taskGroupOption = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              placeholder={t(
+                'resource.task_group_option.please_enter_keywords'
+              )}
+              v-model:value={this.name}
+              onSearch={this.onSearch}
+            ></Search>
+            <NButton size='small' type='primary' onClick={onSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton
               size='small'
               type={'primary'}
@@ -156,20 +168,6 @@ const taskGroupOption = defineComponent({
             >
               {t('resource.task_group_option.create')}
             </NButton>
-            <NSpace>
-              <Search
-                placeholder={t(
-                  'resource.task_group_option.please_enter_keywords'
-                )}
-                v-model:value={this.name}
-                onSearch={this.onSearch}
-              ></Search>
-              <NButton size='small' type='primary' onClick={onSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('resource.task_group_option.option')}>

@@ -108,33 +108,31 @@ export default defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <NInput
+              size='small'
+              clearable
+              v-model={[this.searchVal, 'value']}
+              placeholder={t('project.parameter.name')}
+            />
+            <NSelect
+              v-model={[this.projectParameterDataType, 'value']}
+              size='small'
+              options={Object.keys(DATA_TYPES_MAP).map((item) => {
+                return { value: item, label: item }
+              })}
+              placeholder={t('project.parameter.data_type_tips')}
+              style={{ width: '180px' }}
+              clearable
+            />
+            <NButton size='small' type='primary' onClick={handleSearch}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButton size='small' type='primary' onClick={onCreateParameter}>
               {t('project.parameter.create_parameter')}
             </NButton>
-            <NSpace>
-              <NInput
-                size='small'
-                clearable
-                v-model={[this.searchVal, 'value']}
-                placeholder={t('project.parameter.name')}
-              />
-              <NSelect
-                v-model={[this.projectParameterDataType, 'value']}
-                size='small'
-                options={Object.keys(DATA_TYPES_MAP).map((item) => {
-                  return { value: item, label: item }
-                })}
-                placeholder={t('project.parameter.data_type_tips')}
-                style={{ width: '180px' }}
-                clearable
-              />
-              <NButton size='small' type='primary' onClick={handleSearch}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={t('project.parameter.parameter_manage')}>

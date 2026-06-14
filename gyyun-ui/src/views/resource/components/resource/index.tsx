@@ -203,7 +203,17 @@ export default defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='space-between'>
+          <NSpace justify='start' align='center'>
+            <Search
+              placeholder={t('resource.file.enter_keyword_tips')}
+              v-model:value={this.searchRef}
+              onSearch={handleConditions}
+            />
+            <NButton size='small' type='primary' onClick={handleConditions}>
+              <NIcon>
+                <SearchOutlined />
+              </NIcon>
+            </NButton>
             <NButtonGroup size='small'>
               <NButton
                 type='primary'
@@ -221,18 +231,6 @@ export default defineComponent({
                 {t('resource.file.upload_files')}
               </NButton>
             </NButtonGroup>
-            <NSpace>
-              <Search
-                placeholder={t('resource.file.enter_keyword_tips')}
-                v-model:value={this.searchRef}
-                onSearch={handleConditions}
-              />
-              <NButton size='small' type='primary' onClick={handleConditions}>
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
-              </NButton>
-            </NSpace>
           </NSpace>
         </Card>
         <Card title={manageTitle}>

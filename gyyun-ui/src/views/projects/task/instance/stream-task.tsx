@@ -185,7 +185,7 @@ const BatchTaskInstance = defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <NSpace justify='end' wrap={false}>
+          <NSpace justify='start' align='center' wrap={false}>
             <NInput
               allowInput={this.trim}
               v-model={[this.searchVal, 'value']}

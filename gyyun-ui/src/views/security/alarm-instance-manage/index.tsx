@@ -116,26 +116,24 @@ const AlarmInstanceManage = defineComponent({
         <Card>
           {{
             default: () => (
-              <NSpace justify='space-between'>
+              <NSpace justify='start' align='center'>
+                <Search
+                  v-model:value={this.searchVal}
+                  placeholder={`${t(
+                    'security.alarm_instance.search_input_tips'
+                  )}`}
+                  onSearch={onUpdatedList}
+                />
+                <NButton type='primary' size='small' onClick={onUpdatedList}>
+                  <NIcon>
+                    <SearchOutlined />
+                  </NIcon>
+                </NButton>
                 {IS_ADMIN && (
                   <NButton onClick={onCreate} type='primary' size='small'>
                     {t('security.alarm_instance.create_alarm_instance')}
                   </NButton>
                 )}
-                <NSpace justify='end' wrap={false}>
-                  <Search
-                    v-model:value={this.searchVal}
-                    placeholder={`${t(
-                      'security.alarm_instance.search_input_tips'
-                    )}`}
-                    onSearch={onUpdatedList}
-                  />
-                  <NButton type='primary' size='small' onClick={onUpdatedList}>
-                    <NIcon>
-                      <SearchOutlined />
-                    </NIcon>
-                  </NButton>
-                </NSpace>
               </NSpace>
             )
           }}

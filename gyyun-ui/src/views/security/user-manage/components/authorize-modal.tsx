@@ -126,7 +126,23 @@ export const AuthorizeModal = defineComponent({
       >
         {type === 'authorize_project' && (
           <NSpace vertical>
-            <NSpace>
+            <NSpace justify='start' align='center'>
+              <NInput
+                size='small'
+                placeholder={t('project.list.project_tips')}
+                clearable
+                v-model:value={this.searchVal}
+              />
+              {/* <NButton size='small' type='primary' onClick={this.handleSearch}> */}
+              <NButton
+                size='small'
+                type='primary'
+                onClick={() => this.getProjects(userId)}
+              >
+                <NIcon>
+                  <SearchOutlined />
+                </NIcon>
+              </NButton>
               <NButton
                 size='small'
                 type='primary'
@@ -147,22 +163,6 @@ export const AuthorizeModal = defineComponent({
                 onClick={this.onGrantAllPerm}
               >
                 {t('security.user.grant_all')}
-              </NButton>
-              <NInput
-                size='small'
-                placeholder={t('project.list.project_tips')}
-                clearable
-                v-model:value={this.searchVal}
-              />
-              {/* <NButton size='small' type='primary' onClick={this.handleSearch}> */}
-              <NButton
-                size='small'
-                type='primary'
-                onClick={() => this.getProjects(userId)}
-              >
-                <NIcon>
-                  <SearchOutlined />
-                </NIcon>
               </NButton>
             </NSpace>
             <NDataTable
