@@ -70,6 +70,11 @@ public class MasterConfig implements Validator {
     private String masterAddress;
 
     /**
+     * The host/IP address advertised to other services. If masterAddress is set, this will be ignored.
+     */
+    private String advertisedHost;
+
+    /**
      * The registry path for the master server in the format '/nodes/master/ip:listenPort'.
      */
     private String masterRegistryPath;
@@ -112,7 +117,12 @@ public class MasterConfig implements Validator {
         }
 
         if (StringUtils.isEmpty(masterConfig.getMasterAddress())) {
-            masterConfig.setMasterAddress(NetUtils.getAddr(masterConfig.getListenPort()));
+            if (StringUtils.isNotEmpty(masterConfig.getAdvertisedHost())) {
+                masterConfig.setMasterAddress(
+                        NetUtils.getAddr(masterConfig.getAdvertisedHost(), masterConfig.getListenPort()));
+            } else {
+                masterConfig.setMasterAddress(NetUtils.getAddr(masterConfig.getListenPort()));
+            }
         }
         serverLoadProtection.validate(errors);
         commandFetchStrategy.validate(errors);
@@ -131,6 +141,7 @@ public class MasterConfig implements Validator {
                         "\n  logic-task-config -> " + logicTaskConfig +
                         "\n  max-heartbeat-interval -> " + maxHeartbeatInterval +
                         "\n  server-load-protection -> " + serverLoadProtection +
+                        "\n  advertised-host -> " + advertisedHost +
                         "\n  master-address -> " + masterAddress +
                         "\n  master-registry-path: " + masterRegistryPath +
                         "\n  worker-group-refresh-interval: " + workerGroupRefreshInterval +

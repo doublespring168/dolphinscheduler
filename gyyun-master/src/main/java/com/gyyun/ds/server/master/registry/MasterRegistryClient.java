@@ -22,7 +22,6 @@ import static com.gyyun.ds.common.constants.Constants.SLEEP_TIME_MILLIS;
 import com.gyyun.ds.common.IStoppable;
 import com.gyyun.ds.common.thread.ThreadUtils;
 import com.gyyun.ds.common.utils.JSONUtils;
-import com.gyyun.ds.common.utils.NetUtils;
 import com.gyyun.ds.meter.metrics.MetricsProvider;
 import com.gyyun.ds.registry.api.RegistryClient;
 import com.gyyun.ds.registry.api.RegistryException;
@@ -100,8 +99,8 @@ public class MasterRegistryClient implements AutoCloseable {
         registryClient.remove(masterRegistryPath);
         registryClient.persistEphemeral(masterRegistryPath, JSONUtils.toJsonString(masterHeartBeatTask.getHeartBeat()));
 
-        while (!registryClient.checkNodeExists(NetUtils.getHost(), RegistryNodeType.MASTER)) {
-            log.warn("The current master server node:{} cannot find in registry", NetUtils.getHost());
+        while (!registryClient.checkNodeExists(masterConfig.getMasterAddress(), RegistryNodeType.MASTER)) {
+            log.warn("The current master server node:{} cannot find in registry", masterConfig.getMasterAddress());
             ThreadUtils.sleep(SLEEP_TIME_MILLIS);
         }
 

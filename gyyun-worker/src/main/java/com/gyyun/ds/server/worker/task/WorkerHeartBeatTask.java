@@ -84,8 +84,8 @@ public class WorkerHeartBeatTask extends BaseHeartBeatTask<WorkerHeartBeat> {
                 .threadPoolUsage(taskExecutorContainer.slotUsage())
                 .serverStatus(
                         workerServerLoadProtection.isOverload(systemMetrics) ? ServerStatus.BUSY : ServerStatus.NORMAL)
-                .host(NetUtils.getHost())
-                .port(workerConfig.getListenPort())
+                .host(NetUtils.getHostFromAddr(workerConfig.getWorkerAddress()))
+                .port(NetUtils.getPortFromAddr(workerConfig.getWorkerAddress()))
                 .workerGroup(workerConfig.getGroup())
                 .build();
     }

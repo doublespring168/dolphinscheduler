@@ -93,6 +93,10 @@ registry:
 
 master:
   listen-port: 5678
+  # Host/IP advertised to other services. Useful when running behind Docker port publishing or NAT.
+  # If master-address is set, it takes precedence and can include a different advertised port.
+  # advertised-host:
+  # master-address:
   # The number of workflow event bus fire worker used to fire the workflow event, default is 2*CPU core + 1.
   #  workflow-event-bus-fire-thread-count: 10
   # logic-task-config:

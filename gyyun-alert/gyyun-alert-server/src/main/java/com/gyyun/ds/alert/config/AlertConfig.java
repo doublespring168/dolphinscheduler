@@ -45,6 +45,11 @@ public final class AlertConfig implements Validator {
 
     private int senderParallelism = 100;
 
+    /**
+     * The host/IP address advertised to other services. If alertServerAddress is set, this will be ignored.
+     */
+    private String advertisedHost;
+
     private String alertServerAddress;
 
     @Override
@@ -65,7 +70,12 @@ public final class AlertConfig implements Validator {
         }
 
         if (StringUtils.isEmpty(alertServerAddress)) {
-            alertConfig.setAlertServerAddress(NetUtils.getAddr(alertConfig.getPort()));
+            if (StringUtils.isNotEmpty(alertConfig.getAdvertisedHost())) {
+                alertConfig.setAlertServerAddress(
+                        NetUtils.getAddr(alertConfig.getAdvertisedHost(), alertConfig.getPort()));
+            } else {
+                alertConfig.setAlertServerAddress(NetUtils.getAddr(alertConfig.getPort()));
+            }
         }
 
         printConfig();
@@ -73,6 +83,7 @@ public final class AlertConfig implements Validator {
 
     private void printConfig() {
         log.info("Alert config: port -> {}", port);
+        log.info("Alert config: advertisedHost -> {}", advertisedHost);
         log.info("Alert config: alertServerAddress -> {}", alertServerAddress);
         log.info("Alert config: maxHeartbeatInterval -> {}", maxHeartbeatInterval);
     }

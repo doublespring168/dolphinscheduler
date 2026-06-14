@@ -78,8 +78,8 @@ public class AlertHeartbeatTask extends BaseHeartBeatTask<AlertServerHeartBeat> 
                 .diskUsage(systemMetrics.getDiskUsedPercentage())
                 .serverStatus(ServerStatus.NORMAL)
                 .isActive(alertHAServer.isActive())
-                .host(NetUtils.getHost())
-                .port(alertConfig.getPort())
+                .host(NetUtils.getHostFromAddr(alertConfig.getAlertServerAddress()))
+                .port(NetUtils.getPortFromAddr(alertConfig.getAlertServerAddress()))
                 .build();
     }
 

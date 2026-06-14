@@ -44,6 +44,10 @@ registry:
 worker:
   # worker listener port
   listen-port: 1234
+  # Host/IP advertised to other services. Useful when running behind Docker port publishing or NAT.
+  # If worker-address is set, it takes precedence and can include a different advertised port.
+  # advertised-host:
+  # worker-address:
   # worker heartbeat interval
   max-heartbeat-interval: 10s
   # worker host weight to dispatch tasks, default value 100

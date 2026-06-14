@@ -76,6 +76,10 @@ management:
 
 alert:
   port: 50052
+  # Host/IP advertised to other services. Useful when running behind Docker port publishing or NAT.
+  # If alert-server-address is set, it takes precedence and can include a different advertised port.
+  # advertised-host:
+  # alert-server-address:
   # Mark each alert of alert server if late after x milliseconds as failed.
   # Define value is (0 = infinite), and alert server would be waiting alert result.
   wait-timeout: 0

@@ -50,6 +50,12 @@ public class WorkerConfig implements Validator {
      * This field doesn't need to set at config file, it will be calculated by workerIp:listenPort
      */
     private String workerAddress;
+
+    /**
+     * The host/IP address advertised to other services. If workerAddress is set, this will be ignored.
+     */
+    private String advertisedHost;
+
     private String workerRegistryPath;
 
     private TenantConfig tenantConfig = new TenantConfig();
@@ -68,7 +74,12 @@ public class WorkerConfig implements Validator {
             errors.rejectValue("max-heartbeat-interval", null, "should be a valid duration");
         }
         if (StringUtils.isEmpty(workerConfig.getWorkerAddress())) {
-            workerConfig.setWorkerAddress(NetUtils.getAddr(workerConfig.getListenPort()));
+            if (StringUtils.isNotEmpty(workerConfig.getAdvertisedHost())) {
+                workerConfig.setWorkerAddress(
+                        NetUtils.getAddr(workerConfig.getAdvertisedHost(), workerConfig.getListenPort()));
+            } else {
+                workerConfig.setWorkerAddress(NetUtils.getAddr(workerConfig.getListenPort()));
+            }
         }
 
         workerConfig.setWorkerRegistryPath(
@@ -89,6 +100,7 @@ public class WorkerConfig implements Validator {
                         "\n  host-weight -> " + hostWeight +
                         "\n  tenantConfig -> " + tenantConfig +
                         "\n  server-load-protection -> " + serverLoadProtection +
+                        "\n  advertised-host -> " + advertisedHost +
                         "\n  address -> " + workerAddress +
                         "\n  registry-path: " + workerRegistryPath +
                         "\n  physical-task-config -> " + physicalTaskConfig +

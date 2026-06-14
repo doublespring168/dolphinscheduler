@@ -86,8 +86,8 @@ public class MasterHeartBeatTask extends BaseHeartBeatTask<MasterHeartBeat> {
                 .processId(processId)
                 .serverStatus(
                         masterServerLoadProtection.isOverload(systemMetrics) ? ServerStatus.BUSY : ServerStatus.NORMAL)
-                .host(NetUtils.getHost())
-                .port(masterConfig.getListenPort())
+                .host(NetUtils.getHostFromAddr(masterConfig.getMasterAddress()))
+                .port(NetUtils.getPortFromAddr(masterConfig.getMasterAddress()))
                 .isCoordinator(masterCoordinator.isActive())
                 .build();
     }

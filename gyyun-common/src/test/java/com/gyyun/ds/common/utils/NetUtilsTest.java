@@ -44,6 +44,27 @@ public class NetUtilsTest {
     }
 
     @Test
+    public void testGetHostAndPortFromAddr() {
+        Assertions.assertEquals("localhost", NetUtils.getHostFromAddr("localhost:1234"));
+        Assertions.assertEquals(1234, NetUtils.getPortFromAddr("localhost:1234"));
+        Assertions.assertEquals("127.0.0.1", NetUtils.getHostFromAddr("127.0.0.1:5678"));
+        Assertions.assertEquals(5678, NetUtils.getPortFromAddr("127.0.0.1:5678"));
+        Assertions.assertEquals("fd15:4ba5:5a2b:1008:71bc:dd01:e661:e831",
+                NetUtils.getHostFromAddr("[fd15:4ba5:5a2b:1008:71bc:dd01:e661:e831]:1234"));
+        Assertions.assertEquals(1234,
+                NetUtils.getPortFromAddr("[fd15:4ba5:5a2b:1008:71bc:dd01:e661:e831]:1234"));
+    }
+
+    @Test
+    public void testGetHostAndPortFromInvalidAddr() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> NetUtils.getHostFromAddr(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> NetUtils.getPortFromAddr(""));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> NetUtils.getHostFromAddr("localhost"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> NetUtils.getPortFromAddr("localhost:"));
+        Assertions.assertThrows(NumberFormatException.class, () -> NetUtils.getPortFromAddr("localhost:port"));
+    }
+
+    @Test
     public void testGetHostInKubernetesMode() {
         try (MockedStatic<KubernetesUtils> mockedKubernetesUtils = mockStatic(KubernetesUtils.class)) {
             mockedKubernetesUtils.when(() -> KubernetesUtils.isKubernetesMode()).thenReturn(true);

@@ -82,6 +82,27 @@ public class NetUtils {
         return getAddr(getHost(), port);
     }
 
+    public static String getHostFromAddr(String address) {
+        int portSeparatorIndex = getPortSeparatorIndex(address);
+        return unwrapIpv6Literal(address.substring(0, portSeparatorIndex));
+    }
+
+    public static int getPortFromAddr(String address) {
+        int portSeparatorIndex = getPortSeparatorIndex(address);
+        return Integer.parseInt(address.substring(portSeparatorIndex + 1));
+    }
+
+    private static int getPortSeparatorIndex(String address) {
+        if (StringUtils.isBlank(address)) {
+            throw new IllegalArgumentException("Address cannot be blank");
+        }
+        int portSeparatorIndex = address.lastIndexOf(':');
+        if (portSeparatorIndex < 0 || portSeparatorIndex == address.length() - 1) {
+            throw new IllegalArgumentException("Address should be in host:port format: " + address);
+        }
+        return portSeparatorIndex;
+    }
+
     /**
      * get host
      * @return host
