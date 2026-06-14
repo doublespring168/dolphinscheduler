@@ -63,3 +63,4 @@ docs/superpowers/
 CLAUDE.local.md
 AGENT.local.md
 gyyun-ui/node/**
+LOG_PATH_IS_UNDEFINED/**

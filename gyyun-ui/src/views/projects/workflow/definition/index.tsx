@@ -178,6 +178,46 @@ export default defineComponent({
                 </NButton>
               )}
             </NSpace>
+            <NTooltip>
+              {{
+                default: () => t('project.workflow.batch_delete'),
+                trigger: () => (
+                  <NPopconfirm onPositiveClick={this.batchDeleteWorkflow}>
+                    {{
+                      default: () => t('project.workflow.delete_confirm'),
+                      trigger: () => (
+                        <NButton
+                          tag='div'
+                          size='small'
+                          type='primary'
+                          disabled={this.checkedRowKeys.length <= 0}
+                          class='btn-delete-all'
+                        >
+                          {t('project.workflow.batch_delete')}
+                        </NButton>
+                      )
+                    }}
+                  </NPopconfirm>
+                )
+              }}
+            </NTooltip>
+            <NTooltip>
+              {{
+                default: () => t('project.workflow.batch_copy'),
+                trigger: () => (
+                  <NButton
+                    tag='div'
+                    size='small'
+                    type='primary'
+                    disabled={this.checkedRowKeys.length <= 0}
+                    onClick={() => (this.copyShowRef = true)}
+                    class='btn-delete-all'
+                  >
+                    {t('project.workflow.batch_copy')}
+                  </NButton>
+                )
+              }}
+            </NTooltip>
           </NSpace>
         </Card>
         <Card title={t('project.workflow.workflow_definition')}>
@@ -192,49 +232,7 @@ export default defineComponent({
               row-class-name='items'
               scrollX={this.tableWidth}
             />
-            <NSpace justify='space-between'>
-              <NSpace>
-                <NTooltip>
-                  {{
-                    default: () => t('project.workflow.batch_delete'),
-                    trigger: () => (
-                      <NPopconfirm onPositiveClick={this.batchDeleteWorkflow}>
-                        {{
-                          default: () => t('project.workflow.delete_confirm'),
-                          trigger: () => (
-                            <NButton
-                              tag='div'
-                              size='small'
-                              type='primary'
-                              disabled={this.checkedRowKeys.length <= 0}
-                              class='btn-delete-all'
-                            >
-                              {t('project.workflow.batch_delete')}
-                            </NButton>
-                          )
-                        }}
-                      </NPopconfirm>
-                    )
-                  }}
-                </NTooltip>
-                <NTooltip>
-                  {{
-                    default: () => t('project.workflow.batch_copy'),
-                    trigger: () => (
-                      <NButton
-                        tag='div'
-                        size='small'
-                        type='primary'
-                        disabled={this.checkedRowKeys.length <= 0}
-                        onClick={() => (this.copyShowRef = true)}
-                        class='btn-delete-all'
-                      >
-                        {t('project.workflow.batch_copy')}
-                      </NButton>
-                    )
-                  }}
-                </NTooltip>
-              </NSpace>
+            <NSpace justify='end'>
               <NPagination
                 v-model:page={this.page}
                 v-model:page-size={this.pageSize}

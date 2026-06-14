@@ -97,7 +97,31 @@ export default defineComponent({
     return (
       <NSpace vertical>
         <Card>
-          <WorkflowInstanceCondition onHandleSearch={this.handleSearch} />
+          <NSpace justify='start' align='center'>
+            <WorkflowInstanceCondition onHandleSearch={this.handleSearch} />
+            <NTooltip>
+              {{
+                default: () => t('project.workflow.delete'),
+                trigger: () => (
+                  <NPopconfirm onPositiveClick={this.handleBatchDelete}>
+                    {{
+                      default: () => t('project.workflow.delete_confirm'),
+                      trigger: () => (
+                        <NButton
+                          tag='div'
+                          type='primary'
+                          disabled={this.checkedRowKeys.length <= 0}
+                          class='btn-delete-all'
+                        >
+                          {t('project.workflow.delete')}
+                        </NButton>
+                      )
+                    }}
+                  </NPopconfirm>
+                )
+              }}
+            </NTooltip>
+          </NSpace>
         </Card>
         <Card title={t('project.workflow.workflow_instance')}>
           <NSpace vertical>
@@ -126,29 +150,6 @@ export default defineComponent({
               />
             </NSpace>
           </NSpace>
-          <NTooltip>
-            {{
-              default: () => t('project.workflow.delete'),
-              trigger: () => (
-                <NPopconfirm onPositiveClick={this.handleBatchDelete}>
-                  {{
-                    default: () => t('project.workflow.delete_confirm'),
-                    trigger: () => (
-                      <NButton
-                        tag='div'
-                        type='primary'
-                        disabled={this.checkedRowKeys.length <= 0}
-                        style='position: absolute; bottom: 10px; left: 10px;'
-                        class='btn-delete-all'
-                      >
-                        {t('project.workflow.delete')}
-                      </NButton>
-                    )
-                  }}
-                </NPopconfirm>
-              )
-            }}
-          </NTooltip>
         </Card>
       </NSpace>
     )
