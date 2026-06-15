@@ -1,4 +1,14 @@
 /*
+ * @Author: darcy.zhang , tech.darcy.zhang@outlook.com
+ * @Date: 2026-06-08 14:40:08
+ * @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
+ * @LastEditTime: 2026-06-15 16:48:58
+ * @FilePath: /gyyun-ui/src/layouts/content/components/logo/index.tsx
+ * @Description: 
+ * 
+ * Copyright (c) 2026 by 【 tech.darcy.zhang@outlook.com 】, All Rights Reserved. 
+ */
+/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -21,7 +31,7 @@ import styles from './index.module.scss'
 const Logo = defineComponent({
   name: 'Logo',
   render() {
-    return <div class={styles.logo}>GYYun 作业中枢平台</div>
+    return <div class={styles.logo}>GYYun 调度中枢</div>
   }
 })
 

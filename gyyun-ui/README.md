@@ -1,4 +1,4 @@
-# Dolphin Scheduler UI
+# GYYun Scheduler Platform UI
 
 > Brand new UI management system (V3.0.0-Release).
 >
@@ -63,4 +63,3 @@ vue-tsc --noEmit
 ```
 
 ---
-

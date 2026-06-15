@@ -1,4 +1,14 @@
 /*
+ * @Author: darcy.zhang , tech.darcy.zhang@outlook.com
+ * @Date: 2026-06-08 19:14:37
+ * @LastEditors: darcy.zhang , tech.darcy.zhang@outlook.com
+ * @LastEditTime: 2026-06-15 16:17:14
+ * @FilePath: /gyyun-ui/vite.config.ts
+ * @Description: 
+ * 
+ * Copyright (c) 2026 by 【 tech.darcy.zhang@outlook.com 】, All Rights Reserved. 
+ */
+/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -42,6 +52,7 @@ export default defineConfig({
     }
   },
   server: {
+    port: 1221,
     proxy: {
       '/gyyun': {
         target: loadEnv('development', './').VITE_APP_DEV_WEB_URL,
