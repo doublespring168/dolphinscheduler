@@ -262,6 +262,7 @@ export default defineComponent({
         <VersionModal
           v-model:row={this.row}
           v-model:show={this.versionShowRef}
+          restoreModalBackground
           onUpdateList={this.handleUpdateList}
         />
         <CopyModal

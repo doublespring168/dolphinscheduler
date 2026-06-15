@@ -20,6 +20,7 @@ import { useI18n } from 'vue-i18n'
 import { useTable } from './use-table'
 import { NDataTable, NPagination, NSpace } from 'naive-ui'
 import Modal from '@/components/modal'
+import './version-modal.scss'
 import type { IDefinitionData } from '../types'
 
 const props = {
@@ -34,6 +35,10 @@ const props = {
   row: {
     type: Object as PropType<IDefinitionData>,
     default: {}
+  },
+  restoreModalBackground: {
+    type: Boolean as PropType<boolean>,
+    default: false
   }
 }
 
@@ -84,7 +89,14 @@ export default defineComponent({
         onCancel={this.hideModal}
         onConfirm={this.hideModal}
       >
-        <NSpace vertical>
+        <NSpace
+          vertical
+          class={
+            this.$props.restoreModalBackground
+              ? 'workflow-definition-version-modal'
+              : ''
+          }
+        >
           <NDataTable
             loading={loadingRef}
             columns={this.columns}

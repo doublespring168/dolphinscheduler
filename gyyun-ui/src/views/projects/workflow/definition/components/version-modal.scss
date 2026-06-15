@@ -1,0 +1,21 @@
+.n-card:has(.workflow-definition-version-modal) {
+  background: #fff;
+  border: 1px solid var(--n-border-color);
+
+  > .n-card-header {
+    display: flex;
+    background: #fff;
+  }
+
+  > .n-card__content {
+    padding: 0 var(--n-padding-left) var(--n-padding-bottom)
+      var(--n-padding-left) !important;
+    background: #fff;
+  }
+
+  > .n-card__footer {
+    padding: 0 var(--n-padding-left) var(--n-padding-bottom)
+      var(--n-padding-left);
+    background: #fff;
+  }
+}
