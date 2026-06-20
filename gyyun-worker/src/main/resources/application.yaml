@@ -72,7 +72,7 @@ worker:
     # tenant corresponds to the user of the system, which is used by the worker to submit the job. If system does not have this user, it will be automatically created after the parameter worker.tenant.auto.create is true.
     auto-create-tenant-enabled: true
     # If set true, will use worker bootstrap user as the tenant to execute task when the tenant is `default`.
-    default-tenant-enabled: false
+    default-tenant-enabled: true
 
 server:
   port: 1235
