@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-FROM r.gyykj.com/gyy-base/openeuler-jdk:1.8-amd64 AS gyyun-dist
+FROM r.gyykj.com/gyy-base/openeuler-jdk:1.8-arm64 AS gyyun-dist
 
 WORKDIR /tmp/gyyun-dist
 
@@ -29,7 +29,7 @@ RUN tar -zxf /tmp/gyyun-bin.tar.gz -C /tmp/gyyun-dist --strip-components=1 --exc
       /tmp/gyyun-dist/plugins/storage-plugins \
       /tmp/gyyun-dist/plugins/task-plugins
 
-FROM r.gyykj.com/gyy-base/openeuler-jdk:1.8-amd64
+FROM r.gyykj.com/gyy-base/openeuler-jdk:1.8-arm64
 
 ENV DOCKER=true
 ENV TZ=Asia/Shanghai
