@@ -3,16 +3,16 @@
 Register a one-node SHELL workflow in a project, publish it, and start it.
 
 Examples:
-  python3 test/o-18-1.py \
+python3 test/o-18-2-启动一个workflow实例.py \
     --base http://127.0.0.1:12345/gyyun \
-    --token YOUR_ACCESS_TOKEN \
-    --project-code 123456789 \
-    --raw-script "echo 'hello from api'"
-
-  python3 test/o-18-2.py \
-    --username admin \
-    --password gyyun123 \
-    --project-code 123456789
+    --token 9caed38bdf340c95a9f2103fd716ba30 \
+    --project-code 176652102752224 \
+    --workflow-code 176652416622560 \
+    --failure-strategy 'CONTINUE' \
+    --warning-type 'NONE' \
+    --priority 'MEDIUM' \
+    --worker-group 'default' \
+    --tenant-code 'default'
 
 Environment variables:
   GYYUN_API_BASE
