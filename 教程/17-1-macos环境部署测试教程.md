@@ -3,6 +3,9 @@
 ```
 
 # 运行
+
+git ls-files -z | rsync -avz --from0 --files-from=- ./ dp:/home/darcy/Downloads/ala-ds
+
 ssh dp
 
 cd ~/Downloads/ala-ds
