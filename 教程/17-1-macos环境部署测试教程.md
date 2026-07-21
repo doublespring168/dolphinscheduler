@@ -41,8 +41,8 @@ rm -rf gyyun-3.4.3-SNAPSHOT-bin
 
 # 运行
 docker rm -f gyyun-api gyyun-master gyyun-worker gyyun-alert
-mkdir -p /Users/darcy/Downloads/ala-ds
-cd /Users/darcy/Downloads/ala-ds
+mkdir -p /Users/darcy/ala-ds
+cd /Users/darcy/ala-ds
 rm -rf ./*
 ll
 
@@ -57,16 +57,16 @@ ll
 export HUB='r.gyykj.com/gyy-base'
 export TAG='3.4.3-SNAPSHOT'
 export GYY_HOME=/gyy_program
-export GYY_HOST_LOGS="/Users/darcy/Downloads/ala-ds/logs"
-export GYY_HOST_SOFT="/Users/darcy/Downloads/ala-ds/soft"
-export GYY_HOST_RESOURCE="/Users/darcy/Downloads/ala-ds/resource"
-export GYY_HOST_PLUGINS="/Users/darcy/Downloads/ala-ds/plugins"
-export GYY_HOST_WORKER_DATA="/Users/darcy/Downloads/ala-ds/worker-data"
+export GYY_HOST_LOGS="/Users/darcy/ala-ds/logs"
+export GYY_HOST_SOFT="/Users/darcy/ala-ds/soft"
+export GYY_HOST_RESOURCE="/Users/darcy/ala-ds/resource"
+export GYY_HOST_PLUGINS="/Users/darcy/ala-ds/plugins"
+export GYY_HOST_WORKER_DATA="/Users/darcy/ala-ds/worker-data"
 export GYY_DATABASE=mysql
 export GYY_MYSQL_HOST=10.211.55.2
 export GYY_MYSQL_PORT=3317
 export GYY_MYSQL_DATABASE=ala-data-ds
-export GYY_MYSQL_USER=ds
+export GYY_MYSQL_USER=gyy
 export GYY_MYSQL_PASSWORD=32WO3ad2JZSiCGsl
 export GYY_MYSQL_URL="jdbc:mysql://${GYY_MYSQL_HOST}:${GYY_MYSQL_PORT}/${GYY_MYSQL_DATABASE}?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai"
 export GYY_ZK_CONNECT=10.211.55.2:4206
@@ -87,9 +87,9 @@ mkdir -p \
 
 # 复制plugins
 
-cp -r /Users/darcy/Downloads/docker-images/plugins /Users/darcy/Downloads/ala-ds/
-ll /Users/darcy/Downloads/ala-ds/plugins
-ll /Users/darcy/Downloads/ala-ds/plugins/alert-plugins
+cp -r /Users/darcy/docker-images/plugins /Users/darcy/ala-ds/
+ll /Users/darcy/ala-ds/plugins
+ll /Users/darcy/ala-ds/plugins/alert-plugins
 
 ```
 
